@@ -1,0 +1,41 @@
+//
+//  Task.h
+//  Focus8
+//
+//  Created by Sibin Baby on 18/05/2015.
+//  Copyright (c) 2015 FocusApps. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
+@class Event;
+
+@interface Task : NSManagedObject
+
+@property (nonatomic, retain) NSString * alarmSound;
+@property (nonatomic, retain) NSNumber * isMuteOn;
+@property (nonatomic, retain) NSNumber * isPreventLockOn;
+@property (nonatomic, retain) NSNumber * isSelected;
+@property (nonatomic, retain) NSNumber * isTickingOn;
+@property (nonatomic, retain) id longBreakColor;
+@property (nonatomic, retain) NSNumber * longBreakDelay;
+@property (nonatomic, retain) NSNumber * longBreakTime;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSDate * reminderDate;
+@property (nonatomic, retain) NSNumber * repeatCount;
+@property (nonatomic, retain) id shortBreakColor;
+@property (nonatomic, retain) NSNumber * shortBreakTime;
+@property (nonatomic, retain) id taskColor;
+@property (nonatomic, retain) NSNumber * workTime;
+@property (nonatomic, retain) NSSet *events;
+@end
+
+@interface Task (CoreDataGeneratedAccessors)
+
+- (void)addEventsObject:(Event *)value;
+- (void)removeEventsObject:(Event *)value;
+- (void)addEvents:(NSSet *)values;
+- (void)removeEvents:(NSSet *)values;
+
+@end
