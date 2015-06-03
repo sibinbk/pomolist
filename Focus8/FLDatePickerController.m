@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
     self.bounce1Duration = 0.13;
     self.bounce2Duration = 2 * self.bounce1Duration;
     
-    self.view.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:.8];
+    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5];
     self.view.alpha = 0.0;
     
     //     Container view.
