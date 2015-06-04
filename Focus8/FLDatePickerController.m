@@ -19,9 +19,12 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
 
 @property (strong, nonatomic) UIView *containerView;
 @property (strong, nonatomic) UIView *popUpView;
+@property (strong, nonatomic) UIView *titleView;
+@property (strong, nonatomic) UILabel *pickerLabel;
 @property (strong, nonatomic) UIDatePicker *datePicker;
 @property (nonatomic) NSTimeInterval bounce1Duration;
 @property (nonatomic) NSTimeInterval bounce2Duration;
+@property (strong, nonatomic)NSDateFormatter *formatter;
 @property (nonatomic) PopAnimationType animationType;
 
 @end
@@ -31,14 +34,20 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+ 
+    //Setup date formatter
+    self.formatter = [[NSDateFormatter alloc] init];
+    NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM d, yyyy hh:mm a" options:0 locale:[NSLocale currentLocale]];
+    [self.formatter setDateFormat:format];
+
+    //Set animation timing.
     self.bounce1Duration = 0.13;
     self.bounce2Duration = 2 * self.bounce1Duration;
     
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5];
     self.view.alpha = 0.0;
     
-    //     Container view.
+    // Container view.
     self.containerView = [[UIView alloc] init];
     self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
     self.containerView.backgroundColor = [UIColor clearColor];
@@ -52,12 +61,29 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
     [self.containerView addSubview:self.popUpView];
     
     // Coloured Topbar for title and date.
-    UIView* topView = [[UIView alloc] init];
-    topView.translatesAutoresizingMaskIntoConstraints = NO;
-    topView.clipsToBounds  = YES;
-    topView.backgroundColor = self.titleColor;
-    [self.popUpView addSubview:topView];
+    self.titleView = [[UIView alloc] init];
+    self.titleView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.popUpView addSubview:self.titleView];
     
+    // Title Label for Picker
+    UILabel* titleLabel = [[UILabel alloc] init];
+    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.font = [UIFont boldSystemFontOfSize:20.0];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = @"Reminder";
+    [self.titleView addSubview:titleLabel];
+    
+    // date picker label
+    self.pickerLabel = [[UILabel alloc] init];
+    self.pickerLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.pickerLabel.backgroundColor = [UIColor clearColor];
+    self.pickerLabel.textColor = [UIColor whiteColor];
+    self.pickerLabel.font = [UIFont systemFontOfSize:20.0];
+    self.pickerLabel.textAlignment = NSTextAlignmentCenter;
+    [self.titleView addSubview:self.pickerLabel];
+
     UIView* bottomView = [[UIView alloc] init];
     bottomView.translatesAutoresizingMaskIntoConstraints = NO;
     bottomView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:.5];
@@ -73,7 +99,9 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
     // Date picker.
     self.datePicker = [[UIDatePicker alloc] init];
     self.datePicker.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.datePicker.minuteInterval = 5;
     self.datePicker.backgroundColor = [UIColor whiteColor];
+    [self.datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     [pickerContainerView addSubview:self.datePicker];
     
     // Cancel button for picker.
@@ -96,36 +124,12 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
     [saveButton addTarget:self action:@selector(saveReminder:) forControlEvents:UIControlEventTouchUpInside];
     [self.popUpView addSubview:saveButton];
     
-    // Title Label for Picker
-    UILabel* titleLabel = [[UILabel alloc] init];
-    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:20.0];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"Due Date";
-    [self.popUpView addSubview:titleLabel];
-    
-    // date picker label
-    UILabel *pickerLabel = [[UILabel alloc] init];
-    pickerLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    pickerLabel.backgroundColor = [UIColor clearColor];
-    pickerLabel.textColor = [UIColor whiteColor];
-    pickerLabel.font = [UIFont systemFontOfSize:20.0];
-    pickerLabel.textAlignment = NSTextAlignmentCenter;
-    pickerLabel.text = @"3/04/15";
-    [self.popUpView addSubview:pickerLabel];
-    
     // Padding views.
-    UIView *spacer5 = [UIView new];
-    spacer5.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.popUpView addSubview:spacer5];
+    UIView *spacer = [UIView new];
+    spacer.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.popUpView addSubview:spacer];
     
-    UIView *spacer6 = [UIView new];
-    spacer6.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.popUpView addSubview:spacer6];
-    
-    NSDictionary* layoutViews = NSDictionaryOfVariableBindings(_containerView, _popUpView, topView, bottomView, pickerContainerView, _datePicker, removeButton, saveButton, titleLabel, pickerLabel, spacer5, spacer6);
+    NSDictionary* layoutViews = NSDictionaryOfVariableBindings(_containerView, _popUpView, _titleView, bottomView, pickerContainerView, _datePicker, removeButton, saveButton, titleLabel, _pickerLabel, spacer);
     
     [pickerContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_datePicker]|"
                                                                                 options:NSLayoutFormatAlignAllCenterX
@@ -136,35 +140,36 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                                                 metrics:nil
                                                                                   views:layoutViews]];
     
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[topView(100)][spacer5]|"
+    [self.titleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[titleLabel]-[_pickerLabel]-8-|"
                                                                            options:NSLayoutFormatAlignAllCenterX
                                                                            metrics:nil
                                                                              views:layoutViews]];
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[topView]|"
+    [self.titleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[titleLabel]|"
+                                                                           options:0
+                                                                           metrics:nil
+                                                                             views:layoutViews]];
+    [self.titleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_pickerLabel]|"
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
     
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[titleLabel]-[pickerLabel]-[pickerContainerView][bottomView(1.0)]"
+    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_titleView][pickerContainerView][bottomView(1.0)]"
+                                                                           options:NSLayoutFormatAlignAllCenterX
+                                                                           metrics:nil
+                                                                             views:layoutViews]];
+    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bottomView]-8-[removeButton]-8-|"
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bottomView]-[removeButton]-8-|"
+    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bottomView]-8-[saveButton]-8-|"
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bottomView]-[saveButton]-8-|"
+    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_titleView]|"
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[titleLabel]-|"
-                                                                           options:NSLayoutFormatAlignAllCenterY
-                                                                           metrics:nil
-                                                                             views:layoutViews]];
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[pickerLabel]-|"
-                                                                           options:NSLayoutFormatAlignAllCenterY
-                                                                           metrics:nil
-                                                                             views:layoutViews]];
+
     [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pickerContainerView]|"
                                                                            options:0
                                                                            metrics:nil
@@ -174,7 +179,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[removeButton][spacer6][saveButton]-16-|"
+    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[removeButton][spacer][saveButton]-16-|"
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
@@ -211,15 +216,22 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
 
 - (void)shoWDatePickerOnView:(UIView *)aView animated:(BOOL)animated
 {
+    NSLog(@"show picker called");
     self.animationType = PopBounceIn;
     dispatch_async(dispatch_get_main_queue(), ^{
         [aView addSubview:self.view];
+        if (self.reminderDate) {
+            self.pickerLabel.text = [self.formatter stringFromDate:self.reminderDate];
+            [self.datePicker setDate:self.reminderDate animated:YES];
+        }
+        self.titleView.backgroundColor = self.titleColor;
         if (animated) {
             [self showBounceInAnimation];
         }
     });
 }
 
+#pragma mark - UI button methods.
 - (void)saveReminder:(id)sender
 {
     [self.delegate pickerController:self reminderAdded:self.datePicker.date];
@@ -234,20 +246,15 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
     [self removeBounceInAnimation];
 }
 
-//- (void)closePopup:(id)sender
-//{
-//    switch (self.animationType) {
-//        case PopZoom:
-//            [self removeZoomAnimation];
-//            break;
-//        case PopBounceIn:
-//            [self removeBounceInAnimation];
-//            break;
-//        default:
-//            break;
-//    }
-//}
+#pragma mark - UIDatePicker delegate methods.
 
+- (void)dateChanged:(id)sender
+{
+    NSLog(@"date changed");
+    self.pickerLabel.text = [self.formatter stringFromDate:self.datePicker.date];
+}
+
+# pragma mark - custom animation methods.
 - (void)showZoomAnimation
 {
     self.view.alpha = 0;

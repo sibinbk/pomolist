@@ -46,9 +46,9 @@
 @property (weak, nonatomic) IBOutlet DesignableView *shortBreakColorView;
 @property (weak, nonatomic) IBOutlet DesignableView *longBreakColorView;
 
-@property (nonatomic, strong) FLDatePickerController *datePickerController;
+@property (strong, nonatomic) FLDatePickerController *datePickerController;
 
-@property NSDateFormatter *formatter;
+@property (strong, nonatomic)NSDateFormatter *formatter;
 
 @property (strong, nonatomic) UIColor *taskColor;
 @property (strong, nonatomic) UIColor *shortBreakColor;
@@ -240,19 +240,9 @@
     NSString *pickerType;
     
     if (indexPath.section == 1 && indexPath.row == 0) {
-//        UIView* baseView = [[UIView alloc] initWithFrame:CGRectMake(0,
-//                                                                    0,
-//                                                                    [[UIScreen mainScreen] applicationFrame].size.width,
-//                                                                    [[UIScreen mainScreen] applicationFrame].size.height)];
-//        [baseView setBackgroundColor:[UIColor blackColor]];
-//        baseView.userInteractionEnabled = YES;
-//        baseView.alpha = 0.7;
-//        UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
-//        [window addSubview:baseView];
-//        [window bringSubviewToFront:baseView];
         self.datePickerController = [[FLDatePickerController alloc] init];
-        self.datePickerController.titleColor = self.task.taskColor;
-        self.datePickerController.reminderDate = self.task.reminderDate;
+        self.datePickerController.titleColor = self.taskColor;
+        self.datePickerController.reminderDate = self.reminderDate;
         self.datePickerController.delegate = self;
         [self.datePickerController shoWDatePickerOnView:self.navigationController.view animated:YES];
     }

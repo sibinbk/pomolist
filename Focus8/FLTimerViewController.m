@@ -42,7 +42,7 @@
 @property (strong, nonatomic) UIColor *shortBreakColor;
 @property (strong, nonatomic) UIColor *longBreakColor;
 
-@property NSDateFormatter *formatter;
+@property (strong, nonatomic) NSDateFormatter *formatter;
 
 @property (assign, nonatomic) BOOL isFullView;
 @property (assign, nonatomic) BOOL isTaskEditing;
