@@ -48,12 +48,11 @@
 
 @property (strong, nonatomic) FLDatePickerController *datePickerController;
 
-@property (strong, nonatomic)NSDateFormatter *formatter;
-
 @property (strong, nonatomic) UIColor *taskColor;
 @property (strong, nonatomic) UIColor *shortBreakColor;
 @property (strong, nonatomic) UIColor *longBreakColor;
 @property (strong, nonatomic) NSDate *reminderDate;
+@property (strong, nonatomic) NSDateFormatter *formatter;
 
 @property (strong, nonatomic) NSArray *colors;
 

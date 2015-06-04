@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
 @property (strong, nonatomic) UIDatePicker *datePicker;
 @property (nonatomic) NSTimeInterval bounce1Duration;
 @property (nonatomic) NSTimeInterval bounce2Duration;
-@property (strong, nonatomic)NSDateFormatter *formatter;
+@property (strong, nonatomic) NSDateFormatter *formatter;
 @property (nonatomic) PopAnimationType animationType;
 
 @end
@@ -183,16 +183,14 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
-    [self.containerView addConstraints:[NSLayoutConstraint
-                                      constraintsWithVisualFormat:@"H:|[_popUpView]|"
-                                      options:0
-                                      metrics:nil
-                                      views:NSDictionaryOfVariableBindings(_popUpView)]];
-    [self.containerView addConstraints:[NSLayoutConstraint
-                                      constraintsWithVisualFormat:@"V:|[_popUpView]|"
-                                      options:0
-                                      metrics:nil
-                                      views:NSDictionaryOfVariableBindings(_popUpView)]];
+    [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_popUpView]|"
+                                                                               options:0
+                                                                               metrics:nil
+                                                                                 views:NSDictionaryOfVariableBindings(_popUpView)]];
+    [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_popUpView]|"
+                                                                               options:0
+                                                                               metrics:nil
+                                                                                 views:NSDictionaryOfVariableBindings(_popUpView)]];
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView
                                                           attribute:NSLayoutAttributeCenterX
@@ -209,8 +207,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                            attribute:NSLayoutAttributeCenterY
                                                           multiplier:1.0
                                                             constant:0.0]];
-    
-    
+    // Apply 'transform' to reduce the size of Pop Up.
     self.popUpView.transform = CGAffineTransformMakeScale(0.85, 0.85);
 }
 
@@ -220,11 +217,15 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
     self.animationType = PopBounceIn;
     dispatch_async(dispatch_get_main_queue(), ^{
         [aView addSubview:self.view];
-        if (self.reminderDate) {
+        self.titleView.backgroundColor = self.titleColor;
+        if (!self.reminderDate) {
+            self.pickerLabel.text = [self.formatter stringFromDate:[NSDate date]];
+            [self.datePicker setDate:[NSDate date] animated:YES];
+
+        } else {
             self.pickerLabel.text = [self.formatter stringFromDate:self.reminderDate];
             [self.datePicker setDate:self.reminderDate animated:YES];
         }
-        self.titleView.backgroundColor = self.titleColor;
         if (animated) {
             [self showBounceInAnimation];
         }
