@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>WorkTime</key>
+	<key>TaskTime</key>
 	<array>
 		<string>1 minute</string>
 		<string>2 minutes</string>

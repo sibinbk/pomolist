@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="finishDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="totalTaskTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -20,7 +20,7 @@
         <attribute name="shortBreakColor" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="shortBreakTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="taskColor" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="workTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="taskTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="task" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>

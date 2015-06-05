@@ -2,7 +2,7 @@
 //  Task.m
 //  Focus8
 //
-//  Created by Sibin Baby on 18/05/2015.
+//  Created by Sibin Baby on 6/06/2015.
 //  Copyright (c) 2015 FocusApps. All rights reserved.
 //
 
@@ -26,7 +26,7 @@
 @dynamic shortBreakColor;
 @dynamic shortBreakTime;
 @dynamic taskColor;
-@dynamic workTime;
+@dynamic taskTime;
 @dynamic events;
 
 @end

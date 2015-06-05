@@ -626,10 +626,10 @@
 {
     Task *task = [_fetchedResultsController objectAtIndexPath:indexPath];
 //    cell.textLabel.text = task.name;
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld minutes task / %ld minutes break", (long) [task.workTime integerValue], (long)[task.shortBreakTime integerValue]];
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld minutes task / %ld minutes break", (long) [task.taskTime integerValue], (long)[task.shortBreakTime integerValue]];
     cell.taskNameLabel.text = task.name;
     cell.cycleCountLabel.text = [NSString stringWithFormat:@"%@ Cycles", task.repeatCount];
-    cell.taskTimeLabel.text = [NSString stringWithFormat:@"%@", task.workTime];
+    cell.taskTimeLabel.text = [NSString stringWithFormat:@"%@", task.taskTime];
     
 //    cell.reminderDateLabel.text = (indexPath.row % 3 == 0) ? @"26 May 2015 6:00 pm" : nil;
     cell.reminderDateLabel.text = [self.formatter stringFromDate:task.reminderDate];
@@ -679,7 +679,7 @@
         [self saveContext];
         
         self.taskName = newTask.name;
-        self.taskTime = [newTask.workTime integerValue] * 60;
+        self.taskTime = [newTask.taskTime integerValue] * 60;
         self.shortBreakTime = [newTask.shortBreakTime integerValue] * 60;
         self.longBreakTime = [newTask.longBreakTime integerValue] * 60;
         self.repeatCount = [newTask.repeatCount integerValue];
@@ -938,7 +938,7 @@
 {
     NSLog(@"task delegate called");
     self.taskName = task.name;
-    self.taskTime = [task.workTime integerValue] * 60;
+    self.taskTime = [task.taskTime integerValue] * 60;
     self.shortBreakTime = [task.shortBreakTime integerValue] * 60;
     self.longBreakTime = [task.longBreakTime integerValue] * 60;
     self.repeatCount = [task.repeatCount integerValue];

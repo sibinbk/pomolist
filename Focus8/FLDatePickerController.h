@@ -24,6 +24,6 @@
 @property (nonatomic, strong) UIColor *titleColor;
 @property (nonatomic, strong) NSDate *reminderDate;
 
-- (void)shoWDatePickerOnView:(UIView *)aView animated:(BOOL)animated;
+- (void)showDatePickerOnView:(UIView *)aView animated:(BOOL)animated;
 
 @end

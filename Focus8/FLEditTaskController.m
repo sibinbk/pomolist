@@ -9,13 +9,13 @@
 #import "FLEditTaskController.h"
 #import "AppDelegate.h"
 #import "Task.h"
-#import "FLPickerController.h"
 #import "FLColorPicker.h"
 #import "FLDatePickerController.h"
+#import "FLPopUpPickerController.h"
 #import "UIColor+FlatColors.h"
 #import "Focus8-Swift.h"
 
-#define kWorkTimePicker          @"workTimePicker"
+#define kTaskTimePicker          @"taskTimePicker"
 #define kShortBreakPicker        @"shortBreakPicker"
 #define kLongBreakPicker         @"longBreakPicker"
 #define kLongBreakDelayPicker    @"longBreakDelayPicker"
@@ -24,11 +24,11 @@
 #define kShortBreakColorPicker   @"shortBreakColorPicker"
 #define kLongBreakColorPicker    @"longBreakColorPicker"
 
-@interface FLEditTaskController () <FLPickerControllerDelegate, FLColorPickerDelegate, FLDatePickerControllerDelegate, UITextFieldDelegate>
+@interface FLEditTaskController () <UITextFieldDelegate, FLDatePickerControllerDelegate, FLPopUpPickerControllerDelegate, FLColorPickerDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-@property (strong, nonatomic) NSArray *workTimeArray;
+@property (strong, nonatomic) NSArray *taskTimeArray;
 @property (strong, nonatomic) NSArray *shortBreakArray;
 @property (strong, nonatomic) NSArray *longBreakArray;
 @property (strong, nonatomic) NSArray *repeatCountArray;
@@ -37,7 +37,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *taskNameField;
 @property (weak, nonatomic) IBOutlet UILabel *reminderTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *reminderDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *workTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *taskTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *shortBreakLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longBreakLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longBreakDelayLabel;
@@ -47,6 +47,8 @@
 @property (weak, nonatomic) IBOutlet DesignableView *longBreakColorView;
 
 @property (strong, nonatomic) FLDatePickerController *datePickerController;
+@property (strong, nonatomic) FLPopUpPickerController *popUpPickerController;
+@property (assign, nonatomic) PopUpPickerType pickerType;
 
 @property (strong, nonatomic) UIColor *taskColor;
 @property (strong, nonatomic) UIColor *shortBreakColor;
@@ -100,7 +102,7 @@
                     ];
     
     NSDictionary *contentDict = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PickerData" ofType:@"plist"]];
-    self.workTimeArray = [contentDict objectForKey:@"WorkTime"];
+    self.taskTimeArray = [contentDict objectForKey:@"TaskTime"];
     self.shortBreakArray = [contentDict objectForKey:@"ShortBreakTime"];
     self.longBreakArray = [contentDict objectForKey:@"LongBreakTime"];
     self.longBreakDelayArray = [contentDict objectForKey:@"LongBreakDelay"];
@@ -113,7 +115,7 @@
             self.reminderTitleLabel.text = @"Remind on";
             self.reminderDateLabel.text = [self.formatter stringFromDate:self.task.reminderDate];
         }
-        self.workTimeLabel.text = [NSString stringWithFormat:@"%@ minutes", self.task.workTime];
+        self.taskTimeLabel.text = [NSString stringWithFormat:@"%@ minutes", self.task.taskTime];
         self.shortBreakLabel.text = [NSString stringWithFormat:@"%@ minutes", self.task.shortBreakTime];
         self.longBreakLabel.text = [NSString stringWithFormat:@"%@ minutes", self.task.longBreakTime];
         self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%@ tasks", self.task.longBreakDelay];
@@ -167,7 +169,7 @@
         
         self.task.name = self.taskNameField.text;
         self.task.reminderDate = self.reminderDate;
-        self.task.workTime = [NSNumber numberWithInteger: [self.workTimeLabel.text integerValue]];
+        self.task.taskTime = [NSNumber numberWithInteger: [self.taskTimeLabel.text integerValue]];
         self.task.shortBreakTime = [NSNumber numberWithInteger: [self.shortBreakLabel.text integerValue]];
         self.task.longBreakTime = [NSNumber numberWithInteger:[self.longBreakLabel.text integerValue]];
         self.task.longBreakDelay = [NSNumber numberWithInteger:[self.longBreakDelayLabel.text integerValue]];
@@ -202,30 +204,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - FLDatePickerController delegate methods.
-
-- (void)pickerController:(FLDatePickerController *)controller reminderAdded:(NSDate *)reminderDate
-{
-    NSLog(@"Reminder date added : %@",reminderDate);
-    self.reminderDate = reminderDate;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.reminderTitleLabel.text = @"Remind on";
-        self.reminderDateLabel.text = [self.formatter stringFromDate:self.reminderDate];
-        self.reminderDateLabel.textColor = [UIColor blackColor];
-    });
-}
-- (void)pickerController:(FLDatePickerController *)controller reminderRemoved:(BOOL)removed
-{
-    NSLog(@"Reminder date removed");
-    if (removed) {
-        self.reminderDate = nil;
-    }
-    
-    self.reminderTitleLabel.text = @"Set a reminder (Optional!)";
-    self.reminderDateLabel.text = @" ";
-    self.reminderDateLabel.textColor = [UIColor grayColor];
-}
-
 #pragma mark - tableview delegate method
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -236,39 +214,52 @@
         [self.taskNameField resignFirstResponder];
     }
     
-    NSString *pickerType;
-    
     if (indexPath.section == 1 && indexPath.row == 0) {
         self.datePickerController = [[FLDatePickerController alloc] init];
         self.datePickerController.titleColor = self.taskColor;
         self.datePickerController.reminderDate = self.reminderDate;
         self.datePickerController.delegate = self;
-        [self.datePickerController shoWDatePickerOnView:self.navigationController.view animated:YES];
+        [self.datePickerController showDatePickerOnView:self.navigationController.view animated:YES];
     }
     
-    if (indexPath.section == 2) {
+    if (indexPath.section == 2 && indexPath.row != 4) {
+        self.popUpPickerController = [[FLPopUpPickerController alloc] init];
+        self.popUpPickerController.titleColor = [UIColor flatTurquoiseColor];
+         self.popUpPickerController.delegate = self;
         switch (indexPath.row) {
             case 0:
-                pickerType = kWorkTimePicker;
+                self.popUpPickerController.pickerType = TaskTimePicker;
+                self.popUpPickerController.tableArray = self.taskTimeArray;
+                self.popUpPickerController.selectedValue = self.taskTimeLabel.text;
+                self.popUpPickerController.pickerTitle = @"Task Cycle";
                 break;
             case 1:
-                pickerType = kShortBreakPicker;
+                self.popUpPickerController.pickerType = ShortBreakPicker;
+                self.popUpPickerController.tableArray = self.shortBreakArray;
+                self.popUpPickerController.selectedValue = self.shortBreakLabel.text;
+                self.popUpPickerController.pickerTitle = @"Short Break";
                 break;
             case 2:
-                pickerType = kLongBreakPicker;
+                self.popUpPickerController.pickerType = LongBreakPicker;
+                self.popUpPickerController.tableArray = self.longBreakArray;
+                self.popUpPickerController.selectedValue = self.longBreakLabel.text;
+                self.popUpPickerController.pickerTitle = @"Long Break";
                 break;
             case 3:
-                pickerType = kLongBreakDelayPicker;
-                break;
-            case 4:
-                pickerType = kRepeatCountPicker;
+                self.popUpPickerController.pickerType = LongBreakDelayPicker;
+                self.popUpPickerController.tableArray = self.longBreakDelayArray;
+                self.popUpPickerController.selectedValue = self.longBreakDelayLabel.text;
+                self.popUpPickerController.pickerTitle = @"Long Break Delay";
                 break;
             default:
                 break;
         }
         
-        [self performSegueWithIdentifier:@"pickerSegue" sender:pickerType];
+        NSLog(@"Selected Row %ld",(long)indexPath.row);
+        [self.popUpPickerController showPopUpPicker:self.navigationController.view animated:YES];
     }
+    
+    NSString *pickerType;
     
     if (indexPath.section == 3) {
         switch (indexPath.row) {
@@ -291,41 +282,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    if ([segue.identifier isEqualToString:@"datePickerSegue"]) {
-//        FLDatePickerController *datePickerController = segue.destinationViewController;
-//        datePickerController.titleColor = [UIColor flatGreenSeaColor];
-//        datePickerController.reminderDate = self.task.reminderDate;
-//        datePickerController.delegate = self;
-//    }
-    
-    if ([segue.identifier isEqualToString:@"pickerSegue"]) {
-        FLPickerController *pickerController = segue.destinationViewController;
-        pickerController.selectedPicker = sender;
-        pickerController.delegate = self;
-        
-        if ([sender isEqualToString:kWorkTimePicker]) {
-            pickerController.tableArray = self.workTimeArray;
-            pickerController.selectedValue = self.workTimeLabel.text;
-            pickerController.navigationItem.title = @"Work Time";
-        } else if ([sender isEqualToString:kShortBreakPicker]) {
-            pickerController.tableArray = self.shortBreakArray;
-            pickerController.selectedValue = self.shortBreakLabel.text;
-            pickerController.navigationItem.title = @"Short Break";
-        } else if ([sender isEqualToString:kLongBreakPicker]) {
-            pickerController.tableArray = self.longBreakArray;
-            pickerController.selectedValue = self.longBreakLabel.text;
-            pickerController.navigationItem.title = @"Long Break";
-        } else if ([sender isEqualToString:kLongBreakDelayPicker]) {
-            pickerController.tableArray = self.longBreakDelayArray;
-            pickerController.selectedValue = self.longBreakDelayLabel.text;
-            pickerController.navigationItem.title = @"Long Break Delay";
-        } else if ([sender isEqualToString:kRepeatCountPicker]) {
-            pickerController.tableArray = self.repeatCountArray;
-            pickerController.selectedValue = self.repeatCountLabel.text;
-            pickerController.navigationItem.title = @"Repeat Count";
-        }
-    }
-    
     if ([segue.identifier isEqualToString:@"colorPickerSegue"]) {
         FLColorPicker *colorPicker = segue.destinationViewController;
         colorPicker.selectedPicker = sender;
@@ -364,22 +320,54 @@
     }
 }
 
-- (void)pickerController:(FLPickerController *)controller didSelectValue:(NSString *)value forPicker:(NSString *)name
+#pragma mark - FLDatePickerController delegate methods.
+
+- (void)pickerController:(FLDatePickerController *)controller reminderAdded:(NSDate *)reminderDate
 {
-    if ([name isEqualToString:kWorkTimePicker]) {
-        self.workTimeLabel.text = value;
-    } else if ([name isEqualToString:kShortBreakPicker]){
-        self.shortBreakLabel.text = value;
-    } else if ([name isEqualToString:kLongBreakPicker]){
-        self.longBreakLabel.text = value;
-    } else if ([name isEqualToString:kLongBreakDelayPicker]){
-        self.longBreakDelayLabel.text = value;
-    } else if ([name isEqualToString:kRepeatCountPicker]){
-        self.repeatCountLabel.text = value;
-    }
-        
-    [self.navigationController popViewControllerAnimated:YES];
+    NSLog(@"Reminder date added : %@",reminderDate);
+    self.reminderDate = reminderDate;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.reminderTitleLabel.text = @"Remind on";
+        self.reminderDateLabel.text = [self.formatter stringFromDate:self.reminderDate];
+        self.reminderDateLabel.textColor = [UIColor blackColor];
+    });
 }
+- (void)pickerController:(FLDatePickerController *)controller reminderRemoved:(BOOL)removed
+{
+    NSLog(@"Reminder date removed");
+    if (removed) {
+        self.reminderDate = nil;
+    }
+    
+    self.reminderTitleLabel.text = @"Set a reminder (Optional!)";
+    self.reminderDateLabel.text = @" ";
+    self.reminderDateLabel.textColor = [UIColor grayColor];
+}
+
+#pragma mark - PopUp picker delegate methods.
+
+- (void)pickerController:(FLPopUpPickerController *)controller didSelectValue:(NSString *)value forPicker:(PopUpPickerType)picker;
+{
+    switch (picker) {
+        case TaskTimePicker:
+            self.taskTimeLabel.text = value;
+            break;
+        case ShortBreakPicker:
+            self.shortBreakLabel.text = value;
+            break;
+        case LongBreakPicker:
+            self.longBreakLabel.text = value;
+            break;
+        case LongBreakDelayPicker:
+            self.longBreakDelayLabel.text = value;
+            break;
+        default:
+            break;
+    }
+
+}
+
+#pragma mark - ColorPicker delegate method.
 
 - (void)colorPicker:(FLColorPicker *)controller didSelectColor:(UIColor *)flatColor forCycle:(NSString *)cycleName
 {

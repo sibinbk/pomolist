@@ -879,7 +879,7 @@
                         <outlet property="shortBreakLabel" destination="EGi-3E-jke" id="X9x-kF-8hy"/>
                         <outlet property="taskColorView" destination="zUM-Sh-GW3" id="2SI-9j-sgP"/>
                         <outlet property="taskNameField" destination="lOV-wU-8tM" id="izA-kx-y6X"/>
-                        <outlet property="workTimeLabel" destination="HQf-9R-Eji" id="U6C-HQ-aLd"/>
+                        <outlet property="taskTimeLabel" destination="HQf-9R-Eji" id="nVT-LW-d9m"/>
                         <segue destination="lOF-fp-rZm" kind="show" identifier="pickerSegue" id="e1v-Wh-pb5"/>
                         <segue destination="oo6-B6-Idx" kind="show" identifier="colorPickerSegue" id="DGe-bY-iwZ"/>
                     </connections>
