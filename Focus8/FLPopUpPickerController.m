@@ -144,7 +144,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_titleView][pickerContainerView][bottomView(1.0)]"
+    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_titleView][pickerContainerView(160)][bottomView(1.0)]"
                                                                            options:NSLayoutFormatAlignAllCenterX
                                                                            metrics:nil
                                                                              views:layoutViews]];
@@ -161,7 +161,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                                            metrics:nil
                                                                              views:layoutViews]];
     
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pickerContainerView]|"
+    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pickerContainerView(300)]|"
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
@@ -199,7 +199,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                           multiplier:1.0
                                                             constant:0.0]];
     // Apply 'transform' to reduce the size of Pop Up.
-    self.popUpView.transform = CGAffineTransformMakeScale(0.85, 0.85);
+//    self.popUpView.transform = CGAffineTransformMakeScale(0.85, 0.85);
 }
 
 - (void)showPopUpPicker:(UIView *)aView animated:(BOOL)animated
@@ -243,6 +243,11 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return self.tableArray[row];
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 32;
 }
 
 #pragma mark - Pickerview delegate methods.

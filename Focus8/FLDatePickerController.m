@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
     self.bounce1Duration = 0.13;
     self.bounce2Duration = 2 * self.bounce1Duration;
     
-    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5];
+    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.7];
     self.view.alpha = 0.0;
     
     // Container view.
@@ -153,7 +153,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                                            metrics:nil
                                                                              views:layoutViews]];
     
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_titleView][pickerContainerView][bottomView(1.0)]"
+    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_titleView][pickerContainerView(180)][bottomView(1.0)]"
                                                                            options:NSLayoutFormatAlignAllCenterX
                                                                            metrics:nil
                                                                              views:layoutViews]];
@@ -170,7 +170,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                                            metrics:nil
                                                                              views:layoutViews]];
 
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pickerContainerView]|"
+    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pickerContainerView(300)]|"
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
@@ -208,7 +208,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                           multiplier:1.0
                                                             constant:0.0]];
     // Apply 'transform' to reduce the size of Pop Up.
-    self.popUpView.transform = CGAffineTransformMakeScale(0.85, 0.85);
+//    self.popUpView.transform = CGAffineTransformMakeScale(0.85, 0.85);
 }
 
 - (void)showDatePickerOnView:(UIView *)aView animated:(BOOL)animated
