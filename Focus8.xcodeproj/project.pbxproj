@@ -474,6 +474,7 @@
 		C35B33511A0CBA1500061C40 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = FocusApps;
 				TargetAttributes = {

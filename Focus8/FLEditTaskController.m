@@ -50,6 +50,13 @@
 @property (strong, nonatomic) FLPopUpPickerController *popUpPickerController;
 @property (assign, nonatomic) PopUpPickerType pickerType;
 
+@property (strong, nonatomic) NSString *taskName;
+@property (nonatomic) NSTimeInterval taskTime;
+@property (nonatomic) NSTimeInterval shortBreakTime;
+@property (nonatomic) NSTimeInterval longBreakTime;
+@property (nonatomic) NSTimeInterval totalCountDownTime;
+@property (nonatomic) NSInteger repeatCount;
+@property (nonatomic) NSInteger longBreakDelay;
 @property (strong, nonatomic) UIColor *taskColor;
 @property (strong, nonatomic) UIColor *shortBreakColor;
 @property (strong, nonatomic) UIColor *longBreakColor;

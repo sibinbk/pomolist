@@ -210,7 +210,8 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
         [aView addSubview:self.view];
         self.titleView.backgroundColor = self.titleColor;
         self.titleLabel.text = self.pickerTitle;
-        [self.pickerView selectRow:[self.tableArray indexOfObject:self.selectedValue] inComponent:0 animated:YES];
+        NSLog(@"%ld",(long)[self.tableArray indexOfObject:self.selectedValue]);
+//        [self.pickerView selectRow:[self.tableArray indexOfObject:self.selectedValue] inComponent:0 animated:YES];
         if (animated) {
             [self showBounceInAnimation];
         }
