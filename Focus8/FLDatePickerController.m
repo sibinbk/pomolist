@@ -170,7 +170,7 @@ typedef NS_ENUM(NSInteger, PopAnimationType) {
                                                                            metrics:nil
                                                                              views:layoutViews]];
 
-    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pickerContainerView(300)]|"
+    [self.popUpView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pickerContainerView(310)]|"
                                                                            options:0
                                                                            metrics:nil
                                                                              views:layoutViews]];
