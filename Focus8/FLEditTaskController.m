@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "Task.h"
 #import "FLColorPicker.h"
-#import "FLDatePickerController.h"
+#import "FLReminderPickerController.h"
 #import "FLPopUpPickerController.h"
 #import "UIColor+FlatColors.h"
 #import "Focus8-Swift.h"
@@ -24,7 +24,7 @@
 #define kShortBreakColorPicker   @"shortBreakColorPicker"
 #define kLongBreakColorPicker    @"longBreakColorPicker"
 
-@interface FLEditTaskController () <UITextFieldDelegate, FLDatePickerControllerDelegate, FLPopUpPickerControllerDelegate, FLColorPickerDelegate>
+@interface FLEditTaskController () <UITextFieldDelegate, FLReminderPickerDelegate, FLPopUpPickerControllerDelegate, FLColorPickerDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
@@ -46,7 +46,6 @@
 @property (weak, nonatomic) IBOutlet DesignableView *shortBreakColorView;
 @property (weak, nonatomic) IBOutlet DesignableView *longBreakColorView;
 
-@property (strong, nonatomic) FLDatePickerController *datePickerController;
 @property (strong, nonatomic) FLPopUpPickerController *popUpPickerController;
 @property (assign, nonatomic) PopUpPickerType pickerType;
 
@@ -222,11 +221,7 @@
     }
     
     if (indexPath.section == 1 && indexPath.row == 0) {
-        self.datePickerController = [[FLDatePickerController alloc] init];
-        self.datePickerController.titleColor = self.taskColor;
-        self.datePickerController.reminderDate = self.reminderDate;
-        self.datePickerController.delegate = self;
-        [self.datePickerController showDatePickerOnView:self.navigationController.view animated:YES];
+        [self performSegueWithIdentifier:@"reminderPickerSegue" sender:nil];
     }
     
     if (indexPath.section == 2 && indexPath.row != 4) {
@@ -289,6 +284,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([segue.identifier isEqualToString:@"reminderPickerSegue"]) {
+        FLReminderPickerController *reminderPicker = segue.destinationViewController;
+        reminderPicker.reminderDate = self.reminderDate;
+        reminderPicker.delegate = self;
+    };
+    
     if ([segue.identifier isEqualToString:@"colorPickerSegue"]) {
         FLColorPicker *colorPicker = segue.destinationViewController;
         colorPicker.selectedPicker = sender;
@@ -329,24 +330,21 @@
 
 #pragma mark - FLDatePickerController delegate methods.
 
-- (void)pickerController:(FLDatePickerController *)controller reminderAdded:(NSDate *)reminderDate
+- (void)pickerController:(FLReminderPickerController *)controller reminderSetOn:(NSDate *)reminderDate
 {
-    NSLog(@"Reminder date added : %@",reminderDate);
     self.reminderDate = reminderDate;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.reminderTitleLabel.text = @"Remind on";
-        self.reminderDateLabel.text = [self.formatter stringFromDate:self.reminderDate];
-        self.reminderDateLabel.textColor = [UIColor blackColor];
-    });
+    self.reminderTitleLabel.text = @"Remind on";
+    self.reminderDateLabel.textColor = [UIColor blackColor];
+    self.reminderDateLabel.text = [self.formatter stringFromDate:self.reminderDate];
 }
-- (void)pickerController:(FLDatePickerController *)controller reminderRemoved:(BOOL)removed
+
+- (void)pickerController:(FLReminderPickerController *)controller reminderRemoved:(BOOL)removed
 {
-    NSLog(@"Reminder date removed");
     if (removed) {
         self.reminderDate = nil;
     }
     
-    self.reminderTitleLabel.text = @"Set a reminder (Optional!)";
+    self.reminderTitleLabel.text = @"Add a reminder (Optional!)";
     self.reminderDateLabel.text = @" ";
     self.reminderDateLabel.textColor = [UIColor grayColor];
 }

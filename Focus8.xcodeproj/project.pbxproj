@@ -29,7 +29,6 @@
 		C34968B11B207CD000D9179D /* FLPopUpPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34968B01B207CD000D9179D /* FLPopUpPickerController.m */; };
 		C34968B41B21E4EC00D9179D /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C34968B31B21E4EC00D9179D /* Task.m */; };
 		C34968B71B21E4ED00D9179D /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C34968B61B21E4ED00D9179D /* Event.m */; };
-		C35114141B159C5D005EB4B3 /* FLDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C35114131B159C5D005EB4B3 /* FLDatePickerController.m */; };
 		C351141B1B1AEFF7005EB4B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C35114191B1AEFF7005EB4B3 /* Main.storyboard */; };
 		C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C3534E211B09A12B0015B626 /* FLColorPicker.m */; };
 		C3534E261B09A63E0015B626 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C3534E231B09A63E0015B626 /* Checkmark.png */; };
@@ -46,6 +45,7 @@
 		C3616A451AAB434500C47C8A /* archive.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A421AAB434500C47C8A /* archive.png */; };
 		C3616A461AAB434500C47C8A /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A431AAB434500C47C8A /* archive@2x.png */; };
 		C3616A471AAB434500C47C8A /* archive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A441AAB434500C47C8A /* archive@3x.png */; };
+		C3ACAB791B319E1D000EF926 /* FLTimePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3ACAB781B319E1D000EF926 /* FLTimePickerController.m */; };
 		C3B6FAB61B0DA8920052B7E5 /* PauseFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAB31B0DA8920052B7E5 /* PauseFilled.png */; };
 		C3B6FAB71B0DA8920052B7E5 /* PauseFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAB41B0DA8920052B7E5 /* PauseFilled@2x.png */; };
 		C3B6FAB81B0DA8920052B7E5 /* PauseFilled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAB51B0DA8920052B7E5 /* PauseFilled@3x.png */; };
@@ -86,6 +86,7 @@
 		C3BB41481AFC797700A83016 /* TransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB412B1AFC797700A83016 /* TransitionZoom.swift */; };
 		C3BB41491AFC797700A83016 /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB412C1AFC797700A83016 /* UnwindSegue.swift */; };
 		C3BB41641B078C4D00A83016 /* UIColor+FlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BB41631B078C4D00A83016 /* UIColor+FlatColors.m */; };
+		C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D680861B3838D900C08860 /* FLReminderPickerController.m */; };
 		C3EA01F31B0A27DF00C321BF /* FLColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F21B0A27DF00C321BF /* FLColorCell.m */; };
 		C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */; };
 		C3EFAEA21A13462D003D641C /* FLEditTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEA11A13462D003D641C /* FLEditTaskController.m */; };
@@ -132,8 +133,6 @@
 		C34968B31B21E4EC00D9179D /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		C34968B51B21E4ED00D9179D /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C34968B61B21E4ED00D9179D /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		C35114121B159C5D005EB4B3 /* FLDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDatePickerController.h; sourceTree = "<group>"; };
-		C35114131B159C5D005EB4B3 /* FLDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDatePickerController.m; sourceTree = "<group>"; };
 		C351141A1B1AEFF7005EB4B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C3534E201B09A12B0015B626 /* FLColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColorPicker.h; sourceTree = "<group>"; };
 		C3534E211B09A12B0015B626 /* FLColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColorPicker.m; sourceTree = "<group>"; };
@@ -159,6 +158,8 @@
 		C3616A431AAB434500C47C8A /* archive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@2x.png"; sourceTree = "<group>"; };
 		C3616A441AAB434500C47C8A /* archive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@3x.png"; sourceTree = "<group>"; };
 		C3A103861A2AD52800B1F6BD /* Focus8-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Focus8-Prefix.pch"; sourceTree = "<group>"; };
+		C3ACAB771B319E1D000EF926 /* FLTimePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTimePickerController.h; sourceTree = "<group>"; };
+		C3ACAB781B319E1D000EF926 /* FLTimePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTimePickerController.m; sourceTree = "<group>"; };
 		C3B6FAB31B0DA8920052B7E5 /* PauseFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseFilled.png; sourceTree = "<group>"; };
 		C3B6FAB41B0DA8920052B7E5 /* PauseFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PauseFilled@2x.png"; sourceTree = "<group>"; };
 		C3B6FAB51B0DA8920052B7E5 /* PauseFilled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PauseFilled@3x.png"; sourceTree = "<group>"; };
@@ -201,6 +202,8 @@
 		C3BB412C1AFC797700A83016 /* UnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindSegue.swift; sourceTree = "<group>"; };
 		C3BB41621B078C4D00A83016 /* UIColor+FlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatColors.h"; sourceTree = "<group>"; };
 		C3BB41631B078C4D00A83016 /* UIColor+FlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FlatColors.m"; sourceTree = "<group>"; };
+		C3D680851B3838D900C08860 /* FLReminderPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLReminderPickerController.h; sourceTree = "<group>"; };
+		C3D680861B3838D900C08860 /* FLReminderPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLReminderPickerController.m; sourceTree = "<group>"; };
 		C3E9B5DB1AF8897900F56963 /* Focus8-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Focus8-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3EA01F11B0A27DF00C321BF /* FLColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColorCell.h; sourceTree = "<group>"; };
 		C3EA01F21B0A27DF00C321BF /* FLColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColorCell.m; sourceTree = "<group>"; };
@@ -299,8 +302,7 @@
 		C35B335B1A0CBA1500061C40 /* Focus8 */ = {
 			isa = PBXGroup;
 			children = (
-				C3BB41621B078C4D00A83016 /* UIColor+FlatColors.h */,
-				C3BB41631B078C4D00A83016 /* UIColor+FlatColors.m */,
+				C3ACAB751B3184C7000EF926 /* UIFlatColors */,
 				C3BB410E1AFC797700A83016 /* Spring */,
 				C33008271A94A439003A0AEA /* Icons */,
 				C3A103821A2AD13400B1F6BD /* GenericCoreDataCalsses */,
@@ -318,10 +320,12 @@
 				C3534E211B09A12B0015B626 /* FLColorPicker.m */,
 				C3616A3F1AAB021A00C47C8A /* EventTableViewController.h */,
 				C3616A401AAB021A00C47C8A /* EventTableViewController.m */,
-				C35114121B159C5D005EB4B3 /* FLDatePickerController.h */,
-				C35114131B159C5D005EB4B3 /* FLDatePickerController.m */,
+				C3D680851B3838D900C08860 /* FLReminderPickerController.h */,
+				C3D680861B3838D900C08860 /* FLReminderPickerController.m */,
 				C34968AF1B207CD000D9179D /* FLPopUpPickerController.h */,
 				C34968B01B207CD000D9179D /* FLPopUpPickerController.m */,
+				C3ACAB771B319E1D000EF926 /* FLTimePickerController.h */,
+				C3ACAB781B319E1D000EF926 /* FLTimePickerController.m */,
 				C3EA01F51B0CE3EE00C321BF /* FLTaskCell.h */,
 				C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */,
 				C3EA01F11B0A27DF00C321BF /* FLColorCell.h */,
@@ -382,6 +386,15 @@
 			children = (
 			);
 			name = GenericCoreDataCalsses;
+			sourceTree = "<group>";
+		};
+		C3ACAB751B3184C7000EF926 /* UIFlatColors */ = {
+			isa = PBXGroup;
+			children = (
+				C3BB41621B078C4D00A83016 /* UIColor+FlatColors.h */,
+				C3BB41631B078C4D00A83016 /* UIColor+FlatColors.m */,
+			);
+			name = UIFlatColors;
 			sourceTree = "<group>";
 		};
 		C3BB410E1AFC797700A83016 /* Spring */ = {
@@ -577,7 +590,8 @@
 				C3EFAEA21A13462D003D641C /* FLEditTaskController.m in Sources */,
 				C3BB413F1AFC797700A83016 /* Spring.swift in Sources */,
 				C3BB413D1AFC797700A83016 /* Misc.swift in Sources */,
-				C35114141B159C5D005EB4B3 /* FLDatePickerController.m in Sources */,
+				C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */,
+				C3ACAB791B319E1D000EF926 /* FLTimePickerController.m in Sources */,
 				C3BB41411AFC797700A83016 /* SpringButton.swift in Sources */,
 				C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */,
 				C35B33871A0CBDF400061C40 /* FLTimerViewController.m in Sources */,
@@ -689,7 +703,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -724,7 +738,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -737,7 +751,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Focus8/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Focus8/Focus8-Bridging-Header.h";
@@ -752,7 +766,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Focus8/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Focus8/Focus8-Bridging-Header.h";
