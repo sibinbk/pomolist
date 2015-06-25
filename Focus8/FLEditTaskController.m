@@ -121,6 +121,7 @@
             self.reminderTitleLabel.text = @"Remind on";
             self.reminderDateLabel.text = [self.formatter stringFromDate:self.task.reminderDate];
         }
+        self.reminderDate = self.task.reminderDate;
         self.taskTimeLabel.text = [NSString stringWithFormat:@"%@ minutes", self.task.taskTime];
         self.shortBreakLabel.text = [NSString stringWithFormat:@"%@ minutes", self.task.shortBreakTime];
         self.longBreakLabel.text = [NSString stringWithFormat:@"%@ minutes", self.task.longBreakTime];

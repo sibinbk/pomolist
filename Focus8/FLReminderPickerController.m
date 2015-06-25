@@ -25,7 +25,10 @@
     
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5];
-    self.pickerWidthConstraint.constant = 310;
+    
+    //Chcek Screen size to resize the picker width accordingly.
+    
+    self.pickerWidthConstraint.constant = ([UIScreen mainScreen].bounds.size.width > 320.0) ? 320 : 310;
 }
 
 - (void)viewWillAppear:(BOOL)animated
