@@ -106,14 +106,14 @@
                     [UIColor flatMidnightBlueColor]
                     ];
     
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSDictionary *contentDict = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PickerData" ofType:@"plist"]];
-        self.taskTimeArray = [contentDict objectForKey:@"TaskTime"];
-        self.shortBreakArray = [contentDict objectForKey:@"ShortBreakTime"];
-        self.longBreakArray = [contentDict objectForKey:@"LongBreakTime"];
-        self.longBreakDelayArray = [contentDict objectForKey:@"LongBreakDelay"];
-        self.repeatCountArray = [contentDict objectForKey:@"RepeatCount"];
-    });
+//    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        NSDictionary *contentDict = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PickerData" ofType:@"plist"]];
+//        self.taskTimeArray = [contentDict objectForKey:@"TaskTime"];
+//        self.shortBreakArray = [contentDict objectForKey:@"ShortBreakTime"];
+//        self.longBreakArray = [contentDict objectForKey:@"LongBreakTime"];
+//        self.longBreakDelayArray = [contentDict objectForKey:@"LongBreakDelay"];
+//        self.repeatCountArray = [contentDict objectForKey:@"RepeatCount"];
+//    });
 
     if ([self isTaskEditing]) {
         self.oldName = self.task.name;
@@ -138,9 +138,9 @@
         
     } else {
         
-        self.taskTime = 1800; // Task session 30 mins.
-        self.shortBreakTime = 300; // Short break 5 mins.
-        self.longBreakTime = 900; // Long break 15 mins.
+        self.taskTime = 25; // Task session 30 mins.
+        self.shortBreakTime = 5; // Short break 5 mins.
+        self.longBreakTime = 15; // Long break 15 mins.
 
         NSUInteger randomIndex = arc4random_uniform(13);
         
@@ -365,15 +365,15 @@
 {
     switch (picker) {
         case TaskTimePicker:
-            self.taskTimeLabel.text = [NSString stringWithFormat:@"%f minutes", selectedTime];
+            self.taskTimeLabel.text = [NSString stringWithFormat:@"%d minutes", (int)selectedTime];
             self.taskTime = selectedTime;
             break;
         case ShortBreakPicker:
-            self.shortBreakLabel.text = [NSString stringWithFormat:@"%f minutes", selectedTime];
+            self.shortBreakLabel.text = [NSString stringWithFormat:@"%d minutes", (int)selectedTime];
             self.shortBreakTime = selectedTime;
             break;
         case LongBreakPicker:
-            self.longBreakLabel.text = [NSString stringWithFormat:@"%f minutes", selectedTime];
+            self.longBreakLabel.text = [NSString stringWithFormat:@"%d minutes", (int)selectedTime];
             self.longBreakTime = selectedTime;
             break;
     }
