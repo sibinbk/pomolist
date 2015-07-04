@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet DesignableView *popUpView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) NSArray *timeListArray;
-@property (nonatomic, assign) NSInteger selectedRow;
 @end
 
 @implementation FLTimingPickerController
@@ -88,9 +87,10 @@
 
 - (IBAction)selectTiming:(id)sender
 {
-    self.selectedRow = [self.pickerView selectedRowInComponent:0];
+    NSInteger selectedRow;
+    selectedRow = [self.pickerView selectedRowInComponent:0];
     
-    [self.delegate pickerController:self didSelectValue:[self.timeListArray[self.selectedRow] integerValue] forPicker:self.timingPickerType];
+    [self.delegate pickerController:self didSelectValue:[self.timeListArray[selectedRow] integerValue] forPicker:self.timingPickerType];
     [self dismissTimingPicker];
 }
 

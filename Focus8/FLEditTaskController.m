@@ -12,6 +12,7 @@
 #import "FLColorPicker.h"
 #import "FLReminderPickerController.h"
 #import "FLTimingPickerController.h"
+#import "FLBreakDelayPickerController.h"
 #import "UIColor+FlatColors.h"
 #import "Focus8-Swift.h"
 
@@ -24,7 +25,7 @@
 #define kShortBreakColorPicker   @"shortBreakColorPicker"
 #define kLongBreakColorPicker    @"longBreakColorPicker"
 
-@interface FLEditTaskController () <UITextFieldDelegate, FLReminderPickerDelegate, FLTimingPickerDelegate, FLColorPickerDelegate>
+@interface FLEditTaskController () <UITextFieldDelegate, FLReminderPickerDelegate, FLTimingPickerDelegate, FLBreakDelayPickerDelagate, FLColorPickerDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
@@ -235,24 +236,24 @@
     }
     
     if (indexPath.section == 2) {
-        switch (indexPath.row) {
-            case 0:
-                self.timingPickerType = TaskTimePicker;
-                break;
-            case 1:
-                self.timingPickerType = ShortBreakPicker;
-                break;
-            case 2:
-                self.timingPickerType = LongBreakPicker;
-                break;
+        if (indexPath.row == 0) {
+            self.timingPickerType = TaskTimePicker;
+            [self performSegueWithIdentifier:@"timingPickerSegue" sender:nil];
+        } else if (indexPath.row == 1) {
+            self.timingPickerType = ShortBreakPicker;
+            [self performSegueWithIdentifier:@"timingPickerSegue" sender:nil];
+        } else if (indexPath.row == 2) {
+            self.timingPickerType = LongBreakPicker;
+            [self performSegueWithIdentifier:@"timingPickerSegue" sender:nil];
+        } else if (indexPath.row == 3) {
+            [self performSegueWithIdentifier:@"breakDelayPickerSegue" sender:nil];
+        } else {
+            NSLog(@"Repeat Count Picker");
         }
-        
-        NSLog(@"Selected Row %ld",(long)indexPath.row);
-        [self performSegueWithIdentifier:@"timingPickerSegue" sender:nil];
     }
     
     NSString *pickerType;
-    
+        
     if (indexPath.section == 3) {
         switch (indexPath.row) {
             case 0:
@@ -298,6 +299,12 @@
                 timingPicker.timingPickerType = LongBreakPicker;
                 break;
         }
+    }
+    
+    if ([segue.identifier isEqualToString:@"breakDelayPickerSegue"]) {
+        FLBreakDelayPickerController *breakDelayPicker = segue.destinationViewController;
+        breakDelayPicker.selectedValue = self.longBreakDelay;
+        breakDelayPicker.delegate = self;
     }
     
     if ([segue.identifier isEqualToString:@"colorPickerSegue"]) {
@@ -377,6 +384,14 @@
             self.longBreakTime = selectedTime;
             break;
     }
+}
+
+#pragma mark - Long Break Delay picker delegate method.
+
+- (void)pickerController:(FLBreakDelayPickerController *)controller didSelectDelay:(NSInteger)delay
+{
+    self.longBreakDelay = delay;
+    self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d sessions", (int)delay];
 }
 
 #pragma mark - ColorPicker delegate method.

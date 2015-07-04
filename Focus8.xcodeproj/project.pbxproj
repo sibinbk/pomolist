@@ -84,6 +84,7 @@
 		C3BB41481AFC797700A83016 /* TransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB412B1AFC797700A83016 /* TransitionZoom.swift */; };
 		C3BB41491AFC797700A83016 /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB412C1AFC797700A83016 /* UnwindSegue.swift */; };
 		C3BB41641B078C4D00A83016 /* UIColor+FlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BB41631B078C4D00A83016 /* UIColor+FlatColors.m */; };
+		C3D1B6171B47D7660003419B /* FLBreakDelayPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1B6161B47D7660003419B /* FLBreakDelayPickerController.m */; };
 		C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D680861B3838D900C08860 /* FLReminderPickerController.m */; };
 		C3D6808B1B3BBC6300C08860 /* FLTimingPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D6808A1B3BBC6300C08860 /* FLTimingPickerController.m */; };
 		C3EA01F31B0A27DF00C321BF /* FLColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F21B0A27DF00C321BF /* FLColorCell.m */; };
@@ -197,6 +198,8 @@
 		C3BB412C1AFC797700A83016 /* UnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindSegue.swift; sourceTree = "<group>"; };
 		C3BB41621B078C4D00A83016 /* UIColor+FlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatColors.h"; sourceTree = "<group>"; };
 		C3BB41631B078C4D00A83016 /* UIColor+FlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FlatColors.m"; sourceTree = "<group>"; };
+		C3D1B6151B47D7660003419B /* FLBreakDelayPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreakDelayPickerController.h; sourceTree = "<group>"; };
+		C3D1B6161B47D7660003419B /* FLBreakDelayPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreakDelayPickerController.m; sourceTree = "<group>"; };
 		C3D680851B3838D900C08860 /* FLReminderPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLReminderPickerController.h; sourceTree = "<group>"; };
 		C3D680861B3838D900C08860 /* FLReminderPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLReminderPickerController.m; sourceTree = "<group>"; };
 		C3D680891B3BBC6300C08860 /* FLTimingPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTimingPickerController.h; sourceTree = "<group>"; };
@@ -317,6 +320,8 @@
 				C3D680861B3838D900C08860 /* FLReminderPickerController.m */,
 				C3D680891B3BBC6300C08860 /* FLTimingPickerController.h */,
 				C3D6808A1B3BBC6300C08860 /* FLTimingPickerController.m */,
+				C3D1B6151B47D7660003419B /* FLBreakDelayPickerController.h */,
+				C3D1B6161B47D7660003419B /* FLBreakDelayPickerController.m */,
 				C3534E201B09A12B0015B626 /* FLColorPicker.h */,
 				C3534E211B09A12B0015B626 /* FLColorPicker.m */,
 				C3EFAEA31A1453AB003D641C /* FLPickerController.h */,
@@ -582,6 +587,7 @@
 				C3BB41421AFC797700A83016 /* SpringImageView.swift in Sources */,
 				C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */,
 				C3BB41481AFC797700A83016 /* TransitionZoom.swift in Sources */,
+				C3D1B6171B47D7660003419B /* FLBreakDelayPickerController.m in Sources */,
 				C3EFAEA21A13462D003D641C /* FLEditTaskController.m in Sources */,
 				C3BB413F1AFC797700A83016 /* Spring.swift in Sources */,
 				C3BB413D1AFC797700A83016 /* Misc.swift in Sources */,
