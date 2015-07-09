@@ -13,6 +13,7 @@
 #import "FLReminderPickerController.h"
 #import "FLTimingPickerController.h"
 #import "FLBreakDelayPickerController.h"
+#import "FLSessionCountPickerController.h"
 #import "UIColor+FlatColors.h"
 #import "Focus8-Swift.h"
 
@@ -25,7 +26,7 @@
 #define kShortBreakColorPicker   @"shortBreakColorPicker"
 #define kLongBreakColorPicker    @"longBreakColorPicker"
 
-@interface FLEditTaskController () <UITextFieldDelegate, FLReminderPickerDelegate, FLTimingPickerDelegate, FLBreakDelayPickerDelagate, FLColorPickerDelegate>
+@interface FLEditTaskController () <UITextFieldDelegate, FLReminderPickerDelegate, FLTimingPickerDelegate, FLBreakDelayPickerDelagate, FLSessionCountPickerDelegate, FLColorPickerDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
@@ -247,8 +248,8 @@
             [self performSegueWithIdentifier:@"timingPickerSegue" sender:nil];
         } else if (indexPath.row == 3) {
             [self performSegueWithIdentifier:@"breakDelayPickerSegue" sender:nil];
-        } else {
-            NSLog(@"Repeat Count Picker");
+        } else if (indexPath.row == 4){
+            [self performSegueWithIdentifier:@"sessionCountSegue" sender:nil];
         }
     }
     
@@ -305,6 +306,13 @@
         FLBreakDelayPickerController *breakDelayPicker = segue.destinationViewController;
         breakDelayPicker.selectedValue = self.longBreakDelay;
         breakDelayPicker.delegate = self;
+    }
+    
+    if ([segue.identifier isEqualToString:@"sessionCountSegue"]) {
+        FLSessionCountPickerController *sessionCountPicker = segue.destinationViewController;
+        sessionCountPicker.taskSessionTime = self.taskTime;
+        sessionCountPicker.taskSessionCount = self.repeatCount;
+        sessionCountPicker.delegate = self;
     }
     
     if ([segue.identifier isEqualToString:@"colorPickerSegue"]) {
@@ -392,6 +400,14 @@
 {
     self.longBreakDelay = delay;
     self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d sessions", (int)delay];
+}
+
+# pragma mark - Target session count picker delagate.
+
+- (void)pickerController:(FLSessionCountPickerController *)controller didSelectTargetTaskSessions:(NSInteger)count
+{
+    self.repeatCount = count;
+    self.repeatCountLabel.text = [NSString stringWithFormat:@"%d sessions", (int)count];
 }
 
 #pragma mark - ColorPicker delegate method.

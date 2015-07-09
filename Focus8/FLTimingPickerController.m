@@ -133,9 +133,9 @@
 
 #pragma mark - Pickerview delegate methods.
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    self.sessionTime = [self.timeListArray[row] doubleValue] * 60;
-}
+//- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+//{
+//    self.sessionTime = [self.timeListArray[row] doubleValue] * 60;
+//}
 
 @end
