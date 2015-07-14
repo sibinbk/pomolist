@@ -630,6 +630,7 @@
     cell.taskNameLabel.text = task.name;
     cell.cycleCountLabel.text = [NSString stringWithFormat:@"%@ Cycles", task.repeatCount];
     cell.taskTimeLabel.text = [NSString stringWithFormat:@"%@", task.taskTime];
+    cell.totalTimeLabel.text = [self stringifyTotalTime:([task.taskTime intValue] * [task.repeatCount intValue] * 60) usingLongFormat:YES];
     
 //    cell.reminderDateLabel.text = (indexPath.row % 3 == 0) ? @"26 May 2015 6:00 pm" : nil;
     cell.reminderDateLabel.text = [self.formatter stringFromDate:task.reminderDate];
@@ -990,6 +991,35 @@
         return [NSString stringWithFormat:NSLocalizedString(@"%02.0f:%@", @"Short format for elapsed time (minute:second). Example: 05:3.4"), minutes, secondsInString];
     } else {
         return [NSString stringWithFormat:NSLocalizedString(@"%.0f:%02.0f:%@", @"Short format for elapsed time (hour:minute:second). Example: 1:05:3.4"), hours, minutes, secondsInString];
+    }
+}
+
+#pragma mark - StringifyTime method.
+
+- (NSString *)stringifyTotalTime:(int)seconds usingLongFormat:(BOOL)longFormat
+{
+    int remainingSeconds = seconds;
+    
+    int hours = remainingSeconds / 3600;
+    
+    remainingSeconds = remainingSeconds - hours * 3600;
+    
+    int minutes = remainingSeconds / 60;
+    
+    remainingSeconds = remainingSeconds - minutes * 60;
+    
+    if (longFormat) {
+        if (hours > 0) {
+            return [NSString stringWithFormat:@"%i hr %i min", hours, minutes];
+        } else {
+            return [NSString stringWithFormat:@"%i min", minutes];
+        }
+    } else {
+        if (hours > 0) {
+            return [NSString stringWithFormat:@"%02i:%02i", hours, minutes];
+        } else {
+            return [NSString stringWithFormat:@"%02i", minutes];
+        }
     }
 }
 

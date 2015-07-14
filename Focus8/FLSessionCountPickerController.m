@@ -11,7 +11,6 @@
 #import "Focus8-Swift.h"
 
 @interface FLSessionCountPickerController () <UIPickerViewDataSource, UIPickerViewDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *sessionCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet DesignableView *popUpView;
@@ -82,7 +81,36 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.sessionCountLabel.text = [NSString stringWithFormat:@"%@ sessions", self.sessionCountArray[row]];
-//    self.totalTimeLabel.text = [NSString stringWithFormat:@"%ld", (long) self.taskSessionTime * [self.sessionCountArray[row] integerValue]];
+    self.totalTimeLabel.text = [self stringifyTotalTime:[self.sessionCountArray[row] intValue]* 30 * 60 usingLongFormat:YES];
 }
+
+#pragma mark - StringifyTime method.
+
+- (NSString *)stringifyTotalTime:(int)seconds usingLongFormat:(BOOL)longFormat
+{
+    int remainingSeconds = seconds;
+    
+    int hours = remainingSeconds / 3600;
+    
+    remainingSeconds = remainingSeconds - hours * 3600;
+    
+    int minutes = remainingSeconds / 60;
+    
+    remainingSeconds = remainingSeconds - minutes * 60;
+    
+    if (longFormat) {
+        if (hours > 0) {
+            return [NSString stringWithFormat:@"%iHr %iMin", hours, minutes];
+        } else {
+            return [NSString stringWithFormat:@"%iMin", minutes];
+        }
+    } else {
+        if (hours > 0) {
+            return [NSString stringWithFormat:@"%02i:%02i", hours, minutes];
+        } else {
+            return [NSString stringWithFormat:@"%02i", minutes];
+        }
+    }
+}
+
 @end
