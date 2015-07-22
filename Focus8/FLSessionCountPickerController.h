@@ -17,6 +17,6 @@
 
 @interface FLSessionCountPickerController : UIViewController
 @property (nonatomic, weak) id <FLSessionCountPickerDelegate> delegate;
-@property (nonatomic) NSTimeInterval taskSessionTime;
-@property (nonatomic) NSInteger taskSessionCount;
+@property (nonatomic) NSTimeInterval selectedTaskSessionTime;
+@property (nonatomic) NSInteger selectedTaskSessionCount;
 @end

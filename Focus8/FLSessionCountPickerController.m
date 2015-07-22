@@ -29,6 +29,15 @@
     self.sessionCountArray = @[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (self.selectedTaskSessionCount) {
+        NSNumber *taskSessionCount = [NSNumber numberWithInteger:self.selectedTaskSessionCount];
+        [self.pickerView selectRow:[self.sessionCountArray indexOfObject:taskSessionCount] inComponent:0 animated:YES];
+        self.totalTimeLabel.text = [self stringifyTotalTime:(int)(self.selectedTaskSessionCount * self.selectedTaskSessionTime) usingLongFormat:YES];
+    }
+}
+
 - (IBAction)save:(id)sender
 {
     NSInteger selectedRow;
@@ -81,7 +90,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.totalTimeLabel.text = [self stringifyTotalTime:[self.sessionCountArray[row] intValue]* 30 * 60 usingLongFormat:YES];
+    self.totalTimeLabel.text = [self stringifyTotalTime:([self.sessionCountArray[row] intValue] * self.selectedTaskSessionTime) usingLongFormat:YES];
 }
 
 #pragma mark - StringifyTime method.

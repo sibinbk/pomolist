@@ -124,25 +124,29 @@
             self.reminderTitleLabel.text = @"Remind on";
             self.reminderDateLabel.text = [self.formatter stringFromDate:self.task.reminderDate];
         }
-        self.taskTimeLabel.text = [NSString stringWithFormat:@"%@ minutes", self.task.taskTime];
-        self.shortBreakLabel.text = [NSString stringWithFormat:@"%@ minutes", self.task.shortBreakTime];
-        self.longBreakLabel.text = [NSString stringWithFormat:@"%@ minutes", self.task.longBreakTime];
-        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%@ tasks", self.task.longBreakDelay];
-        self.repeatCountLabel.text = [NSString stringWithFormat:@"%@ times", self.task.repeatCount];
+        self.taskTimeLabel.text = [self stringifyTime:[self.task.taskTime intValue]];
+        self.shortBreakLabel.text = [self stringifyTime:[self.task.shortBreakTime intValue]];
+        self.longBreakLabel.text = [self stringifyTime:[self.task.longBreakTime intValue]];
+        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"after %@ sessions", self.task.longBreakDelay];
+        self.repeatCountLabel.text = [NSString stringWithFormat:@"%@ sessions", self.task.repeatCount];
         
         self.reminderDate = self.task.reminderDate;
         self.taskTime = [self.task.taskTime doubleValue];
         self.shortBreakTime = [self.task.shortBreakTime doubleValue];
         self.longBreakTime = [self.task.longBreakTime doubleValue];
+        self.longBreakDelay = [self.task.longBreakDelay integerValue];
+        self.repeatCount = [self.task.repeatCount integerValue];
         self.taskColor = self.task.taskColor;
         self.shortBreakColor = self.task.shortBreakColor;
         self.longBreakColor = self.task.longBreakColor;
         
     } else {
         
-        self.taskTime = 25; // Task session 30 mins.
-        self.shortBreakTime = 5; // Short break 5 mins.
-        self.longBreakTime = 15; // Long break 15 mins.
+        self.taskTime = 1500; // Task session 30 mins.
+        self.shortBreakTime = 300; // Short break 5 mins.
+        self.longBreakTime = 900; // Long break 15 mins.
+        self.longBreakDelay = 3;
+        self.repeatCount = 5;
 
         NSUInteger randomIndex = arc4random_uniform(13);
         
@@ -187,11 +191,11 @@
         
         self.task.name = self.taskNameField.text;
         self.task.reminderDate = self.reminderDate;
-        self.task.taskTime = [NSNumber numberWithInteger: [self.taskTimeLabel.text integerValue]];
-        self.task.shortBreakTime = [NSNumber numberWithInteger: [self.shortBreakLabel.text integerValue]];
-        self.task.longBreakTime = [NSNumber numberWithInteger:[self.longBreakLabel.text integerValue]];
-        self.task.longBreakDelay = [NSNumber numberWithInteger:[self.longBreakDelayLabel.text integerValue]];
-        self.task.repeatCount = [NSNumber numberWithInteger: [self.repeatCountLabel.text integerValue]];
+        self.task.taskTime = [NSNumber numberWithDouble:self.taskTime];
+        self.task.shortBreakTime = [NSNumber numberWithDouble:self.shortBreakTime];
+        self.task.longBreakTime = [NSNumber numberWithDouble:self.longBreakTime];
+        self.task.longBreakDelay = [NSNumber numberWithInteger:self.longBreakDelay];
+        self.task.repeatCount = [NSNumber numberWithInteger:self.repeatCount];
         self.task.taskColor = self.taskColor;
         self.task.shortBreakColor = self.shortBreakColor;
         self.task.longBreakColor = self.longBreakColor;
@@ -310,8 +314,8 @@
     
     if ([segue.identifier isEqualToString:@"sessionCountSegue"]) {
         FLSessionCountPickerController *sessionCountPicker = segue.destinationViewController;
-        sessionCountPicker.taskSessionTime = self.taskTime;
-        sessionCountPicker.taskSessionCount = self.repeatCount;
+        sessionCountPicker.selectedTaskSessionTime = self.taskTime;
+        sessionCountPicker.selectedTaskSessionCount = self.repeatCount;
         sessionCountPicker.delegate = self;
     }
     
@@ -380,15 +384,15 @@
 {
     switch (picker) {
         case TaskTimePicker:
-            self.taskTimeLabel.text = [NSString stringWithFormat:@"%d minutes", (int)selectedTime];
+            self.taskTimeLabel.text = [self stringifyTime:selectedTime];
             self.taskTime = selectedTime;
             break;
         case ShortBreakPicker:
-            self.shortBreakLabel.text = [NSString stringWithFormat:@"%d minutes", (int)selectedTime];
+            self.shortBreakLabel.text = [self stringifyTime:selectedTime];
             self.shortBreakTime = selectedTime;
             break;
         case LongBreakPicker:
-            self.longBreakLabel.text = [NSString stringWithFormat:@"%d minutes", (int)selectedTime];
+            self.longBreakLabel.text = [self stringifyTime:selectedTime];
             self.longBreakTime = selectedTime;
             break;
     }
@@ -420,6 +424,19 @@
         self.shortBreakColor = flatColor;
     } else if ([cycleName isEqualToString:kLongBreakColorPicker]){
         self.longBreakColor = flatColor;
+    }
+}
+
+#pragma mark - StringifyTime method.
+
+- (NSString *)stringifyTime:(int)time
+{
+    if (time < 60) {
+        return [NSString stringWithFormat:@"%d seconds", (int)time];
+    } else if (time == 60){
+        return [NSString stringWithFormat:@"%d minute", (int)time / 60];
+    } else {
+        return [NSString stringWithFormat:@"%d minutes", (int)time / 60];
     }
 }
 

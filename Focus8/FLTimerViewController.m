@@ -28,6 +28,7 @@
 #define kFLLongBreakColor          @"longBreakColor"
 
 #define kFLUserDefaultKey          @"FocusListUserDefaults"
+#define kFLRepeatTimer             @"FLRepeatTimer"
 
 @interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate>
 
@@ -117,15 +118,8 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-
-//    self.taskTime = 20;
-//    self.shortBreakTime = 10;
-//    self.longBreakTime = 10;
-//    self.repeatCount = 2;
-//    self.longBreakDelay = 2;
     
-//    self.repeatTimer = [ZGCountDownTimer countDownTimerWithIdentifier:@"RepeatTimer"];
-    self.repeatTimer = [ZGCountDownTimer defaultCountDownTimer];
+    self.repeatTimer = [ZGCountDownTimer countDownTimerWithIdentifier:kFLRepeatTimer];
     self.repeatTimer.delegate = self;
     
     [self repeatTimerSetup];
@@ -425,7 +419,8 @@
 
 - (void)secondUpdated:(ZGCountDownTimer *)sender countDownTimePassed:(NSTimeInterval)timePassed ofTotalTime:(NSTimeInterval)totalTime
 {
-    self.timerLabel.text = [self getDateStringForTimeInterval:(totalTime - timePassed)];
+    // Conversion to Time string without hour component.
+    self.timerLabel.text = [self dateStringForTimeIntervalWithoutHour:(totalTime - timePassed) withDateFormatter:nil];
 }
 
 - (void)taskTimeUpdated:(ZGCountDownTimer *)sender totalTime:(NSTimeInterval)time
@@ -629,8 +624,8 @@
 //    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld minutes task / %ld minutes break", (long) [task.taskTime integerValue], (long)[task.shortBreakTime integerValue]];
     cell.taskNameLabel.text = task.name;
     cell.cycleCountLabel.text = [NSString stringWithFormat:@"%@ Cycles", task.repeatCount];
-    cell.taskTimeLabel.text = [NSString stringWithFormat:@"%@", task.taskTime];
-    cell.totalTimeLabel.text = [self stringifyTotalTime:([task.taskTime intValue] * [task.repeatCount intValue] * 60) usingLongFormat:YES];
+    cell.taskTimeLabel.text = [NSString stringWithFormat:@"%d", [task.taskTime intValue]/ 60];
+    cell.totalTimeLabel.text = [self stringifyTotalTime:([task.taskTime intValue] * [task.repeatCount intValue]) usingLongFormat:YES];
     
 //    cell.reminderDateLabel.text = (indexPath.row % 3 == 0) ? @"26 May 2015 6:00 pm" : nil;
     cell.reminderDateLabel.text = [self.formatter stringFromDate:task.reminderDate];
@@ -680,9 +675,9 @@
         [self saveContext];
         
         self.taskName = newTask.name;
-        self.taskTime = [newTask.taskTime integerValue] * 60;
-        self.shortBreakTime = [newTask.shortBreakTime integerValue] * 60;
-        self.longBreakTime = [newTask.longBreakTime integerValue] * 60;
+        self.taskTime = [newTask.taskTime integerValue];
+        self.shortBreakTime = [newTask.shortBreakTime integerValue];
+        self.longBreakTime = [newTask.longBreakTime integerValue];
         self.repeatCount = [newTask.repeatCount integerValue];
         self.longBreakDelay = [newTask.longBreakDelay integerValue];
         self.taskColor = newTask.taskColor;
@@ -939,9 +934,9 @@
 {
     NSLog(@"task delegate called");
     self.taskName = task.name;
-    self.taskTime = [task.taskTime integerValue] * 60;
-    self.shortBreakTime = [task.shortBreakTime integerValue] * 60;
-    self.longBreakTime = [task.longBreakTime integerValue] * 60;
+    self.taskTime = [task.taskTime integerValue];
+    self.shortBreakTime = [task.shortBreakTime integerValue];
+    self.longBreakTime = [task.longBreakTime integerValue];
     self.repeatCount = [task.repeatCount integerValue];
     self.longBreakDelay = [task.longBreakDelay integerValue];
     self.taskColor = task.taskColor;
@@ -961,6 +956,8 @@
         [self repeatTimerSetup];
     }
 }
+
+# pragma mark - Helper methods to convert Time & Date to String.
 
 - (NSString *)getDateStringForTimeInterval:(NSTimeInterval)timeInterval
 {
@@ -994,7 +991,25 @@
     }
 }
 
-#pragma mark - StringifyTime method.
+- (NSString *)dateStringForTimeIntervalWithoutHour:(NSTimeInterval )timeInterval withDateFormatter:(NSNumberFormatter *)formatter
+{
+    double minutes;
+    double seconds = round(timeInterval);
+    minutes = floor(seconds / 60.);
+    seconds -= 60. * minutes;
+    
+    if (!formatter) {
+        formatter = [[NSNumberFormatter alloc] init];
+        [formatter setFormatterBehavior:NSNumberFormatterBehaviorDefault];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [formatter setMaximumFractionDigits:1];
+        [formatter setPositiveFormat:@"#00"];  // Use @"#00.0" to display milliseconds as decimal value.
+    }
+    
+    NSString *secondsInString = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds]];
+    
+    return [NSString stringWithFormat:NSLocalizedString(@"%02.0f:%@", @"Short format for elapsed time (minute:second). Example: 05:3.4"), minutes, secondsInString];
+}
 
 - (NSString *)stringifyTotalTime:(int)seconds usingLongFormat:(BOOL)longFormat
 {
