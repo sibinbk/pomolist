@@ -2,7 +2,7 @@
 //  Task.h
 //  Focus8
 //
-//  Created by Sibin Baby on 6/06/2015.
+//  Created by Sibin Baby on 28/07/2015.
 //  Copyright (c) 2015 FocusApps. All rights reserved.
 //
 
@@ -28,6 +28,7 @@
 @property (nonatomic, retain) NSNumber * shortBreakTime;
 @property (nonatomic, retain) id taskColor;
 @property (nonatomic, retain) NSNumber * taskTime;
+@property (nonatomic, retain) NSString * uniqueID;
 @property (nonatomic, retain) NSSet *events;
 @end
 

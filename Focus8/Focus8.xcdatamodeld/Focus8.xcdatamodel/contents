@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="finishDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="totalTaskTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -21,10 +21,11 @@
         <attribute name="shortBreakTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="taskColor" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="taskTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="uniqueID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="task" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
         <element name="Event" positionX="171" positionY="-0" width="128" height="88"/>
-        <element name="Task" positionX="-63" positionY="-18" width="128" height="285"/>
+        <element name="Task" positionX="-63" positionY="-18" width="128" height="300"/>
     </elements>
 </model>

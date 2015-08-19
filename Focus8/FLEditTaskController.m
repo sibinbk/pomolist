@@ -51,6 +51,7 @@
 @property (assign, nonatomic) TimingPickerType timingPickerType;
 
 @property (strong, nonatomic) NSString *taskName;
+@property (strong, nonatomic) NSString *uniqueID;
 @property (nonatomic) NSTimeInterval taskTime;
 @property (nonatomic) NSTimeInterval shortBreakTime;
 @property (nonatomic) NSTimeInterval longBreakTime;
@@ -141,7 +142,7 @@
         self.longBreakColor = self.task.longBreakColor;
         
     } else {
-        
+        self.uniqueID = [NSString stringWithFormat:@"%@",[NSDate date]];
         self.taskTime = 1500; // Task session 30 mins.
         self.shortBreakTime = 300; // Short break 5 mins.
         self.longBreakTime = 900; // Long break 15 mins.
@@ -190,6 +191,7 @@
         }
         
         self.task.name = self.taskNameField.text;
+        self.task.uniqueID = self.uniqueID;
         self.task.reminderDate = self.reminderDate;
         self.task.taskTime = [NSNumber numberWithDouble:self.taskTime];
         self.task.shortBreakTime = [NSNumber numberWithDouble:self.shortBreakTime];
@@ -224,6 +226,35 @@
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - schedule local notifications for Reminder date
+
+- (void)scheduleReminderNotificationForTask:(Task *)task
+{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.fireDate = task.reminderDate;
+    notification.alertBody = task.name;
+    notification.userInfo = @{@"uniqueID" : task.uniqueID};
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+
+- (void)cancelReminderNotificationForTask:(Task *)task
+{
+    for (UILocalNotification *notif in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        NSDictionary *userInfoCurrent = notif.userInfo;
+        NSString *uniqueID = [userInfoCurrent valueForKey:@"uniqueID"];
+        if ([uniqueID isEqualToString:task.uniqueID])
+        {
+            NSLog(@"UID : %@", uniqueID);
+            //Cancelling local notification
+            [[UIApplication sharedApplication] cancelLocalNotification:notif];
+        }
+    }
 }
 
 #pragma mark - tableview delegate method

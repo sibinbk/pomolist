@@ -80,7 +80,7 @@
     
     //Setup date formatter
     self.formatter = [[NSDateFormatter alloc] init];
-    NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM d, yyyy hh:mm a" options:0 locale:[NSLocale currentLocale]];
+    NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM dd 'at' h:mm a" options:0 locale:[NSLocale currentLocale]];
     [self.formatter setDateFormat:format];
     
     if ([self backupExist]) {
@@ -275,6 +275,7 @@
         [self.startButton setTitle:@"Pause" forState:UIControlStateNormal];
         self.resetButton.hidden = NO;
         self.skipButton.hidden = YES;
+
         //GCD to avoid blocking UI when the loacal notification setup loop runs.
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSLog(@"Setup local notification");
@@ -285,13 +286,18 @@
         if (!self.repeatTimer.started) {
             [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
             self.resetButton.hidden = YES;
-            [[UIApplication sharedApplication] cancelAllLocalNotifications];
         } else {
             [self.startButton setTitle:@"Resume" forState:UIControlStateNormal];
             self.resetButton.hidden = NO;
-            [[UIApplication sharedApplication] cancelAllLocalNotifications];
         }
+        
         self.skipButton.hidden = NO;
+
+        //GCD to avoid blocking UI while cancelling local notifications.
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSLog(@"Cancel local notification");
+            [self cancelTimerNotifications];
+        });
     }
 }
 
@@ -320,7 +326,11 @@
         self.skipButton.hidden = NO;
     }
     
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    //GCD to avoid blocking UI while cancelling local notifications.
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"Cancel local notification");
+        [self cancelTimerNotifications];
+    });
 }
 
 - (IBAction)skipTimer:(id)sender
@@ -358,10 +368,14 @@
     int notificationCount = (int)(self.repeatCount * 2 - cycleCount);
     
     UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.timeZone = nil;
+    notification.timeZone = [NSTimeZone defaultTimeZone];
     //    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.userInfo = @{@"appName" : kFLRepeatTimer};
     
     for (int i = 0; i < notificationCount; i++) {
+        NSLog(@"Noticatios Count : %i", i);
+        // Specify custom data for the notification
+//        NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%i", i] forKey:[NSString stringWithFormat:@"%i", i]];
         
         switch (cycleType) {
             case TaskCycle:
@@ -400,6 +414,9 @@
     notification.alertBody = @"Well done. Task finished.";
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+//    NSArray *eventArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+//    NSLog(@"Notification count : %lu",(unsigned long)[eventArray count]);
 }
 
 - (BOOL)checkIfLongBreakCycle:(NSInteger)taskCount
@@ -412,6 +429,21 @@
         }
     } else {
         return NO;
+    }
+}
+
+- (void)cancelTimerNotifications
+{
+    for (UILocalNotification *notif in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        NSDictionary *userInfoCurrent = notif.userInfo;
+//        NSString *uid = [NSString stringWithFormat:@"%@", [userInfoCurrent valueForKey:@"name"]];
+        NSString *uid = [userInfoCurrent valueForKey:@"appName"];
+       if ([uid isEqualToString:kFLRepeatTimer])
+       {
+           NSLog(@"UID : %@", uid);
+           //Cancelling local notification
+           [[UIApplication sharedApplication] cancelLocalNotification:notif];
+        }
     }
 }
 
@@ -430,8 +462,8 @@
 
 - (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time
 {
-    NSArray *taskArray = [self currentSelectedTask];
-    [self saveEventOfTask:[taskArray lastObject] withTotalTime:time];
+//    NSArray *taskArray = [self currentSelectedTask];
+    [self saveEventOfTask:[self currentSelectedTask] withTotalTime:time];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         self.resetButton.hidden = YES;
@@ -653,23 +685,17 @@
         //
         /* Check if the timer is running. If so add an Alert to let the customer know that the selecting the task will Stop previous task timer */
         //
-        // Get array of Selected tasks. It can have either 0 or 1 element.
-        NSArray *tasks = [self currentSelectedTask];
+
+        //Get currently selected task.
+        Task *oldTask = [self currentSelectedTask];
         
-        Task *oldTask = nil;
-        
-        switch (tasks.count) {
-            case 0:
-                newTask.isSelected = @YES;
-                break;
-            case 1:
-                oldTask = [tasks lastObject];
-                oldTask.isSelected = @NO;
-                newTask.isSelected = @YES;
-                break;
-            default:
-                NSLog(@"Something wrong!! Can't have more than 1 content");
-                break;
+        if (!oldTask) {
+            newTask.isSelected = @YES;
+            NSLog(@"No task was selected. It is a new task.");
+        } else {
+            oldTask.isSelected = @NO;
+            newTask.isSelected = @YES;
+            NSLog(@"Old task selection is replaced with new selection");
         }
         
         [self saveContext];
@@ -696,18 +722,19 @@
         [self repeatTimerSetup];
     } else {
         NSLog(@"Same task selected");
+        [self closeListView];
     }
 }
 
-- (NSArray *)currentSelectedTask
+- (Task *)currentSelectedTask
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     request.predicate = [NSPredicate predicateWithFormat:@"isSelected == YES"];
     
     NSError *error = nil;
-    NSArray *selectedTask = [self.managedObjectContext executeFetchRequest:request error:&error];
+    NSArray *tasks = [self.managedObjectContext executeFetchRequest:request error:&error];
     
-    return selectedTask;
+    return [tasks lastObject];
 }
 
 - (void)saveContext
@@ -738,15 +765,17 @@
         NSIndexPath * path = [self.taskTableView indexPathForCell:cell];
         NSManagedObjectContext *context = [self managedObjectContext];
         Task *taskToDelete = [_fetchedResultsController objectAtIndexPath:path];
+        
+        // Check the task to be deleted is currently selected task. If so reset all timer info related to the task.
+        if ([taskToDelete.isSelected boolValue]) {
+            [self resetTaskTimer];
+        }
+        
         [context deleteObject:taskToDelete];
-        
         NSError *error = nil;
-        
         if (![context save:&error]) {
             NSLog(@"Error! %@", error);
         }
-        
-        [self deleteTask];
     }
     
     //Edit button
@@ -849,11 +878,10 @@
     }
 }
 
-#pragma mark - Add New task method
-
-- (void)deleteTask
+#pragma mark - Reset Task Timer
+- (void)resetTaskTimer
 {
-    //Deletes without calling delegate taskFinished.
+    //Deletes without calling TaskFinished Delegate.
     [self.repeatTimer resetTimer];
     
     if ([self backupExist]) {
@@ -870,7 +898,19 @@
     [self repeatTimerSetup];
     
     self.taskTitleLabel.text = @"";
+    
+    /* Call it only if the task to be deleted is currently running */
+    
+    // Cancel all the local notification added to the current task.
+    //GCD to avoid blocking UI while cancelling local notifications.
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"Cancel local notification");
+        [self cancelTimerNotifications];
+    });
 }
+
+#pragma mark - Edit the task method
+
 - (IBAction)editTask:(id)sender
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
@@ -892,6 +932,8 @@
     
     [self performSegueWithIdentifier:@"EditTaskSegue" sender:task];
 }
+
+#pragma mark - Add New task method
 
 - (IBAction)addTask:(id)sender
 {

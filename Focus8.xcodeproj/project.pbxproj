@@ -25,9 +25,9 @@
 		C330084F1A94B703003A0AEA /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084C1A94B703003A0AEA /* settings.png */; };
 		C33008501A94B703003A0AEA /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084D1A94B703003A0AEA /* settings@2x.png */; };
 		C33008511A94B703003A0AEA /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084E1A94B703003A0AEA /* settings@3x.png */; };
+		C33571521B668DB200B01B0E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C33571511B668DB200B01B0E /* Event.m */; };
+		C33571551B668DB200B01B0E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C33571541B668DB200B01B0E /* Task.m */; };
 		C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */; };
-		C34968B41B21E4EC00D9179D /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C34968B31B21E4EC00D9179D /* Task.m */; };
-		C34968B71B21E4ED00D9179D /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C34968B61B21E4ED00D9179D /* Event.m */; };
 		C351141B1B1AEFF7005EB4B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C35114191B1AEFF7005EB4B3 /* Main.storyboard */; };
 		C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C3534E211B09A12B0015B626 /* FLColorPicker.m */; };
 		C3534E261B09A63E0015B626 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C3534E231B09A63E0015B626 /* Checkmark.png */; };
@@ -126,12 +126,12 @@
 		C330084C1A94B703003A0AEA /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		C330084D1A94B703003A0AEA /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		C330084E1A94B703003A0AEA /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		C33571501B668DB200B01B0E /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		C33571511B668DB200B01B0E /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		C33571531B668DB200B01B0E /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		C33571541B668DB200B01B0E /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		C33EE6F31A675FB300C94E61 /* ZGCountDownTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGCountDownTimer.h; sourceTree = "<group>"; };
 		C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCountDownTimer.m; sourceTree = "<group>"; };
-		C34968B21B21E4EC00D9179D /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		C34968B31B21E4EC00D9179D /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
-		C34968B51B21E4ED00D9179D /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		C34968B61B21E4ED00D9179D /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C351141A1B1AEFF7005EB4B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C3534E201B09A12B0015B626 /* FLColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColorPicker.h; sourceTree = "<group>"; };
 		C3534E211B09A12B0015B626 /* FLColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColorPicker.m; sourceTree = "<group>"; };
@@ -335,10 +335,10 @@
 				C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */,
 				C3EA01F11B0A27DF00C321BF /* FLColorCell.h */,
 				C3EA01F21B0A27DF00C321BF /* FLColorCell.m */,
-				C34968B51B21E4ED00D9179D /* Event.h */,
-				C34968B61B21E4ED00D9179D /* Event.m */,
-				C34968B21B21E4EC00D9179D /* Task.h */,
-				C34968B31B21E4EC00D9179D /* Task.m */,
+				C33571531B668DB200B01B0E /* Task.h */,
+				C33571541B668DB200B01B0E /* Task.m */,
+				C33571501B668DB200B01B0E /* Event.h */,
+				C33571511B668DB200B01B0E /* Event.m */,
 				C35B33631A0CBA1500061C40 /* Focus8.xcdatamodeld */,
 				C3EFAEA61A145508003D641C /* PickerData.plist */,
 				C35B336C1A0CBA1500061C40 /* Images.xcassets */,
@@ -601,7 +601,6 @@
 				C3BB41411AFC797700A83016 /* SpringButton.swift in Sources */,
 				C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */,
 				C35B33871A0CBDF400061C40 /* FLTimerViewController.m in Sources */,
-				C34968B71B21E4ED00D9179D /* Event.m in Sources */,
 				C3BB41341AFC797700A83016 /* DesignableTabBarController.swift in Sources */,
 				C3EFAEAD1A18684C003D641C /* MGSwipeButton.m in Sources */,
 				C3BB41451AFC797700A83016 /* SpringTextView.swift in Sources */,
@@ -611,6 +610,7 @@
 				C3BB41351AFC797700A83016 /* DesignableTextField.swift in Sources */,
 				C3BB413B1AFC797700A83016 /* LoadingView.swift in Sources */,
 				C35B33651A0CBA1500061C40 /* Focus8.xcdatamodeld in Sources */,
+				C33571551B668DB200B01B0E /* Task.m in Sources */,
 				C3BB41301AFC797700A83016 /* BlurView.swift in Sources */,
 				C3BB41491AFC797700A83016 /* UnwindSegue.swift in Sources */,
 				C3BB41331AFC797700A83016 /* DesignableLabel.swift in Sources */,
@@ -620,13 +620,13 @@
 				C3BB412F1AFC797700A83016 /* AutoTextView.swift in Sources */,
 				C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */,
 				C3BB41361AFC797700A83016 /* DesignableTextView.swift in Sources */,
+				C33571521B668DB200B01B0E /* Event.m in Sources */,
 				C3BB413A1AFC797700A83016 /* KeyboardLayoutConstraint.swift in Sources */,
 				C35B33621A0CBA1500061C40 /* AppDelegate.m in Sources */,
 				C3BB413E1AFC797700A83016 /* SoundPlayer.swift in Sources */,
 				C3EFAEA51A1453AB003D641C /* FLPickerController.m in Sources */,
 				C3BB41461AFC797700A83016 /* SpringView.swift in Sources */,
 				C3BB41431AFC797700A83016 /* SpringLabel.swift in Sources */,
-				C34968B41B21E4EC00D9179D /* Task.m in Sources */,
 				C35B335F1A0CBA1500061C40 /* main.m in Sources */,
 				C3BB412D1AFC797700A83016 /* AsyncButton.swift in Sources */,
 				C3EA01F31B0A27DF00C321BF /* FLColorCell.m in Sources */,

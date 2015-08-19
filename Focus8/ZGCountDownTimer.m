@@ -497,8 +497,10 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
 
 - (void)dealloc
 {
-    [self.defaultTimer invalidate];
-    self.defaultTimer = nil;
+    if (self.defaultTimer) {
+        [self.defaultTimer invalidate];
+        self.defaultTimer = nil;
+    }
 }
 
 + (NSString *)getDateStringForTimeInterval:(NSTimeInterval)timeInterval
