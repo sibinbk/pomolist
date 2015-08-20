@@ -188,11 +188,12 @@
         
         if (self.task == nil) {
             self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[self managedObjectContext]];
+            
+            // Set unique ID when task is created for the first time.
+            self.task.uniqueID = self.uniqueID;
         }
         
         self.task.name = self.taskNameField.text;
-        self.task.uniqueID = self.uniqueID;
-        self.task.reminderDate = self.reminderDate;
         self.task.taskTime = [NSNumber numberWithDouble:self.taskTime];
         self.task.shortBreakTime = [NSNumber numberWithDouble:self.shortBreakTime];
         self.task.longBreakTime = [NSNumber numberWithDouble:self.longBreakTime];
@@ -201,6 +202,35 @@
         self.task.taskColor = self.taskColor;
         self.task.shortBreakColor = self.shortBreakColor;
         self.task.longBreakColor = self.longBreakColor;
+        
+        if (!self.task.reminderDate) {
+            if (self.reminderDate != nil) {
+                self.task.reminderDate = self.reminderDate;
+                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSLog(@"schedule reminder notification");
+                    [self scheduleReminderNotificationForTask:self.task];
+                });
+            }
+        } else {
+            if (self.reminderDate == nil) {
+                self.task.reminderDate = nil;
+                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSLog(@"cancel old reminder notification");
+                    [self cancelReminderNotificationForTask:self.task];
+                });
+            } else {
+                self.task.reminderDate = self.reminderDate;
+                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSLog(@"cancel old reminder notification");
+                    [self cancelReminderNotificationForTask:self.task];
+                });
+                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSLog(@"schedule reminder notification");
+                    [self scheduleReminderNotificationForTask:self.task];
+                });
+            }
+        }
+        
         [self saveAndDismiss];
     }
 }
@@ -236,12 +266,11 @@
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.fireDate = task.reminderDate;
-    notification.alertBody = task.name;
+    notification.alertBody = [NSString stringWithFormat:@"%@ is due now", task.name];
     notification.userInfo = @{@"uniqueID" : task.uniqueID};
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
-
 
 - (void)cancelReminderNotificationForTask:(Task *)task
 {

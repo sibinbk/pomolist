@@ -29,6 +29,7 @@
 
 #define kFLUserDefaultKey          @"FocusListUserDefaults"
 #define kFLRepeatTimer             @"FLRepeatTimer"
+#define kFLTimerNotification       @"FLTimerNotification"
 
 @interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate>
 
@@ -370,10 +371,10 @@
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.timeZone = [NSTimeZone defaultTimeZone];
     //    notification.soundName = UILocalNotificationDefaultSoundName;
-    notification.userInfo = @{@"appName" : kFLRepeatTimer};
+    notification.userInfo = @{@"notifType" : kFLTimerNotification};
     
     for (int i = 0; i < notificationCount; i++) {
-        NSLog(@"Noticatios Count : %i", i);
+        NSLog(@"Notication No : %i", i);
         // Specify custom data for the notification
 //        NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%i", i] forKey:[NSString stringWithFormat:@"%i", i]];
         
@@ -414,9 +415,6 @@
     notification.alertBody = @"Well done. Task finished.";
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    
-//    NSArray *eventArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-//    NSLog(@"Notification count : %lu",(unsigned long)[eventArray count]);
 }
 
 - (BOOL)checkIfLongBreakCycle:(NSInteger)taskCount
@@ -437,8 +435,8 @@
     for (UILocalNotification *notif in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
         NSDictionary *userInfoCurrent = notif.userInfo;
 //        NSString *uid = [NSString stringWithFormat:@"%@", [userInfoCurrent valueForKey:@"name"]];
-        NSString *uid = [userInfoCurrent valueForKey:@"appName"];
-       if ([uid isEqualToString:kFLRepeatTimer])
+        NSString *uid = [userInfoCurrent valueForKey:@"notifType"];
+       if ([uid isEqualToString:kFLTimerNotification])
        {
            NSLog(@"UID : %@", uid);
            //Cancelling local notification
