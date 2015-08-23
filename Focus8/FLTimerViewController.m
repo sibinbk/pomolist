@@ -129,6 +129,7 @@
 - (void)repeatTimerSetup
 {
     self.totalCountDownTime = [self calculateTotalCountDownTime];
+    NSLog(@"Total count down time : %f", self.totalCountDownTime);
     
     __weak FLTimerViewController *weakSelf = self;
     [self.repeatTimer setupCountDownForTheFirstTime:^(ZGCountDownTimer *timer) {
@@ -142,7 +143,7 @@
         NSLog(@"Restores from ZGCountDown backup");
     }];
     
-    if (![self.repeatTimer isRunning]) {
+    if (!self.repeatTimer.isRunning) {
         if (!self.repeatTimer.started) {
             [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
             self.resetButton.hidden = YES;
@@ -277,10 +278,10 @@
         self.resetButton.hidden = NO;
         self.skipButton.hidden = YES;
 
-        //GCD to avoid blocking UI when the loacal notification setup loop runs.
+        // GCD to avoid blocking UI when the loacal notification setup loop runs.
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSLog(@"Setup local notification");
-            [self setupLocalNotifications];
+            [self scheduleTimerNotifications];
         });
     } else {
         [self.repeatTimer pauseCountDown];
@@ -294,9 +295,9 @@
         
         self.skipButton.hidden = NO;
 
-        //GCD to avoid blocking UI while cancelling local notifications.
+        // GCD to avoid blocking UI while cancelling local notifications.
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSLog(@"Cancel local notification");
+            NSLog(@"Cancel Timer notifications while Pause");
             [self cancelTimerNotifications];
         });
     }
@@ -315,6 +316,14 @@
         return;
     }
 
+    //GCD to avoid blocking UI while cancelling local notifications.
+    if (self.repeatTimer.isRunning) {
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSLog(@"Cancel Timer notification during reset");
+            [self cancelTimerNotifications];
+        });
+    }
+
     [self.repeatTimer stopCountDown];
     [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
     self.resetButton.hidden = YES;
@@ -326,12 +335,6 @@
     {
         self.skipButton.hidden = NO;
     }
-    
-    //GCD to avoid blocking UI while cancelling local notifications.
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"Cancel local notification");
-        [self cancelTimerNotifications];
-    });
 }
 
 - (IBAction)skipTimer:(id)sender
@@ -356,9 +359,9 @@
     }
 }
 
-#pragma mark - schedule local notifications
+#pragma mark - schedule local notifications.
 
-- (void)setupLocalNotifications
+- (void)scheduleTimerNotifications
 {
     NSTimeInterval tempCycleFinishTime = self.repeatTimer.cycleFinishTime;
     NSTimeInterval timePassed = self.repeatTimer.timePassed;
@@ -371,7 +374,7 @@
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.timeZone = [NSTimeZone defaultTimeZone];
     //    notification.soundName = UILocalNotificationDefaultSoundName;
-    notification.userInfo = @{@"notifType" : kFLTimerNotification};
+    notification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
     
     for (int i = 0; i < notificationCount; i++) {
         NSLog(@"Notication No : %i", i);
@@ -430,17 +433,58 @@
     }
 }
 
+- (void)scheduleReminderNotificationForTask:(Task *)task
+{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.fireDate = task.reminderDate;
+    notification.alertBody = [NSString stringWithFormat:@"%@ is due now", task.name];
+    notification.userInfo = @{@"uniqueID" : task.uniqueID};
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+#pragma mark - cancel local notifications.
+
 - (void)cancelTimerNotifications
 {
-    for (UILocalNotification *notif in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-        NSDictionary *userInfoCurrent = notif.userInfo;
-//        NSString *uid = [NSString stringWithFormat:@"%@", [userInfoCurrent valueForKey:@"name"]];
-        NSString *uid = [userInfoCurrent valueForKey:@"notifType"];
-       if ([uid isEqualToString:kFLTimerNotification])
-       {
-           NSLog(@"UID : %@", uid);
-           //Cancelling local notification
-           [[UIApplication sharedApplication] cancelLocalNotification:notif];
+    for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        NSDictionary *userInfoCurrent = notification.userInfo;
+        //        NSString *uid = [NSString stringWithFormat:@"%@", [userInfoCurrent valueForKey:@"name"]];
+        NSString *uid = [userInfoCurrent valueForKey:@"timerNotificationID"];
+        if ([uid isEqualToString:kFLTimerNotification])
+        {
+            NSLog(@"UID : %@", uid);
+            //Cancelling local notification
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        }
+    }
+}
+
+- (void)cancelReminderNotificationForTask:(Task *)task
+{
+    for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        NSDictionary *userInfoCurrent = notification.userInfo;
+        NSString *uniqueID = [userInfoCurrent valueForKey:@"uniqueID"];
+        if ([uniqueID isEqualToString:task.uniqueID])
+        {
+            NSLog(@"UID : %@", uniqueID);
+            //Cancelling local notification
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        }
+    }
+}
+
+- (void)cancelAllNotificationsForTask:(Task *)task
+{
+    for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        NSDictionary *userInfo = notification.userInfo;
+        NSString *uniqueID = [userInfo valueForKey:@"uniqueID"];
+        NSString *timerNotificationID = [userInfo valueForKey:@"timerNotificationID"];
+        if ([uniqueID isEqualToString:task.uniqueID] || [timerNotificationID isEqualToString:kFLTimerNotification]) {
+            NSLog(@"Local notifcation Cancelled");
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
         }
     }
 }
@@ -758,7 +802,7 @@
     NSLog(@"Delegate: button tapped, %@ position, index %d, from Expansion: %@",
           direction == MGSwipeDirectionLeftToRight ? @"left" : @"right", (int)index, fromExpansion ? @"YES" : @"NO");
     
-    //Delete button
+    // Delete button
     if (direction == MGSwipeDirectionRightToLeft && index == 0) {
         NSIndexPath * path = [self.taskTableView indexPathForCell:cell];
         NSManagedObjectContext *context = [self managedObjectContext];
@@ -766,7 +810,23 @@
         
         // Check the task to be deleted is currently selected task. If so reset all timer info related to the task.
         if ([taskToDelete.isSelected boolValue]) {
+            if (!self.repeatTimer.isRunning) {
+                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSLog(@"Cancel Reminder notifications while task is Paused");
+                    [self cancelReminderNotificationForTask:taskToDelete];
+                });
+            } else {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSLog(@"Cancel All notifications related to the task");
+                    [self cancelAllNotificationsForTask:taskToDelete];
+                });
+            }
             [self resetTaskTimer];
+        } else {
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSLog(@"Cancel Reminder notifications for the task");
+                [self cancelReminderNotificationForTask:taskToDelete];
+            });
         }
         
         [context deleteObject:taskToDelete];
@@ -776,7 +836,7 @@
         }
     }
     
-    //Edit button
+    // Edit button
     if (direction == MGSwipeDirectionLeftToRight && index == 0) {
         NSIndexPath * path = [self.taskTableView indexPathForCell:cell];
         Task *task = [_fetchedResultsController objectAtIndexPath:path];
@@ -879,7 +939,7 @@
 #pragma mark - Reset Task Timer
 - (void)resetTaskTimer
 {
-    //Deletes without calling TaskFinished Delegate.
+    // Deletes without calling TaskFinished Delegate.
     [self.repeatTimer resetTimer];
     
     if ([self backupExist]) {
@@ -896,15 +956,6 @@
     [self repeatTimerSetup];
     
     self.taskTitleLabel.text = @"";
-    
-    /* Call it only if the task to be deleted is currently running */
-    
-    // Cancel all the local notification added to the current task.
-    //GCD to avoid blocking UI while cancelling local notifications.
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"Cancel local notification");
-        [self cancelTimerNotifications];
-    });
 }
 
 #pragma mark - Edit the task method

@@ -202,33 +202,41 @@
         self.task.taskColor = self.taskColor;
         self.task.shortBreakColor = self.shortBreakColor;
         self.task.longBreakColor = self.longBreakColor;
-        
-        if (!self.task.reminderDate) {
-            if (self.reminderDate != nil) {
-                self.task.reminderDate = self.reminderDate;
-                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSLog(@"schedule reminder notification");
-                    [self scheduleReminderNotificationForTask:self.task];
-                });
+        NSLog(@"Old reinder date : %@", self.task.reminderDate);
+        NSLog(@"New reminder date : %@", self.reminderDate);
+        if (![self.task.reminderDate isEqualToDate:self.reminderDate]) {
+            if (!self.task.reminderDate) {
+                if (self.reminderDate) {
+                    self.task.reminderDate = self.reminderDate;
+                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        NSLog(@"schedule reminder notification");
+                        [self scheduleReminderNotificationForTask:self.task];
+                    });
+                } else {
+                    NSLog(@"Both dates are nill");
+                    /* This line executes when bothe Reimder dates are nill but not captured while comparing both dates. */
+                }
+            } else {
+                if (!self.reminderDate) {
+                    self.task.reminderDate = nil;
+                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        NSLog(@"cancel old reminder notification");
+                        [self cancelReminderNotificationForTask:self.task];
+                    });
+                } else {
+                    self.task.reminderDate = self.reminderDate;
+                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        NSLog(@"cancel old reminder notification");
+                        [self cancelReminderNotificationForTask:self.task];
+                    });
+                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        NSLog(@"schedule reminder notification");
+                        [self scheduleReminderNotificationForTask:self.task];
+                    });
+                }
             }
         } else {
-            if (self.reminderDate == nil) {
-                self.task.reminderDate = nil;
-                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSLog(@"cancel old reminder notification");
-                    [self cancelReminderNotificationForTask:self.task];
-                });
-            } else {
-                self.task.reminderDate = self.reminderDate;
-                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSLog(@"cancel old reminder notification");
-                    [self cancelReminderNotificationForTask:self.task];
-                });
-                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSLog(@"schedule reminder notification");
-                    [self scheduleReminderNotificationForTask:self.task];
-                });
-            }
+            NSLog(@"No change in reminder date");
         }
         
         [self saveAndDismiss];
@@ -274,14 +282,14 @@
 
 - (void)cancelReminderNotificationForTask:(Task *)task
 {
-    for (UILocalNotification *notif in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-        NSDictionary *userInfoCurrent = notif.userInfo;
+    for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        NSDictionary *userInfoCurrent = notification.userInfo;
         NSString *uniqueID = [userInfoCurrent valueForKey:@"uniqueID"];
         if ([uniqueID isEqualToString:task.uniqueID])
         {
             NSLog(@"UID : %@", uniqueID);
             //Cancelling local notification
-            [[UIApplication sharedApplication] cancelLocalNotification:notif];
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
         }
     }
 }
@@ -421,7 +429,7 @@
 
 - (void)pickerController:(FLReminderPickerController *)controller reminderSetOn:(NSDate *)reminderDate
 {
-    self.reminderDate = reminderDate;
+    self.reminderDate = [self truncateSecondsForDate:reminderDate];
     self.reminderTitleLabel.text = @"Remind on";
     self.reminderDateLabel.textColor = [UIColor blackColor];
     self.reminderDateLabel.text = [self.formatter stringFromDate:self.reminderDate];
@@ -498,6 +506,16 @@
     } else {
         return [NSString stringWithFormat:@"%d minutes", (int)time / 60];
     }
+}
+
+#pragma mark - Reminder date's second component truncation method.
+
+- (NSDate *)truncateSecondsForDate:(NSDate *)fromDate;
+{
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
+    NSDateComponents *fromDateComponents = [calendar components:unitFlags fromDate:fromDate ];
+    return [calendar dateFromComponents:fromDateComponents];
 }
 
 @end
