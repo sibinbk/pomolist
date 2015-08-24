@@ -588,6 +588,25 @@
 //    [alertView show];
 }
 
+#pragma mark - Save Task event method.
+
+- (void)saveEventOfTask:(Task *)task withTotalTime:(NSTimeInterval)totalTime
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSEntityDescription *eventEntity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
+    
+    //Initialize Event.
+    Event *event = [[Event alloc] initWithEntity:eventEntity insertIntoManagedObjectContext:context];
+    
+    //Populate Event details.
+    event.finishDate = [NSDate date];
+    event.totalTaskTime = [NSNumber numberWithDouble:totalTime];
+    
+    [task addEventsObject:event];
+    
+    [self saveContext];
+}
+
 #pragma mark - backup/restore methods
 
 - (BOOL)backupExist
@@ -1000,23 +1019,6 @@
         editTaskController.task = sender;
         editTaskController.taskEditing = self.isTaskEditing;
     }
-}
-
-- (void)saveEventOfTask:(Task *)task withTotalTime:(NSTimeInterval)totalTime
-{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription *eventEntity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
-
-    //Initialize Event.
-    Event *event = [[Event alloc] initWithEntity:eventEntity insertIntoManagedObjectContext:context];
-    
-    //Populate Event details.
-    event.finishDate = [NSDate date];
-    event.totalTaskTime = [NSNumber numberWithDouble:totalTime];
-    
-    [task addEventsObject:event];
-    
-    [self saveContext];
 }
 
 #pragma mark - FLTaskController delegate.
