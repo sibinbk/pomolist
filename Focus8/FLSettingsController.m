@@ -30,6 +30,7 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
 
 - (IBAction)muteAllSound:(id)sender
 {
+    NSLog(@"Mute toggle");
 }
 
 - (IBAction)vibrateOnSilentMode:(id)sender
