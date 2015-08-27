@@ -17,6 +17,8 @@
 #import "UIColor+FlatColors.h"
 #import "FLTaskCell.h"
 
+static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaultsKey";
+
 #define kFLTaskName                @"taskName"
 #define kFLTaskTime                @"taskTime"
 #define kFLShortBreakTime          @"shortBreakTime"
@@ -78,6 +80,9 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    // Read Screen Lock Prevent status from UserDefaults.
+    [self readScreenLockOnFromUserDefaults];
     
     //Setup date formatter
     self.formatter = [[NSDateFormatter alloc] init];
@@ -373,7 +378,7 @@
     
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.timeZone = [NSTimeZone defaultTimeZone];
-    //    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.soundName = @"RingRing.wav";
     notification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
     
     for (int i = 0; i < notificationCount; i++) {
@@ -608,6 +613,17 @@
 }
 
 #pragma mark - backup/restore methods
+
+- (void)readScreenLockOnFromUserDefaults
+{
+    NSNumber *setting = [[NSUserDefaults standardUserDefaults] objectForKey:kFLScreenLockUserDefaultsKey];
+    
+    if (!setting) {
+        [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    } else {
+        [[UIApplication sharedApplication] setIdleTimerDisabled:[setting boolValue]];
+    }
+}
 
 - (BOOL)backupExist
 {

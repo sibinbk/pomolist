@@ -28,6 +28,8 @@
 		C33571521B668DB200B01B0E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C33571511B668DB200B01B0E /* Event.m */; };
 		C33571551B668DB200B01B0E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C33571541B668DB200B01B0E /* Task.m */; };
 		C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */; };
+		C347DD861B8B1F69006E3F3E /* RingRing.wav in Resources */ = {isa = PBXBuildFile; fileRef = C347DD851B8B1F69006E3F3E /* RingRing.wav */; };
+		C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */; };
 		C351141B1B1AEFF7005EB4B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C35114191B1AEFF7005EB4B3 /* Main.storyboard */; };
 		C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C3534E211B09A12B0015B626 /* FLColorPicker.m */; };
 		C3534E261B09A63E0015B626 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C3534E231B09A63E0015B626 /* Checkmark.png */; };
@@ -132,6 +134,9 @@
 		C33571541B668DB200B01B0E /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		C33EE6F31A675FB300C94E61 /* ZGCountDownTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGCountDownTimer.h; sourceTree = "<group>"; };
 		C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCountDownTimer.m; sourceTree = "<group>"; };
+		C347DD851B8B1F69006E3F3E /* RingRing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RingRing.wav; sourceTree = "<group>"; };
+		C347DD8C1B8F1251006E3F3E /* FLSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSettingsController.h; sourceTree = "<group>"; };
+		C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSettingsController.m; sourceTree = "<group>"; };
 		C351141A1B1AEFF7005EB4B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C3534E201B09A12B0015B626 /* FLColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColorPicker.h; sourceTree = "<group>"; };
 		C3534E211B09A12B0015B626 /* FLColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColorPicker.m; sourceTree = "<group>"; };
@@ -317,6 +322,8 @@
 				C35B33861A0CBDF400061C40 /* FLTimerViewController.m */,
 				C3EFAEA01A13462D003D641C /* FLEditTaskController.h */,
 				C3EFAEA11A13462D003D641C /* FLEditTaskController.m */,
+				C347DD8C1B8F1251006E3F3E /* FLSettingsController.h */,
+				C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */,
 				C3616A3F1AAB021A00C47C8A /* EventTableViewController.h */,
 				C3616A401AAB021A00C47C8A /* EventTableViewController.m */,
 				C3D680851B3838D900C08860 /* FLReminderPickerController.h */,
@@ -353,6 +360,7 @@
 		C35B335C1A0CBA1500061C40 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C347DD851B8B1F69006E3F3E /* RingRing.wav */,
 				C35B335D1A0CBA1500061C40 /* Info.plist */,
 				C35B335E1A0CBA1500061C40 /* main.m */,
 				C3A103861A2AD52800B1F6BD /* Focus8-Prefix.pch */,
@@ -532,6 +540,7 @@
 			files = (
 				C33008511A94B703003A0AEA /* settings@3x.png in Resources */,
 				C3B6FAC31B0DA8BB0052B7E5 /* SkipFilled@2x.png in Resources */,
+				C347DD861B8B1F69006E3F3E /* RingRing.wav in Resources */,
 				C3B6FABE1B0DA8A30052B7E5 /* PlayFilled@3x.png in Resources */,
 				C3B6FAC41B0DA8BB0052B7E5 /* SkipFilled@3x.png in Resources */,
 				C3B6FAB71B0DA8920052B7E5 /* PauseFilled@2x.png in Resources */,
@@ -627,6 +636,7 @@
 				C3EFAEA51A1453AB003D641C /* FLPickerController.m in Sources */,
 				C3BB41461AFC797700A83016 /* SpringView.swift in Sources */,
 				C3BB41431AFC797700A83016 /* SpringLabel.swift in Sources */,
+				C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */,
 				C35B335F1A0CBA1500061C40 /* main.m in Sources */,
 				C3BB412D1AFC797700A83016 /* AsyncButton.swift in Sources */,
 				C3EA01F31B0A27DF00C321BF /* FLColorCell.m in Sources */,
