@@ -28,7 +28,6 @@
 		C33571521B668DB200B01B0E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C33571511B668DB200B01B0E /* Event.m */; };
 		C33571551B668DB200B01B0E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C33571541B668DB200B01B0E /* Task.m */; };
 		C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */; };
-		C347DD861B8B1F69006E3F3E /* RingRing.wav in Resources */ = {isa = PBXBuildFile; fileRef = C347DD851B8B1F69006E3F3E /* RingRing.wav */; };
 		C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */; };
 		C351141B1B1AEFF7005EB4B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C35114191B1AEFF7005EB4B3 /* Main.storyboard */; };
 		C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C3534E211B09A12B0015B626 /* FLColorPicker.m */; };
@@ -46,6 +45,13 @@
 		C3616A451AAB434500C47C8A /* archive.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A421AAB434500C47C8A /* archive.png */; };
 		C3616A461AAB434500C47C8A /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A431AAB434500C47C8A /* archive@2x.png */; };
 		C3616A471AAB434500C47C8A /* archive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A441AAB434500C47C8A /* archive@3x.png */; };
+		C3A49A351B902FAD00F7D796 /* Caribbean.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A2F1B902FAD00F7D796 /* Caribbean.wav */; };
+		C3A49A361B902FAD00F7D796 /* Glissful.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A301B902FAD00F7D796 /* Glissful.wav */; };
+		C3A49A371B902FAD00F7D796 /* Ready.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A311B902FAD00F7D796 /* Ready.wav */; };
+		C3A49A381B902FAD00F7D796 /* RingRing.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A321B902FAD00F7D796 /* RingRing.wav */; };
+		C3A49A391B902FAD00F7D796 /* RobotRattle.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A331B902FAD00F7D796 /* RobotRattle.wav */; };
+		C3A49A3A1B902FAD00F7D796 /* Woodpecker.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A341B902FAD00F7D796 /* Woodpecker.wav */; };
+		C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */; };
 		C3B6FAB61B0DA8920052B7E5 /* PauseFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAB31B0DA8920052B7E5 /* PauseFilled.png */; };
 		C3B6FAB71B0DA8920052B7E5 /* PauseFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAB41B0DA8920052B7E5 /* PauseFilled@2x.png */; };
 		C3B6FAB81B0DA8920052B7E5 /* PauseFilled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAB51B0DA8920052B7E5 /* PauseFilled@3x.png */; };
@@ -134,7 +140,6 @@
 		C33571541B668DB200B01B0E /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		C33EE6F31A675FB300C94E61 /* ZGCountDownTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGCountDownTimer.h; sourceTree = "<group>"; };
 		C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCountDownTimer.m; sourceTree = "<group>"; };
-		C347DD851B8B1F69006E3F3E /* RingRing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RingRing.wav; sourceTree = "<group>"; };
 		C347DD8C1B8F1251006E3F3E /* FLSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSettingsController.h; sourceTree = "<group>"; };
 		C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSettingsController.m; sourceTree = "<group>"; };
 		C351141A1B1AEFF7005EB4B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -162,6 +167,14 @@
 		C3616A431AAB434500C47C8A /* archive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@2x.png"; sourceTree = "<group>"; };
 		C3616A441AAB434500C47C8A /* archive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@3x.png"; sourceTree = "<group>"; };
 		C3A103861A2AD52800B1F6BD /* Focus8-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Focus8-Prefix.pch"; sourceTree = "<group>"; };
+		C3A49A2F1B902FAD00F7D796 /* Caribbean.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Caribbean.wav; sourceTree = "<group>"; };
+		C3A49A301B902FAD00F7D796 /* Glissful.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Glissful.wav; sourceTree = "<group>"; };
+		C3A49A311B902FAD00F7D796 /* Ready.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ready.wav; sourceTree = "<group>"; };
+		C3A49A321B902FAD00F7D796 /* RingRing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RingRing.wav; sourceTree = "<group>"; };
+		C3A49A331B902FAD00F7D796 /* RobotRattle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RobotRattle.wav; sourceTree = "<group>"; };
+		C3A49A341B902FAD00F7D796 /* Woodpecker.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Woodpecker.wav; sourceTree = "<group>"; };
+		C3A49A3B1B9032D300F7D796 /* FLSoundPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSoundPickerController.h; sourceTree = "<group>"; };
+		C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoundPickerController.m; sourceTree = "<group>"; };
 		C3B6FAB31B0DA8920052B7E5 /* PauseFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseFilled.png; sourceTree = "<group>"; };
 		C3B6FAB41B0DA8920052B7E5 /* PauseFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PauseFilled@2x.png"; sourceTree = "<group>"; };
 		C3B6FAB51B0DA8920052B7E5 /* PauseFilled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PauseFilled@3x.png"; sourceTree = "<group>"; };
@@ -310,6 +323,7 @@
 		C35B335B1A0CBA1500061C40 /* Focus8 */ = {
 			isa = PBXGroup;
 			children = (
+				C3A49A2E1B902F9B00F7D796 /* Sounds */,
 				C3ACAB751B3184C7000EF926 /* UIFlatColors */,
 				C3BB410E1AFC797700A83016 /* Spring */,
 				C33008271A94A439003A0AEA /* Icons */,
@@ -338,6 +352,8 @@
 				C3534E211B09A12B0015B626 /* FLColorPicker.m */,
 				C3EFAEA31A1453AB003D641C /* FLPickerController.h */,
 				C3EFAEA41A1453AB003D641C /* FLPickerController.m */,
+				C3A49A3B1B9032D300F7D796 /* FLSoundPickerController.h */,
+				C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */,
 				C3EA01F51B0CE3EE00C321BF /* FLTaskCell.h */,
 				C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */,
 				C3EA01F11B0A27DF00C321BF /* FLColorCell.h */,
@@ -360,7 +376,6 @@
 		C35B335C1A0CBA1500061C40 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C347DD851B8B1F69006E3F3E /* RingRing.wav */,
 				C35B335D1A0CBA1500061C40 /* Info.plist */,
 				C35B335E1A0CBA1500061C40 /* main.m */,
 				C3A103861A2AD52800B1F6BD /* Focus8-Prefix.pch */,
@@ -399,6 +414,19 @@
 			children = (
 			);
 			name = GenericCoreDataCalsses;
+			sourceTree = "<group>";
+		};
+		C3A49A2E1B902F9B00F7D796 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				C3A49A2F1B902FAD00F7D796 /* Caribbean.wav */,
+				C3A49A301B902FAD00F7D796 /* Glissful.wav */,
+				C3A49A311B902FAD00F7D796 /* Ready.wav */,
+				C3A49A321B902FAD00F7D796 /* RingRing.wav */,
+				C3A49A331B902FAD00F7D796 /* RobotRattle.wav */,
+				C3A49A341B902FAD00F7D796 /* Woodpecker.wav */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		C3ACAB751B3184C7000EF926 /* UIFlatColors */ = {
@@ -538,15 +566,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3A49A351B902FAD00F7D796 /* Caribbean.wav in Resources */,
+				C3A49A361B902FAD00F7D796 /* Glissful.wav in Resources */,
 				C33008511A94B703003A0AEA /* settings@3x.png in Resources */,
 				C3B6FAC31B0DA8BB0052B7E5 /* SkipFilled@2x.png in Resources */,
-				C347DD861B8B1F69006E3F3E /* RingRing.wav in Resources */,
 				C3B6FABE1B0DA8A30052B7E5 /* PlayFilled@3x.png in Resources */,
 				C3B6FAC41B0DA8BB0052B7E5 /* SkipFilled@3x.png in Resources */,
 				C3B6FAB71B0DA8920052B7E5 /* PauseFilled@2x.png in Resources */,
 				C3B6FABD1B0DA8A30052B7E5 /* PlayFilled@2x.png in Resources */,
 				C33008391A94A439003A0AEA /* plus@3x.png in Resources */,
 				C33008441A94AFB7003A0AEA /* delete@2x.png in Resources */,
+				C3A49A371B902FAD00F7D796 /* Ready.wav in Resources */,
 				C3534E261B09A63E0015B626 /* Checkmark.png in Resources */,
 				C33008491A94B625003A0AEA /* menu.png in Resources */,
 				C33008321A94A439003A0AEA /* edit@2x.png in Resources */,
@@ -556,7 +586,9 @@
 				C3B6FAC91B0DA8C50052B7E5 /* StopFilled@2x.png in Resources */,
 				C3B6FAC21B0DA8BB0052B7E5 /* SkipFilled.png in Resources */,
 				C3534E281B09A63E0015B626 /* Checkmark@3x.png in Resources */,
+				C3A49A381B902FAD00F7D796 /* RingRing.wav in Resources */,
 				C33008311A94A439003A0AEA /* edit.png in Resources */,
+				C3A49A391B902FAD00F7D796 /* RobotRattle.wav in Resources */,
 				C33008431A94AFB7003A0AEA /* delete.png in Resources */,
 				C35B33701A0CBA1500061C40 /* LaunchScreen.xib in Resources */,
 				C3EFAEA71A145508003D641C /* PickerData.plist in Resources */,
@@ -577,6 +609,7 @@
 				C330084F1A94B703003A0AEA /* settings.png in Resources */,
 				C33008331A94A439003A0AEA /* edit@3x.png in Resources */,
 				C3B6FACA1B0DA8C50052B7E5 /* StopFilled@3x.png in Resources */,
+				C3A49A3A1B902FAD00F7D796 /* Woodpecker.wav in Resources */,
 				C33008451A94AFB7003A0AEA /* delete@3x.png in Resources */,
 				C33008341A94A439003A0AEA /* info.png in Resources */,
 			);
@@ -613,6 +646,7 @@
 				C3BB41341AFC797700A83016 /* DesignableTabBarController.swift in Sources */,
 				C3EFAEAD1A18684C003D641C /* MGSwipeButton.m in Sources */,
 				C3BB41451AFC797700A83016 /* SpringTextView.swift in Sources */,
+				C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */,
 				C3BB41441AFC797700A83016 /* SpringTextField.swift in Sources */,
 				C3616A411AAB021A00C47C8A /* EventTableViewController.m in Sources */,
 				C3EFAEAE1A18684C003D641C /* MGSwipeTableCell.m in Sources */,

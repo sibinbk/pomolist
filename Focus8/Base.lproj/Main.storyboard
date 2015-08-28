@@ -240,7 +240,7 @@
                                     <constraint firstItem="Mpw-xM-7LZ" firstAttribute="top" secondItem="0zh-K1-iqw" secondAttribute="bottom" constant="20" id="zBQ-wE-KQW"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="44o-3T-Kie">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="44o-3T-Kie">
                                 <rect key="frame" x="0.0" y="600" width="600" height="750"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="1" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -459,43 +459,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="195" y="403"/>
-        </scene>
-        <!--Picker Controller-->
-        <scene sceneID="UpU-Zn-zga">
-            <objects>
-                <tableViewController id="lOF-fp-rZm" customClass="FLPickerController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="r5J-ql-Y9R">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Syx-sC-Kxx" style="IBUITableViewCellStyleDefault" id="EYl-4T-Fgs">
-                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EYl-4T-Fgs" id="i1S-uD-VOr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Syx-sC-Kxx">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="lOF-fp-rZm" id="yBr-Ia-Tfe"/>
-                            <outlet property="delegate" destination="lOF-fp-rZm" id="l0D-E7-WKQ"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wAH-TG-8WY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3978" y="203"/>
         </scene>
         <!--Edit Task Controller-->
         <scene sceneID="0Sf-63-G4z">
@@ -829,7 +792,6 @@
                         <outlet property="taskColorView" destination="zUM-Sh-GW3" id="2SI-9j-sgP"/>
                         <outlet property="taskNameField" destination="lOV-wU-8tM" id="izA-kx-y6X"/>
                         <outlet property="taskTimeLabel" destination="HQf-9R-Eji" id="nVT-LW-d9m"/>
-                        <segue destination="lOF-fp-rZm" kind="show" identifier="pickerSegue" id="e1v-Wh-pb5"/>
                         <segue destination="oo6-B6-Idx" kind="show" identifier="colorPickerSegue" id="DGe-bY-iwZ"/>
                         <segue destination="Ah2-Yo-Sbk" kind="presentation" identifier="timingPickerSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="sT6-lz-ofP"/>
                         <segue destination="aap-SZ-U5B" kind="presentation" identifier="breakDelayPickerSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="b60-gp-o7u"/>
@@ -878,6 +840,9 @@
                                                 <constraint firstAttribute="centerY" secondItem="Tan-oH-vWh" secondAttribute="centerY" id="bMa-mL-rdv"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="yja-at-hBM" kind="show" id="dfj-99-Jcw"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -987,6 +952,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xS7-xz-geo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2619" y="-468"/>
+        </scene>
+        <!--Sound Picker Controller-->
+        <scene sceneID="PJY-gB-XDG">
+            <objects>
+                <tableViewController id="yja-at-hBM" customClass="FLSoundPickerController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ac1-qv-kwb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SoundCell" textLabel="lQx-P0-zdR" style="IBUITableViewCellStyleDefault" id="SqF-zC-MT6">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SqF-zC-MT6" id="NoE-C8-uGd">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lQx-P0-zdR">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yja-at-hBM" id="cUG-HH-d80"/>
+                            <outlet property="delegate" destination="yja-at-hBM" id="w72-jz-XOG"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="VPE-vd-Lip"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yMT-Kk-gJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4151" y="-644"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="N12-PD-2G5">
