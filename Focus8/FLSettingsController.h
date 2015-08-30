@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FLSettingsController : UITableViewController
-
+@property (nonatomic, strong) NSString *alarmSound;
 @end

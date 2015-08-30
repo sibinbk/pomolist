@@ -445,7 +445,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
 - (void)removeTimerInfoBackup
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:nil forKey:self.timerIdentifier];
+    [defaults removeObjectForKey:self.timerIdentifier];
     [defaults synchronize];
 }
 

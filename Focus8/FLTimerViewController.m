@@ -45,6 +45,7 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
 @property (strong, nonatomic) UIColor *taskColor;
 @property (strong, nonatomic) UIColor *shortBreakColor;
 @property (strong, nonatomic) UIColor *longBreakColor;
+@property (strong, nonatomic) NSString *alarmSound;
 
 @property (strong, nonatomic) NSDateFormatter *formatter;
 
@@ -159,8 +160,7 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
         // Chcek if it fullview before un-hiding the skip button.
         if (![self isFullView]) {
             self.skipButton.hidden = YES;
-        } else
-        {
+        } else {
             self.skipButton.hidden = NO;
         }
     } else {
@@ -648,7 +648,7 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
 - (void)removeTaskInfoBackup
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:nil forKey:kFLUserDefaultKey];
+    [defaults removeObjectForKey:kFLUserDefaultKey];
     [defaults synchronize];
 }
 

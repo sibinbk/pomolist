@@ -52,6 +52,9 @@
 		C3A49A391B902FAD00F7D796 /* RobotRattle.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A331B902FAD00F7D796 /* RobotRattle.wav */; };
 		C3A49A3A1B902FAD00F7D796 /* Woodpecker.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A341B902FAD00F7D796 /* Woodpecker.wav */; };
 		C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */; };
+		C3A49A431B90508800F7D796 /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49A421B90508800F7D796 /* JSQSystemSoundPlayer.m */; };
+		C3A49A451B90510900F7D796 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A441B90510900F7D796 /* AudioToolbox.framework */; };
+		C3A49A471B92AF6300F7D796 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A461B92AF6300F7D796 /* AVFoundation.framework */; };
 		C3B6FAB61B0DA8920052B7E5 /* PauseFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAB31B0DA8920052B7E5 /* PauseFilled.png */; };
 		C3B6FAB71B0DA8920052B7E5 /* PauseFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAB41B0DA8920052B7E5 /* PauseFilled@2x.png */; };
 		C3B6FAB81B0DA8920052B7E5 /* PauseFilled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAB51B0DA8920052B7E5 /* PauseFilled@3x.png */; };
@@ -175,6 +178,10 @@
 		C3A49A341B902FAD00F7D796 /* Woodpecker.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Woodpecker.wav; sourceTree = "<group>"; };
 		C3A49A3B1B9032D300F7D796 /* FLSoundPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSoundPickerController.h; sourceTree = "<group>"; };
 		C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoundPickerController.m; sourceTree = "<group>"; };
+		C3A49A411B90508800F7D796 /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
+		C3A49A421B90508800F7D796 /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
+		C3A49A441B90510900F7D796 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C3A49A461B92AF6300F7D796 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C3B6FAB31B0DA8920052B7E5 /* PauseFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseFilled.png; sourceTree = "<group>"; };
 		C3B6FAB41B0DA8920052B7E5 /* PauseFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PauseFilled@2x.png"; sourceTree = "<group>"; };
 		C3B6FAB51B0DA8920052B7E5 /* PauseFilled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PauseFilled@3x.png"; sourceTree = "<group>"; };
@@ -246,6 +253,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3A49A471B92AF6300F7D796 /* AVFoundation.framework in Frameworks */,
+				C3A49A451B90510900F7D796 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +317,8 @@
 				C35B335B1A0CBA1500061C40 /* Focus8 */,
 				C35B33781A0CBA1500061C40 /* Focus8Tests */,
 				C35B335A1A0CBA1500061C40 /* Products */,
+				C3A49A461B92AF6300F7D796 /* AVFoundation.framework */,
+				C3A49A441B90510900F7D796 /* AudioToolbox.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -323,10 +334,9 @@
 		C35B335B1A0CBA1500061C40 /* Focus8 */ = {
 			isa = PBXGroup;
 			children = (
-				C3A49A2E1B902F9B00F7D796 /* Sounds */,
+				C3A49A401B90506600F7D796 /* JSQSystemSoundPlayer */,
 				C3ACAB751B3184C7000EF926 /* UIFlatColors */,
 				C3BB410E1AFC797700A83016 /* Spring */,
-				C33008271A94A439003A0AEA /* Icons */,
 				C3A103821A2AD13400B1F6BD /* GenericCoreDataCalsses */,
 				C3EFAEA81A18684C003D641C /* MGSwipeTableCell */,
 				C35B33881A0CBE5400061C40 /* ZGCountDownTimer */,
@@ -376,6 +386,8 @@
 		C35B335C1A0CBA1500061C40 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3A49A2E1B902F9B00F7D796 /* Sounds */,
+				C33008271A94A439003A0AEA /* Icons */,
 				C35B335D1A0CBA1500061C40 /* Info.plist */,
 				C35B335E1A0CBA1500061C40 /* main.m */,
 				C3A103861A2AD52800B1F6BD /* Focus8-Prefix.pch */,
@@ -427,6 +439,15 @@
 				C3A49A341B902FAD00F7D796 /* Woodpecker.wav */,
 			);
 			name = Sounds;
+			sourceTree = "<group>";
+		};
+		C3A49A401B90506600F7D796 /* JSQSystemSoundPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				C3A49A411B90508800F7D796 /* JSQSystemSoundPlayer.h */,
+				C3A49A421B90508800F7D796 /* JSQSystemSoundPlayer.m */,
+			);
+			name = JSQSystemSoundPlayer;
 			sourceTree = "<group>";
 		};
 		C3ACAB751B3184C7000EF926 /* UIFlatColors */ = {
@@ -639,6 +660,7 @@
 				C3BB413F1AFC797700A83016 /* Spring.swift in Sources */,
 				C3D1B61A1B4841320003419B /* FLSessionCountPickerController.m in Sources */,
 				C3BB413D1AFC797700A83016 /* Misc.swift in Sources */,
+				C3A49A431B90508800F7D796 /* JSQSystemSoundPlayer.m in Sources */,
 				C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */,
 				C3BB41411AFC797700A83016 /* SpringButton.swift in Sources */,
 				C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */,
