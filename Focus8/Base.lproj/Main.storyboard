@@ -112,7 +112,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="qrD-bG-VaU" kind="presentation" id="Fk1-lj-yAC"/>
+                                            <segue destination="qrD-bG-VaU" kind="presentation" identifier="settingsSegue" id="Fk1-lj-yAC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zh-K1-iqw">
@@ -981,7 +981,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9gB-08-CgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="862" y="203"/>
+            <point key="canvasLocation" x="935" y="121"/>
         </scene>
         <!--Events-->
         <scene sceneID="X64-RD-6YR">

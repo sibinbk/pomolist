@@ -10,8 +10,8 @@
 #import "JSQSystemSoundPlayer.h"
 #import "FLSoundPickerController.h"
 
-static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaultsKey";
-static NSString * const kFLAlarmSoundUserDefaultsKey = @"kFLAlarmSoundUserDefaultsKey";
+static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
+static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 @interface FLSettingsController () <FLSoundPickerControllerDelegate>
 
@@ -27,8 +27,10 @@ static NSString * const kFLAlarmSoundUserDefaultsKey = @"kFLAlarmSoundUserDefaul
 {
     [super viewDidLoad];
     
+    self.alarmSoundLabel.text = self.alarmSound;
+    
     // Check if Mute is On.
-    self.muteSwitch.on = [JSQSystemSoundPlayer sharedPlayer].on;
+    self.muteSwitch.on = ![JSQSystemSoundPlayer sharedPlayer].on;
     
     // Check if Screen Lock Timer is disabled.
     self.preventScreenLockSwitch.on = [UIApplication sharedApplication].idleTimerDisabled;
@@ -36,7 +38,7 @@ static NSString * const kFLAlarmSoundUserDefaultsKey = @"kFLAlarmSoundUserDefaul
 
 - (IBAction)muteAllSound:(UISwitch *)sender
 {
-    [[JSQSystemSoundPlayer sharedPlayer] toggleSoundPlayerOn:sender.on];
+    [[JSQSystemSoundPlayer sharedPlayer] toggleSoundPlayerOn:!sender.on];
 }
 
 - (IBAction)preventScreenLock:(UISwitch *)sender
@@ -44,9 +46,9 @@ static NSString * const kFLAlarmSoundUserDefaultsKey = @"kFLAlarmSoundUserDefaul
     // Disable idle timer to prevent screen lock while app is on foreground.
     [[UIApplication sharedApplication] setIdleTimerDisabled:self.preventScreenLockSwitch.isOn];
     
+    // Save Screenlock prevent switch status.
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSNumber numberWithBool:self.preventScreenLockSwitch.isOn] forKey:kFLScreenLockUserDefaultsKey];
-    
+    [userDefaults setObject:[NSNumber numberWithBool:self.preventScreenLockSwitch.isOn] forKey:kFLScreenLockKey];
     [userDefaults synchronize];
 }
 
@@ -54,11 +56,15 @@ static NSString * const kFLAlarmSoundUserDefaultsKey = @"kFLAlarmSoundUserDefaul
 
 - (IBAction)exitSettings:(id)sender
 {
+    // Save Alarm sound name.
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:self.alarmSound forKey:kFLAlarmSoundUserDefaultsKey];
+    [userDefaults setObject:self.alarmSound forKey:kFLAlarmSoundKey];
     [userDefaults synchronize];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    // Call delegate to inform alarm sound changed.
+    [self.delegate settingsController:self didChangeAlarmSound:self.alarmSound];
+    
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Sound picker delegate method.

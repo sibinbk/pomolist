@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class FLSettingsController;
+
+@protocol FLSettingsControllerDelegate <NSObject>
+
+- (void)settingsController:(FLSettingsController *)controller didChangeAlarmSound:(NSString *)sound;
+
+@end
+
 @interface FLSettingsController : UITableViewController
+
+@property (nonatomic, weak) id <FLSettingsControllerDelegate> delegate;
 @property (nonatomic, strong) NSString *alarmSound;
+
 @end

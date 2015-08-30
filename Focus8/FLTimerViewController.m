@@ -9,15 +9,18 @@
 #import "FLTimerViewController.h"
 #import "AppDelegate.h"
 #import "FLEditTaskController.h"
+#import "FLSettingsController.h"
 #import "ZGCountDownTimer.h"
 #import "Task.h"
 #import "Event.h"
 #import "MGSwipeTableCell.h"
 #import "MGSwipeButton.h"
+#import "JSQSystemSoundPlayer.h"
 #import "UIColor+FlatColors.h"
 #import "FLTaskCell.h"
 
-static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaultsKey";
+static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
+static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 #define kFLTaskName                @"taskName"
 #define kFLTaskTime                @"taskTime"
@@ -33,7 +36,7 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
 #define kFLRepeatTimer             @"FLRepeatTimer"
 #define kFLTimerNotification       @"FLTimerNotification"
 
-@interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate>
+@interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSTimeInterval taskTime;
 @property (nonatomic) NSTimeInterval shortBreakTime;
@@ -83,7 +86,7 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
     [super viewDidLoad];
     
     // Read Screen Lock Prevent status from UserDefaults.
-    [self readScreenLockOnFromUserDefaults];
+    [self restoreSettingsInfo];
     
     //Setup date formatter
     self.formatter = [[NSDateFormatter alloc] init];
@@ -494,12 +497,28 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
     }
 }
 
+# pragma mark - Change notification sound.
+
+- (void)changeNotificationSound:(NSString *)sound
+{
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for (UILocalNotification *notification in notifications) {
+        [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        notification.soundName = [NSString stringWithFormat:@"%@.wav", sound];
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        }
+}
+
 #pragma mark - Delegate methods.
 
 - (void)secondUpdated:(ZGCountDownTimer *)sender countDownTimePassed:(NSTimeInterval)timePassed ofTotalTime:(NSTimeInterval)totalTime
 {
     // Conversion to Time string without hour component.
     self.timerLabel.text = [self dateStringForTimeIntervalWithoutHour:(totalTime - timePassed) withDateFormatter:nil];
+    
+    if (totalTime == timePassed) {
+        [self playAlertSound:self.alarmSound];
+    }
 }
 
 - (void)taskTimeUpdated:(ZGCountDownTimer *)sender totalTime:(NSTimeInterval)time
@@ -578,19 +597,28 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
     
 }
 
-- (void)taskCompleted:(ZGCountDownTimer *)sender {
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Task Finished" message:@"Task Cycle Completed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//    [alertView show];
+- (void)taskCompleted:(ZGCountDownTimer *)sender
+{
+//    [self playAlertSound:self.alarmSound];
 }
 
-- (void)shortBreakCompleted:(ZGCountDownTimer *)sender {
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Short Break Finished" message:@"Short Break Cycle Completed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//    [alertView show];
+- (void)shortBreakCompleted:(ZGCountDownTimer *)sender
+{
+//    [self playAlertSound:self.alarmSound];
 }
 
-- (void)longBreakCompleted:(ZGCountDownTimer *)sender{
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Long Break Finished" message:@"Long Break Cycle Completed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//    [alertView show];
+- (void)longBreakCompleted:(ZGCountDownTimer *)sender
+{
+//    [self playAlertSound:self.alarmSound];
+}
+
+#pragma mark - JSQSystemSound player methods.
+
+- (void)playAlertSound:(NSString *)sound
+{
+    [[JSQSystemSoundPlayer sharedPlayer] playAlertSoundWithFilename:sound
+                                                      fileExtension:kJSQSystemSoundTypeWAV
+                                                         completion:nil];
 }
 
 #pragma mark - Save Task event method.
@@ -614,14 +642,21 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
 
 #pragma mark - backup/restore methods
 
-- (void)readScreenLockOnFromUserDefaults
+- (void)restoreSettingsInfo
 {
-    NSNumber *setting = [[NSUserDefaults standardUserDefaults] objectForKey:kFLScreenLockUserDefaultsKey];
+    NSNumber *screenLockStatus = [[NSUserDefaults standardUserDefaults] objectForKey:kFLScreenLockKey];
+    NSString *alarmSound = [[NSUserDefaults standardUserDefaults] objectForKey:kFLAlarmSoundKey];
     
-    if (!setting) {
+    if (!screenLockStatus) {
         [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     } else {
-        [[UIApplication sharedApplication] setIdleTimerDisabled:[setting boolValue]];
+        [[UIApplication sharedApplication] setIdleTimerDisabled:[screenLockStatus boolValue]];
+    }
+    
+    if (!alarmSound) {
+        self.alarmSound = @"RingRing";
+    } else {
+        self.alarmSound = alarmSound;
     }
 }
 
@@ -1026,6 +1061,8 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
     
 }
 
+#pragma mark - Segue handling methods.
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"EditTaskSegue"]) {
@@ -1034,6 +1071,13 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
         editTaskController.delegate = self;
         editTaskController.task = sender;
         editTaskController.taskEditing = self.isTaskEditing;
+    }
+    
+    if ([segue.identifier isEqualToString:@"settingsSegue"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        FLSettingsController *settingsController = (FLSettingsController *)navigationController.topViewController;
+        settingsController.delegate = self;
+        settingsController.alarmSound = self.alarmSound;
     }
 }
 
@@ -1064,6 +1108,18 @@ static NSString * const kFLScreenLockUserDefaultsKey = @"kFLScreenLockUserDefaul
         [self resetTimer:nil];
         [self repeatTimerSetup];
     }
+}
+
+#pragma mark - FLSettingsController delegate.
+
+- (void)settingsController:(FLSettingsController *)controller didChangeAlarmSound:(NSString *)sound
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    
+    self.alarmSound = sound;
+    
+    // Change notifications sound.
+    [self changeNotificationSound:sound];
 }
 
 # pragma mark - Helper methods to convert Time & Date to String.
