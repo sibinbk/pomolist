@@ -381,7 +381,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.soundName = @"RingRing.wav";
+    notification.soundName = self.alarmSound;
     notification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
     
     for (int i = 0; i < notificationCount; i++) {
@@ -1116,10 +1116,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
     
-    self.alarmSound = sound;
-    
-    // Change notifications sound.
-    [self changeNotificationSound:sound];
+    if (![self.alarmSound isEqualToString:sound]) {
+        self.alarmSound = sound;
+        
+        // Change notifications sound.
+        [self changeNotificationSound:sound];
+    }
 }
 
 # pragma mark - Helper methods to convert Time & Date to String.

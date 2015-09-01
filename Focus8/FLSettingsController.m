@@ -63,8 +63,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     // Call delegate to inform alarm sound changed.
     [self.delegate settingsController:self didChangeAlarmSound:self.alarmSound];
-    
-//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Sound picker delegate method.

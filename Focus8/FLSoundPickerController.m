@@ -105,12 +105,12 @@
     self.selectedSound = self.soundArray[indexPath.row];
     
     // Play selected sound
-    if (indexPath.row != 0) {
+//    if (indexPath.row != 0) {
         [self playSound:self.soundArray[indexPath.row]];
-    } else {
-        // Stop sound when 'None' is selected.
-        [self.audioPlayer stop];
-    }
+//    } else {
+//        // Stop sound when 'None' is selected.
+//        [self.audioPlayer stop];
+//    }
 }
 
 - (void)playSound:(NSString *)sound
