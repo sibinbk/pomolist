@@ -10,6 +10,7 @@
 		C32956A61B95CF260038B815 /* None.wav in Resources */ = {isa = PBXBuildFile; fileRef = C32956A51B95CF260038B815 /* None.wav */; };
 		C32956A91B98501D0038B815 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C32956A81B98501D0038B815 /* Event.m */; };
 		C32956AC1B98501E0038B815 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C32956AB1B98501E0038B815 /* Task.m */; };
+		C32956B01B9864260038B815 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C32956AF1B9864260038B815 /* UIScrollView+EmptyDataSet.m */; };
 		C33008311A94A439003A0AEA /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = C33008281A94A439003A0AEA /* edit.png */; };
 		C33008321A94A439003A0AEA /* edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C33008291A94A439003A0AEA /* edit@2x.png */; };
 		C33008331A94A439003A0AEA /* edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330082A1A94A439003A0AEA /* edit@3x.png */; };
@@ -125,6 +126,8 @@
 		C32956A81B98501D0038B815 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C32956AA1B98501E0038B815 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		C32956AB1B98501E0038B815 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		C32956AE1B9864260038B815 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		C32956AF1B9864260038B815 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		C33008281A94A439003A0AEA /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
 		C33008291A94A439003A0AEA /* edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit@2x.png"; sourceTree = "<group>"; };
 		C330082A1A94A439003A0AEA /* edit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit@3x.png"; sourceTree = "<group>"; };
@@ -270,6 +273,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C32956AD1B9863F20038B815 /* DZNEmptyDataSet */ = {
+			isa = PBXGroup;
+			children = (
+				C32956AE1B9864260038B815 /* UIScrollView+EmptyDataSet.h */,
+				C32956AF1B9864260038B815 /* UIScrollView+EmptyDataSet.m */,
+			);
+			name = DZNEmptyDataSet;
+			sourceTree = "<group>";
+		};
 		C33008271A94A439003A0AEA /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +348,7 @@
 		C35B335B1A0CBA1500061C40 /* Focus8 */ = {
 			isa = PBXGroup;
 			children = (
+				C32956AD1B9863F20038B815 /* DZNEmptyDataSet */,
 				C3A49A401B90506600F7D796 /* JSQSystemSoundPlayer */,
 				C3ACAB751B3184C7000EF926 /* UIFlatColors */,
 				C3BB410E1AFC797700A83016 /* Spring */,
@@ -667,6 +680,7 @@
 				C32956AC1B98501E0038B815 /* Task.m in Sources */,
 				C3A49A431B90508800F7D796 /* JSQSystemSoundPlayer.m in Sources */,
 				C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */,
+				C32956B01B9864260038B815 /* UIScrollView+EmptyDataSet.m in Sources */,
 				C3BB41411AFC797700A83016 /* SpringButton.swift in Sources */,
 				C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */,
 				C35B33871A0CBDF400061C40 /* FLTimerViewController.m in Sources */,

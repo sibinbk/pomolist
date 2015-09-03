@@ -18,6 +18,7 @@
 #import "JSQSystemSoundPlayer.h"
 #import "UIColor+FlatColors.h"
 #import "FLTaskCell.h"
+#import "UIScrollView+EmptyDataSet.h"
 
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
@@ -36,7 +37,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 #define kFLRepeatTimer             @"FLRepeatTimer"
 #define kFLTimerNotification       @"FLTimerNotification"
 
-@interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate>
+@interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @property (nonatomic) NSTimeInterval taskTime;
 @property (nonatomic) NSTimeInterval shortBreakTime;
@@ -85,6 +86,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     [super viewDidLoad];
     
+    self.taskTableView.emptyDataSetSource = self;
+    self.taskTableView.emptyDataSetDelegate = self;
+    
+    // A little trick for removing the cell separators
+    self.taskTableView.tableFooterView = [UIView new];
+    
     // Read Screen Lock Prevent status from UserDefaults.
     [self restoreSettingsInfo];
     
@@ -92,9 +99,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.formatter = [[NSDateFormatter alloc] init];
     NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM dd 'at' h:mm a" options:0 locale:[NSLocale currentLocale]];
     [self.formatter setDateFormat:format];
-    
-    // A little trick for removing the cell separators
-    self.taskTableView.tableFooterView = [UIView new];
     
     if ([self backupExist]) {
         [self restoreTaskInfo];
@@ -718,6 +722,78 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.longBreakColor = [NSKeyedUnarchiver unarchiveObjectWithData:[taskInfo valueForKey:kFLLongBreakColor]];
 }
 
+#pragma mark - Empty Dataset data source.
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return [UIImage imageNamed:@"Checkmark"];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = @"Task List is empty!";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = @"Add a new task to start using Listee.";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
+{
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17.0f]};
+    
+    return [[NSAttributedString alloc] initWithString:@"Continue" attributes:attributes];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return [UIColor whiteColor];
+}
+
+- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return -self.taskTableView.tableHeaderView.frame.size.height/2.0f;
+}
+
+#pragma mark - Empty Dataset delegate.
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView
+{
+    // Do something
+    NSLog(@"Empty dataset button pressed");
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -728,23 +804,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[_fetchedResultsController sections] objectAtIndex:section];
-    
-    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    messageLabel.text = @"No Task is currently available. Please add a task by pressing '+' button.";
-    messageLabel.textColor = [UIColor blueColor];
-    messageLabel.numberOfLines = 0;
-    messageLabel.textAlignment = NSTextAlignmentCenter;
-    messageLabel.font = [UIFont fontWithName:@"Palatino-Italic" size:20];
-    [messageLabel sizeToFit];
-    
-    if ([sectionInfo numberOfObjects] == 0) {
-        tableView.backgroundView = messageLabel;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    } else {
-        messageLabel.text = @"";
-        tableView.backgroundView = messageLabel;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    }
     
     return [sectionInfo numberOfObjects];
 }
