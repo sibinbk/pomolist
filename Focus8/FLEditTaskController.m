@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "Task.h"
 #import "FLColorPicker.h"
-#import "FLReminderPickerController.h"
+// #import "FLReminderPickerController.h"
 #import "FLTimingPickerController.h"
 #import "FLBreakDelayPickerController.h"
 #import "FLSessionCountPickerController.h"
@@ -26,7 +26,7 @@
 #define kShortBreakColorPicker   @"shortBreakColorPicker"
 #define kLongBreakColorPicker    @"longBreakColorPicker"
 
-@interface FLEditTaskController () <UITextFieldDelegate, FLReminderPickerDelegate, FLTimingPickerDelegate, FLBreakDelayPickerDelagate, FLSessionCountPickerDelegate, FLColorPickerDelegate>
+@interface FLEditTaskController () <UITextFieldDelegate, FLTimingPickerDelegate, FLBreakDelayPickerDelagate, FLSessionCountPickerDelegate, FLColorPickerDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
@@ -37,8 +37,10 @@
 @property (strong, nonatomic) NSArray *longBreakDelayArray;
 
 @property (weak, nonatomic) IBOutlet UITextField *taskNameField;
+/*
 @property (weak, nonatomic) IBOutlet UILabel *reminderTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *reminderDateLabel;
+ */
 @property (weak, nonatomic) IBOutlet UILabel *taskTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *shortBreakLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longBreakLabel;
@@ -61,8 +63,10 @@
 @property (strong, nonatomic) UIColor *taskColor;
 @property (strong, nonatomic) UIColor *shortBreakColor;
 @property (strong, nonatomic) UIColor *longBreakColor;
+/* 
 @property (strong, nonatomic) NSDate *reminderDate;
 @property (strong, nonatomic) NSDateFormatter *formatter;
+*/
 
 @property (strong, nonatomic) NSArray *colors;
 
@@ -84,11 +88,14 @@
     [super viewDidLoad];
     
     self.oldName = nil;
-    
+
+    /* Date formatter code.
+     
     //Setup date formatter
     self.formatter = [[NSDateFormatter alloc] init];
     NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM d, yyyy hh:mm a" options:0 locale:[NSLocale currentLocale]];
     [self.formatter setDateFormat:format];
+    */
     
     self.colors = @[
                     [UIColor flatTurquoiseColor],
@@ -121,17 +128,20 @@
     if ([self isTaskEditing]) {
         self.oldName = self.task.name;
         self.taskNameField.text = self.task.name;
+        /*
         if (self.task.reminderDate != nil) {
             self.reminderTitleLabel.text = @"Remind on";
             self.reminderDateLabel.text = [self.formatter stringFromDate:self.task.reminderDate];
         }
+        */
         self.taskTimeLabel.text = [self stringifyTime:[self.task.taskTime intValue]];
         self.shortBreakLabel.text = [self stringifyTime:[self.task.shortBreakTime intValue]];
         self.longBreakLabel.text = [self stringifyTime:[self.task.longBreakTime intValue]];
         self.longBreakDelayLabel.text = [NSString stringWithFormat:@"after %@ sessions", self.task.longBreakDelay];
         self.repeatCountLabel.text = [NSString stringWithFormat:@"%@ sessions", self.task.repeatCount];
-        
-        self.reminderDate = self.task.reminderDate;
+/*        
+        self.reminderDate = self.task.reminderDate; // Empty reminder date. 
+ */
         self.taskTime = [self.task.taskTime doubleValue];
         self.shortBreakTime = [self.task.shortBreakTime doubleValue];
         self.longBreakTime = [self.task.longBreakTime doubleValue];
@@ -202,42 +212,48 @@
         self.task.taskColor = self.taskColor;
         self.task.shortBreakColor = self.shortBreakColor;
         self.task.longBreakColor = self.longBreakColor;
-        NSLog(@"Old reinder date : %@", self.task.reminderDate);
-        NSLog(@"New reminder date : %@", self.reminderDate);
-        if (![self.task.reminderDate isEqualToDate:self.reminderDate]) {
-            if (!self.task.reminderDate) {
-                if (self.reminderDate) {
-                    self.task.reminderDate = self.reminderDate;
-                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        NSLog(@"schedule reminder notification");
-                        [self scheduleReminderNotificationForTask:self.task];
-                    });
-                } else {
-                    NSLog(@"Both dates are nill");
-                    /* This line executes when bothe Reimder dates are nill but not captured while comparing both dates. */
-                }
-            } else {
-                if (!self.reminderDate) {
-                    self.task.reminderDate = nil;
-                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        NSLog(@"cancel old reminder notification");
-                        [self cancelReminderNotificationForTask:self.task];
-                    });
-                } else {
-                    self.task.reminderDate = self.reminderDate;
-                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        NSLog(@"cancel old reminder notification");
-                        [self cancelReminderNotificationForTask:self.task];
-                    });
-                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        NSLog(@"schedule reminder notification");
-                        [self scheduleReminderNotificationForTask:self.task];
-                    });
-                }
-            }
-        } else {
-            NSLog(@"No change in reminder date");
-        }
+        
+        // Adds nil to reminder date.
+        self.task.reminderDate = nil;
+        
+/* Reminder date handling code here. */
+ 
+//        NSLog(@"Old reinder date : %@", self.task.reminderDate);
+//        NSLog(@"New reminder date : %@", self.reminderDate);
+//        if (![self.task.reminderDate isEqualToDate:self.reminderDate]) {
+//            if (!self.task.reminderDate) {
+//                if (self.reminderDate) {
+//                    self.task.reminderDate = self.reminderDate;
+//                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                        NSLog(@"schedule reminder notification");
+//                        [self scheduleReminderNotificationForTask:self.task];
+//                    });
+//                } else {
+//                    NSLog(@"Both dates are nill");
+//                    /* This line executes when bothe Reimder dates are nill but not captured while comparing both dates. */
+//                }
+//            } else {
+//                if (!self.reminderDate) {
+//                    self.task.reminderDate = nil;
+//                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                        NSLog(@"cancel old reminder notification");
+//                        [self cancelReminderNotificationForTask:self.task];
+//                    });
+//                } else {
+//                    self.task.reminderDate = self.reminderDate;
+//                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                        NSLog(@"cancel old reminder notification");
+//                        [self cancelReminderNotificationForTask:self.task];
+//                    });
+//                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                        NSLog(@"schedule reminder notification");
+//                        [self scheduleReminderNotificationForTask:self.task];
+//                    });
+//                }
+//            }
+//        } else {
+//            NSLog(@"No change in reminder date");
+//        }
         
         [self saveAndDismiss];
     }
@@ -268,6 +284,8 @@
 
 #pragma mark - schedule local notifications for Reminder date
 
+/* Reminder notification code.
+ 
 - (void)scheduleReminderNotificationForTask:(Task *)task
 {
     UILocalNotification *notification = [[UILocalNotification alloc] init];
@@ -293,6 +311,7 @@
         }
     }
 }
+*/
 
 #pragma mark - tableview delegate method
 
@@ -304,11 +323,14 @@
         [self.taskNameField resignFirstResponder];
     }
     
+    /* Reminder picker segue method.
+     
     if (indexPath.section == 1 && indexPath.row == 0) {
         [self performSegueWithIdentifier:@"reminderPickerSegue" sender:nil];
     }
+     */
     
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             self.timingPickerType = TaskTimePicker;
             [self performSegueWithIdentifier:@"timingPickerSegue" sender:nil];
@@ -327,7 +349,7 @@
     
     NSString *pickerType;
         
-    if (indexPath.section == 3) {
+    if (indexPath.section == 2) {
         switch (indexPath.row) {
             case 0:
                 pickerType = kTaskColorPicker;
@@ -348,11 +370,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    /* prepare segue method for Reminder picker.
+     
     if ([segue.identifier isEqualToString:@"reminderPickerSegue"]) {
         FLReminderPickerController *reminderPicker = segue.destinationViewController;
         reminderPicker.reminderDate = self.reminderDate;
         reminderPicker.delegate = self;
     }
+     */
     
     if ([segue.identifier isEqualToString:@"timingPickerSegue"]) {
         FLTimingPickerController *timingPicker = segue.destinationViewController;
@@ -427,6 +452,8 @@
 
 #pragma mark - FLDatePickerController delegate methods.
 
+/* Date picker delegate methods.
+ 
 - (void)pickerController:(FLReminderPickerController *)controller reminderSetOn:(NSDate *)reminderDate
 {
     self.reminderDate = [self truncateSecondsForDate:reminderDate];
@@ -445,6 +472,7 @@
     self.reminderDateLabel.text = @" ";
     self.reminderDateLabel.textColor = [UIColor grayColor];
 }
+*/
 
 #pragma mark - Timing picker delegate methods.
 
@@ -510,6 +538,7 @@
 
 #pragma mark - Reminder date's second component truncation method.
 
+/*
 - (NSDate *)truncateSecondsForDate:(NSDate *)fromDate;
 {
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
@@ -517,5 +546,5 @@
     NSDateComponents *fromDateComponents = [calendar components:unitFlags fromDate:fromDate ];
     return [calendar dateFromComponents:fromDateComponents];
 }
-
+*/
 @end

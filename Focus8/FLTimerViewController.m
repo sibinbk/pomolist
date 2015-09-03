@@ -51,7 +51,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (strong, nonatomic) UIColor *longBreakColor;
 @property (strong, nonatomic) NSString *alarmSound;
 
-@property (strong, nonatomic) NSDateFormatter *formatter;
+/*
+ @property (strong, nonatomic) NSDateFormatter *formatter;
+ */
 
 @property (assign, nonatomic) BOOL isFullView;
 @property (assign, nonatomic) BOOL isTaskEditing;
@@ -94,11 +96,14 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     // Read Screen Lock Prevent status from UserDefaults.
     [self restoreSettingsInfo];
-    
+
+    /* Date formatter for reminder
+     
     //Setup date formatter
     self.formatter = [[NSDateFormatter alloc] init];
     NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM dd 'at' h:mm a" options:0 locale:[NSLocale currentLocale]];
     [self.formatter setDateFormat:format];
+     */
     
     if ([self backupExist]) {
         [self restoreTaskInfo];
@@ -448,6 +453,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
 }
 
+/* Reminder notification.
+ 
 - (void)scheduleReminderNotificationForTask:(Task *)task
 {
     UILocalNotification *notification = [[UILocalNotification alloc] init];
@@ -459,6 +466,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
+
+*/
 
 #pragma mark - cancel local notifications.
 
@@ -477,6 +486,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
 }
 
+/* Reminde notification cancelling code.
+ 
 - (void)cancelReminderNotificationForTask:(Task *)task
 {
     for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
@@ -503,6 +514,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         }
     }
 }
+*/
 
 # pragma mark - Change notification sound.
 
@@ -852,7 +864,10 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     cell.totalTimeLabel.text = [self stringifyTotalTime:([task.taskTime intValue] * [task.repeatCount intValue]) usingLongFormat:YES];
     
 //    cell.reminderDateLabel.text = (indexPath.row % 3 == 0) ? @"26 May 2015 6:00 pm" : nil;
-    cell.reminderDateLabel.text = [self.formatter stringFromDate:task.reminderDate];
+    
+/*  reminder label.
+ cell.reminderDateLabel.text = [self.formatter stringFromDate:task.reminderDate];
+ */
     cell.taskColorView.backgroundColor = task.taskColor;
     
     if (![task.isSelected boolValue]) {
@@ -877,6 +892,13 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         //
         /* Check if the timer is running. If so add an Alert to let the customer know that the selecting the task will Stop previous task timer */
         //
+        
+        if (self.repeatTimer.isRunning) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSLog(@"Cancel Timer notifications related to the task");
+                [self cancelTimerNotifications];
+            });
+        }
 
         //Get currently selected task.
         Task *oldTask = [self currentSelectedTask];
@@ -957,7 +979,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         NSIndexPath * path = [self.taskTableView indexPathForCell:cell];
         NSManagedObjectContext *context = [self managedObjectContext];
         Task *taskToDelete = [_fetchedResultsController objectAtIndexPath:path];
-        
+ 
+    /* Cancelling Local notifications when the task is deleted.
+     
         // Check the task to be deleted is currently selected task. If so reset all timer info related to the task.
         if ([taskToDelete.isSelected boolValue]) {
             if (!self.repeatTimer.isRunning) {
@@ -977,6 +1001,19 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                 NSLog(@"Cancel Reminder notifications for the task");
                 [self cancelReminderNotificationForTask:taskToDelete];
             });
+        }
+     */
+        
+        // Check the task to be deleted is currently selected task. If so reset all timer info related to the task.
+        if ([taskToDelete.isSelected boolValue]) {
+            if (self.repeatTimer.isRunning) {
+                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSLog(@"Cancel Timer notifications related to the task");
+                    [self cancelTimerNotifications];
+                });
+            }
+            
+            [self resetTaskTimer];
         }
         
         [context deleteObject:taskToDelete];

@@ -13,7 +13,7 @@
 @interface FLTaskCell : MGSwipeTableCell
 @property (weak, nonatomic) IBOutlet UILabel *taskNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cycleCountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *reminderDateLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *reminderDateLabel;
 @property (weak, nonatomic) IBOutlet DesignableView *taskColorView;
 @property (weak, nonatomic) IBOutlet UILabel *taskTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;

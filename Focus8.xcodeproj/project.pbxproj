@@ -104,7 +104,6 @@
 		C3EA01F31B0A27DF00C321BF /* FLColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F21B0A27DF00C321BF /* FLColorCell.m */; };
 		C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */; };
 		C3EFAEA21A13462D003D641C /* FLEditTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEA11A13462D003D641C /* FLEditTaskController.m */; };
-		C3EFAEA51A1453AB003D641C /* FLPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEA41A1453AB003D641C /* FLPickerController.m */; };
 		C3EFAEA71A145508003D641C /* PickerData.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3EFAEA61A145508003D641C /* PickerData.plist */; };
 		C3EFAEAD1A18684C003D641C /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEAA1A18684C003D641C /* MGSwipeButton.m */; };
 		C3EFAEAE1A18684C003D641C /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEAC1A18684C003D641C /* MGSwipeTableCell.m */; };
@@ -244,8 +243,6 @@
 		C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTaskCell.m; sourceTree = "<group>"; };
 		C3EFAEA01A13462D003D641C /* FLEditTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEditTaskController.h; sourceTree = "<group>"; };
 		C3EFAEA11A13462D003D641C /* FLEditTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEditTaskController.m; sourceTree = "<group>"; };
-		C3EFAEA31A1453AB003D641C /* FLPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPickerController.h; sourceTree = "<group>"; };
-		C3EFAEA41A1453AB003D641C /* FLPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPickerController.m; sourceTree = "<group>"; };
 		C3EFAEA61A145508003D641C /* PickerData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PickerData.plist; sourceTree = "<group>"; };
 		C3EFAEA91A18684C003D641C /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
 		C3EFAEAA1A18684C003D641C /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
@@ -375,8 +372,6 @@
 				C3D1B6191B4841320003419B /* FLSessionCountPickerController.m */,
 				C3534E201B09A12B0015B626 /* FLColorPicker.h */,
 				C3534E211B09A12B0015B626 /* FLColorPicker.m */,
-				C3EFAEA31A1453AB003D641C /* FLPickerController.h */,
-				C3EFAEA41A1453AB003D641C /* FLPickerController.m */,
 				C3A49A3B1B9032D300F7D796 /* FLSoundPickerController.h */,
 				C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */,
 				C3EA01F51B0CE3EE00C321BF /* FLTaskCell.h */,
@@ -707,7 +702,6 @@
 				C3BB413A1AFC797700A83016 /* KeyboardLayoutConstraint.swift in Sources */,
 				C35B33621A0CBA1500061C40 /* AppDelegate.m in Sources */,
 				C3BB413E1AFC797700A83016 /* SoundPlayer.swift in Sources */,
-				C3EFAEA51A1453AB003D641C /* FLPickerController.m in Sources */,
 				C3BB41461AFC797700A83016 /* SpringView.swift in Sources */,
 				C3BB41431AFC797700A83016 /* SpringLabel.swift in Sources */,
 				C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */,
