@@ -728,6 +728,24 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[_fetchedResultsController sections] objectAtIndex:section];
+    
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    messageLabel.text = @"No Task is currently available. Please add a task by pressing '+' button.";
+    messageLabel.textColor = [UIColor blueColor];
+    messageLabel.numberOfLines = 0;
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    messageLabel.font = [UIFont fontWithName:@"Palatino-Italic" size:20];
+    [messageLabel sizeToFit];
+    
+    if ([sectionInfo numberOfObjects] == 0) {
+        tableView.backgroundView = messageLabel;
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    } else {
+        messageLabel.text = @"";
+        tableView.backgroundView = messageLabel;
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
+    
     return [sectionInfo numberOfObjects];
 }
 
