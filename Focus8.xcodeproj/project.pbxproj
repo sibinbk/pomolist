@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C32956A61B95CF260038B815 /* None.wav in Resources */ = {isa = PBXBuildFile; fileRef = C32956A51B95CF260038B815 /* None.wav */; };
+		C32956A91B98501D0038B815 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C32956A81B98501D0038B815 /* Event.m */; };
+		C32956AC1B98501E0038B815 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C32956AB1B98501E0038B815 /* Task.m */; };
 		C33008311A94A439003A0AEA /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = C33008281A94A439003A0AEA /* edit.png */; };
 		C33008321A94A439003A0AEA /* edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C33008291A94A439003A0AEA /* edit@2x.png */; };
 		C33008331A94A439003A0AEA /* edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330082A1A94A439003A0AEA /* edit@3x.png */; };
@@ -26,8 +28,6 @@
 		C330084F1A94B703003A0AEA /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084C1A94B703003A0AEA /* settings.png */; };
 		C33008501A94B703003A0AEA /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084D1A94B703003A0AEA /* settings@2x.png */; };
 		C33008511A94B703003A0AEA /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084E1A94B703003A0AEA /* settings@3x.png */; };
-		C33571521B668DB200B01B0E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C33571511B668DB200B01B0E /* Event.m */; };
-		C33571551B668DB200B01B0E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C33571541B668DB200B01B0E /* Task.m */; };
 		C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */; };
 		C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */; };
 		C351141B1B1AEFF7005EB4B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C35114191B1AEFF7005EB4B3 /* Main.storyboard */; };
@@ -121,6 +121,10 @@
 
 /* Begin PBXFileReference section */
 		C32956A51B95CF260038B815 /* None.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = None.wav; sourceTree = "<group>"; };
+		C32956A71B98501D0038B815 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		C32956A81B98501D0038B815 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		C32956AA1B98501E0038B815 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		C32956AB1B98501E0038B815 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		C33008281A94A439003A0AEA /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
 		C33008291A94A439003A0AEA /* edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit@2x.png"; sourceTree = "<group>"; };
 		C330082A1A94A439003A0AEA /* edit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit@3x.png"; sourceTree = "<group>"; };
@@ -139,10 +143,6 @@
 		C330084C1A94B703003A0AEA /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		C330084D1A94B703003A0AEA /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		C330084E1A94B703003A0AEA /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
-		C33571501B668DB200B01B0E /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		C33571511B668DB200B01B0E /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		C33571531B668DB200B01B0E /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		C33571541B668DB200B01B0E /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		C33EE6F31A675FB300C94E61 /* ZGCountDownTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGCountDownTimer.h; sourceTree = "<group>"; };
 		C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCountDownTimer.m; sourceTree = "<group>"; };
 		C347DD8C1B8F1251006E3F3E /* FLSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSettingsController.h; sourceTree = "<group>"; };
@@ -370,10 +370,10 @@
 				C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */,
 				C3EA01F11B0A27DF00C321BF /* FLColorCell.h */,
 				C3EA01F21B0A27DF00C321BF /* FLColorCell.m */,
-				C33571531B668DB200B01B0E /* Task.h */,
-				C33571541B668DB200B01B0E /* Task.m */,
-				C33571501B668DB200B01B0E /* Event.h */,
-				C33571511B668DB200B01B0E /* Event.m */,
+				C32956AA1B98501E0038B815 /* Task.h */,
+				C32956AB1B98501E0038B815 /* Task.m */,
+				C32956A71B98501D0038B815 /* Event.h */,
+				C32956A81B98501D0038B815 /* Event.m */,
 				C35B33631A0CBA1500061C40 /* Focus8.xcdatamodeld */,
 				C3EFAEA61A145508003D641C /* PickerData.plist */,
 				C35B336C1A0CBA1500061C40 /* Images.xcassets */,
@@ -664,6 +664,7 @@
 				C3BB413F1AFC797700A83016 /* Spring.swift in Sources */,
 				C3D1B61A1B4841320003419B /* FLSessionCountPickerController.m in Sources */,
 				C3BB413D1AFC797700A83016 /* Misc.swift in Sources */,
+				C32956AC1B98501E0038B815 /* Task.m in Sources */,
 				C3A49A431B90508800F7D796 /* JSQSystemSoundPlayer.m in Sources */,
 				C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */,
 				C3BB41411AFC797700A83016 /* SpringButton.swift in Sources */,
@@ -679,9 +680,9 @@
 				C3BB41351AFC797700A83016 /* DesignableTextField.swift in Sources */,
 				C3BB413B1AFC797700A83016 /* LoadingView.swift in Sources */,
 				C35B33651A0CBA1500061C40 /* Focus8.xcdatamodeld in Sources */,
-				C33571551B668DB200B01B0E /* Task.m in Sources */,
 				C3BB41301AFC797700A83016 /* BlurView.swift in Sources */,
 				C3BB41491AFC797700A83016 /* UnwindSegue.swift in Sources */,
+				C32956A91B98501D0038B815 /* Event.m in Sources */,
 				C3BB41331AFC797700A83016 /* DesignableLabel.swift in Sources */,
 				C3BB41381AFC797700A83016 /* ImageLoader.swift in Sources */,
 				C3D6808B1B3BBC6300C08860 /* FLTimingPickerController.m in Sources */,
@@ -689,7 +690,6 @@
 				C3BB412F1AFC797700A83016 /* AutoTextView.swift in Sources */,
 				C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */,
 				C3BB41361AFC797700A83016 /* DesignableTextView.swift in Sources */,
-				C33571521B668DB200B01B0E /* Event.m in Sources */,
 				C3BB413A1AFC797700A83016 /* KeyboardLayoutConstraint.swift in Sources */,
 				C35B33621A0CBA1500061C40 /* AppDelegate.m in Sources */,
 				C3BB413E1AFC797700A83016 /* SoundPlayer.swift in Sources */,

@@ -2,7 +2,7 @@
 //  Task.h
 //  Focus8
 //
-//  Created by Sibin Baby on 28/07/2015.
+//  Created by Sibin Baby on 3/09/2015.
 //  Copyright (c) 2015 FocusApps. All rights reserved.
 //
 
@@ -13,11 +13,7 @@
 
 @interface Task : NSManagedObject
 
-@property (nonatomic, retain) NSString * alarmSound;
-@property (nonatomic, retain) NSNumber * isMuteOn;
-@property (nonatomic, retain) NSNumber * isPreventLockOn;
 @property (nonatomic, retain) NSNumber * isSelected;
-@property (nonatomic, retain) NSNumber * isTickingOn;
 @property (nonatomic, retain) id longBreakColor;
 @property (nonatomic, retain) NSNumber * longBreakDelay;
 @property (nonatomic, retain) NSNumber * longBreakTime;

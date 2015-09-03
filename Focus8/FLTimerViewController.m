@@ -93,6 +93,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM dd 'at' h:mm a" options:0 locale:[NSLocale currentLocale]];
     [self.formatter setDateFormat:format];
     
+    // A little trick for removing the cell separators
+    self.taskTableView.tableFooterView = [UIView new];
+    
     if ([self backupExist]) {
         [self restoreTaskInfo];
         self.taskTitleLabel.text = self.taskName;

@@ -2,7 +2,7 @@
 //  Task.m
 //  Focus8
 //
-//  Created by Sibin Baby on 28/07/2015.
+//  Created by Sibin Baby on 3/09/2015.
 //  Copyright (c) 2015 FocusApps. All rights reserved.
 //
 
@@ -12,11 +12,7 @@
 
 @implementation Task
 
-@dynamic alarmSound;
-@dynamic isMuteOn;
-@dynamic isPreventLockOn;
 @dynamic isSelected;
-@dynamic isTickingOn;
 @dynamic longBreakColor;
 @dynamic longBreakDelay;
 @dynamic longBreakTime;
