@@ -284,8 +284,8 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
                 self.cycleFinishTime += self.longBreakTime;
             }
             self.completedTaskTime += self.taskTime;
-            if ([self.delegate respondsToSelector:@selector(taskCompleted:)])
-                [self.delegate taskCompleted:self];
+            if ([self.delegate respondsToSelector:@selector(taskSessionCompleted:)])
+                [self.delegate taskSessionCompleted:self];
             break;
         case ShortBreakCycle:
             self.cycleType = TaskCycle;

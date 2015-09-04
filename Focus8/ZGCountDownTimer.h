@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, CountDownCycleType) {
 - (void)countDownCompleted:(ZGCountDownTimer *)sender;
 
 // delegate methods for task/break notifications.
-- (void)taskCompleted:(ZGCountDownTimer *)sender;
+- (void)taskSessionCompleted:(ZGCountDownTimer *)sender;
 
 - (void)shortBreakCompleted:(ZGCountDownTimer *)sender;
 

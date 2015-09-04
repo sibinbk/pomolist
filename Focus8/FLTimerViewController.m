@@ -528,16 +528,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         }
 }
 
-#pragma mark - Delegate methods.
+#pragma mark - ZGCountDownTimer Delegate methods.
 
 - (void)secondUpdated:(ZGCountDownTimer *)sender countDownTimePassed:(NSTimeInterval)timePassed ofTotalTime:(NSTimeInterval)totalTime
 {
     // Conversion to Time string without hour component.
     self.timerLabel.text = [self dateStringForTimeIntervalWithoutHour:(totalTime - timePassed) withDateFormatter:nil];
-    
-    if (totalTime == timePassed) {
-        [self playAlertSound:self.alarmSound];
-    }
 }
 
 - (void)taskTimeUpdated:(ZGCountDownTimer *)sender totalTime:(NSTimeInterval)time
@@ -616,19 +612,19 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
 }
 
-- (void)taskCompleted:(ZGCountDownTimer *)sender
+- (void)taskSessionCompleted:(ZGCountDownTimer *)sender
 {
-//    [self playAlertSound:self.alarmSound];
+    [self playAlertSound:self.alarmSound];
 }
 
 - (void)shortBreakCompleted:(ZGCountDownTimer *)sender
 {
-//    [self playAlertSound:self.alarmSound];
+    [self playAlertSound:self.alarmSound];
 }
 
 - (void)longBreakCompleted:(ZGCountDownTimer *)sender
 {
-//    [self playAlertSound:self.alarmSound];
+    [self playAlertSound:self.alarmSound];
 }
 
 #pragma mark - JSQSystemSound player methods.
