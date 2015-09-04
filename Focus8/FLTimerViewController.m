@@ -89,6 +89,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     [super viewDidLoad];
     
+    NSLog(@"This is a test code");
+    
     self.taskTableView.emptyDataSetSource = self;
     self.taskTableView.emptyDataSetDelegate = self;
     
