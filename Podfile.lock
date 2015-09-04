@@ -1,0 +1,13 @@
+PODS:
+  - DZNEmptyDataSet (1.7.1)
+  - SCLAlertView-Objective-C (0.7.5)
+
+DEPENDENCIES:
+  - DZNEmptyDataSet
+  - SCLAlertView-Objective-C
+
+SPEC CHECKSUMS:
+  DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12
+  SCLAlertView-Objective-C: 5692f7b848999537af0079d6891c3a11040e3a22
+
+COCOAPODS: 0.38.2

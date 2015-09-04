@@ -382,9 +382,10 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         DZNEmptyDataSetView *view = self.emptyDataSetView;
         
         if (!view.superview) {
-            // Send the view all the way to the back, in case a header and/or footer is present, as well as for sectionHeaders or any other content
+            
+            // Send the view to back, in case a header and/or footer is present
             if (([self isKindOfClass:[UITableView class]] || [self isKindOfClass:[UICollectionView class]]) && self.subviews.count > 1) {
-                [self insertSubview:view atIndex:0];
+                [self insertSubview:view atIndex:1];
             }
             else {
                 [self addSubview:view];
@@ -909,15 +910,6 @@ NSString *dzn_implementationKey(id target, SEL selector)
                                                                                      options:0 metrics:metrics views:views]];
         }
     }
-}
-
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-{
-    UIView *hitView = [super hitTest:point withEvent:event];
-    if ([hitView isEqual:_button] || [hitView isEqual:_contentView]) {
-        return hitView;
-    }
-    return nil;
 }
 
 @end
