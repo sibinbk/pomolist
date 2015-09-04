@@ -19,6 +19,7 @@
 #import "UIColor+FlatColors.h"
 #import "FLTaskCell.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "SCLAlertView.h"
 
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
@@ -557,16 +558,11 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 //    self.skipButton.hidden = NO;
 //    // Set start button title to 'START' after finishing timer.
 //    [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
-    
-
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Task Completed"
-                                                        message:[NSString stringWithFormat:@"Total Task Time : %f", time]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Dismiss"
-                                              otherButtonTitles:nil];
-    [alertView show];
-
+        
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    [alert showSuccess:self title:@"Well Done" subTitle:@"Task completed" closeButtonTitle:@"Done" duration:0.0f];
 }
+
 - (void)countDownCycleChanged:(ZGCountDownTimer *)sender cycle:(CountDownCycleType)newCycle withTaskCount:(NSInteger)count
 {
     UIColor *viewColor;
