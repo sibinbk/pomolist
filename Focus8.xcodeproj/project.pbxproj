@@ -53,7 +53,6 @@
 		C3A49A391B902FAD00F7D796 /* RobotRattle.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A331B902FAD00F7D796 /* RobotRattle.wav */; };
 		C3A49A3A1B902FAD00F7D796 /* Woodpecker.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A341B902FAD00F7D796 /* Woodpecker.wav */; };
 		C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */; };
-		C3A49A431B90508800F7D796 /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49A421B90508800F7D796 /* JSQSystemSoundPlayer.m */; };
 		C3A49A451B90510900F7D796 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A441B90510900F7D796 /* AudioToolbox.framework */; };
 		C3A49A471B92AF6300F7D796 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A461B92AF6300F7D796 /* AVFoundation.framework */; };
 		C3B6FAB61B0DA8920052B7E5 /* PauseFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAB31B0DA8920052B7E5 /* PauseFilled.png */; };
@@ -104,8 +103,6 @@
 		C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */; };
 		C3EFAEA21A13462D003D641C /* FLEditTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEA11A13462D003D641C /* FLEditTaskController.m */; };
 		C3EFAEA71A145508003D641C /* PickerData.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3EFAEA61A145508003D641C /* PickerData.plist */; };
-		C3EFAEAD1A18684C003D641C /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEAA1A18684C003D641C /* MGSwipeButton.m */; };
-		C3EFAEAE1A18684C003D641C /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEAC1A18684C003D641C /* MGSwipeTableCell.m */; };
 		D47D80DDBE58ED9BF22F172C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E09210CA49F9208CF4B91D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -182,8 +179,6 @@
 		C3A49A341B902FAD00F7D796 /* Woodpecker.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Woodpecker.wav; sourceTree = "<group>"; };
 		C3A49A3B1B9032D300F7D796 /* FLSoundPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSoundPickerController.h; sourceTree = "<group>"; };
 		C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoundPickerController.m; sourceTree = "<group>"; };
-		C3A49A411B90508800F7D796 /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
-		C3A49A421B90508800F7D796 /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		C3A49A441B90510900F7D796 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3A49A461B92AF6300F7D796 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C3B6FAB31B0DA8920052B7E5 /* PauseFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseFilled.png; sourceTree = "<group>"; };
@@ -244,10 +239,6 @@
 		C3EFAEA01A13462D003D641C /* FLEditTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEditTaskController.h; sourceTree = "<group>"; };
 		C3EFAEA11A13462D003D641C /* FLEditTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEditTaskController.m; sourceTree = "<group>"; };
 		C3EFAEA61A145508003D641C /* PickerData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PickerData.plist; sourceTree = "<group>"; };
-		C3EFAEA91A18684C003D641C /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
-		C3EFAEAA1A18684C003D641C /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
-		C3EFAEAB1A18684C003D641C /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
-		C3EFAEAC1A18684C003D641C /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		FF6F532B5432F27442F9C513 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -349,10 +340,8 @@
 		C35B335B1A0CBA1500061C40 /* Focus8 */ = {
 			isa = PBXGroup;
 			children = (
-				C3A49A401B90506600F7D796 /* JSQSystemSoundPlayer */,
 				C3ACAB751B3184C7000EF926 /* UIFlatColors */,
 				C3BB410E1AFC797700A83016 /* Spring */,
-				C3EFAEA81A18684C003D641C /* MGSwipeTableCell */,
 				C35B33881A0CBE5400061C40 /* ZGCountDownTimer */,
 				C35B33601A0CBA1500061C40 /* AppDelegate.h */,
 				C35B33611A0CBA1500061C40 /* AppDelegate.m */,
@@ -447,15 +436,6 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
-		C3A49A401B90506600F7D796 /* JSQSystemSoundPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				C3A49A411B90508800F7D796 /* JSQSystemSoundPlayer.h */,
-				C3A49A421B90508800F7D796 /* JSQSystemSoundPlayer.m */,
-			);
-			name = JSQSystemSoundPlayer;
-			sourceTree = "<group>";
-		};
 		C3ACAB751B3184C7000EF926 /* UIFlatColors */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,17 +478,6 @@
 				C3BB412C1AFC797700A83016 /* UnwindSegue.swift */,
 			);
 			path = Spring;
-			sourceTree = "<group>";
-		};
-		C3EFAEA81A18684C003D641C /* MGSwipeTableCell */ = {
-			isa = PBXGroup;
-			children = (
-				C3EFAEA91A18684C003D641C /* MGSwipeButton.h */,
-				C3EFAEAA1A18684C003D641C /* MGSwipeButton.m */,
-				C3EFAEAB1A18684C003D641C /* MGSwipeTableCell.h */,
-				C3EFAEAC1A18684C003D641C /* MGSwipeTableCell.m */,
-			);
-			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
 		DC954C7D587B637345C0B597 /* Frameworks */ = {
@@ -711,18 +680,15 @@
 				C3D1B61A1B4841320003419B /* FLSessionCountPickerController.m in Sources */,
 				C3BB413D1AFC797700A83016 /* Misc.swift in Sources */,
 				C32956AC1B98501E0038B815 /* Task.m in Sources */,
-				C3A49A431B90508800F7D796 /* JSQSystemSoundPlayer.m in Sources */,
 				C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */,
 				C3BB41411AFC797700A83016 /* SpringButton.swift in Sources */,
 				C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */,
 				C35B33871A0CBDF400061C40 /* FLTimerViewController.m in Sources */,
 				C3BB41341AFC797700A83016 /* DesignableTabBarController.swift in Sources */,
-				C3EFAEAD1A18684C003D641C /* MGSwipeButton.m in Sources */,
 				C3BB41451AFC797700A83016 /* SpringTextView.swift in Sources */,
 				C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */,
 				C3BB41441AFC797700A83016 /* SpringTextField.swift in Sources */,
 				C3616A411AAB021A00C47C8A /* EventTableViewController.m in Sources */,
-				C3EFAEAE1A18684C003D641C /* MGSwipeTableCell.m in Sources */,
 				C3BB41351AFC797700A83016 /* DesignableTextField.swift in Sources */,
 				C3BB413B1AFC797700A83016 /* LoadingView.swift in Sources */,
 				C35B33651A0CBA1500061C40 /* Focus8.xcdatamodeld in Sources */,
