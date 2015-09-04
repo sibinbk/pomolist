@@ -1205,10 +1205,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.shortBreakColor = task.shortBreakColor;
     self.longBreakColor = task.longBreakColor;
     
-//    if ([self backupExist]) {
-//        [self removeTaskInfoBackup];
-//    }
-    
     [self backUpTaskInfo];
     
     self.taskTitleLabel.text = task.name;
