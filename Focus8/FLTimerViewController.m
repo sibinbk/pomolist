@@ -73,6 +73,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerLabelSpacing;
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
+@property (strong, nonatomic) DesignableButton *floatingButton;
 
 @property(strong, nonatomic) ZGCountDownTimer *repeatTimer;
 
@@ -94,6 +95,23 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     // A little trick for removing the cell separators
     self.taskTableView.tableFooterView = [UIView new];
+    
+    // Timerview handling.
+    self.isFullView = YES;
+    self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
+
+    // Add Floating button to add new tasks.
+    self.floatingButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)/2 - 30, CGRectGetHeight(self.view.frame) - 80 , 60, 60)];
+    self.floatingButton.cornerRadius = 30;
+    self.floatingButton.backgroundColor = [UIColor flatPeterRiverColor];
+    self.floatingButton.shadowColor = [UIColor grayColor];
+    self.floatingButton.shadowRadius = 2;
+    self.floatingButton.shadowOffsetY = 1;
+    self.floatingButton.shadowOpacity = 3;
+    [self.floatingButton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
+    [self.floatingButton addTarget:self action:@selector(addNewTask) forControlEvents:UIControlEventTouchUpInside];
+    self.floatingButton.hidden = YES;
+    [self.view addSubview:self.floatingButton];
     
     // Read Screen Lock Prevent status from UserDefaults.
     [self restoreSettingsInfo];
@@ -120,10 +138,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.shortBreakColor = [UIColor flatWetAsphaltColor];
         self.longBreakColor = [UIColor flatPomegranateColor];
     }
-
-    self.isFullView = YES;
-    self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
-    [self closeListView];
     
     UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showListView)];
     [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
@@ -147,6 +161,17 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.repeatTimer.delegate = self;
     
     [self repeatTimerSetup];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    if (self.isFullView) {
+        self.floatingButton.hidden = YES;
+    } else {
+        self.floatingButton.hidden = NO;
+    }
 }
 
 - (void)repeatTimerSetup
@@ -214,6 +239,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                         options:0
                      animations:^{
                          [self.view layoutIfNeeded];
+                         self.floatingButton.hidden = YES;
                      } completion:^(BOOL finished) {
                          self.startButton.hidden = NO;
                          self.taskTitleLabel.hidden = NO;
@@ -265,6 +291,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                         options:0
                      animations:^{
                          [self.view layoutIfNeeded];
+                         self.floatingButton.hidden = NO;
                      } completion:NULL];
     self.isFullView = NO;
     [self.listButton.imageView setImage:[UIImage imageNamed:@"delete.png"]];
@@ -1166,7 +1193,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 #pragma mark - Add New task method
 
-- (IBAction)addTask:(id)sender
+- (void)addNewTask
 {
     self.isTaskEditing = NO;
     [self performSegueWithIdentifier:@"EditTaskSegue" sender:nil];
