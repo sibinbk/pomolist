@@ -89,8 +89,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     [super viewDidLoad];
     
-    NSLog(@"This is a test code");
-    
     self.taskTableView.emptyDataSetSource = self;
     self.taskTableView.emptyDataSetDelegate = self;
     
@@ -125,6 +123,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
     self.isFullView = YES;
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
+    [self closeListView];
     
     UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showListView)];
     [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
@@ -944,6 +943,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     return [tasks lastObject];
 }
+
+#pragma mark - Coredata Context save method.
 
 - (void)saveContext
 {
