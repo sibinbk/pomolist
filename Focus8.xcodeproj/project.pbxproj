@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C32956A61B95CF260038B815 /* None.wav in Resources */ = {isa = PBXBuildFile; fileRef = C32956A51B95CF260038B815 /* None.wav */; };
 		C32956A91B98501D0038B815 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C32956A81B98501D0038B815 /* Event.m */; };
 		C32956AC1B98501E0038B815 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C32956AB1B98501E0038B815 /* Task.m */; };
 		C33008311A94A439003A0AEA /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = C33008281A94A439003A0AEA /* edit.png */; };
@@ -28,6 +27,13 @@
 		C330084F1A94B703003A0AEA /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084C1A94B703003A0AEA /* settings.png */; };
 		C33008501A94B703003A0AEA /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084D1A94B703003A0AEA /* settings@2x.png */; };
 		C33008511A94B703003A0AEA /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084E1A94B703003A0AEA /* settings@3x.png */; };
+		C33EA29D1B9BE025001EC678 /* Caribbean.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA2961B9BE025001EC678 /* Caribbean.wav */; };
+		C33EA29E1B9BE025001EC678 /* Glissful.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA2971B9BE025001EC678 /* Glissful.wav */; };
+		C33EA29F1B9BE025001EC678 /* None.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA2981B9BE025001EC678 /* None.wav */; };
+		C33EA2A01B9BE025001EC678 /* Ready.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA2991B9BE025001EC678 /* Ready.wav */; };
+		C33EA2A11B9BE025001EC678 /* RingRing.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA29A1B9BE025001EC678 /* RingRing.wav */; };
+		C33EA2A21B9BE025001EC678 /* Robot's Rattle.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA29B1B9BE025001EC678 /* Robot's Rattle.wav */; };
+		C33EA2A31B9BE025001EC678 /* Woodpecker.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA29C1B9BE025001EC678 /* Woodpecker.wav */; };
 		C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */; };
 		C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */; };
 		C351141B1B1AEFF7005EB4B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C35114191B1AEFF7005EB4B3 /* Main.storyboard */; };
@@ -46,12 +52,6 @@
 		C3616A451AAB434500C47C8A /* archive.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A421AAB434500C47C8A /* archive.png */; };
 		C3616A461AAB434500C47C8A /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A431AAB434500C47C8A /* archive@2x.png */; };
 		C3616A471AAB434500C47C8A /* archive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A441AAB434500C47C8A /* archive@3x.png */; };
-		C3A49A351B902FAD00F7D796 /* Caribbean.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A2F1B902FAD00F7D796 /* Caribbean.wav */; };
-		C3A49A361B902FAD00F7D796 /* Glissful.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A301B902FAD00F7D796 /* Glissful.wav */; };
-		C3A49A371B902FAD00F7D796 /* Ready.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A311B902FAD00F7D796 /* Ready.wav */; };
-		C3A49A381B902FAD00F7D796 /* RingRing.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A321B902FAD00F7D796 /* RingRing.wav */; };
-		C3A49A391B902FAD00F7D796 /* RobotRattle.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A331B902FAD00F7D796 /* RobotRattle.wav */; };
-		C3A49A3A1B902FAD00F7D796 /* Woodpecker.wav in Resources */ = {isa = PBXBuildFile; fileRef = C3A49A341B902FAD00F7D796 /* Woodpecker.wav */; };
 		C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */; };
 		C3A49A451B90510900F7D796 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A441B90510900F7D796 /* AudioToolbox.framework */; };
 		C3A49A471B92AF6300F7D796 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A461B92AF6300F7D796 /* AVFoundation.framework */; };
@@ -119,7 +119,6 @@
 /* Begin PBXFileReference section */
 		56A3ED0E1FE9BABFAC03563B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		78E09210CA49F9208CF4B91D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C32956A51B95CF260038B815 /* None.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = None.wav; sourceTree = "<group>"; };
 		C32956A71B98501D0038B815 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C32956A81B98501D0038B815 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C32956AA1B98501E0038B815 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
@@ -142,6 +141,13 @@
 		C330084C1A94B703003A0AEA /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		C330084D1A94B703003A0AEA /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		C330084E1A94B703003A0AEA /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		C33EA2961B9BE025001EC678 /* Caribbean.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Caribbean.wav; sourceTree = "<group>"; };
+		C33EA2971B9BE025001EC678 /* Glissful.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Glissful.wav; sourceTree = "<group>"; };
+		C33EA2981B9BE025001EC678 /* None.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = None.wav; sourceTree = "<group>"; };
+		C33EA2991B9BE025001EC678 /* Ready.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ready.wav; sourceTree = "<group>"; };
+		C33EA29A1B9BE025001EC678 /* RingRing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RingRing.wav; sourceTree = "<group>"; };
+		C33EA29B1B9BE025001EC678 /* Robot's Rattle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Robot's Rattle.wav"; sourceTree = "<group>"; };
+		C33EA29C1B9BE025001EC678 /* Woodpecker.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Woodpecker.wav; sourceTree = "<group>"; };
 		C33EE6F31A675FB300C94E61 /* ZGCountDownTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGCountDownTimer.h; sourceTree = "<group>"; };
 		C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCountDownTimer.m; sourceTree = "<group>"; };
 		C347DD8C1B8F1251006E3F3E /* FLSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSettingsController.h; sourceTree = "<group>"; };
@@ -171,12 +177,6 @@
 		C3616A431AAB434500C47C8A /* archive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@2x.png"; sourceTree = "<group>"; };
 		C3616A441AAB434500C47C8A /* archive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@3x.png"; sourceTree = "<group>"; };
 		C3A103861A2AD52800B1F6BD /* Focus8-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Focus8-Prefix.pch"; sourceTree = "<group>"; };
-		C3A49A2F1B902FAD00F7D796 /* Caribbean.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Caribbean.wav; sourceTree = "<group>"; };
-		C3A49A301B902FAD00F7D796 /* Glissful.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Glissful.wav; sourceTree = "<group>"; };
-		C3A49A311B902FAD00F7D796 /* Ready.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ready.wav; sourceTree = "<group>"; };
-		C3A49A321B902FAD00F7D796 /* RingRing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RingRing.wav; sourceTree = "<group>"; };
-		C3A49A331B902FAD00F7D796 /* RobotRattle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RobotRattle.wav; sourceTree = "<group>"; };
-		C3A49A341B902FAD00F7D796 /* Woodpecker.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Woodpecker.wav; sourceTree = "<group>"; };
 		C3A49A3B1B9032D300F7D796 /* FLSoundPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSoundPickerController.h; sourceTree = "<group>"; };
 		C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoundPickerController.m; sourceTree = "<group>"; };
 		C3A49A441B90510900F7D796 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -315,6 +315,29 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		C33EA2951B9BE025001EC678 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				C33EA2961B9BE025001EC678 /* Caribbean.wav */,
+				C33EA2971B9BE025001EC678 /* Glissful.wav */,
+				C33EA2981B9BE025001EC678 /* None.wav */,
+				C33EA2991B9BE025001EC678 /* Ready.wav */,
+				C33EA29A1B9BE025001EC678 /* RingRing.wav */,
+				C33EA29B1B9BE025001EC678 /* Robot's Rattle.wav */,
+				C33EA29C1B9BE025001EC678 /* Woodpecker.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		C33EA2A41B9BE032001EC678 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C33008271A94A439003A0AEA /* Icons */,
+				C33EA2951B9BE025001EC678 /* Sounds */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		C35B33501A0CBA1500061C40 = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +401,7 @@
 				C35B336C1A0CBA1500061C40 /* Images.xcassets */,
 				C35114191B1AEFF7005EB4B3 /* Main.storyboard */,
 				C35B336E1A0CBA1500061C40 /* LaunchScreen.xib */,
+				C33EA2A41B9BE032001EC678 /* Resources */,
 				C35B335C1A0CBA1500061C40 /* Supporting Files */,
 				C3E9B5DB1AF8897900F56963 /* Focus8-Bridging-Header.h */,
 			);
@@ -387,8 +411,6 @@
 		C35B335C1A0CBA1500061C40 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C3A49A2E1B902F9B00F7D796 /* Sounds */,
-				C33008271A94A439003A0AEA /* Icons */,
 				C35B335D1A0CBA1500061C40 /* Info.plist */,
 				C35B335E1A0CBA1500061C40 /* main.m */,
 				C3A103861A2AD52800B1F6BD /* Focus8-Prefix.pch */,
@@ -420,20 +442,6 @@
 				C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */,
 			);
 			name = ZGCountDownTimer;
-			sourceTree = "<group>";
-		};
-		C3A49A2E1B902F9B00F7D796 /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				C32956A51B95CF260038B815 /* None.wav */,
-				C3A49A2F1B902FAD00F7D796 /* Caribbean.wav */,
-				C3A49A301B902FAD00F7D796 /* Glissful.wav */,
-				C3A49A311B902FAD00F7D796 /* Ready.wav */,
-				C3A49A321B902FAD00F7D796 /* RingRing.wav */,
-				C3A49A331B902FAD00F7D796 /* RobotRattle.wav */,
-				C3A49A341B902FAD00F7D796 /* Woodpecker.wav */,
-			);
-			name = Sounds;
 			sourceTree = "<group>";
 		};
 		C3ACAB751B3184C7000EF926 /* UIFlatColors */ = {
@@ -572,33 +580,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3A49A351B902FAD00F7D796 /* Caribbean.wav in Resources */,
-				C3A49A361B902FAD00F7D796 /* Glissful.wav in Resources */,
+				C33EA29D1B9BE025001EC678 /* Caribbean.wav in Resources */,
+				C33EA29E1B9BE025001EC678 /* Glissful.wav in Resources */,
 				C33008511A94B703003A0AEA /* settings@3x.png in Resources */,
 				C3B6FAC31B0DA8BB0052B7E5 /* SkipFilled@2x.png in Resources */,
 				C3B6FABE1B0DA8A30052B7E5 /* PlayFilled@3x.png in Resources */,
 				C3B6FAC41B0DA8BB0052B7E5 /* SkipFilled@3x.png in Resources */,
+				C33EA2A31B9BE025001EC678 /* Woodpecker.wav in Resources */,
 				C3B6FAB71B0DA8920052B7E5 /* PauseFilled@2x.png in Resources */,
 				C3B6FABD1B0DA8A30052B7E5 /* PlayFilled@2x.png in Resources */,
 				C33008391A94A439003A0AEA /* plus@3x.png in Resources */,
 				C33008441A94AFB7003A0AEA /* delete@2x.png in Resources */,
-				C3A49A371B902FAD00F7D796 /* Ready.wav in Resources */,
 				C3534E261B09A63E0015B626 /* Checkmark.png in Resources */,
 				C33008491A94B625003A0AEA /* menu.png in Resources */,
 				C33008321A94A439003A0AEA /* edit@2x.png in Resources */,
 				C351141B1B1AEFF7005EB4B3 /* Main.storyboard in Resources */,
+				C33EA2A01B9BE025001EC678 /* Ready.wav in Resources */,
 				C3B6FABC1B0DA8A30052B7E5 /* PlayFilled.png in Resources */,
+				C33EA2A11B9BE025001EC678 /* RingRing.wav in Resources */,
 				C3B6FAB61B0DA8920052B7E5 /* PauseFilled.png in Resources */,
+				C33EA29F1B9BE025001EC678 /* None.wav in Resources */,
 				C3B6FAC91B0DA8C50052B7E5 /* StopFilled@2x.png in Resources */,
 				C3B6FAC21B0DA8BB0052B7E5 /* SkipFilled.png in Resources */,
 				C3534E281B09A63E0015B626 /* Checkmark@3x.png in Resources */,
-				C3A49A381B902FAD00F7D796 /* RingRing.wav in Resources */,
 				C33008311A94A439003A0AEA /* edit.png in Resources */,
-				C3A49A391B902FAD00F7D796 /* RobotRattle.wav in Resources */,
 				C33008431A94AFB7003A0AEA /* delete.png in Resources */,
-				C32956A61B95CF260038B815 /* None.wav in Resources */,
 				C35B33701A0CBA1500061C40 /* LaunchScreen.xib in Resources */,
 				C3EFAEA71A145508003D641C /* PickerData.plist in Resources */,
+				C33EA2A21B9BE025001EC678 /* Robot's Rattle.wav in Resources */,
 				C3616A471AAB434500C47C8A /* archive@3x.png in Resources */,
 				C33008361A94A439003A0AEA /* info@3x.png in Resources */,
 				C35B336D1A0CBA1500061C40 /* Images.xcassets in Resources */,
@@ -616,7 +625,6 @@
 				C330084F1A94B703003A0AEA /* settings.png in Resources */,
 				C33008331A94A439003A0AEA /* edit@3x.png in Resources */,
 				C3B6FACA1B0DA8C50052B7E5 /* StopFilled@3x.png in Resources */,
-				C3A49A3A1B902FAD00F7D796 /* Woodpecker.wav in Resources */,
 				C33008451A94AFB7003A0AEA /* delete@3x.png in Resources */,
 				C33008341A94A439003A0AEA /* info.png in Resources */,
 			);
