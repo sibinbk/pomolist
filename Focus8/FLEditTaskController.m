@@ -15,6 +15,7 @@
 #import "FLBreakDelayPickerController.h"
 #import "FLSessionCountPickerController.h"
 #import "UIColor+FlatColors.h"
+#import "ColorUtils.h"
 #import "Focus8-Swift.h"
 
 #define kTaskTimePicker          @"taskTimePicker"
@@ -60,9 +61,9 @@
 @property (nonatomic) NSTimeInterval totalCountDownTime;
 @property (nonatomic) NSInteger repeatCount;
 @property (nonatomic) NSInteger longBreakDelay;
-@property (strong, nonatomic) UIColor *taskColor;
-@property (strong, nonatomic) UIColor *shortBreakColor;
-@property (strong, nonatomic) UIColor *longBreakColor;
+@property (strong, nonatomic) NSString *taskColor;
+@property (strong, nonatomic) NSString *shortBreakColor;
+@property (strong, nonatomic) NSString *longBreakColor;
 /* 
 @property (strong, nonatomic) NSDate *reminderDate;
 @property (strong, nonatomic) NSDateFormatter *formatter;
@@ -97,24 +98,24 @@
     [self.formatter setDateFormat:format];
     */
     
-    self.colors = @[
-                    [UIColor flatTurquoiseColor],
-                    [UIColor flatGreenSeaColor],
-                    [UIColor flatEmeraldColor],
-                    [UIColor flatNephritisColor],
-                    [UIColor flatPeterRiverColor],
-                    [UIColor flatBelizeHoleColor],
-                    [UIColor flatAmethystColor],
-                    [UIColor flatWisteriaColor],
-                    [UIColor flatSunFlowerColor],
-                    [UIColor flatOrangeColor],
-                    [UIColor flatCarrotColor],
-                    [UIColor flatPumpkinColor],
-                    [UIColor flatAlizarinColor],
-                    [UIColor flatPomegranateColor],
-                    [UIColor flatWetAsphaltColor],
-                    [UIColor flatMidnightBlueColor]
-                    ];
+//    self.colors = @[
+//                    [UIColor flatTurquoiseColor],
+//                    [UIColor flatGreenSeaColor],
+//                    [UIColor flatEmeraldColor],
+//                    [UIColor flatNephritisColor],
+//                    [UIColor flatPeterRiverColor],
+//                    [UIColor flatBelizeHoleColor],
+//                    [UIColor flatAmethystColor],
+//                    [UIColor flatWisteriaColor],
+//                    [UIColor flatSunFlowerColor],
+//                    [UIColor flatOrangeColor],
+//                    [UIColor flatCarrotColor],
+//                    [UIColor flatPumpkinColor],
+//                    [UIColor flatAlizarinColor],
+//                    [UIColor flatPomegranateColor],
+//                    [UIColor flatWetAsphaltColor],
+//                    [UIColor flatMidnightBlueColor]
+//                    ];
     
 //    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //        NSDictionary *contentDict = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PickerData" ofType:@"plist"]];
@@ -159,11 +160,12 @@
         self.longBreakDelay = 3;
         self.repeatCount = 5;
 
-        NSUInteger randomIndex = arc4random_uniform(13);
+//        NSUInteger randomIndex = arc4random_uniform(13);
         
-        self.taskColor = self.colors[randomIndex];
-        self.shortBreakColor = [UIColor flatWetAsphaltColor];
-        self.longBreakColor = [UIColor flatMidnightBlueColor];
+//        self.taskColor = self.colors[randomIndex];
+        self.taskColor = @"1ABC9C"; // Orange
+        self.shortBreakColor = @"2C3E50"; // Dark
+        self.longBreakColor = @"8E44AD"; // Purple
     }
 }
 
@@ -171,9 +173,9 @@
 {
     [super viewWillAppear:YES];
     
-    self.taskColorView.backgroundColor = self.taskColor;
-    self.shortBreakColorView.backgroundColor = self.shortBreakColor;
-    self.longBreakColorView.backgroundColor = self.longBreakColor;
+    self.taskColorView.backgroundColor = [UIColor colorWithString:self.taskColor];
+    self.shortBreakColorView.backgroundColor = [UIColor colorWithString:self.shortBreakColor];
+    self.longBreakColorView.backgroundColor = [UIColor colorWithString:self.longBreakColor];
 }
 
 #pragma mark - Save/ Cancel Methods
@@ -512,14 +514,14 @@
 
 #pragma mark - ColorPicker delegate method.
 
-- (void)colorPicker:(FLColorPicker *)controller didSelectColor:(UIColor *)flatColor forCycle:(NSString *)cycleName
+- (void)colorPicker:(FLColorPicker *)controller didSelectColor:(NSString *)color forCycle:(NSString *)cycleName
 {
     if ([cycleName isEqualToString:kTaskColorPicker]) {
-        self.taskColor = flatColor;
+        self.taskColor = color;
     } else if ([cycleName isEqualToString:kShortBreakColorPicker]){
-        self.shortBreakColor = flatColor;
+        self.shortBreakColor = color;
     } else if ([cycleName isEqualToString:kLongBreakColorPicker]){
-        self.longBreakColor = flatColor;
+        self.longBreakColor = color;
     }
 }
 

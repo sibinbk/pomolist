@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C32956A91B98501D0038B815 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C32956A81B98501D0038B815 /* Event.m */; };
-		C32956AC1B98501E0038B815 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C32956AB1B98501E0038B815 /* Task.m */; };
 		C33008311A94A439003A0AEA /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = C33008281A94A439003A0AEA /* edit.png */; };
 		C33008321A94A439003A0AEA /* edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C33008291A94A439003A0AEA /* edit@2x.png */; };
 		C33008331A94A439003A0AEA /* edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330082A1A94A439003A0AEA /* edit@3x.png */; };
@@ -27,6 +25,9 @@
 		C330084F1A94B703003A0AEA /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084C1A94B703003A0AEA /* settings.png */; };
 		C33008501A94B703003A0AEA /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084D1A94B703003A0AEA /* settings@2x.png */; };
 		C33008511A94B703003A0AEA /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084E1A94B703003A0AEA /* settings@3x.png */; };
+		C33AA78C1B9D9DEC0052EFAF /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C33AA78B1B9D9DEC0052EFAF /* Event.m */; };
+		C33AA78F1B9D9DEC0052EFAF /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C33AA78E1B9D9DEC0052EFAF /* Task.m */; };
+		C33AA7931B9D9EEB0052EFAF /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C33AA7921B9D9EEB0052EFAF /* ColorUtils.m */; };
 		C33EA29D1B9BE025001EC678 /* Caribbean.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA2961B9BE025001EC678 /* Caribbean.wav */; };
 		C33EA29E1B9BE025001EC678 /* Glissful.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA2971B9BE025001EC678 /* Glissful.wav */; };
 		C33EA29F1B9BE025001EC678 /* None.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA2981B9BE025001EC678 /* None.wav */; };
@@ -119,10 +120,6 @@
 /* Begin PBXFileReference section */
 		56A3ED0E1FE9BABFAC03563B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		78E09210CA49F9208CF4B91D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C32956A71B98501D0038B815 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		C32956A81B98501D0038B815 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		C32956AA1B98501E0038B815 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		C32956AB1B98501E0038B815 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		C33008281A94A439003A0AEA /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
 		C33008291A94A439003A0AEA /* edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit@2x.png"; sourceTree = "<group>"; };
 		C330082A1A94A439003A0AEA /* edit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit@3x.png"; sourceTree = "<group>"; };
@@ -141,6 +138,12 @@
 		C330084C1A94B703003A0AEA /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		C330084D1A94B703003A0AEA /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		C330084E1A94B703003A0AEA /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		C33AA78A1B9D9DEC0052EFAF /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		C33AA78B1B9D9DEC0052EFAF /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		C33AA78D1B9D9DEC0052EFAF /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		C33AA78E1B9D9DEC0052EFAF /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		C33AA7911B9D9EEB0052EFAF /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
+		C33AA7921B9D9EEB0052EFAF /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
 		C33EA2961B9BE025001EC678 /* Caribbean.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Caribbean.wav; sourceTree = "<group>"; };
 		C33EA2971B9BE025001EC678 /* Glissful.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Glissful.wav; sourceTree = "<group>"; };
 		C33EA2981B9BE025001EC678 /* None.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = None.wav; sourceTree = "<group>"; };
@@ -315,6 +318,15 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		C33AA7901B9D9EEB0052EFAF /* ColorUtils */ = {
+			isa = PBXGroup;
+			children = (
+				C33AA7911B9D9EEB0052EFAF /* ColorUtils.h */,
+				C33AA7921B9D9EEB0052EFAF /* ColorUtils.m */,
+			);
+			path = ColorUtils;
+			sourceTree = "<group>";
+		};
 		C33EA2951B9BE025001EC678 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +375,11 @@
 		C35B335B1A0CBA1500061C40 /* Focus8 */ = {
 			isa = PBXGroup;
 			children = (
+				C33AA7901B9D9EEB0052EFAF /* ColorUtils */,
+				C33AA78D1B9D9DEC0052EFAF /* Task.h */,
+				C33AA78E1B9D9DEC0052EFAF /* Task.m */,
+				C33AA78A1B9D9DEC0052EFAF /* Event.h */,
+				C33AA78B1B9D9DEC0052EFAF /* Event.m */,
 				C3ACAB751B3184C7000EF926 /* UIFlatColors */,
 				C3BB410E1AFC797700A83016 /* Spring */,
 				C35B33881A0CBE5400061C40 /* ZGCountDownTimer */,
@@ -392,10 +409,6 @@
 				C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */,
 				C3EA01F11B0A27DF00C321BF /* FLColorCell.h */,
 				C3EA01F21B0A27DF00C321BF /* FLColorCell.m */,
-				C32956AA1B98501E0038B815 /* Task.h */,
-				C32956AB1B98501E0038B815 /* Task.m */,
-				C32956A71B98501D0038B815 /* Event.h */,
-				C32956A81B98501D0038B815 /* Event.m */,
 				C35B33631A0CBA1500061C40 /* Focus8.xcdatamodeld */,
 				C3EFAEA61A145508003D641C /* PickerData.plist */,
 				C35B336C1A0CBA1500061C40 /* Images.xcassets */,
@@ -687,9 +700,9 @@
 				C3BB413F1AFC797700A83016 /* Spring.swift in Sources */,
 				C3D1B61A1B4841320003419B /* FLSessionCountPickerController.m in Sources */,
 				C3BB413D1AFC797700A83016 /* Misc.swift in Sources */,
-				C32956AC1B98501E0038B815 /* Task.m in Sources */,
 				C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */,
 				C3BB41411AFC797700A83016 /* SpringButton.swift in Sources */,
+				C33AA78C1B9D9DEC0052EFAF /* Event.m in Sources */,
 				C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */,
 				C35B33871A0CBDF400061C40 /* FLTimerViewController.m in Sources */,
 				C3BB41341AFC797700A83016 /* DesignableTabBarController.swift in Sources */,
@@ -702,12 +715,12 @@
 				C35B33651A0CBA1500061C40 /* Focus8.xcdatamodeld in Sources */,
 				C3BB41301AFC797700A83016 /* BlurView.swift in Sources */,
 				C3BB41491AFC797700A83016 /* UnwindSegue.swift in Sources */,
-				C32956A91B98501D0038B815 /* Event.m in Sources */,
 				C3BB41331AFC797700A83016 /* DesignableLabel.swift in Sources */,
 				C3BB41381AFC797700A83016 /* ImageLoader.swift in Sources */,
 				C3D6808B1B3BBC6300C08860 /* FLTimingPickerController.m in Sources */,
 				C3BB41371AFC797700A83016 /* DesignableView.swift in Sources */,
 				C3BB412F1AFC797700A83016 /* AutoTextView.swift in Sources */,
+				C33AA7931B9D9EEB0052EFAF /* ColorUtils.m in Sources */,
 				C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */,
 				C3BB41361AFC797700A83016 /* DesignableTextView.swift in Sources */,
 				C3BB413A1AFC797700A83016 /* KeyboardLayoutConstraint.swift in Sources */,
@@ -716,6 +729,7 @@
 				C3BB41461AFC797700A83016 /* SpringView.swift in Sources */,
 				C3BB41431AFC797700A83016 /* SpringLabel.swift in Sources */,
 				C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */,
+				C33AA78F1B9D9DEC0052EFAF /* Task.m in Sources */,
 				C35B335F1A0CBA1500061C40 /* main.m in Sources */,
 				C3BB412D1AFC797700A83016 /* AsyncButton.swift in Sources */,
 				C3EA01F31B0A27DF00C321BF /* FLColorCell.m in Sources */,

@@ -17,6 +17,7 @@
 #import "MGSwipeButton.h"
 #import "JSQSystemSoundPlayer.h"
 #import "UIColor+FlatColors.h"
+#import "ColorUtils.h"
 #import "FLTaskCell.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "SCLAlertView.h"
@@ -47,9 +48,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (nonatomic) NSInteger repeatCount;
 @property (nonatomic) NSInteger longBreakDelay;
 @property (strong, nonatomic) NSString *taskName;
-@property (strong, nonatomic) UIColor *taskColor;
-@property (strong, nonatomic) UIColor *shortBreakColor;
-@property (strong, nonatomic) UIColor *longBreakColor;
+@property (strong, nonatomic) NSString *taskColor;
+@property (strong, nonatomic) NSString *shortBreakColor;
+@property (strong, nonatomic) NSString *longBreakColor;
 @property (strong, nonatomic) NSString *alarmSound;
 
 /*
@@ -99,6 +100,10 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     // Timerview handling.
     self.isFullView = YES;
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
+    
+    // Register new colors.
+    [UIColor registerColor:[UIColor colorWithString:@"1ABC9C"] forName:@"FlatGreen"];
+    [UIColor registerColor:[UIColor colorWithString:@"2980B9"] forName:@"Belize"];
 
     // Add Floating button to add new tasks.
     self.floatingButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)/2 - 30, CGRectGetHeight(self.view.frame) - 80 , 60, 60)];
@@ -134,9 +139,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.longBreakTime = 20;
         self.repeatCount = 3;
         self.longBreakDelay = 2;
-        self.taskColor = [UIColor flatAmethystColor];
-        self.shortBreakColor = [UIColor flatWetAsphaltColor];
-        self.longBreakColor = [UIColor flatPomegranateColor];
+        self.taskColor = @"Belize"; // Orange
+        self.shortBreakColor = @"2C3E50"; // Dark
+        self.longBreakColor = @"8E44AD"; // Purple
     }
     
     UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showListView)];
@@ -593,7 +598,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 - (void)countDownCycleChanged:(ZGCountDownTimer *)sender cycle:(CountDownCycleType)newCycle withTaskCount:(NSInteger)count
 {
-    UIColor *viewColor;
+    NSString *viewColor;
     NSString *cycleTitle;
     
     switch (newCycle) {
@@ -618,7 +623,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     self.cycleLabel.text = cycleTitle;
     [UIView animateWithDuration:0.5 animations:^{
-        self.mainView.backgroundColor = viewColor;
+        self.mainView.backgroundColor = [UIColor colorWithString:viewColor];
     }];
 }
 
@@ -735,9 +740,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
              kFLLongBreakTime: [NSNumber numberWithDouble:self.longBreakTime],
              kFLRepeatCount: [NSNumber numberWithInteger:self.repeatCount],
              kFLLongBreakDelay: [NSNumber numberWithInteger:self.longBreakDelay],
-             kFLTaskColor: [NSKeyedArchiver archivedDataWithRootObject:self.taskColor],
-             kFLShortBreakColor: [NSKeyedArchiver archivedDataWithRootObject:self.shortBreakColor],
-             kFLLongBreakColor: [NSKeyedArchiver archivedDataWithRootObject:self.longBreakColor]
+             kFLTaskColor: self.taskColor,
+             kFLShortBreakColor: self.shortBreakColor,
+             kFLLongBreakColor: self.longBreakColor
              };
 }
 
@@ -749,9 +754,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.longBreakTime = [[taskInfo valueForKey:kFLLongBreakTime] doubleValue];
     self.repeatCount = [[taskInfo valueForKey:kFLRepeatCount] integerValue];
     self.longBreakDelay = [[taskInfo valueForKey:kFLLongBreakDelay] integerValue];
-    self.taskColor = [NSKeyedUnarchiver unarchiveObjectWithData:[taskInfo valueForKey:kFLTaskColor]];
-    self.shortBreakColor = [NSKeyedUnarchiver unarchiveObjectWithData:[taskInfo valueForKey:kFLShortBreakColor]];
-    self.longBreakColor = [NSKeyedUnarchiver unarchiveObjectWithData:[taskInfo valueForKey:kFLLongBreakColor]];
+    self.taskColor = [taskInfo valueForKey:kFLTaskColor];
+    self.shortBreakColor = [taskInfo valueForKey:kFLShortBreakColor];
+    self.longBreakColor = [taskInfo valueForKey:kFLLongBreakColor];
 }
 
 #pragma mark - Empty Dataset data source.
@@ -888,7 +893,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 /*  reminder label.
  cell.reminderDateLabel.text = [self.formatter stringFromDate:task.reminderDate];
  */
-    cell.taskColorView.backgroundColor = task.taskColor;
+    cell.taskColorView.backgroundColor = [UIColor colorWithString:task.taskColor];
     
     if (![task.isSelected boolValue]) {
         cell.accessoryType = UITableViewCellAccessoryNone;

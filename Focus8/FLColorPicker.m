@@ -8,6 +8,7 @@
 
 #import "FLColorPicker.h"
 #import "UIColor+FlatColors.h"
+#import "ColorUtils.h"
 #import "FLColorCell.h"
 #import "Focus8-Swift.h"
 
@@ -26,23 +27,33 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.colors = @[
-                    [UIColor flatTurquoiseColor],
-                    [UIColor flatGreenSeaColor],
-                    [UIColor flatEmeraldColor],
-                    [UIColor flatNephritisColor],
-                    [UIColor flatPeterRiverColor],
-                    [UIColor flatBelizeHoleColor],
-                    [UIColor flatAmethystColor],
-                    [UIColor flatWisteriaColor],
-                    [UIColor flatSunFlowerColor],
-                    [UIColor flatOrangeColor],
-                    [UIColor flatCarrotColor],
-                    [UIColor flatPumpkinColor],
-                    [UIColor flatAlizarinColor],
-                    [UIColor flatPomegranateColor],
-                    [UIColor flatWetAsphaltColor],
-                    [UIColor flatMidnightBlueColor]
+//    self.colors = @[
+//                    [UIColor flatTurquoiseColor],
+//                    [UIColor flatGreenSeaColor],
+//                    [UIColor flatEmeraldColor],
+//                    [UIColor flatNephritisColor],
+//                    [UIColor flatPeterRiverColor],
+//                    [UIColor flatBelizeHoleColor],
+//                    [UIColor flatAmethystColor],
+//                    [UIColor flatWisteriaColor],
+//                    [UIColor flatSunFlowerColor],
+//                    [UIColor flatOrangeColor],
+//                    [UIColor flatCarrotColor],
+//                    [UIColor flatPumpkinColor],
+//                    [UIColor flatAlizarinColor],
+//                    [UIColor flatPomegranateColor],
+//                    [UIColor flatWetAsphaltColor],
+//                    [UIColor flatMidnightBlueColor]
+//                    ];
+    
+    self.colors = @[@"1ABC9C",
+                    @"Belize",
+                    @"8E44AD",
+                    @"E74C3C",
+                    @"E67E22",
+                    @"2C3E50",
+                    @"cyan",
+                    @"purple"
                     ];
 }
 
@@ -75,7 +86,8 @@
     static NSString *CellIdentifier = @"ColorCell";
     FLColorCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.contentView.backgroundColor = self.colors[indexPath.row];
+    cell.contentView.backgroundColor = [UIColor colorWithString:self.colors[indexPath.row]];
+    
     if (indexPath.row == selectedColorIndex) {
         cell.checkmarkButton.hidden = NO;
     } else
