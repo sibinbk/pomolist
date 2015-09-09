@@ -11,6 +11,8 @@
 
 @interface FLColorCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *colorLabel;
+@property (weak, nonatomic) IBOutlet DesignableView *colorView;
 @property (weak, nonatomic) IBOutlet DesignableButton *checkmarkButton;
 
 @end

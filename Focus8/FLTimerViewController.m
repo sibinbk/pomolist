@@ -1130,7 +1130,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         case NSFetchedResultsChangeMove:
             NSLog(@"Moving");
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationRight];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }

@@ -235,21 +235,21 @@
                                         <rect key="frame" x="0.0" y="22" width="600" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dKl-oX-aik" id="37M-rx-rQh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="75.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0o-hJ-VQ5" customClass="DesignableView" customModule="Focus8" customModuleProvider="target">
                                                     <rect key="frame" x="5" y="6" width="64" height="64"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4G-C4-6h2">
-                                                            <rect key="frame" x="14" y="6" width="36.5" height="36"/>
+                                                            <rect key="frame" x="14" y="6" width="37" height="36"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8n-Pg-ljA">
-                                                            <rect key="frame" x="20" y="38" width="23.5" height="17"/>
+                                                            <rect key="frame" x="20" y="38" width="24" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -669,7 +669,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fyM-cB-BRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3298" y="203"/>
+            <point key="canvasLocation" x="2084" y="549"/>
         </scene>
         <!--Settings-->
         <scene sceneID="rHg-lf-u20">
@@ -798,7 +798,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xS7-xz-geo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2619" y="-468"/>
+            <point key="canvasLocation" x="1773" y="-644"/>
         </scene>
         <!--Sound Picker Controller-->
         <scene sceneID="PJY-gB-XDG">
@@ -836,7 +836,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yMT-Kk-gJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4151" y="-644"/>
+            <point key="canvasLocation" x="2541" y="-644"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="N12-PD-2G5">
@@ -858,7 +858,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9gB-08-CgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="935" y="121"/>
+            <point key="canvasLocation" x="1241" y="549"/>
         </scene>
         <!--Events-->
         <scene sceneID="X64-RD-6YR">
@@ -909,7 +909,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N93-Qc-bLy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1674" y="1156"/>
+            <point key="canvasLocation" x="986" y="1614"/>
         </scene>
         <!--Color Picker-->
         <scene sceneID="bsC-mI-ZHq">
@@ -919,28 +919,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="20" minY="0.0" maxX="80" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="ColorCell" id="iv8-9B-qMQ" customClass="FLColorCell">
-                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="ColorCell" rowHeight="70" id="iv8-9B-qMQ" customClass="FLColorCell">
+                                <rect key="frame" x="0.0" y="86" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iv8-9B-qMQ" id="cJd-MJ-r9j">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUe-jv-wnv" customClass="DesignableButton" customModule="Focus8" customModuleProvider="target">
-                                            <rect key="frame" x="560" y="9" width="25" height="25"/>
-                                            <state key="normal" image="Checkmark.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orange" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pem-WC-R1t">
+                                            <rect key="frame" x="20" y="21" width="71" height="28"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                            <color key="textColor" red="0.3921568627" green="0.29803921570000003" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rt4-5N-we7" customClass="DesignableView" customModule="Focus8" customModuleProvider="target">
+                                            <rect key="frame" x="520" y="5" width="60" height="60"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOY-zb-UD1" customClass="DesignableButton" customModule="Focus8" customModuleProvider="target">
+                                                    <rect key="frame" x="17" y="18" width="25" height="25"/>
+                                                    <state key="normal" image="Checkmark.png"/>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="R6X-NG-Dt6"/>
+                                                <constraint firstItem="xOY-zb-UD1" firstAttribute="centerX" secondItem="rt4-5N-we7" secondAttribute="centerX" id="lhN-qt-dIc"/>
+                                                <constraint firstItem="xOY-zb-UD1" firstAttribute="centerY" secondItem="rt4-5N-we7" secondAttribute="centerY" id="pRI-46-pNG"/>
+                                                <constraint firstAttribute="width" constant="60" id="uSj-at-Kxv"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="30"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="yUe-jv-wnv" secondAttribute="centerY" id="GQF-Of-8rO"/>
-                                        <constraint firstAttribute="trailing" secondItem="yUe-jv-wnv" secondAttribute="trailing" constant="15" id="Khq-7a-cSQ"/>
+                                        <constraint firstItem="rt4-5N-we7" firstAttribute="centerY" secondItem="cJd-MJ-r9j" secondAttribute="centerY" id="6hN-3W-8H0"/>
+                                        <constraint firstItem="Pem-WC-R1t" firstAttribute="leading" secondItem="cJd-MJ-r9j" secondAttribute="leading" constant="20" id="XdY-h7-IH6"/>
+                                        <constraint firstAttribute="trailing" secondItem="rt4-5N-we7" secondAttribute="trailing" constant="20" id="fwQ-Xw-1rf"/>
+                                        <constraint firstItem="Pem-WC-R1t" firstAttribute="centerY" secondItem="cJd-MJ-r9j" secondAttribute="centerY" id="kc0-Ue-jwq"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="checkmarkButton" destination="yUe-jv-wnv" id="1AO-XE-yLk"/>
+                                    <outlet property="checkmarkButton" destination="xOY-zb-UD1" id="aui-MC-t5o"/>
+                                    <outlet property="colorLabel" destination="Pem-WC-R1t" id="H2l-nm-VHT"/>
+                                    <outlet property="colorView" destination="rt4-5N-we7" id="mnn-bS-Fxq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -952,7 +979,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nKn-6P-PRU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2354" y="1295"/>
+            <point key="canvasLocation" x="2256" y="2051"/>
         </scene>
         <!--Session Count Picker Controller-->
         <scene sceneID="ieV-uw-UXN">
@@ -1073,7 +1100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5D-yb-Xh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3052" y="3190"/>
+            <point key="canvasLocation" x="3168" y="1923"/>
         </scene>
         <!--Break Delay Picker Controller-->
         <scene sceneID="Mox-jo-b5h">
@@ -1185,7 +1212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gku-To-GAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3060" y="2510"/>
+            <point key="canvasLocation" x="3178" y="1186"/>
         </scene>
         <!--Timing Picker Controller-->
         <scene sceneID="jdS-6T-e4S">
@@ -1296,7 +1323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Iz-oY-eTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3060" y="1823"/>
+            <point key="canvasLocation" x="3173" y="451"/>
         </scene>
         <!--Reminder Picker Controller-->
         <scene sceneID="fea-qW-1qb">
@@ -1411,7 +1438,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GzR-Vc-JaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3019" y="1095"/>
+            <point key="canvasLocation" x="3185" y="-265"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dhJ-E5-ht7">
@@ -1429,7 +1456,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7s-jo-Fcs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="907" y="1085"/>
+            <point key="canvasLocation" x="219" y="1608"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hy2-mY-eIl">
@@ -1451,7 +1478,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1M-4k-Bqj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1807" y="-468"/>
+            <point key="canvasLocation" x="1013" y="-644"/>
         </scene>
     </scenes>
     <resources>

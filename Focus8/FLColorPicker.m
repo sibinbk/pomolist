@@ -13,7 +13,9 @@
 #import "Focus8-Swift.h"
 
 @interface FLColorPicker ()
-@property (nonatomic, strong) NSArray *colors;
+@property (nonatomic, strong) NSArray *colorName;
+@property (nonatomic, strong) NSArray *colorString;
+@property (nonatomic, strong) NSDictionary *colors;
 
 @end
 
@@ -22,76 +24,79 @@
     NSUInteger selectedColorIndex;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.colorName = @[@"Pomegranate",
+                       @"Alizarin",
+                       @"Pumpkin",
+                       @"Carrot",
+                       @"Green Sea",
+                       @"Turquoise",
+                       @"Nephritis",
+                       @"Belize Hole",
+                       @"Peter River",
+                       @"Wisteria",
+                       @"Deep Purple",
+                       @"Midnight Blue"];
     
-//    self.colors = @[
-//                    [UIColor flatTurquoiseColor],
-//                    [UIColor flatGreenSeaColor],
-//                    [UIColor flatEmeraldColor],
-//                    [UIColor flatNephritisColor],
-//                    [UIColor flatPeterRiverColor],
-//                    [UIColor flatBelizeHoleColor],
-//                    [UIColor flatAmethystColor],
-//                    [UIColor flatWisteriaColor],
-//                    [UIColor flatSunFlowerColor],
-//                    [UIColor flatOrangeColor],
-//                    [UIColor flatCarrotColor],
-//                    [UIColor flatPumpkinColor],
-//                    [UIColor flatAlizarinColor],
-//                    [UIColor flatPomegranateColor],
-//                    [UIColor flatWetAsphaltColor],
-//                    [UIColor flatMidnightBlueColor]
-//                    ];
+    self.colorString = @[@"C0392B",
+                         @"E74C3C",
+                         @"D35400",
+                         @"E67E22",
+                         @"16A085",
+                         @"1ABC9C",
+                         @"27AE60",
+                         @"2980B9",
+                         @"3498DB",
+                         @"8E44AD",
+                         @"673AB7",
+                         @"2C3E50"];
     
-    self.colors = @[@"1ABC9C",
-                    @"Belize",
-                    @"8E44AD",
-                    @"E74C3C",
-                    @"E67E22",
-                    @"2C3E50",
-                    @"cyan",
-                    @"purple"
-                    ];
+    self.colors = [NSDictionary dictionaryWithObjects:self.colorName forKeys:self.colorString];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     
-    selectedColorIndex = [self.colors indexOfObject:self.selectedColor];
+    selectedColorIndex = [self.colorString indexOfObject:self.selectedColor];
 }
 
 #pragma mark - TableView datasource methods.
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     // Return the number of rows in the section.
-    return [self.colors count];
+    return [self.colorString count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 54.0;
+    return 70.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ColorCell";
+    
     FLColorCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.contentView.backgroundColor = [UIColor colorWithString:self.colors[indexPath.row]];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.colorView.backgroundColor = [UIColor colorWithString:self.colorString[indexPath.row]];
+    cell.colorLabel.text = [self.colors objectForKey:self.colorString[indexPath.row]];
+    cell.colorLabel.textColor = [UIColor colorWithString:self.colorString[indexPath.row]];
     
     if (indexPath.row == selectedColorIndex) {
         cell.checkmarkButton.hidden = NO;
-    } else
-    {
+    } else {
         cell.checkmarkButton.hidden = YES;
     }
     
@@ -116,7 +121,7 @@
     cell.checkmarkButton.hidden = NO;
     [cell.checkmarkButton animate];
     
-    [self.delegate colorPicker:self didSelectColor:self.colors[indexPath.row] forCycle:self.selectedPicker];
+    [self.delegate colorPicker:self didSelectColor:self.colorString[indexPath.row] forCycle:self.selectedPicker];
 }
 
 @end
