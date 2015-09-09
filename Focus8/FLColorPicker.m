@@ -28,6 +28,10 @@
 {
     [super viewDidLoad];
     
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(exitColorPicker)];
+    barButtonItem.tintColor = [UIColor whiteColor];
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+    
     self.colorName = @[@"Pomegranate",
                        @"Alizarin",
                        @"Pumpkin",
@@ -110,18 +114,25 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (selectedColorIndex != NSNotFound) {
-        FLColorCell *cell = (FLColorCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedColorIndex inSection:0]];
-        cell.checkmarkButton.hidden = YES;
+        FLColorCell *oldCell = (FLColorCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedColorIndex inSection:0]];
+        oldCell.checkmarkButton.hidden = YES;
     }
-    
     selectedColorIndex = indexPath.row;
+    
+    self.selectedColor = self.colorString[indexPath.row];
+    
     FLColorCell *cell = (FLColorCell *)[tableView cellForRowAtIndexPath:indexPath];
     cell.checkmarkButton.animation = @"zoomIn";
     cell.checkmarkButton.duration = 0.5;
     cell.checkmarkButton.hidden = NO;
     [cell.checkmarkButton animate];
+}
+
+- (void)exitColorPicker
+{
+    [self.delegate colorPicker:self didSelectColor:self.selectedColor forCycle:self.selectedPicker];
     
-    [self.delegate colorPicker:self didSelectColor:self.colorString[indexPath.row] forCycle:self.selectedPicker];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 @end
