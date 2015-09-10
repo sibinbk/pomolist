@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8193.2" systemVersion="14F27" minimumToolsVersion="Automatic">
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="finishDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="totalTaskTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -7,15 +7,15 @@
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES">
         <attribute name="isSelected" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="longBreakColor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longBreakColorString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longBreakDelay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="longBreakTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reminderDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="repeatCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="shortBreakColor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortBreakColorString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shortBreakTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="taskColor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskColorString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="taskTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="uniqueID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="task" inverseEntity="Event" syncable="YES"/>

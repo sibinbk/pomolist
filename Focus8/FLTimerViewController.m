@@ -25,19 +25,19 @@
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
-#define kFLTaskName                @"taskName"
-#define kFLTaskTime                @"taskTime"
-#define kFLShortBreakTime          @"shortBreakTime"
-#define kFLLongBreakTime           @"longBreakTime"
-#define kFLRepeatCount             @"repeatCount"
-#define kFLLongBreakDelay          @"longBreakDelay"
-#define kFLTaskColor               @"taskColor"
-#define kFLShortBreakColor         @"shortBreakColor"
-#define kFLLongBreakColor          @"longBreakColor"
+#define kFLTaskName                     @"taskName"
+#define kFLTaskTime                     @"taskTime"
+#define kFLShortBreakTime               @"shortBreakTime"
+#define kFLLongBreakTime                @"longBreakTime"
+#define kFLRepeatCount                  @"repeatCount"
+#define kFLLongBreakDelay               @"longBreakDelay"
+#define kFLTaskColorString              @"taskColorString"
+#define kFLShortBreakColorString        @"shortBreakColorString"
+#define kFLLongBreakColorString         @"longBreakColorString"
 
-#define kFLUserDefaultKey          @"FocusListUserDefaults"
-#define kFLRepeatTimer             @"FLRepeatTimer"
-#define kFLTimerNotification       @"FLTimerNotification"
+#define kFLUserDefaultKey               @"FocusListUserDefaults"
+#define kFLRepeatTimer                  @"FLRepeatTimer"
+#define kFLTimerNotification            @"FLTimerNotification"
 
 @interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
@@ -48,9 +48,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (nonatomic) NSInteger repeatCount;
 @property (nonatomic) NSInteger longBreakDelay;
 @property (strong, nonatomic) NSString *taskName;
-@property (strong, nonatomic) NSString *taskColor;
-@property (strong, nonatomic) NSString *shortBreakColor;
-@property (strong, nonatomic) NSString *longBreakColor;
+@property (strong, nonatomic) NSString *taskColorString;
+@property (strong, nonatomic) NSString *shortBreakColorString;
+@property (strong, nonatomic) NSString *longBreakColorString;
 @property (strong, nonatomic) NSString *alarmSound;
 
 /*
@@ -139,9 +139,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.longBreakTime = 20;
         self.repeatCount = 3;
         self.longBreakDelay = 2;
-        self.taskColor = @"Belize"; // Orange
-        self.shortBreakColor = @"2C3E50"; // Dark
-        self.longBreakColor = @"8E44AD"; // Purple
+        self.taskColorString = @"Belize"; // Orange
+        self.shortBreakColorString = @"2C3E50"; // Dark
+        self.longBreakColorString = @"8E44AD"; // Purple
     }
     
     UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showListView)];
@@ -598,24 +598,21 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 - (void)countDownCycleChanged:(ZGCountDownTimer *)sender cycle:(CountDownCycleType)newCycle withTaskCount:(NSInteger)count
 {
-    NSString *viewColor;
+    NSString *viewColorString;
     NSString *cycleTitle;
     
     switch (newCycle) {
         case TaskCycle:
             cycleTitle = [NSString stringWithFormat:@"Pomodoro # %ld", (long) count];
-//            viewColor = [UIColor colorWithRed:0.976 green:0.369 blue:0.31 alpha:1];
-            viewColor = self.taskColor;
+            viewColorString = self.taskColorString;
             break;
         case ShortBreakCycle:
             cycleTitle = @"Short Break";
-//            viewColor = [UIColor colorWithRed:0.22 green:0.565 blue:0.847 alpha:1];
-            viewColor = self.shortBreakColor;
+            viewColorString = self.shortBreakColorString;
             break;
         case LongBreakCycle:
             cycleTitle = @"Long Break";
-//            viewColor = [UIColor colorWithRed:0.827 green:0.4 blue:1 alpha:1]; /*#d366ff*/
-            viewColor = self.longBreakColor;
+            viewColorString = self.longBreakColorString;
             break;
         default:
             break;
@@ -623,7 +620,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     self.cycleLabel.text = cycleTitle;
     [UIView animateWithDuration:0.5 animations:^{
-        self.mainView.backgroundColor = [UIColor colorWithString:viewColor];
+        self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
     }];
 }
 
@@ -740,9 +737,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
              kFLLongBreakTime: [NSNumber numberWithDouble:self.longBreakTime],
              kFLRepeatCount: [NSNumber numberWithInteger:self.repeatCount],
              kFLLongBreakDelay: [NSNumber numberWithInteger:self.longBreakDelay],
-             kFLTaskColor: self.taskColor,
-             kFLShortBreakColor: self.shortBreakColor,
-             kFLLongBreakColor: self.longBreakColor
+             kFLTaskColorString: self.taskColorString,
+             kFLShortBreakColorString: self.shortBreakColorString,
+             kFLLongBreakColorString: self.longBreakColorString
              };
 }
 
@@ -754,9 +751,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.longBreakTime = [[taskInfo valueForKey:kFLLongBreakTime] doubleValue];
     self.repeatCount = [[taskInfo valueForKey:kFLRepeatCount] integerValue];
     self.longBreakDelay = [[taskInfo valueForKey:kFLLongBreakDelay] integerValue];
-    self.taskColor = [taskInfo valueForKey:kFLTaskColor];
-    self.shortBreakColor = [taskInfo valueForKey:kFLShortBreakColor];
-    self.longBreakColor = [taskInfo valueForKey:kFLLongBreakColor];
+    self.taskColorString = [taskInfo valueForKey:kFLTaskColorString];
+    self.shortBreakColorString = [taskInfo valueForKey:kFLShortBreakColorString];
+    self.longBreakColorString = [taskInfo valueForKey:kFLLongBreakColorString];
 }
 
 #pragma mark - Empty Dataset data source.
@@ -893,7 +890,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 /*  reminder label.
  cell.reminderDateLabel.text = [self.formatter stringFromDate:task.reminderDate];
  */
-    cell.taskColorView.backgroundColor = [UIColor colorWithString:task.taskColor];
+    cell.taskColorView.backgroundColor = [UIColor colorWithString:task.taskColorString];
     
     if (![task.isSelected boolValue]) {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -945,9 +942,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.longBreakTime = [newTask.longBreakTime integerValue];
         self.repeatCount = [newTask.repeatCount integerValue];
         self.longBreakDelay = [newTask.longBreakDelay integerValue];
-        self.taskColor = newTask.taskColor;
-        self.shortBreakColor = newTask.shortBreakColor;
-        self.longBreakColor = newTask.longBreakColor;
+        self.taskColorString = newTask.taskColorString;
+        self.shortBreakColorString = newTask.shortBreakColorString;
+        self.longBreakColorString = newTask.longBreakColorString;
         
         self.taskTitleLabel.text = newTask.name;
 
@@ -1236,9 +1233,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.longBreakTime = [task.longBreakTime integerValue];
     self.repeatCount = [task.repeatCount integerValue];
     self.longBreakDelay = [task.longBreakDelay integerValue];
-    self.taskColor = task.taskColor;
-    self.shortBreakColor = task.shortBreakColor;
-    self.longBreakColor = task.longBreakColor;
+    self.taskColorString = task.taskColorString;
+    self.shortBreakColorString = task.shortBreakColorString;
+    self.longBreakColorString = task.longBreakColorString;
     
     [self backUpTaskInfo];
     

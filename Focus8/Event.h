@@ -2,8 +2,8 @@
 //  Event.h
 //  Focus8
 //
-//  Created by Sibin Baby on 7/09/2015.
-//  Copyright (c) 2015 FocusApps. All rights reserved.
+//  Created by Sibin Baby on 10/09/2015.
+//  Copyright © 2015 FocusApps. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,10 +11,14 @@
 
 @class Task;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface Event : NSManagedObject
 
-@property (nonatomic, retain) NSDate * finishDate;
-@property (nonatomic, retain) NSNumber * totalTaskTime;
-@property (nonatomic, retain) Task *task;
+// Insert code here to declare functionality of your managed object subclass
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "Event+CoreDataProperties.h"

@@ -141,9 +141,9 @@
         self.longBreakTime = [self.task.longBreakTime doubleValue];
         self.longBreakDelay = [self.task.longBreakDelay integerValue];
         self.repeatCount = [self.task.repeatCount integerValue];
-        self.taskColorString = self.task.taskColor;
-        self.shortBreakColorString = self.task.shortBreakColor;
-        self.longBreakColorString = self.task.longBreakColor;
+        self.taskColorString = self.task.taskColorString;
+        self.shortBreakColorString = self.task.shortBreakColorString;
+        self.longBreakColorString = self.task.longBreakColorString;
         
     } else {
         self.uniqueID = [NSString stringWithFormat:@"%@",[NSDate date]];
@@ -208,9 +208,9 @@
         
         // Task objectstores cycle colors as Hex string.
         
-        self.task.taskColor = self.taskColorString;
-        self.task.shortBreakColor = self.shortBreakColorString;
-        self.task.longBreakColor = self.longBreakColorString;
+        self.task.taskColorString = self.taskColorString;
+        self.task.shortBreakColorString = self.shortBreakColorString;
+        self.task.longBreakColorString = self.longBreakColorString;
         
         // Adds nil to reminder date.
         self.task.reminderDate = nil;

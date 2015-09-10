@@ -54,8 +54,6 @@
 		C330084F1A94B703003A0AEA /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084C1A94B703003A0AEA /* settings.png */; };
 		C33008501A94B703003A0AEA /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084D1A94B703003A0AEA /* settings@2x.png */; };
 		C33008511A94B703003A0AEA /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084E1A94B703003A0AEA /* settings@3x.png */; };
-		C33AA78C1B9D9DEC0052EFAF /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C33AA78B1B9D9DEC0052EFAF /* Event.m */; };
-		C33AA78F1B9D9DEC0052EFAF /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C33AA78E1B9D9DEC0052EFAF /* Task.m */; };
 		C33AA7931B9D9EEB0052EFAF /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C33AA7921B9D9EEB0052EFAF /* ColorUtils.m */; };
 		C33EA29D1B9BE025001EC678 /* Caribbean.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA2961B9BE025001EC678 /* Caribbean.wav */; };
 		C33EA29E1B9BE025001EC678 /* Glissful.wav in Resources */ = {isa = PBXBuildFile; fileRef = C33EA2971B9BE025001EC678 /* Glissful.wav */; };
@@ -82,6 +80,10 @@
 		C3616A451AAB434500C47C8A /* archive.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A421AAB434500C47C8A /* archive.png */; };
 		C3616A461AAB434500C47C8A /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A431AAB434500C47C8A /* archive@2x.png */; };
 		C3616A471AAB434500C47C8A /* archive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A441AAB434500C47C8A /* archive@3x.png */; };
+		C37567C31BA17E24009DB1D5 /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C37567BC1BA17E24009DB1D5 /* Task+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		C37567C41BA17E24009DB1D5 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C37567BE1BA17E24009DB1D5 /* Task.m */; settings = {ASSET_TAGS = (); }; };
+		C37567C51BA17E24009DB1D5 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C37567C01BA17E24009DB1D5 /* Event+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		C37567C61BA17E24009DB1D5 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C37567C21BA17E24009DB1D5 /* Event.m */; settings = {ASSET_TAGS = (); }; };
 		C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */; };
 		C3A49A451B90510900F7D796 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A441B90510900F7D796 /* AudioToolbox.framework */; };
 		C3A49A471B92AF6300F7D796 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A461B92AF6300F7D796 /* AVFoundation.framework */; };
@@ -169,10 +171,6 @@
 		C330084C1A94B703003A0AEA /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		C330084D1A94B703003A0AEA /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		C330084E1A94B703003A0AEA /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
-		C33AA78A1B9D9DEC0052EFAF /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		C33AA78B1B9D9DEC0052EFAF /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		C33AA78D1B9D9DEC0052EFAF /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		C33AA78E1B9D9DEC0052EFAF /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		C33AA7911B9D9EEB0052EFAF /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
 		C33AA7921B9D9EEB0052EFAF /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
 		C33EA2961B9BE025001EC678 /* Caribbean.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Caribbean.wav; sourceTree = "<group>"; };
@@ -210,6 +208,14 @@
 		C3616A421AAB434500C47C8A /* archive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archive.png; sourceTree = "<group>"; };
 		C3616A431AAB434500C47C8A /* archive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@2x.png"; sourceTree = "<group>"; };
 		C3616A441AAB434500C47C8A /* archive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@3x.png"; sourceTree = "<group>"; };
+		C37567BB1BA17E24009DB1D5 /* Task+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C37567BC1BA17E24009DB1D5 /* Task+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+CoreDataProperties.m"; sourceTree = "<group>"; };
+		C37567BD1BA17E24009DB1D5 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		C37567BE1BA17E24009DB1D5 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		C37567BF1BA17E24009DB1D5 /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C37567C01BA17E24009DB1D5 /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
+		C37567C11BA17E24009DB1D5 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		C37567C21BA17E24009DB1D5 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C3A103861A2AD52800B1F6BD /* Focus8-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Focus8-Prefix.pch"; sourceTree = "<group>"; };
 		C3A49A3B1B9032D300F7D796 /* FLSoundPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSoundPickerController.h; sourceTree = "<group>"; };
 		C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoundPickerController.m; sourceTree = "<group>"; };
@@ -416,10 +422,6 @@
 			children = (
 				C3259DE91BA00B9E00C2128C /* Spring */,
 				C33AA7901B9D9EEB0052EFAF /* ColorUtils */,
-				C33AA78D1B9D9DEC0052EFAF /* Task.h */,
-				C33AA78E1B9D9DEC0052EFAF /* Task.m */,
-				C33AA78A1B9D9DEC0052EFAF /* Event.h */,
-				C33AA78B1B9D9DEC0052EFAF /* Event.m */,
 				C3ACAB751B3184C7000EF926 /* UIFlatColors */,
 				C35B33881A0CBE5400061C40 /* ZGCountDownTimer */,
 				C35B33601A0CBA1500061C40 /* AppDelegate.h */,
@@ -448,6 +450,7 @@
 				C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */,
 				C3EA01F11B0A27DF00C321BF /* FLColorCell.h */,
 				C3EA01F21B0A27DF00C321BF /* FLColorCell.m */,
+				C37567C71BA17E55009DB1D5 /* CoreDataClass */,
 				C35B33631A0CBA1500061C40 /* Focus8.xcdatamodeld */,
 				C35B336C1A0CBA1500061C40 /* Images.xcassets */,
 				C35114191B1AEFF7005EB4B3 /* Main.storyboard */,
@@ -493,6 +496,21 @@
 				C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */,
 			);
 			name = ZGCountDownTimer;
+			sourceTree = "<group>";
+		};
+		C37567C71BA17E55009DB1D5 /* CoreDataClass */ = {
+			isa = PBXGroup;
+			children = (
+				C37567BB1BA17E24009DB1D5 /* Task+CoreDataProperties.h */,
+				C37567BC1BA17E24009DB1D5 /* Task+CoreDataProperties.m */,
+				C37567BD1BA17E24009DB1D5 /* Task.h */,
+				C37567BE1BA17E24009DB1D5 /* Task.m */,
+				C37567BF1BA17E24009DB1D5 /* Event+CoreDataProperties.h */,
+				C37567C01BA17E24009DB1D5 /* Event+CoreDataProperties.m */,
+				C37567C11BA17E24009DB1D5 /* Event.h */,
+				C37567C21BA17E24009DB1D5 /* Event.m */,
+			);
+			name = CoreDataClass;
 			sourceTree = "<group>";
 		};
 		C3ACAB751B3184C7000EF926 /* UIFlatColors */ = {
@@ -694,7 +712,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37567C31BA17E24009DB1D5 /* Task+CoreDataProperties.m in Sources */,
 				C3259E0D1BA00B9E00C2128C /* DesignableImageView.swift in Sources */,
+				C37567C51BA17E24009DB1D5 /* Event+CoreDataProperties.m in Sources */,
 				C3BB41641B078C4D00A83016 /* UIColor+FlatColors.m in Sources */,
 				C3259E201BA00B9E00C2128C /* SpringTextView.swift in Sources */,
 				C3259E151BA00B9E00C2128C /* KeyboardLayoutConstraint.swift in Sources */,
@@ -711,14 +731,15 @@
 				C3259E1C1BA00B9E00C2128C /* SpringButton.swift in Sources */,
 				C3259E101BA00B9E00C2128C /* DesignableTextField.swift in Sources */,
 				C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */,
-				C33AA78C1B9D9DEC0052EFAF /* Event.m in Sources */,
 				C3259E211BA00B9E00C2128C /* SpringView.swift in Sources */,
 				C3259E241BA00B9E00C2128C /* UnwindSegue.swift in Sources */,
 				C3259E231BA00B9E00C2128C /* TransitionZoom.swift in Sources */,
 				C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */,
 				C3259E081BA00B9E00C2128C /* AsyncButton.swift in Sources */,
+				C37567C41BA17E24009DB1D5 /* Task.m in Sources */,
 				C3259E1D1BA00B9E00C2128C /* SpringImageView.swift in Sources */,
 				C35B33871A0CBDF400061C40 /* FLTimerViewController.m in Sources */,
+				C37567C61BA17E24009DB1D5 /* Event.m in Sources */,
 				C3259E1B1BA00B9E00C2128C /* SpringAnimation.swift in Sources */,
 				C3259E1E1BA00B9E00C2128C /* SpringLabel.swift in Sources */,
 				C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */,
@@ -735,7 +756,6 @@
 				C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */,
 				C35B33621A0CBA1500061C40 /* AppDelegate.m in Sources */,
 				C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */,
-				C33AA78F1B9D9DEC0052EFAF /* Task.m in Sources */,
 				C35B335F1A0CBA1500061C40 /* main.m in Sources */,
 				C3259E1A1BA00B9E00C2128C /* Spring.swift in Sources */,
 				C3259E111BA00B9E00C2128C /* DesignableTextView.swift in Sources */,
