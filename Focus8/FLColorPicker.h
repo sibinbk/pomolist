@@ -12,7 +12,7 @@
 
 @protocol FLColorPickerDelegate <NSObject>
 
-- (void)colorPicker:(FLColorPicker *)controller didSelectColor:(NSString *)color forPicker:(NSString *)picker;
+- (void)colorPicker:(FLColorPicker *)controller didSelectColor:(NSString *)colorString forPicker:(NSString *)picker;
 
 @end
 

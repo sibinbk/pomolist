@@ -13,8 +13,8 @@
 #import "Focus8-Swift.h"
 
 @interface FLColorPicker ()
-@property (nonatomic, strong) NSArray *colorName;
-@property (nonatomic, strong) NSArray *colorString;
+@property (nonatomic, strong) NSArray *colorNames;
+@property (nonatomic, strong) NSArray *colorStrings;
 @property (nonatomic, strong) NSDictionary *colors;
 
 @end
@@ -32,7 +32,7 @@
     barButtonItem.tintColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = barButtonItem;
     
-    self.colorName = @[@"Pomegranate",
+    self.colorNames = @[@"Pomegranate",
                        @"Alizarin",
                        @"Pumpkin",
                        @"Carrot",
@@ -45,7 +45,7 @@
                        @"Deep Purple",
                        @"Midnight Blue"];
     
-    self.colorString = @[@"C0392B",
+    self.colorStrings = @[@"C0392B",
                          @"E74C3C",
                          @"D35400",
                          @"E67E22",
@@ -58,14 +58,14 @@
                          @"673AB7",
                          @"2C3E50"];
     
-    self.colors = [NSDictionary dictionaryWithObjects:self.colorName forKeys:self.colorString];
+    self.colors = [NSDictionary dictionaryWithObjects:self.colorNames forKeys:self.colorStrings];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     
-    selectedColorIndex = [self.colorString indexOfObject:self.selectedColorString];
+    selectedColorIndex = [self.colorStrings indexOfObject:self.selectedColorString];
 }
 
 #pragma mark - TableView datasource methods.
@@ -79,7 +79,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.colorString count];
+    return [self.colorStrings count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,9 +94,9 @@
     FLColorCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     cell.contentView.backgroundColor = [UIColor whiteColor];
-    cell.colorView.backgroundColor = [UIColor colorWithString:self.colorString[indexPath.row]];
-    cell.colorLabel.text = [self.colors objectForKey:self.colorString[indexPath.row]];
-    cell.colorLabel.textColor = [UIColor colorWithString:self.colorString[indexPath.row]];
+    cell.colorView.backgroundColor = [UIColor colorWithString:self.colorStrings[indexPath.row]];
+    cell.colorLabel.text = [self.colors objectForKey:self.colorStrings[indexPath.row]];
+    cell.colorLabel.textColor = [UIColor colorWithString:self.colorStrings[indexPath.row]];
     
     if (indexPath.row == selectedColorIndex) {
         cell.checkmarkButton.hidden = NO;
@@ -121,7 +121,7 @@
     
     selectedColorIndex = indexPath.row;
     
-    self.selectedColorString = self.colorString[indexPath.row];
+    self.selectedColorString = self.colorStrings[indexPath.row];
     
     FLColorCell *cell = (FLColorCell *)[tableView cellForRowAtIndexPath:indexPath];
     cell.checkmarkButton.animation = @"zoomIn";

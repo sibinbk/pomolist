@@ -105,7 +105,6 @@
 		C3EA01F31B0A27DF00C321BF /* FLColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F21B0A27DF00C321BF /* FLColorCell.m */; };
 		C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */; };
 		C3EFAEA21A13462D003D641C /* FLEditTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEA11A13462D003D641C /* FLEditTaskController.m */; };
-		C3EFAEA71A145508003D641C /* PickerData.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3EFAEA61A145508003D641C /* PickerData.plist */; };
 		D47D80DDBE58ED9BF22F172C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E09210CA49F9208CF4B91D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -245,7 +244,6 @@
 		C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTaskCell.m; sourceTree = "<group>"; };
 		C3EFAEA01A13462D003D641C /* FLEditTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEditTaskController.h; sourceTree = "<group>"; };
 		C3EFAEA11A13462D003D641C /* FLEditTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEditTaskController.m; sourceTree = "<group>"; };
-		C3EFAEA61A145508003D641C /* PickerData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PickerData.plist; sourceTree = "<group>"; };
 		FF6F532B5432F27442F9C513 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -451,7 +449,6 @@
 				C3EA01F11B0A27DF00C321BF /* FLColorCell.h */,
 				C3EA01F21B0A27DF00C321BF /* FLColorCell.m */,
 				C35B33631A0CBA1500061C40 /* Focus8.xcdatamodeld */,
-				C3EFAEA61A145508003D641C /* PickerData.plist */,
 				C35B336C1A0CBA1500061C40 /* Images.xcassets */,
 				C35114191B1AEFF7005EB4B3 /* Main.storyboard */,
 				C35B336E1A0CBA1500061C40 /* LaunchScreen.xib */,
@@ -625,7 +622,6 @@
 				C33008311A94A439003A0AEA /* edit.png in Resources */,
 				C33008431A94AFB7003A0AEA /* delete.png in Resources */,
 				C35B33701A0CBA1500061C40 /* LaunchScreen.xib in Resources */,
-				C3EFAEA71A145508003D641C /* PickerData.plist in Resources */,
 				C33EA2A21B9BE025001EC678 /* Robot's Rattle.wav in Resources */,
 				C3616A471AAB434500C47C8A /* archive@3x.png in Resources */,
 				C33008361A94A439003A0AEA /* info@3x.png in Resources */,

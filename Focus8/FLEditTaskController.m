@@ -61,15 +61,15 @@
 @property (nonatomic) NSTimeInterval totalCountDownTime;
 @property (nonatomic) NSInteger repeatCount;
 @property (nonatomic) NSInteger longBreakDelay;
-@property (strong, nonatomic) NSString *taskColor;
-@property (strong, nonatomic) NSString *shortBreakColor;
-@property (strong, nonatomic) NSString *longBreakColor;
+@property (strong, nonatomic) NSString *taskColorString;
+@property (strong, nonatomic) NSString *shortBreakColorString;
+@property (strong, nonatomic) NSString *longBreakColorString;
 /* 
 @property (strong, nonatomic) NSDate *reminderDate;
 @property (strong, nonatomic) NSDateFormatter *formatter;
 */
 
-@property (strong, nonatomic) NSArray *colors;
+@property (strong, nonatomic) NSArray *colorStringArray;
 
 @property (assign, nonatomic, getter = isNameTaken) BOOL nameTaken;
 @property (strong, nonatomic) NSString *oldName;
@@ -98,34 +98,27 @@
     [self.formatter setDateFormat:format];
     */
     
-//    self.colors = @[
-//                    [UIColor flatTurquoiseColor],
-//                    [UIColor flatGreenSeaColor],
-//                    [UIColor flatEmeraldColor],
-//                    [UIColor flatNephritisColor],
-//                    [UIColor flatPeterRiverColor],
-//                    [UIColor flatBelizeHoleColor],
-//                    [UIColor flatAmethystColor],
-//                    [UIColor flatWisteriaColor],
-//                    [UIColor flatSunFlowerColor],
-//                    [UIColor flatOrangeColor],
-//                    [UIColor flatCarrotColor],
-//                    [UIColor flatPumpkinColor],
-//                    [UIColor flatAlizarinColor],
-//                    [UIColor flatPomegranateColor],
-//                    [UIColor flatWetAsphaltColor],
-//                    [UIColor flatMidnightBlueColor]
-//                    ];
+    self.colorStringArray = @[@"C0392B",
+                         @"E74C3C",
+                         @"D35400",
+                         @"E67E22",
+                         @"16A085",
+                         @"1ABC9C",
+                         @"27AE60",
+                         @"2980B9",
+                         @"3498DB",
+                         @"8E44AD"];
     
-//    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        NSDictionary *contentDict = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PickerData" ofType:@"plist"]];
-//        self.taskTimeArray = [contentDict objectForKey:@"TaskTime"];
-//        self.shortBreakArray = [contentDict objectForKey:@"ShortBreakTime"];
-//        self.longBreakArray = [contentDict objectForKey:@"LongBreakTime"];
-//        self.longBreakDelayArray = [contentDict objectForKey:@"LongBreakDelay"];
-//        self.repeatCountArray = [contentDict objectForKey:@"RepeatCount"];
-//    });
-
+    /* Above Colorstrings are,
+                Pomegranate
+                Alizarin
+                Pumpkin
+                Carrot
+                Green Sea
+                Turquoise
+                Nephritis
+                Belize Hole  */
+    
     if ([self isTaskEditing]) {
         self.oldName = self.task.name;
         self.taskNameField.text = self.task.name;
@@ -148,9 +141,9 @@
         self.longBreakTime = [self.task.longBreakTime doubleValue];
         self.longBreakDelay = [self.task.longBreakDelay integerValue];
         self.repeatCount = [self.task.repeatCount integerValue];
-        self.taskColor = self.task.taskColor;
-        self.shortBreakColor = self.task.shortBreakColor;
-        self.longBreakColor = self.task.longBreakColor;
+        self.taskColorString = self.task.taskColor;
+        self.shortBreakColorString = self.task.shortBreakColor;
+        self.longBreakColorString = self.task.longBreakColor;
         
     } else {
         self.uniqueID = [NSString stringWithFormat:@"%@",[NSDate date]];
@@ -160,12 +153,13 @@
         self.longBreakDelay = 3;
         self.repeatCount = 5;
 
-//        NSUInteger randomIndex = arc4random_uniform(13);
+        // Assign random color to task cycle while creating new task.
         
-//        self.taskColor = self.colors[randomIndex];
-        self.taskColor = @"1ABC9C"; // Orange
-        self.shortBreakColor = @"2C3E50"; // Dark
-        self.longBreakColor = @"8E44AD"; // Purple
+        NSUInteger randomIndex = arc4random_uniform(10);
+        
+        self.taskColorString = self.colorStringArray[randomIndex];
+        self.shortBreakColorString = @"2C3E50"; // Midnight Blue
+        self.longBreakColorString = @"673AB7";  // Deep Purple
     }
 }
 
@@ -173,9 +167,9 @@
 {
     [super viewWillAppear:YES];
     
-    self.taskColorView.backgroundColor = [UIColor colorWithString:self.taskColor];
-    self.shortBreakColorView.backgroundColor = [UIColor colorWithString:self.shortBreakColor];
-    self.longBreakColorView.backgroundColor = [UIColor colorWithString:self.longBreakColor];
+    self.taskColorView.backgroundColor = [UIColor colorWithString:self.taskColorString];
+    self.shortBreakColorView.backgroundColor = [UIColor colorWithString:self.shortBreakColorString];
+    self.longBreakColorView.backgroundColor = [UIColor colorWithString:self.longBreakColorString];
 }
 
 #pragma mark - Save/ Cancel Methods
@@ -211,9 +205,12 @@
         self.task.longBreakTime = [NSNumber numberWithDouble:self.longBreakTime];
         self.task.longBreakDelay = [NSNumber numberWithInteger:self.longBreakDelay];
         self.task.repeatCount = [NSNumber numberWithInteger:self.repeatCount];
-        self.task.taskColor = self.taskColor;
-        self.task.shortBreakColor = self.shortBreakColor;
-        self.task.longBreakColor = self.longBreakColor;
+        
+        // Task objectstores cycle colors as Hex string.
+        
+        self.task.taskColor = self.taskColorString;
+        self.task.shortBreakColor = self.shortBreakColorString;
+        self.task.longBreakColor = self.longBreakColorString;
         
         // Adds nil to reminder date.
         self.task.reminderDate = nil;
@@ -420,13 +417,13 @@
         colorPicker.delegate = self;
         
         if ([sender isEqualToString:kTaskColorPicker]) {
-            colorPicker.selectedColorString = self.taskColor;
+            colorPicker.selectedColorString = self.taskColorString;
             colorPicker.navigationItem.title = @"Task Cycle";
         } else if ([sender isEqualToString:kShortBreakColorPicker]) {
-            colorPicker.selectedColorString = self.shortBreakColor;
+            colorPicker.selectedColorString = self.shortBreakColorString;
             colorPicker.navigationItem.title = @"Short Break";
         } else if ([sender isEqualToString:kLongBreakColorPicker]) {
-            colorPicker.selectedColorString = self.longBreakColor;
+            colorPicker.selectedColorString = self.longBreakColorString;
             colorPicker.navigationItem.title = @"Long Break";
         }
     }
@@ -514,14 +511,14 @@
 
 #pragma mark - ColorPicker delegate method.
 
-- (void)colorPicker:(FLColorPicker *)controller didSelectColor:(NSString *)color forPicker:(NSString *)picker
+- (void)colorPicker:(FLColorPicker *)controller didSelectColor:(NSString *)colorString forPicker:(NSString *)picker
 {
     if ([picker isEqualToString:kTaskColorPicker]) {
-        self.taskColor = color;
+        self.taskColorString = colorString;
     } else if ([picker isEqualToString:kShortBreakColorPicker]){
-        self.shortBreakColor = color;
+        self.shortBreakColorString = colorString;
     } else if ([picker isEqualToString:kLongBreakColorPicker]){
-        self.longBreakColor = color;
+        self.longBreakColorString = colorString;
     }
 }
 
