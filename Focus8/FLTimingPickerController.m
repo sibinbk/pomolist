@@ -26,8 +26,6 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"Timing Picker View loaded");
-    
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5];
@@ -47,9 +45,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
-    // Set picker selected value to previosly selected Session time.
-    NSLog(@"Session time : %f", self.sessionTime);
     
     switch (self.timingPickerType) {
         case TaskTimePicker:
@@ -84,7 +79,9 @@
     NSInteger selectedRow;
     selectedRow = [self.pickerView selectedRowInComponent:0];
     
+    // Timing picker delegate.
     [self.delegate pickerController:self didSelectValue:[self.timeListArray[selectedRow] integerValue] forPicker:self.timingPickerType];
+    
     [self dismissTimingPicker];
 }
 
@@ -99,8 +96,6 @@
     } completion:^(BOOL finished) {
         [self dismissViewControllerAnimated:NO completion:nil];
     }];
-    
-    //    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Pickerview data source methods.
@@ -133,12 +128,5 @@
 {
     return 32;
 }
-
-#pragma mark - Pickerview delegate methods.
-
-//- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-//{
-//    self.sessionTime = [self.timeListArray[row] doubleValue] * 60;
-//}
 
 @end
