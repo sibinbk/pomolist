@@ -12,7 +12,7 @@
 
 @protocol FLColorPickerDelegate <NSObject>
 
-- (void)colorPicker:(FLColorPicker *)controller didSelectColor:(NSString *)color forCycle:(NSString *)cycleName;
+- (void)colorPicker:(FLColorPicker *)controller didSelectColor:(NSString *)color forPicker:(NSString *)picker;
 
 @end
 
@@ -20,6 +20,6 @@
 @interface FLColorPicker : UITableViewController
 
 @property (nonatomic, weak) id <FLColorPickerDelegate> delegate;
-@property (nonatomic, strong) NSString *selectedColor;
+@property (nonatomic, strong) NSString *selectedColorString;
 @property (nonatomic, strong) NSString *selectedPicker;
 @end

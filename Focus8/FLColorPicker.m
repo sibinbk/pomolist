@@ -65,7 +65,7 @@
 {
     [super viewWillAppear:YES];
     
-    selectedColorIndex = [self.colorString indexOfObject:self.selectedColor];
+    selectedColorIndex = [self.colorString indexOfObject:self.selectedColorString];
 }
 
 #pragma mark - TableView datasource methods.
@@ -113,13 +113,15 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    // Hide check mark on previous row if new color row selected.
     if (selectedColorIndex != NSNotFound) {
         FLColorCell *oldCell = (FLColorCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedColorIndex inSection:0]];
         oldCell.checkmarkButton.hidden = YES;
     }
+    
     selectedColorIndex = indexPath.row;
     
-    self.selectedColor = self.colorString[indexPath.row];
+    self.selectedColorString = self.colorString[indexPath.row];
     
     FLColorCell *cell = (FLColorCell *)[tableView cellForRowAtIndexPath:indexPath];
     cell.checkmarkButton.animation = @"zoomIn";
@@ -130,7 +132,7 @@
 
 - (void)exitColorPicker
 {
-    [self.delegate colorPicker:self didSelectColor:self.selectedColor forCycle:self.selectedPicker];
+    [self.delegate colorPicker:self didSelectColor:self.selectedColorString forPicker:self.selectedPicker];
     
     [[self navigationController] popViewControllerAnimated:YES];
 }

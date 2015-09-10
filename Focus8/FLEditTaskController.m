@@ -420,13 +420,13 @@
         colorPicker.delegate = self;
         
         if ([sender isEqualToString:kTaskColorPicker]) {
-            colorPicker.selectedColor = self.taskColor;
+            colorPicker.selectedColorString = self.taskColor;
             colorPicker.navigationItem.title = @"Task Cycle";
         } else if ([sender isEqualToString:kShortBreakColorPicker]) {
-            colorPicker.selectedColor = self.shortBreakColor;
+            colorPicker.selectedColorString = self.shortBreakColor;
             colorPicker.navigationItem.title = @"Short Break";
         } else if ([sender isEqualToString:kLongBreakColorPicker]) {
-            colorPicker.selectedColor = self.longBreakColor;
+            colorPicker.selectedColorString = self.longBreakColor;
             colorPicker.navigationItem.title = @"Long Break";
         }
     }
@@ -514,13 +514,13 @@
 
 #pragma mark - ColorPicker delegate method.
 
-- (void)colorPicker:(FLColorPicker *)controller didSelectColor:(NSString *)color forCycle:(NSString *)cycleName
+- (void)colorPicker:(FLColorPicker *)controller didSelectColor:(NSString *)color forPicker:(NSString *)picker
 {
-    if ([cycleName isEqualToString:kTaskColorPicker]) {
+    if ([picker isEqualToString:kTaskColorPicker]) {
         self.taskColor = color;
-    } else if ([cycleName isEqualToString:kShortBreakColorPicker]){
+    } else if ([picker isEqualToString:kShortBreakColorPicker]){
         self.shortBreakColor = color;
-    } else if ([cycleName isEqualToString:kLongBreakColorPicker]){
+    } else if ([picker isEqualToString:kLongBreakColorPicker]){
         self.longBreakColor = color;
     }
 }
