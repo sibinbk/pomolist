@@ -99,15 +99,16 @@
     */
     
     self.colorStringArray = @[@"C0392B",
-                         @"E74C3C",
-                         @"D35400",
-                         @"E67E22",
-                         @"16A085",
-                         @"1ABC9C",
-                         @"27AE60",
-                         @"2980B9",
-                         @"3498DB",
-                         @"8E44AD"];
+                              @"E74C3C",
+                              @"D35400",
+                              @"E67E22",
+                              @"16A085",
+                              @"1ABC9C",
+                              @"27AE60",
+                              @"2980B9",
+                              @"3498DB",
+                              @"8E44AD",
+                              @"673AB7"];
     
     /* Above Colorstrings are,
                 Pomegranate
@@ -117,7 +118,9 @@
                 Green Sea
                 Turquoise
                 Nephritis
-                Belize Hole  */
+                Belize Hole
+                Deep Purple
+     */
     
     if ([self isTaskEditing]) {
         self.oldName = self.task.name;
@@ -155,11 +158,11 @@
 
         // Assign random color to task cycle while creating new task.
         
-        NSUInteger randomIndex = arc4random_uniform(10);
+        NSUInteger randomIndex = arc4random_uniform(11);
         
         self.taskColorString = self.colorStringArray[randomIndex];
-        self.shortBreakColorString = @"2C3E50"; // Midnight Blue
-        self.longBreakColorString = @"673AB7";  // Deep Purple
+        self.shortBreakColorString = @"34495E"; // Wet Asphalt
+        self.longBreakColorString = @"2C3E50";  // Midnight Blue
     }
 }
 

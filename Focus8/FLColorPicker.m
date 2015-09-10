@@ -43,6 +43,7 @@
                        @"Peter River",
                        @"Wisteria",
                        @"Deep Purple",
+                       @"Wet Asphalt",
                        @"Midnight Blue"];
     
     self.colorStrings = @[@"C0392B",
@@ -56,6 +57,7 @@
                          @"3498DB",
                          @"8E44AD",
                          @"673AB7",
+                         @"34495E",
                          @"2C3E50"];
     
     self.colors = [NSDictionary dictionaryWithObjects:self.colorNames forKeys:self.colorStrings];
