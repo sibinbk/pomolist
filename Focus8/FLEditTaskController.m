@@ -98,6 +98,11 @@
     [self.formatter setDateFormat:format];
     */
     
+    // Register tap recognizer to dismiss keyboard if tapped outside textfield.
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    gestureRecognizer.cancelsTouchesInView = NO;
+    [self.tableView addGestureRecognizer:gestureRecognizer];
+    
     self.colorStringArray = @[@"C0392B",
                               @"E74C3C",
                               @"D35400",
@@ -373,6 +378,21 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.isActiveField = NO;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.taskNameField resignFirstResponder];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.taskNameField resignFirstResponder];
+}
+
+- (void)hideKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - tableview delegate method
