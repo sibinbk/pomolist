@@ -46,7 +46,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *shortBreakLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longBreakLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longBreakDelayLabel;
-@property (weak, nonatomic) IBOutlet UILabel *repeatCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *taskGoalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalTaskTimeLabel;
 @property (weak, nonatomic) IBOutlet DesignableView *taskColorView;
 @property (weak, nonatomic) IBOutlet DesignableView *shortBreakColorView;
 @property (weak, nonatomic) IBOutlet DesignableView *longBreakColorView;
@@ -142,10 +143,12 @@
         }
         
         if ([self.task.repeatCount intValue] == 1) {
-            self.repeatCountLabel.text = [NSString stringWithFormat:@"%d pomodoro", [self.task.repeatCount intValue]];
+            self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoro", [self.task.repeatCount intValue]];
         } else {
-            self.repeatCountLabel.text = [NSString stringWithFormat:@"%d pomodoros", [self.task.repeatCount intValue]];
+            self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoros", [self.task.repeatCount intValue]];
         }
+        
+        self.totalTaskTimeLabel.text = [self stringifyTotalTaskTime:([self.task.taskTime intValue] * [self.task.repeatCount intValue]) usingLongFormat:YES];
 
 /*
         self.reminderDate = self.task.reminderDate; // Empty reminder date. 
@@ -355,14 +358,18 @@
             [self performSegueWithIdentifier:@"timingPickerSegue" sender:nil];
         } else if (indexPath.row == 3) {
             [self performSegueWithIdentifier:@"breakDelayPickerSegue" sender:nil];
-        } else if (indexPath.row == 4){
-            [self performSegueWithIdentifier:@"sessionCountSegue" sender:nil];
         }
     }
     
+    if (indexPath.section == 2) {
+        if (indexPath.row == 0){
+            [self performSegueWithIdentifier:@"sessionCountSegue" sender:nil];
+        }
+    }
+
     NSString *pickerType;
         
-    if (indexPath.section == 2) {
+    if (indexPath.section == 3) {
         switch (indexPath.row) {
             case 0:
                 pickerType = kTaskColorPicker;
@@ -494,6 +501,7 @@
     switch (picker) {
         case TaskTimePicker:
             self.taskTimeLabel.text = [self stringifyTime:selectedTime];
+            self.totalTaskTimeLabel.text = [self stringifyTotalTaskTime:(selectedTime * self.repeatCount) usingLongFormat:YES];
             self.taskTime = selectedTime;
             break;
         case ShortBreakPicker:
@@ -527,10 +535,12 @@
     self.repeatCount = count;
     
     if (count == 1) {
-        self.repeatCountLabel.text = [NSString stringWithFormat:@"%d pomodoro", (int)count];
+        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoro", (int)count];
     } else {
-        self.repeatCountLabel.text = [NSString stringWithFormat:@"%d pomodoros", (int)count];
+        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoros", (int)count];
     }
+    
+    self.totalTaskTimeLabel.text = [self stringifyTotalTaskTime:(self.taskTime * count) usingLongFormat:YES];
 }
 
 #pragma mark - ColorPicker delegate method.
@@ -546,7 +556,7 @@
     }
 }
 
-#pragma mark - StringifyTime method.
+#pragma mark - StringifyTime methods.
 
 - (NSString *)stringifyTime:(int)time
 {
@@ -556,6 +566,37 @@
         return [NSString stringWithFormat:@"%d minute", (int)time / 60];
     } else {
         return [NSString stringWithFormat:@"%d minutes", (int)time / 60];
+    }
+}
+
+- (NSString *)stringifyTotalTaskTime:(int)seconds usingLongFormat:(BOOL)longFormat
+{
+    int remainingSeconds = seconds;
+    
+    int hours = remainingSeconds / 3600;
+    
+    remainingSeconds = remainingSeconds - hours * 3600;
+    
+    int minutes = remainingSeconds / 60;
+    
+    remainingSeconds = remainingSeconds - minutes * 60;
+    
+    if (longFormat) {
+        if (hours > 0) {
+            if (minutes > 0) {
+                return [NSString stringWithFormat:@"%i hr %i min", hours, minutes];
+            } else {
+                return [NSString stringWithFormat:@"%i hr", hours];
+            }
+        } else {
+            return [NSString stringWithFormat:@"%i min", minutes];
+        }
+    } else {
+        if (hours > 0) {
+            return [NSString stringWithFormat:@"%02i:%02i", hours, minutes];
+        } else {
+            return [NSString stringWithFormat:@"%02i", minutes];
+        }
     }
 }
 
