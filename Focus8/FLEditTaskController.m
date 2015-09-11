@@ -73,6 +73,7 @@
 @property (strong, nonatomic) NSArray *colorStringArray;
 
 @property (assign, nonatomic, getter = isNameTaken) BOOL nameTaken;
+@property (assign, nonatomic) BOOL isActiveField;
 @property (strong, nonatomic) NSString *oldName;
 
 @end
@@ -121,7 +122,10 @@
                 Deep Purple
      */
     
-        self.oldName = nil;
+    self.taskNameField.delegate = self;
+    self.taskNameField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    self.oldName = nil;
+    self.isActiveField = NO;
     
     if ([self isTaskEditing]) {
         self.oldName = self.task.name;
@@ -193,16 +197,34 @@
     self.longBreakColorView.backgroundColor = [UIColor colorWithString:self.longBreakColorString];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    
+    // Show keyboard if task name is nil (or a new task).
+    if (self.taskName == nil) {
+        [self.taskNameField becomeFirstResponder];
+    }
+}
+
 #pragma mark - Save/ Cancel Methods
 
 - (IBAction)cancel:(UIBarButtonItem *)sender
 {
+    if (self.isActiveField) {
+        [self.taskNameField resignFirstResponder];
+    }
+    
     [self.managedObjectContext rollback];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)save:(UIBarButtonItem *)sender
 {
+    if (self.isActiveField) {
+        [self.taskNameField resignFirstResponder];
+    }
+    
     if (self.isNameTaken) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attention!", @"Attention!")
                                                         message:NSLocalizedString(@"Task name exists, Please enter another name", @"Task name exists, Please enter another name")
@@ -333,12 +355,33 @@
 }
 */
 
+#pragma mark - Keyboard handling methods.
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    self.taskName = textField.text;
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.isActiveField = YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.isActiveField = NO;
+}
+
 #pragma mark - tableview delegate method
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    // Dismiss keyboard if select any other row.
     if (!(indexPath.section == 0 && indexPath.row == 0)) {
         [self.taskNameField resignFirstResponder];
     }
@@ -348,7 +391,7 @@
     if (indexPath.section == 1 && indexPath.row == 0) {
         [self performSegueWithIdentifier:@"reminderPickerSegue" sender:nil];
     }
-     */
+    */
     
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -553,13 +596,10 @@
 {
     if ([picker isEqualToString:kTaskColorPicker]) {
         self.taskColorString = colorString;
-//        self.taskColorView.backgroundColor = [UIColor colorWithString:colorString];
     } else if ([picker isEqualToString:kShortBreakColorPicker]){
         self.shortBreakColorString = colorString;
-//        self.shortBreakColorView.backgroundColor = [UIColor colorWithString:colorString];
     } else if ([picker isEqualToString:kLongBreakColorPicker]){
         self.longBreakColorString = colorString;
-//        self.longBreakColorView.backgroundColor = [UIColor colorWithString:colorString];
     }
 }
 
