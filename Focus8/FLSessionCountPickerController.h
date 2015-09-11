@@ -12,7 +12,7 @@
 
 @protocol FLSessionCountPickerDelegate <NSObject>
 
-- (void)pickerController:(FLSessionCountPickerController *)controller didSelectTargetTaskSessions:(NSInteger)count;
+- (void)pickerController:(FLSessionCountPickerController *)controller didSelectTargetPomodoroCount:(NSInteger)count;
 @end
 
 @interface FLSessionCountPickerController : UIViewController

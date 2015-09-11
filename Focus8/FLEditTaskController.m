@@ -134,9 +134,20 @@
         self.taskTimeLabel.text = [self stringifyTime:[self.task.taskTime intValue]];
         self.shortBreakLabel.text = [self stringifyTime:[self.task.shortBreakTime intValue]];
         self.longBreakLabel.text = [self stringifyTime:[self.task.longBreakTime intValue]];
-        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"after %@ sessions", self.task.longBreakDelay];
-        self.repeatCountLabel.text = [NSString stringWithFormat:@"%@ sessions", self.task.repeatCount];
-/*        
+        
+        if ([self.task.longBreakDelay intValue] == 1) {
+            self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoro", [self.task.longBreakDelay intValue]];
+        } else {
+            self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoros", [self.task.longBreakDelay intValue]];
+        }
+        
+        if ([self.task.repeatCount intValue] == 1) {
+            self.repeatCountLabel.text = [NSString stringWithFormat:@"%d pomodoro", [self.task.repeatCount intValue]];
+        } else {
+            self.repeatCountLabel.text = [NSString stringWithFormat:@"%d pomodoros", [self.task.repeatCount intValue]];
+        }
+
+/*
         self.reminderDate = self.task.reminderDate; // Empty reminder date. 
  */
         self.taskTime = [self.task.taskTime doubleValue];
@@ -421,7 +432,7 @@
         
         if ([sender isEqualToString:kTaskColorPicker]) {
             colorPicker.selectedColorString = self.taskColorString;
-            colorPicker.navigationItem.title = @"Task Cycle";
+            colorPicker.navigationItem.title = @"Pomodoro";
         } else if ([sender isEqualToString:kShortBreakColorPicker]) {
             colorPicker.selectedColorString = self.shortBreakColorString;
             colorPicker.navigationItem.title = @"Short Break";
@@ -501,15 +512,25 @@
 - (void)pickerController:(FLBreakDelayPickerController *)controller didSelectDelay:(NSInteger)delay
 {
     self.longBreakDelay = delay;
-    self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d sessions", (int)delay];
+    
+    if (delay == 1) {
+        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoro", (int)delay];
+    } else {
+        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoros", (int)delay];
+    }
 }
 
 # pragma mark - Target session count picker delagate.
 
-- (void)pickerController:(FLSessionCountPickerController *)controller didSelectTargetTaskSessions:(NSInteger)count
+- (void)pickerController:(FLSessionCountPickerController *)controller didSelectTargetPomodoroCount:(NSInteger)count
 {
     self.repeatCount = count;
-    self.repeatCountLabel.text = [NSString stringWithFormat:@"%d sessions", (int)count];
+    
+    if (count == 1) {
+        self.repeatCountLabel.text = [NSString stringWithFormat:@"%d pomodoro", (int)count];
+    } else {
+        self.repeatCountLabel.text = [NSString stringWithFormat:@"%d pomodoros", (int)count];
+    }
 }
 
 #pragma mark - ColorPicker delegate method.

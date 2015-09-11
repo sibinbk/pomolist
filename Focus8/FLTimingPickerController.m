@@ -7,7 +7,6 @@
 //
 
 #import "FLTimingPickerController.h"
-#import "UIColor+FlatColors.h"
 #import "Focus8-Swift.h"
 
 @interface FLTimingPickerController () <UIPickerViewDataSource, UIPickerViewDelegate>
@@ -48,7 +47,7 @@
     
     switch (self.timingPickerType) {
         case TaskTimePicker:
-            self.titleLabel.text = @"Task Session";
+            self.titleLabel.text = @"Pomodoro";
             self.timeListArray = self.taskSessionArray;
             break;
         case ShortBreakPicker:
@@ -76,11 +75,12 @@
 
 - (IBAction)selectTiming:(id)sender
 {
-    NSInteger selectedRow;
-    selectedRow = [self.pickerView selectedRowInComponent:0];
+    NSInteger selectedRow = [self.pickerView selectedRowInComponent:0];
+    
+    self.sessionTime = [self.timeListArray[selectedRow] integerValue];
     
     // Timing picker delegate.
-    [self.delegate pickerController:self didSelectValue:[self.timeListArray[selectedRow] integerValue] forPicker:self.timingPickerType];
+    [self.delegate pickerController:self didSelectValue:self.sessionTime forPicker:self.timingPickerType];
     
     [self dismissTimingPicker];
 }
@@ -126,7 +126,7 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    return 32;
+    return 36;
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "FLBreakDelayPickerController.h"
-#import "UIColor+FlatColors.h"
 #import "Focus8-Swift.h"
 
 @interface FLBreakDelayPickerController () <UIPickerViewDelegate, UIPickerViewDataSource>
@@ -44,9 +43,10 @@
 
 - (IBAction)save:(id)sender
 {
-    NSInteger selectedRow;
-    selectedRow = [self.pickerView selectedRowInComponent:0];
-    [self.delegate pickerController:self didSelectDelay:[self.delayListArray[selectedRow] integerValue]];
+    NSInteger selectedRow = [self.pickerView selectedRowInComponent:0];
+    self.selectedValue = [self.delayListArray[selectedRow] integerValue];
+    
+    [self.delegate pickerController:self didSelectDelay:self.selectedValue];
     
     [self dismissPopUp];
 }
@@ -77,19 +77,20 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"after %@ sessions", self.delayListArray[row]];
+    NSString *titleString;
+    
+    if ([self.delayListArray[row] intValue] == 1) {
+        titleString = [NSString stringWithFormat:@"%@ pomodoro", self.delayListArray[row]];
+    } else {
+        titleString = [NSString stringWithFormat:@"%@ pomodoros", self.delayListArray[row]];
+    }
+    
+    return titleString;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    return 32;
-}
-
-#pragma mark - Pickerview delegate methods.
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    self.selectedValue = [self.delayListArray[row] integerValue];
+    return 36;
 }
 
 @end

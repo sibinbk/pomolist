@@ -43,7 +43,7 @@
     NSInteger selectedRow;
     selectedRow = [self.pickerView selectedRowInComponent:0];
     
-    [self.delegate pickerController:self didSelectTargetTaskSessions:[self.sessionCountArray[selectedRow] integerValue]];
+    [self.delegate pickerController:self didSelectTargetPomodoroCount:[self.sessionCountArray[selectedRow] integerValue]];
     [self dismissPopUp];
 }
 
@@ -78,12 +78,20 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%@ sessions", self.sessionCountArray[row]];
+    NSString * titleString;
+    
+    if ([self.sessionCountArray[row] intValue] == 1) {
+        titleString = [NSString stringWithFormat:@"%@ pomodoro", self.sessionCountArray[row]];
+    } else {
+        titleString = [NSString stringWithFormat:@"%@ pomodoros", self.sessionCountArray[row]];
+    }
+    
+    return titleString;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    return 32;
+    return 36;
 }
 
 #pragma mark - Pickerview delegate methods.
@@ -109,9 +117,13 @@
     
     if (longFormat) {
         if (hours > 0) {
-            return [NSString stringWithFormat:@"%iHr %iMin", hours, minutes];
+            if (minutes > 0) {
+                return [NSString stringWithFormat:@"%i hr %i min", hours, minutes];
+            } else {
+                return [NSString stringWithFormat:@"%i hr", hours];
+            }
         } else {
-            return [NSString stringWithFormat:@"%iMin", minutes];
+            return [NSString stringWithFormat:@"%i min", minutes];
         }
     } else {
         if (hours > 0) {
