@@ -88,8 +88,6 @@
 {
     NSLog(@"View did load");
     [super viewDidLoad];
-    
-    self.oldName = nil;
 
     /* Date formatter code.
      
@@ -123,33 +121,17 @@
                 Deep Purple
      */
     
+        self.oldName = nil;
+    
     if ([self isTaskEditing]) {
         self.oldName = self.task.name;
-        self.taskNameField.text = self.task.name;
+        self.taskName = self.task.name;
         /*
         if (self.task.reminderDate != nil) {
             self.reminderTitleLabel.text = @"Remind on";
             self.reminderDateLabel.text = [self.formatter stringFromDate:self.task.reminderDate];
         }
         */
-        self.taskTimeLabel.text = [self stringifyTime:[self.task.taskTime intValue]];
-        self.shortBreakLabel.text = [self stringifyTime:[self.task.shortBreakTime intValue]];
-        self.longBreakLabel.text = [self stringifyTime:[self.task.longBreakTime intValue]];
-        
-        if ([self.task.longBreakDelay intValue] == 1) {
-            self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoro", [self.task.longBreakDelay intValue]];
-        } else {
-            self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoros", [self.task.longBreakDelay intValue]];
-        }
-        
-        if ([self.task.repeatCount intValue] == 1) {
-            self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoro", [self.task.repeatCount intValue]];
-        } else {
-            self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoros", [self.task.repeatCount intValue]];
-        }
-        
-        self.totalTaskTimeLabel.text = [self stringifyTotalTaskTime:([self.task.taskTime intValue] * [self.task.repeatCount intValue]) usingLongFormat:YES];
-
 /*
         self.reminderDate = self.task.reminderDate; // Empty reminder date. 
  */
@@ -163,10 +145,11 @@
         self.longBreakColorString = self.task.longBreakColorString;
         
     } else {
+        self.taskName = nil;
         self.uniqueID = [NSString stringWithFormat:@"%@",[NSDate date]];
-        self.taskTime = 1500; // Task session 30 mins.
-        self.shortBreakTime = 300; // Short break 5 mins.
-        self.longBreakTime = 900; // Long break 15 mins.
+        self.taskTime = 1500;       // Pomodoro 25 mins.
+        self.shortBreakTime = 300;  // Short break 5 mins.
+        self.longBreakTime = 900;   // Long break 15 mins.
         self.longBreakDelay = 3;
         self.repeatCount = 5;
 
@@ -183,6 +166,27 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    
+    NSLog(@"View will appear");
+    
+    self.taskNameField.text = self.taskName;
+    self.taskTimeLabel.text = [self stringifyTime:(int)self.taskTime];
+    self.shortBreakLabel.text = [self stringifyTime:(int)self.shortBreakTime];
+    self.longBreakLabel.text = [self stringifyTime:(int)self.longBreakTime];
+    
+    if (self.longBreakDelay == 1) {
+        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoro", (int)self.longBreakDelay];
+    } else {
+        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoros", (int)self.longBreakDelay];
+    }
+    
+    if (self.repeatCount == 1) {
+        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoro", (int)self.repeatCount];
+    } else {
+        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoros", (int)self.repeatCount];
+    }
+    
+    self.totalTaskTimeLabel.text = [self stringifyTotalTaskTime:(self.taskTime * self.repeatCount) usingLongFormat:YES];
     
     self.taskColorView.backgroundColor = [UIColor colorWithString:self.taskColorString];
     self.shortBreakColorView.backgroundColor = [UIColor colorWithString:self.shortBreakColorString];
@@ -223,7 +227,7 @@
         self.task.longBreakDelay = [NSNumber numberWithInteger:self.longBreakDelay];
         self.task.repeatCount = [NSNumber numberWithInteger:self.repeatCount];
         
-        // Task objectstores cycle colors as Hex string.
+        // Task object stores cycle colors as Hex string.
         
         self.task.taskColorString = self.taskColorString;
         self.task.shortBreakColorString = self.shortBreakColorString;
@@ -549,10 +553,13 @@
 {
     if ([picker isEqualToString:kTaskColorPicker]) {
         self.taskColorString = colorString;
+//        self.taskColorView.backgroundColor = [UIColor colorWithString:colorString];
     } else if ([picker isEqualToString:kShortBreakColorPicker]){
         self.shortBreakColorString = colorString;
+//        self.shortBreakColorView.backgroundColor = [UIColor colorWithString:colorString];
     } else if ([picker isEqualToString:kLongBreakColorPicker]){
         self.longBreakColorString = colorString;
+//        self.longBreakColorView.backgroundColor = [UIColor colorWithString:colorString];
     }
 }
 
