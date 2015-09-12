@@ -213,123 +213,6 @@
     }
 }
 
-#pragma mark - Save/ Cancel Methods
-
-- (IBAction)cancel:(UIBarButtonItem *)sender
-{
-    if (self.isActiveField) {
-        [self.taskNameField resignFirstResponder];
-    }
-    
-    [self.managedObjectContext rollback];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)save:(UIBarButtonItem *)sender
-{
-    if (self.isActiveField) {
-        [self.taskNameField resignFirstResponder];
-    }
-    
-    if (self.isNameTaken) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attention!", @"Attention!")
-                                                        message:NSLocalizedString(@"Task name exists, Please enter another name", @"Task name exists, Please enter another name")
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil];
-        [alert show];
-        
-    } else {
-        
-        if (self.task == nil) {
-            self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[self managedObjectContext]];
-            
-            // Set unique ID when task is created for the first time.
-            self.task.uniqueID = self.uniqueID;
-        }
-        
-        self.task.name = self.taskNameField.text;
-        self.task.taskTime = [NSNumber numberWithDouble:self.taskTime];
-        self.task.shortBreakTime = [NSNumber numberWithDouble:self.shortBreakTime];
-        self.task.longBreakTime = [NSNumber numberWithDouble:self.longBreakTime];
-        self.task.longBreakDelay = [NSNumber numberWithInteger:self.longBreakDelay];
-        self.task.repeatCount = [NSNumber numberWithInteger:self.repeatCount];
-        
-        // Task object stores cycle colors as Hex string.
-        
-        self.task.taskColorString = self.taskColorString;
-        self.task.shortBreakColorString = self.shortBreakColorString;
-        self.task.longBreakColorString = self.longBreakColorString;
-        
-        // Adds nil to reminder date.
-        self.task.reminderDate = nil;
-        
-/* Reminder date handling code here. */
- 
-//        NSLog(@"Old reinder date : %@", self.task.reminderDate);
-//        NSLog(@"New reminder date : %@", self.reminderDate);
-//        if (![self.task.reminderDate isEqualToDate:self.reminderDate]) {
-//            if (!self.task.reminderDate) {
-//                if (self.reminderDate) {
-//                    self.task.reminderDate = self.reminderDate;
-//                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                        NSLog(@"schedule reminder notification");
-//                        [self scheduleReminderNotificationForTask:self.task];
-//                    });
-//                } else {
-//                    NSLog(@"Both dates are nill");
-//                    /* This line executes when bothe Reimder dates are nill but not captured while comparing both dates. */
-//                }
-//            } else {
-//                if (!self.reminderDate) {
-//                    self.task.reminderDate = nil;
-//                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                        NSLog(@"cancel old reminder notification");
-//                        [self cancelReminderNotificationForTask:self.task];
-//                    });
-//                } else {
-//                    self.task.reminderDate = self.reminderDate;
-//                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                        NSLog(@"cancel old reminder notification");
-//                        [self cancelReminderNotificationForTask:self.task];
-//                    });
-//                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                        NSLog(@"schedule reminder notification");
-//                        [self scheduleReminderNotificationForTask:self.task];
-//                    });
-//                }
-//            }
-//        } else {
-//            NSLog(@"No change in reminder date");
-//        }
-        
-        [self saveAndDismiss];
-    }
-}
-
-- (void)saveAndDismiss
-{
-    NSError *error = nil;
-    if ([self.managedObjectContext hasChanges]) {
-        if (![self.managedObjectContext save:&error]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error")
-                                                            message:NSLocalizedString(@"Error in saving new task", @"Error in saving new task")
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok")
-                                                  otherButtonTitles:nil];
-            [alert show];
-            
-        } else {
-            if ([self.task.isSelected boolValue]) {
-                NSLog(@"delegate method called");
-                [self.delegate taskController:self didChangeTask:self.task withTimerValue:YES];
-            }
-        }
-    }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 #pragma mark - schedule local notifications for Reminder date
 
 /* Reminder notification code.
@@ -383,6 +266,7 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
+    // Dismisses keyboard
     [self.view endEditing:YES];
 }
 
@@ -396,11 +280,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    // Dismiss keyboard if select any other row.
-    if (!(indexPath.section == 0 && indexPath.row == 0)) {
-        [self.taskNameField resignFirstResponder];
-    }
     
     /* Reminder picker segue method.
      
@@ -617,6 +496,141 @@
     } else if ([picker isEqualToString:kLongBreakColorPicker]){
         self.longBreakColorString = colorString;
     }
+}
+
+#pragma mark - Save/ Cancel Methods
+
+- (IBAction)cancel:(UIBarButtonItem *)sender
+{
+    if (self.isActiveField) {
+        [self.view endEditing:YES];
+    }
+    
+    [self.managedObjectContext rollback];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)save:(UIBarButtonItem *)sender
+{
+    // Check if the task name is empty.
+    if ([self.taskNameField.text length] == 0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Attention!"
+                                                                       message:@"Task name can't be empty. Please enter a valid name"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+        [alert addAction:dismissAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+     // Check if the task name exist.
+    } else if (self.isNameTaken) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Attention!"
+                                                                       message:@"Task name exists. Please enter another name"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+        [alert addAction:dismissAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    } else {
+        
+        if (self.isActiveField) {
+            [self.view endEditing:YES];
+        }
+        
+        if (self.task == nil) {
+            self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[self managedObjectContext]];
+            
+            // Set unique ID when task is created for the first time.
+            self.task.uniqueID = self.uniqueID;
+        }
+        
+        self.task.name = self.taskNameField.text;
+        self.task.taskTime = [NSNumber numberWithDouble:self.taskTime];
+        self.task.shortBreakTime = [NSNumber numberWithDouble:self.shortBreakTime];
+        self.task.longBreakTime = [NSNumber numberWithDouble:self.longBreakTime];
+        self.task.longBreakDelay = [NSNumber numberWithInteger:self.longBreakDelay];
+        self.task.repeatCount = [NSNumber numberWithInteger:self.repeatCount];
+        
+        // Task object stores cycle colors as Hex string.
+        
+        self.task.taskColorString = self.taskColorString;
+        self.task.shortBreakColorString = self.shortBreakColorString;
+        self.task.longBreakColorString = self.longBreakColorString;
+        
+        // Adds nil to reminder date.
+        self.task.reminderDate = nil;
+        
+        /* Reminder date handling code here. */
+        
+        //        NSLog(@"Old reinder date : %@", self.task.reminderDate);
+        //        NSLog(@"New reminder date : %@", self.reminderDate);
+        //        if (![self.task.reminderDate isEqualToDate:self.reminderDate]) {
+        //            if (!self.task.reminderDate) {
+        //                if (self.reminderDate) {
+        //                    self.task.reminderDate = self.reminderDate;
+        //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //                        NSLog(@"schedule reminder notification");
+        //                        [self scheduleReminderNotificationForTask:self.task];
+        //                    });
+        //                } else {
+        //                    NSLog(@"Both dates are nill");
+        //                    /* This line executes when bothe Reimder dates are nill but not captured while comparing both dates. */
+        //                }
+        //            } else {
+        //                if (!self.reminderDate) {
+        //                    self.task.reminderDate = nil;
+        //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //                        NSLog(@"cancel old reminder notification");
+        //                        [self cancelReminderNotificationForTask:self.task];
+        //                    });
+        //                } else {
+        //                    self.task.reminderDate = self.reminderDate;
+        //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //                        NSLog(@"cancel old reminder notification");
+        //                        [self cancelReminderNotificationForTask:self.task];
+        //                    });
+        //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //                        NSLog(@"schedule reminder notification");
+        //                        [self scheduleReminderNotificationForTask:self.task];
+        //                    });
+        //                }
+        //            }
+        //        } else {
+        //            NSLog(@"No change in reminder date");
+        //        }
+        
+        [self saveAndDismiss];
+    }
+}
+
+- (void)saveAndDismiss
+{
+    NSError *error = nil;
+    if ([self.managedObjectContext hasChanges]) {
+        if (![self.managedObjectContext save:&error]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error")
+                                                            message:NSLocalizedString(@"Error in saving new task", @"Error in saving new task")
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok")
+                                                  otherButtonTitles:nil];
+            [alert show];
+            
+        } else {
+            if ([self.task.isSelected boolValue]) {
+                NSLog(@"delegate method called");
+                [self.delegate taskController:self didChangeTask:self.task withTimerValue:YES];
+            }
+        }
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - StringifyTime methods.
