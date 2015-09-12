@@ -40,7 +40,7 @@
                         @"Glissful",
                         @"Ready",
                         @"RingRing",
-                        @"Robot's Rattle",
+                        @"RobotsRattle",
                         @"Woodpecker"];
 }
 
@@ -115,7 +115,7 @@
 
 - (void)playSound:(NSString *)sound
 {
-    NSURL* url =[[NSBundle mainBundle] URLForResource:sound withExtension:@"wav"];
+    NSURL* url =[[NSBundle mainBundle] URLForResource:sound withExtension:@"caf"];
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
     
     if (self.audioPlayer.isPlaying) {

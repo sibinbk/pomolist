@@ -427,7 +427,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.soundName = self.alarmSound;
+    notification.soundName = [NSString stringWithFormat:@"%@.caf", self.alarmSound];
     notification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
     
     for (int i = 0; i < notificationCount; i++) {
@@ -550,18 +550,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 }
 */
 
-# pragma mark - Change notification sound.
-
-- (void)changeNotificationSound:(NSString *)sound
-{
-    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    for (UILocalNotification *notification in notifications) {
-        [[UIApplication sharedApplication] cancelLocalNotification:notification];
-        notification.soundName = [NSString stringWithFormat:@"%@.wav", sound];
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-        }
-}
-
 #pragma mark - ZGCountDownTimer Delegate methods.
 
 - (void)secondUpdated:(ZGCountDownTimer *)sender countDownTimePassed:(NSTimeInterval)timePassed ofTotalTime:(NSTimeInterval)totalTime
@@ -658,7 +646,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 - (void)playAlertSound:(NSString *)sound
 {
     [[JSQSystemSoundPlayer sharedPlayer] playAlertSoundWithFilename:sound
-                                                      fileExtension:kJSQSystemSoundTypeWAV
+                                                      fileExtension:kJSQSystemSoundTypeCAF
                                                          completion:nil];
 }
 
@@ -1258,6 +1246,18 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         
         // Change notifications sound.
         [self changeNotificationSound:sound];
+    }
+}
+
+# pragma mark - Change notification sound.
+
+- (void)changeNotificationSound:(NSString *)sound
+{
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for (UILocalNotification *notification in notifications) {
+        [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        notification.soundName = [NSString stringWithFormat:@"%@.caf", sound];
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
 }
 
