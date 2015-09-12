@@ -98,9 +98,10 @@
     [self.formatter setDateFormat:format];
     */
     
-    // Register tap recognizer to dismiss keyboard if tapped outside textfield.
+    // Register tap gesture recognizer to dismiss keyboard if tapped outside textfield.
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
+    
     [self.tableView addGestureRecognizer:gestureRecognizer];
     
     self.colorStringArray = @[@"C0392B",
@@ -382,12 +383,7 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [self.taskNameField resignFirstResponder];
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.taskNameField resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 - (void)hideKeyboard
