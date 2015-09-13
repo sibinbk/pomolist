@@ -181,7 +181,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 - (void)repeatTimerSetup
 {
-    self.totalCountDownTime = [self calculateTotalCountDownTime];
+    self.totalCountDownTime = [self calculateTotalCountDownTime:self.repeatCount];
     NSLog(@"Total count down time : %f", self.totalCountDownTime);
     
     __weak FLTimerViewController *weakSelf = self;
@@ -217,15 +217,20 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
 }
 
-- (NSTimeInterval)calculateTotalCountDownTime
+- (NSTimeInterval)calculateTotalCountDownTime:(NSInteger)repeatCount
 {
     int longBreakCount = 0;
     
+    // No. of breaks will be always 1 less than task sessions.
+    int totalBreakCount = (int)(repeatCount - 1);
+    
     if (self.longBreakDelay > 0) {
-        longBreakCount = (int)(self.repeatCount / self.longBreakDelay);
+        longBreakCount = totalBreakCount / self.longBreakDelay;
+        NSLog(@"Long break count : %d", longBreakCount);
     }
     
-    NSTimeInterval totalTime = self.taskTime * self.repeatCount + self.shortBreakTime * (self.repeatCount - longBreakCount) + self.longBreakTime * longBreakCount;
+    NSTimeInterval totalTime = (self.taskTime * repeatCount) + (self.longBreakTime * longBreakCount) + (self.shortBreakTime * (totalBreakCount - longBreakCount));
+    NSLog(@"Total Time = %f", totalTime);
     
     return totalTime;
 }
@@ -417,28 +422,29 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 - (void)scheduleTimerNotifications
 {
-    NSTimeInterval tempCycleFinishTime = self.repeatTimer.cycleFinishTime;
+    NSTimeInterval tempCycleFinishTime = self.repeatTimer.cycleFinishTime;  // Total session times added upto current session.
     NSTimeInterval timePassed = self.repeatTimer.timePassed;
     CountDownCycleType cycleType = self.repeatTimer.cycleType;
-    NSInteger taskCount = self.repeatTimer.taskCount;
-    NSInteger cycleCount = self.repeatTimer.timerCycleCount;
+   
+    int taskCount = (int)self.repeatTimer.taskCount;            // No. of completed task sessions.
+    int cycleCount = (int)self.repeatTimer.timerCycleCount;     // Total no. of completed sessions.
+    int totalSessionCount = (int)((2 * self.repeatCount) - 1);
     
-    int notificationCount = (int)(self.repeatCount * 2 - cycleCount);
-    
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.soundName = [NSString stringWithFormat:@"%@.caf", self.alarmSound];
-    notification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
+    int notificationCount = totalSessionCount - cycleCount;
     
     for (int i = 0; i < notificationCount; i++) {
         NSLog(@"Notication No : %i", i);
-        // Specify custom data for the notification
-//        NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%i", i] forKey:[NSString stringWithFormat:@"%i", i]];
         
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.timeZone = [NSTimeZone systemTimeZone];
+        notification.soundName = [NSString stringWithFormat:@"%@.caf", self.alarmSound];
+        notification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
+
         switch (cycleType) {
             case TaskCycle:
+                NSLog(@"Task notif. Fires on %@", [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)]);
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
-                notification.alertBody = [NSString stringWithFormat:@"Task Cycle # %d completed. Have a break.", (int)taskCount] ;
+                notification.alertBody = [NSString stringWithFormat:@"Task Cycle # %d completed. Have a break.", taskCount] ;
                 if (![self checkIfLongBreakCycle:taskCount]) {
                     cycleType = ShortBreakCycle;
                     tempCycleFinishTime += self.shortBreakTime;
@@ -449,6 +455,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                 break;
                 
             case ShortBreakCycle:
+                NSLog(@"Short Break notif. Fires on %@", [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)]);
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
                 notification.alertBody = @"Short Break completed";
                 cycleType = TaskCycle;
@@ -457,6 +464,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                 break;
                 
             case LongBreakCycle:
+                NSLog(@"Long Break notif. Fires on %@", [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)]);
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
                 notification.alertBody = @"Long Break completed";
                 cycleType = TaskCycle;
@@ -468,10 +476,16 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
     
-    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(self.totalCountDownTime - timePassed)];
-    notification.alertBody = @"Well done. Task finished.";
+    NSLog(@"Final notif");
+    UILocalNotification *finalNotification = [[UILocalNotification alloc] init];
+    finalNotification.timeZone = [NSTimeZone systemTimeZone];
+    finalNotification.soundName = [NSString stringWithFormat:@"%@.caf", self.alarmSound];
+    finalNotification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
+    finalNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(self.totalCountDownTime - timePassed)];
+    finalNotification.alertBody = @"Well done. Task finished.";
+    NSLog(@"Final notif. Fires on %@", [NSDate dateWithTimeIntervalSinceNow:(self.totalCountDownTime - timePassed)]);
     
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    [[UIApplication sharedApplication] scheduleLocalNotification:finalNotification];
 }
 
 - (BOOL)checkIfLongBreakCycle:(NSInteger)taskCount
@@ -507,17 +521,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 - (void)cancelTimerNotifications
 {
-    for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-        NSDictionary *userInfoCurrent = notification.userInfo;
-        //        NSString *uid = [NSString stringWithFormat:@"%@", [userInfoCurrent valueForKey:@"name"]];
-        NSString *uid = [userInfoCurrent valueForKey:@"timerNotificationID"];
-        if ([uid isEqualToString:kFLTimerNotification])
-        {
-            NSLog(@"UID : %@", uid);
-            //Cancelling local notification
-            [[UIApplication sharedApplication] cancelLocalNotification:notification];
-        }
-    }
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 /* Reminde notification cancelling code.
