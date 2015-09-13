@@ -433,18 +433,16 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     int notificationCount = totalSessionCount - cycleCount;
     
     for (int i = 0; i < notificationCount; i++) {
-        NSLog(@"Notication No : %i", i);
-        
+
         UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.timeZone = [NSTimeZone systemTimeZone];
+        notification.timeZone = [NSTimeZone defaultTimeZone];
         notification.soundName = [NSString stringWithFormat:@"%@.caf", self.alarmSound];
         notification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
 
         switch (cycleType) {
             case TaskCycle:
-                NSLog(@"Task notif. Fires on %@", [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)]);
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
-                notification.alertBody = [NSString stringWithFormat:@"Task Cycle # %d completed. Have a break.", taskCount] ;
+                notification.alertBody = [NSString stringWithFormat:@"Pomodoro %d completed. Take a break! - Goal %d/%d", taskCount, taskCount, (int)self.repeatCount] ;
                 if (![self checkIfLongBreakCycle:taskCount]) {
                     cycleType = ShortBreakCycle;
                     tempCycleFinishTime += self.shortBreakTime;
@@ -455,7 +453,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                 break;
                 
             case ShortBreakCycle:
-                NSLog(@"Short Break notif. Fires on %@", [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)]);
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
                 notification.alertBody = @"Short Break completed";
                 cycleType = TaskCycle;
@@ -464,7 +461,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                 break;
                 
             case LongBreakCycle:
-                NSLog(@"Long Break notif. Fires on %@", [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)]);
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
                 notification.alertBody = @"Long Break completed";
                 cycleType = TaskCycle;
@@ -476,15 +472,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
     
-    NSLog(@"Final notif");
     UILocalNotification *finalNotification = [[UILocalNotification alloc] init];
     finalNotification.timeZone = [NSTimeZone systemTimeZone];
     finalNotification.soundName = [NSString stringWithFormat:@"%@.caf", self.alarmSound];
     finalNotification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
     finalNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(self.totalCountDownTime - timePassed)];
-    finalNotification.alertBody = @"Well done. Task finished.";
-    NSLog(@"Final notif. Fires on %@", [NSDate dateWithTimeIntervalSinceNow:(self.totalCountDownTime - timePassed)]);
-    
+    finalNotification.alertBody = [NSString stringWithFormat:@"Well done. Task completed! - Goal %d/%d", taskCount, (int)self.repeatCount];
     [[UIApplication sharedApplication] scheduleLocalNotification:finalNotification];
 }
 
