@@ -133,6 +133,9 @@
     self.oldName = nil;
     self.isActiveField = NO;
     
+    // handle text changes for TaskName text field.
+    [self.taskNameField addTarget:self action:@selector(taskNameTextFieldChanged) forControlEvents:UIControlEventEditingChanged];
+    
     if ([self isTaskEditing]) {
         self.oldName = self.task.name;
         self.taskName = self.task.name;
@@ -248,7 +251,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    self.taskName = textField.text;
+//    self.taskName = textField.text;
     
     [textField resignFirstResponder];
     return YES;
@@ -273,6 +276,11 @@
 - (void)hideKeyboard
 {
     [self.view endEditing:YES];
+}
+
+- (void)taskNameTextFieldChanged
+{
+    self.taskName = self.taskNameField.text;
 }
 
 #pragma mark - tableview delegate method
@@ -394,13 +402,13 @@
 
 - (BOOL)isNameTaken
 {
-    if ([self.oldName isEqualToString:self.taskNameField.text]) {
+    if ([self.oldName isEqualToString:self.taskName]) {
         return NO;
     }
     
     // Creating a fetch request to check whether the name of the Task already exists
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-    request.predicate = [NSPredicate predicateWithFormat:@"name == %@", self.taskNameField.text];
+    request.predicate = [NSPredicate predicateWithFormat:@"name == %@", self.taskName];
     
     NSError *error = nil;
     NSArray *tasks = [self.managedObjectContext executeFetchRequest:request error:&error];
@@ -513,100 +521,106 @@
 - (IBAction)save:(UIBarButtonItem *)sender
 {
     // Check if the task name is empty.
-    if ([self.taskNameField.text length] == 0) {
+    if (self.taskName.length < 1) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Attention!"
                                                                        message:@"Task name can't be empty. Please enter a valid name"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * action) {
                                                        [alert dismissViewControllerAnimated:YES completion:nil];
-                                                   }];
-        [alert addAction:dismissAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        
-     // Check if the task name exist.
-    } else if (self.isNameTaken) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Attention!"
-                                                                       message:@"Task name exists. Please enter another name"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction * action) {
-                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                       // Bring back keyboard to enter task name.
+                                                       [self.taskNameField becomeFirstResponder];
                                                    }];
         [alert addAction:dismissAction];
         
         [self presentViewController:alert animated:YES completion:nil];
         
     } else {
+        // Check if the task name exist.
+        if (self.isNameTaken) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Attention!"
+                                                                           message:@"Task name exists. Please enter another name"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {
+                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                      // Bring back keyboard to enter task name.
+                                                                      [self.taskNameField becomeFirstResponder];
+                                                                  }];
+            [alert addAction:dismissAction];
         
-        if (self.isActiveField) {
-            [self.view endEditing:YES];
-        }
+            [self presentViewController:alert animated:YES completion:nil];
         
-        if (self.task == nil) {
-            self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[self managedObjectContext]];
+        } else {
+        
+            if (self.isActiveField) {
+                [self.view endEditing:YES];
+            }
+        
+            if (self.task == nil) {
+                self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[self managedObjectContext]];
             
-            // Set unique ID when task is created for the first time.
-            self.task.uniqueID = self.uniqueID;
+                // Set unique ID when task is created for the first time.
+                self.task.uniqueID = self.uniqueID;
+            }
+        
+            self.task.name = self.taskName;
+            self.task.taskTime = [NSNumber numberWithDouble:self.taskTime];
+            self.task.shortBreakTime = [NSNumber numberWithDouble:self.shortBreakTime];
+            self.task.longBreakTime = [NSNumber numberWithDouble:self.longBreakTime];
+            self.task.longBreakDelay = [NSNumber numberWithInteger:self.longBreakDelay];
+            self.task.repeatCount = [NSNumber numberWithInteger:self.repeatCount];
+        
+            // Task object stores cycle colors as Hex string.
+        
+            self.task.taskColorString = self.taskColorString;
+            self.task.shortBreakColorString = self.shortBreakColorString;
+            self.task.longBreakColorString = self.longBreakColorString;
+        
+            // Adds nil to reminder date.
+            self.task.reminderDate = nil;
+        
+            /* Reminder date handling code here. */
+        
+            //        NSLog(@"Old reinder date : %@", self.task.reminderDate);
+            //        NSLog(@"New reminder date : %@", self.reminderDate);
+            //        if (![self.task.reminderDate isEqualToDate:self.reminderDate]) {
+            //            if (!self.task.reminderDate) {
+            //                if (self.reminderDate) {
+            //                    self.task.reminderDate = self.reminderDate;
+            //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            //                        NSLog(@"schedule reminder notification");
+            //                        [self scheduleReminderNotificationForTask:self.task];
+            //                    });
+            //                } else {
+            //                    NSLog(@"Both dates are nill");
+            //                    /* This line executes when bothe Reimder dates are nill but not captured while comparing both dates. */
+            //                }
+            //            } else {
+            //                if (!self.reminderDate) {
+            //                    self.task.reminderDate = nil;
+            //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            //                        NSLog(@"cancel old reminder notification");
+            //                        [self cancelReminderNotificationForTask:self.task];
+            //                    });
+            //                } else {
+            //                    self.task.reminderDate = self.reminderDate;
+            //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            //                        NSLog(@"cancel old reminder notification");
+            //                        [self cancelReminderNotificationForTask:self.task];
+            //                    });
+            //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            //                        NSLog(@"schedule reminder notification");
+            //                        [self scheduleReminderNotificationForTask:self.task];
+            //                    });
+            //                }
+            //            }
+            //        } else {
+            //            NSLog(@"No change in reminder date");
+            //        }
+        
+            [self saveAndDismiss];
         }
-        
-        self.task.name = self.taskNameField.text;
-        self.task.taskTime = [NSNumber numberWithDouble:self.taskTime];
-        self.task.shortBreakTime = [NSNumber numberWithDouble:self.shortBreakTime];
-        self.task.longBreakTime = [NSNumber numberWithDouble:self.longBreakTime];
-        self.task.longBreakDelay = [NSNumber numberWithInteger:self.longBreakDelay];
-        self.task.repeatCount = [NSNumber numberWithInteger:self.repeatCount];
-        
-        // Task object stores cycle colors as Hex string.
-        
-        self.task.taskColorString = self.taskColorString;
-        self.task.shortBreakColorString = self.shortBreakColorString;
-        self.task.longBreakColorString = self.longBreakColorString;
-        
-        // Adds nil to reminder date.
-        self.task.reminderDate = nil;
-        
-        /* Reminder date handling code here. */
-        
-        //        NSLog(@"Old reinder date : %@", self.task.reminderDate);
-        //        NSLog(@"New reminder date : %@", self.reminderDate);
-        //        if (![self.task.reminderDate isEqualToDate:self.reminderDate]) {
-        //            if (!self.task.reminderDate) {
-        //                if (self.reminderDate) {
-        //                    self.task.reminderDate = self.reminderDate;
-        //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //                        NSLog(@"schedule reminder notification");
-        //                        [self scheduleReminderNotificationForTask:self.task];
-        //                    });
-        //                } else {
-        //                    NSLog(@"Both dates are nill");
-        //                    /* This line executes when bothe Reimder dates are nill but not captured while comparing both dates. */
-        //                }
-        //            } else {
-        //                if (!self.reminderDate) {
-        //                    self.task.reminderDate = nil;
-        //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //                        NSLog(@"cancel old reminder notification");
-        //                        [self cancelReminderNotificationForTask:self.task];
-        //                    });
-        //                } else {
-        //                    self.task.reminderDate = self.reminderDate;
-        //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //                        NSLog(@"cancel old reminder notification");
-        //                        [self cancelReminderNotificationForTask:self.task];
-        //                    });
-        //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //                        NSLog(@"schedule reminder notification");
-        //                        [self scheduleReminderNotificationForTask:self.task];
-        //                    });
-        //                }
-        //            }
-        //        } else {
-        //            NSLog(@"No change in reminder date");
-        //        }
-        
-        [self saveAndDismiss];
     }
 }
 
