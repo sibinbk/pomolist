@@ -547,6 +547,20 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 }
 */
 
+# pragma mark - Change notification sound.
+
+- (void)changeNotificationSound:(NSString *)sound
+{
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    for (UILocalNotification *notification in notifications) {
+        notification.soundName = [NSString stringWithFormat:@"%@.caf", sound];
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        NSLog(@"Notification changed");
+    }
+}
+
 #pragma mark - ZGCountDownTimer Delegate methods.
 
 - (void)secondUpdated:(ZGCountDownTimer *)sender countDownTimePassed:(NSTimeInterval)timePassed ofTotalTime:(NSTimeInterval)totalTime
@@ -1243,18 +1257,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         
         // Change notifications sound.
         [self changeNotificationSound:sound];
-    }
-}
-
-# pragma mark - Change notification sound.
-
-- (void)changeNotificationSound:(NSString *)sound
-{
-    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    for (UILocalNotification *notification in notifications) {
-        [[UIApplication sharedApplication] cancelLocalNotification:notification];
-        notification.soundName = [NSString stringWithFormat:@"%@.caf", sound];
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
 }
 
