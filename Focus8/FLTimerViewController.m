@@ -52,6 +52,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (strong, nonatomic) NSString *shortBreakColorString;
 @property (strong, nonatomic) NSString *longBreakColorString;
 @property (strong, nonatomic) NSString *alarmSound;
+@property (strong, nonatomic) UIFont *timerLabelFont;
 
 /*
  @property (strong, nonatomic) NSDateFormatter *formatter;
@@ -100,10 +101,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     // Timerview handling.
     self.isFullView = YES;
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
-    
-    // Register new colors.
-    [UIColor registerColor:[UIColor colorWithString:@"1ABC9C"] forName:@"FlatGreen"];
-    [UIColor registerColor:[UIColor colorWithString:@"2980B9"] forName:@"Belize"];
 
     // Add Floating button to add new tasks.
     self.floatingButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)/2 - 30, CGRectGetHeight(self.view.frame) - 80 , 60, 60)];
@@ -128,6 +125,27 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM dd 'at' h:mm a" options:0 locale:[NSLocale currentLocale]];
     [self.formatter setDateFormat:format];
      */
+    
+    
+    // Adjust Timer label font size depends up on the device screen size.
+
+    if ([[UIScreen mainScreen] bounds].size.height == 480) {
+        // iPhone 4
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:90];
+    } else if ([[UIScreen mainScreen] bounds].size.height == 568){
+        // IPhone 5
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:100];
+    } else if ([[UIScreen mainScreen] bounds].size.height == 667) {
+        // iPhone 6
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:120];
+    } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
+        // iPhone 6+
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:130];
+    } else {
+        // iPad
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:150];
+    }
+    
     
     if ([self backupExist]) {
         [self restoreTaskInfo];
@@ -172,11 +190,15 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 {
     [super viewWillAppear:YES];
     
+    self.timerLabel.font = self.timerLabelFont;
+    
     if (self.isFullView) {
         self.floatingButton.hidden = YES;
     } else {
         self.floatingButton.hidden = NO;
     }
+    
+    [self.taskTableView reloadData];
 }
 
 - (void)repeatTimerSetup
@@ -242,35 +264,32 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
     self.timerLabelSpacing.constant = 180.0f;
-    [UIView animateWithDuration:0.5
-                          delay:0
-         usingSpringWithDamping:0.5
-          initialSpringVelocity:0.8
-                        options:0
-                     animations:^{
-                         [self.view layoutIfNeeded];
-                         self.floatingButton.hidden = YES;
-                     } completion:^(BOOL finished) {
-                         self.startButton.hidden = NO;
-                         self.taskTitleLabel.hidden = NO;
-                         self.cycleLabel.hidden = NO;
-                         self.totalTaskTimeLabel.hidden = NO;
-                         self.editButton.hidden = NO;
-                         self.eventListButton.hidden = NO;
-                         if (!self.repeatTimer.started) {
-                             self.resetButton.hidden = YES;
-                         } else {
-                             self.resetButton.hidden = NO;
-                         }
-                         
-                         // Chcek if the timer is paused before un-hiding the skip button.
-                         if (!self.repeatTimer.isRunning) {
-                             self.skipButton.hidden = NO;
-                         } else
-                         {
-                             self.skipButton.hidden = YES;
-                         }
-                     }];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+        self.timerLabel.font = self.timerLabelFont;
+        self.floatingButton.hidden = YES;
+    } completion:^(BOOL finished) {
+        self.startButton.hidden = NO;
+        self.taskTitleLabel.hidden = NO;
+        self.cycleLabel.hidden = NO;
+        self.totalTaskTimeLabel.hidden = NO;
+        self.editButton.hidden = NO;
+        self.eventListButton.hidden = NO;
+        if (!self.repeatTimer.started) {
+            self.resetButton.hidden = YES;
+        } else {
+            self.resetButton.hidden = NO;
+        }
+        
+        // Chcek if the timer is paused before un-hiding the skip button.
+        if (!self.repeatTimer.isRunning) {
+            self.skipButton.hidden = NO;
+        } else
+        {
+            self.skipButton.hidden = YES;
+        }
+    }];
+    
     self.isFullView = YES;
     [self.listButton.imageView setImage:[UIImage imageNamed:@"menu.png"]];
 }
@@ -302,6 +321,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                      animations:^{
                          [self.view layoutIfNeeded];
                          self.floatingButton.hidden = NO;
+                         self.timerLabel.font = [self.timerLabel.font fontWithSize:50];
                      } completion:NULL];
     self.isFullView = NO;
     [self.listButton.imageView setImage:[UIImage imageNamed:@"delete.png"]];
@@ -843,7 +863,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 76.0;
+    return 70.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
