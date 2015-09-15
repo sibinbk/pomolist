@@ -79,8 +79,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 @property(strong, nonatomic) ZGCountDownTimer *repeatTimer;
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong, readonly) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -131,37 +131,22 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
     if ([[UIScreen mainScreen] bounds].size.height == 480) {
         // iPhone 4
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:90];
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
     } else if ([[UIScreen mainScreen] bounds].size.height == 568){
         // IPhone 5
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:100];
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
     } else if ([[UIScreen mainScreen] bounds].size.height == 667) {
         // iPhone 6
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:120];
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:100];
     } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
         // iPhone 6+
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:130];
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:110];
     } else {
         // iPad
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:150];
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:120];
     }
     
-    
-    if ([self backupExist]) {
-        [self restoreTaskInfo];
-        self.taskTitleLabel.text = self.taskName;
-    } else {
-        self.taskTitleLabel.text = @"";
-        self.taskTime = 20;
-        self.shortBreakTime = 15;
-        self.longBreakTime = 20;
-        self.repeatCount = 3;
-        self.longBreakDelay = 2;
-        self.taskColorString = @"Belize"; // Orange
-        self.shortBreakColorString = @"2C3E50"; // Dark
-        self.longBreakColorString = @"8E44AD"; // Purple
-    }
-    
+    // Add Gesture recognizer to the timer view.
     UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showListView)];
     [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
     [self.mainView addGestureRecognizer:swipeUp];
@@ -178,6 +163,22 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                                               cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
                                               otherButtonTitles:nil];
         [alert show];
+    }
+    
+    // Check if Back up task info is available.
+    if ([self backupExist]) {
+        [self restoreTaskInfo];
+        self.taskTitleLabel.text = self.taskName;
+    } else {
+        self.taskTitleLabel.text = @"Pomodoro List";
+        self.taskTime = 20;
+        self.shortBreakTime = 15;
+        self.longBreakTime = 20;
+        self.repeatCount = 3;
+        self.longBreakDelay = 2;
+        self.taskColorString = @"E74C3C"; // Alizarin
+        self.shortBreakColorString = @"2C3E50"; // Dark
+        self.longBreakColorString = @"8E44AD"; // Purple
     }
     
     self.repeatTimer = [ZGCountDownTimer countDownTimerWithIdentifier:kFLRepeatTimer];
@@ -207,6 +208,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     NSLog(@"Total count down time : %f", self.totalCountDownTime);
     
     __weak FLTimerViewController *weakSelf = self;
+    
     [self.repeatTimer setupCountDownForTheFirstTime:^(ZGCountDownTimer *timer) {
         timer.taskTime = weakSelf.taskTime;
         timer.shortBreakTime = weakSelf.shortBreakTime;
