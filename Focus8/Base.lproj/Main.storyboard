@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Timer View Controller-->
@@ -21,13 +22,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOQ-vB-fhb">
-                                        <rect key="frame" x="252" y="150" width="98" height="58"/>
+                                        <rect key="frame" x="252" y="182" width="98" height="58"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="50"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUD-rg-Ftj" customClass="DesignableButton" customModule="Focus8" customModuleProvider="target">
-                                        <rect key="frame" x="40" y="333" width="60" height="30"/>
+                                        <rect key="frame" x="40" y="387" width="60" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Vkn-40-JoC"/>
                                             <constraint firstAttribute="width" constant="60" id="vuM-EQ-bkN"/>
@@ -53,7 +54,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0XI-tj-U9C" customClass="DesignableButton" customModule="Focus8" customModuleProvider="target">
-                                        <rect key="frame" x="260" y="308" width="80" height="80"/>
+                                        <rect key="frame" x="260" y="362" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="VYN-t5-Ibh"/>
                                             <constraint firstAttribute="height" constant="80" id="j5f-Ke-fJB"/>
@@ -172,7 +173,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZS-7O-ZJV" customClass="DesignableButton" customModule="Focus8" customModuleProvider="target">
-                                        <rect key="frame" x="500" y="333" width="60" height="30"/>
+                                        <rect key="frame" x="500" y="387" width="60" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="XY2-8v-gBh"/>
                                             <constraint firstAttribute="height" constant="30" id="p64-Zp-gzv"/>
@@ -212,17 +213,17 @@
                                     <constraint firstAttribute="centerX" secondItem="0XI-tj-U9C" secondAttribute="centerX" id="Efa-gT-urn"/>
                                     <constraint firstItem="tUD-rg-Ftj" firstAttribute="leading" secondItem="8tI-AJ-575" secondAttribute="leading" constant="40" id="EqX-e1-LcT"/>
                                     <constraint firstAttribute="trailing" secondItem="gRg-ux-jgo" secondAttribute="trailing" constant="20" id="LTK-dU-ojh"/>
+                                    <constraint firstItem="0XI-tj-U9C" firstAttribute="centerY" secondItem="8tI-AJ-575" secondAttribute="bottom" multiplier="0.67" id="SlF-bD-HK1"/>
                                     <constraint firstAttribute="centerX" secondItem="MOQ-vB-fhb" secondAttribute="centerX" id="XKI-x0-4UJ"/>
                                     <constraint firstItem="cDM-OH-ZrW" firstAttribute="leading" secondItem="8tI-AJ-575" secondAttribute="leading" constant="20" symbolic="YES" id="Xh6-sZ-ITB"/>
                                     <constraint firstItem="0XI-tj-U9C" firstAttribute="centerY" secondItem="MZS-7O-ZJV" secondAttribute="centerY" id="Y4z-qq-xGg"/>
                                     <constraint firstAttribute="bottom" secondItem="yGN-t0-a6M" secondAttribute="bottom" constant="20" symbolic="YES" id="Ytf-zy-jpY"/>
-                                    <constraint firstItem="MOQ-vB-fhb" firstAttribute="top" secondItem="8tI-AJ-575" secondAttribute="top" constant="150" id="Zhh-zS-EQs"/>
+                                    <constraint firstItem="MOQ-vB-fhb" firstAttribute="centerY" secondItem="8tI-AJ-575" secondAttribute="bottom" multiplier="0.35" id="Zhh-zS-EQs"/>
                                     <constraint firstItem="0zh-K1-iqw" firstAttribute="top" secondItem="8tI-AJ-575" secondAttribute="top" constant="30" id="cRI-lS-WKe"/>
                                     <constraint firstItem="4cn-rr-cnt" firstAttribute="top" secondItem="8tI-AJ-575" secondAttribute="top" constant="30" id="fgN-t7-9Ob"/>
                                     <constraint firstItem="0zh-K1-iqw" firstAttribute="leading" secondItem="8tI-AJ-575" secondAttribute="leading" constant="16" id="kQ8-9A-36P"/>
                                     <constraint firstAttribute="bottom" secondItem="cDM-OH-ZrW" secondAttribute="bottom" constant="20" symbolic="YES" id="mh1-1Z-i5H"/>
                                     <constraint firstItem="HDU-a9-fSk" firstAttribute="top" secondItem="8tI-AJ-575" secondAttribute="top" constant="27" id="ryT-rl-ABm"/>
-                                    <constraint firstItem="0XI-tj-U9C" firstAttribute="top" secondItem="MOQ-vB-fhb" secondAttribute="bottom" constant="100" id="umN-VQ-yYc"/>
                                     <constraint firstItem="Mpw-xM-7LZ" firstAttribute="top" secondItem="0zh-K1-iqw" secondAttribute="bottom" constant="20" id="zBQ-wE-KQW"/>
                                 </constraints>
                             </view>

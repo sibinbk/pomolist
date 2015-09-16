@@ -265,7 +265,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 {
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
-    self.timerLabelSpacing.constant = 180.0f;
+    self.timerLabelSpacing.constant = 0.0f;
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
         self.timerLabel.font = self.timerLabelFont;
