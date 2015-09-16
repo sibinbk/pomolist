@@ -92,79 +92,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     [super viewDidLoad];
     
-    self.taskTableView.emptyDataSetSource = self;
-    self.taskTableView.emptyDataSetDelegate = self;
-    
-    // A little trick for removing the cell separators
-    self.taskTableView.tableFooterView = [UIView new];
-    
-    // Timerview handling.
-    self.isFullView = YES;
-    self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
-
-    // Add Floating button to add new tasks.
-    self.floatingButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)/2 - 30, CGRectGetHeight(self.view.frame) - 80 , 60, 60)];
-    self.floatingButton.cornerRadius = 30;
-    self.floatingButton.backgroundColor = [UIColor flatPeterRiverColor];
-    self.floatingButton.shadowColor = [UIColor grayColor];
-    self.floatingButton.shadowRadius = 2;
-    self.floatingButton.shadowOffsetY = 1;
-    self.floatingButton.shadowOpacity = 3;
-    [self.floatingButton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
-    [self.floatingButton addTarget:self action:@selector(addNewTask) forControlEvents:UIControlEventTouchUpInside];
-    self.floatingButton.hidden = YES;
-    [self.view addSubview:self.floatingButton];
-    
-    // Read Screen Lock Prevent status from UserDefaults.
-    [self restoreSettingsInfo];
-
-    /* Date formatter for reminder
-     
-    //Setup date formatter
-    self.formatter = [[NSDateFormatter alloc] init];
-    NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM dd 'at' h:mm a" options:0 locale:[NSLocale currentLocale]];
-    [self.formatter setDateFormat:format];
-     */
-    
-    
-    // Adjust Timer label font size depends up on the device screen size.
-
-    if ([[UIScreen mainScreen] bounds].size.height == 480) {
-        // iPhone 4
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
-    } else if ([[UIScreen mainScreen] bounds].size.height == 568){
-        // IPhone 5
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
-    } else if ([[UIScreen mainScreen] bounds].size.height == 667) {
-        // iPhone 6
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:100];
-    } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
-        // iPhone 6+
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:110];
-    } else {
-        // iPad
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:120];
-    }
-    
-    // Add Gesture recognizer to the timer view.
-    UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showListView)];
-    [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
-    [self.mainView addGestureRecognizer:swipeUp];
-    
-    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeListView)];
-    [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
-    [self.mainView addGestureRecognizer:swipeDown];
-    
-    NSError *error = nil;
-    if (![[self fetchedResultsController] performFetch:&error]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error in loading data", @"Error in loading data")
-                                                        message:[NSString stringWithFormat:NSLocalizedString(@"Error was: %@, quitting.", @"Error was: %@, quitting."), [error localizedDescription]]
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
-    
     // Check if Back up task info is available.
     if ([self backupExist]) {
         [self restoreTaskInfo];
@@ -180,11 +107,47 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.shortBreakColorString = @"2C3E50"; // Dark
         self.longBreakColorString = @"8E44AD"; // Purple
     }
-    
+
     self.repeatTimer = [ZGCountDownTimer countDownTimerWithIdentifier:kFLRepeatTimer];
     self.repeatTimer.delegate = self;
     
-    [self repeatTimerSetup];
+    [self setUpRepeatTimer];
+    
+    self.taskTableView.emptyDataSetSource = self;
+    self.taskTableView.emptyDataSetDelegate = self;
+    
+    // A little trick for removing the cell separators
+    self.taskTableView.tableFooterView = [UIView new];
+    
+    // Timerview handling.
+    self.isFullView = YES;
+    self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
+    
+    // Read Screen Lock Prevent status from UserDefaults.
+    [self restoreSettingsInfo];
+
+    /* Date formatter for reminder
+     
+    //Setup date formatter
+    self.formatter = [[NSDateFormatter alloc] init];
+    NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM dd 'at' h:mm a" options:0 locale:[NSLocale currentLocale]];
+    [self.formatter setDateFormat:format];
+     */
+    
+    // Add Floating button to add new tasks.
+    [self createAddTaskButton];
+    
+    // Adjust Timer label font size depends up on the device screen size.
+    [self setUpTimerLabelFont];
+    
+    // Add Gesture recognizer to the timer view.
+    [self setUpGestures];
+    
+    // Fetch Task list from CoreData.
+    [self loadTaskListFromStore];
+    
+    // Set TimerView Interface
+    [self setUpTimerViewInterface];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -202,7 +165,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     [self.taskTableView reloadData];
 }
 
-- (void)repeatTimerSetup
+#pragma mark - Repeat timer set up.
+
+- (void)setUpRepeatTimer
 {
     self.totalCountDownTime = [self calculateTotalCountDownTime:self.repeatCount];
     NSLog(@"Total count down time : %f", self.totalCountDownTime);
@@ -219,7 +184,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     } restoreFromBackUp:^(ZGCountDownTimer *timer) {
         NSLog(@"Restores from ZGCountDown backup");
     }];
-    
+}
+
+#pragma mark - Timer view UI set up.
+
+- (void)setUpTimerViewInterface
+{
     if (!self.repeatTimer.isRunning) {
         if (!self.repeatTimer.started) {
             [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
@@ -241,6 +211,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
 }
 
+
 - (NSTimeInterval)calculateTotalCountDownTime:(NSInteger)repeatCount
 {
     int longBreakCount = 0;
@@ -257,6 +228,58 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     NSLog(@"Total Time = %f", totalTime);
     
     return totalTime;
+}
+
+#pragma mark - Timer Label Font size setter method.
+
+- (void)setUpTimerLabelFont
+{
+    if ([[UIScreen mainScreen] bounds].size.height == 480) {
+        // iPhone 4
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
+    } else if ([[UIScreen mainScreen] bounds].size.height == 568){
+        // IPhone 5
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
+    } else if ([[UIScreen mainScreen] bounds].size.height == 667) {
+        // iPhone 6
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:100];
+    } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
+        // iPhone 6+
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:110];
+    } else {
+        // iPad
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:120];
+    }
+}
+
+#pragma mark - Floating button for adding new task.
+
+- (void)createAddTaskButton
+{
+    self.floatingButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)/2 - 30, CGRectGetHeight(self.view.frame) - 80 , 60, 60)];
+    self.floatingButton.cornerRadius = 30;
+    self.floatingButton.backgroundColor = [UIColor flatPeterRiverColor];
+    self.floatingButton.shadowColor = [UIColor grayColor];
+    self.floatingButton.shadowRadius = 2;
+    self.floatingButton.shadowOffsetY = 1;
+    self.floatingButton.shadowOpacity = 3;
+    [self.floatingButton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
+    [self.floatingButton addTarget:self action:@selector(addNewTask) forControlEvents:UIControlEventTouchUpInside];
+    self.floatingButton.hidden = YES;
+    [self.view addSubview:self.floatingButton];
+}
+
+#pragma mark - Gestures for animation
+
+- (void)setUpGestures
+{
+    UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showListView)];
+    [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
+    [self.mainView addGestureRecognizer:swipeUp];
+    
+    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeListView)];
+    [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self.mainView addGestureRecognizer:swipeDown];
 }
 
 # pragma mark - View handling methods.
@@ -849,6 +872,21 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     NSLog(@"Empty dataset button pressed");
 }
 
+#pragma mark - Fetched results controller performFetch method.
+
+- (void)loadTaskListFromStore
+{
+    NSError *error = nil;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error in loading data", @"Error in loading data")
+                                                        message:[NSString stringWithFormat:NSLocalizedString(@"Error was: %@, quitting.", @"Error was: %@, quitting."), [error localizedDescription]]
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -976,7 +1014,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         [self backUpTaskInfo];
         
         [self.repeatTimer resetTimer]; // Stops previous task without saving the event details.
-        [self repeatTimerSetup];
+        [self setUpRepeatTimer];
+        [self setUpTimerViewInterface];
     } else {
         NSLog(@"Same task selected");
         [self closeListView];
@@ -1185,7 +1224,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.repeatCount = 0;
     self.longBreakDelay = 0;
     
-    [self repeatTimerSetup];
+    [self setUpRepeatTimer];
+    
+    [self setUpTimerViewInterface];
     
     self.taskTitleLabel.text = @"";
 }
@@ -1264,7 +1305,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     if (changed) {
         [self resetTimer:nil];
-        [self repeatTimerSetup];
+        [self setUpRepeatTimer];
+        [self setUpTimerViewInterface];
     }
 }
 
