@@ -108,11 +108,18 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.longBreakColorString = @"8E44AD"; // Purple
     }
 
+    // Set Repeat timer.
     self.repeatTimer = [ZGCountDownTimer countDownTimerWithIdentifier:kFLRepeatTimer];
     self.repeatTimer.delegate = self;
-    
     [self setUpRepeatTimer];
     
+    // Read Screen Lock Prevent status from UserDefaults.
+    [self restoreSettingsInfo];
+    
+    // Fetch Task list from CoreData.
+    [self loadTaskListFromStore];
+
+    // Set EmptyDataSet delegate & datasource.
     self.taskTableView.emptyDataSetSource = self;
     self.taskTableView.emptyDataSetDelegate = self;
     
@@ -122,18 +129,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     // Timerview handling.
     self.isFullView = YES;
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
-    
-    // Read Screen Lock Prevent status from UserDefaults.
-    [self restoreSettingsInfo];
 
-    /* Date formatter for reminder
-     
-    //Setup date formatter
-    self.formatter = [[NSDateFormatter alloc] init];
-    NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM dd 'at' h:mm a" options:0 locale:[NSLocale currentLocale]];
-    [self.formatter setDateFormat:format];
-     */
-    
     // Add Floating button to add new tasks.
     [self createAddTaskButton];
     
@@ -143,11 +139,16 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     // Add Gesture recognizer to the timer view.
     [self setUpGestures];
     
-    // Fetch Task list from CoreData.
-    [self loadTaskListFromStore];
-    
     // Set TimerView Interface
     [self setUpTimerViewInterface];
+    
+    /* Date formatter for reminder
+     
+     //Setup date formatter
+     self.formatter = [[NSDateFormatter alloc] init];
+     NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM dd 'at' h:mm a" options:0 locale:[NSLocale currentLocale]];
+     [self.formatter setDateFormat:format];
+     */
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -186,6 +187,24 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }];
 }
 
+- (NSTimeInterval)calculateTotalCountDownTime:(NSInteger)repeatCount
+{
+    int longBreakCount = 0;
+    
+    // No. of breaks will be always 1 less than task sessions.
+    int totalBreakCount = (int)(repeatCount - 1);
+    
+    if (self.longBreakDelay > 0) {
+        longBreakCount = totalBreakCount / self.longBreakDelay;
+        NSLog(@"Long break count : %d", longBreakCount);
+    }
+    
+    NSTimeInterval totalTime = (self.taskTime * repeatCount) + (self.longBreakTime * longBreakCount) + (self.shortBreakTime * (totalBreakCount - longBreakCount));
+    NSLog(@"Total Time = %f", totalTime);
+    
+    return totalTime;
+}
+
 #pragma mark - Timer view UI set up.
 
 - (void)setUpTimerViewInterface
@@ -209,25 +228,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.resetButton.hidden = NO;
         self.skipButton.hidden = YES;
     }
-}
-
-
-- (NSTimeInterval)calculateTotalCountDownTime:(NSInteger)repeatCount
-{
-    int longBreakCount = 0;
-    
-    // No. of breaks will be always 1 less than task sessions.
-    int totalBreakCount = (int)(repeatCount - 1);
-    
-    if (self.longBreakDelay > 0) {
-        longBreakCount = totalBreakCount / self.longBreakDelay;
-        NSLog(@"Long break count : %d", longBreakCount);
-    }
-    
-    NSTimeInterval totalTime = (self.taskTime * repeatCount) + (self.longBreakTime * longBreakCount) + (self.shortBreakTime * (totalBreakCount - longBreakCount));
-    NSLog(@"Total Time = %f", totalTime);
-    
-    return totalTime;
 }
 
 #pragma mark - Timer Label Font size setter method.
@@ -321,7 +321,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 - (void)showListView
 {
     [self.view setNeedsUpdateConstraints];
-    self.timerViewHeight.constant = 80;
+    self.timerViewHeight.constant = 64;
     self.timerLabelSpacing.constant = 20.0f;
     self.startButton.hidden = YES;
     self.resetButton.hidden = YES;
@@ -346,7 +346,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                      animations:^{
                          [self.view layoutIfNeeded];
                          self.floatingButton.hidden = NO;
-                         self.timerLabel.font = [self.timerLabel.font fontWithSize:50];
+                         self.timerLabel.font = [self.timerLabel.font fontWithSize:40];
                      } completion:NULL];
     self.isFullView = NO;
     [self.listButton.imageView setImage:[UIImage imageNamed:@"delete.png"]];
