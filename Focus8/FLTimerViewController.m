@@ -70,7 +70,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
-@property (weak, nonatomic) IBOutlet UIButton *listButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *listButton;
 @property (weak, nonatomic) IBOutlet UIButton *eventListButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerLabelSpacing;
@@ -142,6 +142,10 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     // Set TimerView Interface
     [self setUpTimerViewInterface];
     
+    [[self.navigationController navigationBar] setBackgroundImage:[UIImage new]
+                             forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController navigationBar].shadowImage = [UIImage new];
+    [self.navigationController navigationBar].translucent = YES;
     /* Date formatter for reminder
      
      //Setup date formatter
@@ -280,6 +284,15 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeListView)];
     [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.mainView addGestureRecognizer:swipeDown];
+    
+    // Adds gesture recognizers to navigation bar.
+    UISwipeGestureRecognizer *navSwipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showListView)];
+    [navSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
+    [[self.navigationController navigationBar] addGestureRecognizer:navSwipeUp];
+    
+    UISwipeGestureRecognizer *navSwipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeListView)];
+    [navSwipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
+    [[self.navigationController navigationBar] addGestureRecognizer:navSwipeDown];
 }
 
 # pragma mark - View handling methods.
@@ -316,7 +329,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }];
     
     self.isFullView = YES;
-    [self.listButton.imageView setImage:[UIImage imageNamed:@"menu.png"]];
+    [self.listButton setImage:[UIImage imageNamed:@"menu.png"]];
 }
 - (void)showListView
 {
@@ -349,7 +362,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                          self.timerLabel.font = [self.timerLabel.font fontWithSize:40];
                      } completion:NULL];
     self.isFullView = NO;
-    [self.listButton.imageView setImage:[UIImage imageNamed:@"delete.png"]];
+    [self.listButton setImage:[UIImage imageNamed:@"delete.png"]];
 }
 
 - (IBAction)showTaskList:(id)sender
@@ -1276,7 +1289,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         editTaskController.taskEditing = self.isTaskEditing;
     }
     
-    if ([segue.identifier isEqualToString:@"settingsSegue"]) {
+    if ([segue.identifier isEqualToString:@"SettingsSegue"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         FLSettingsController *settingsController = (FLSettingsController *)navigationController.topViewController;
         settingsController.delegate = self;
