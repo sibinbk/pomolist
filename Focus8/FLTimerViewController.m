@@ -61,7 +61,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (assign, nonatomic) BOOL isFullView;
 @property (assign, nonatomic) BOOL isTaskEditing;
 
-@property (weak, nonatomic) IBOutlet UILabel *taskTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cycleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTaskTimeLabel;
@@ -95,9 +94,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     // Check if Back up task info is available.
     if ([self backupExist]) {
         [self restoreTaskInfo];
-        self.taskTitleLabel.text = self.taskName;
     } else {
-        self.taskTitleLabel.text = @"Pomodoro List";
+        self.taskName = @"Pomodoro List";
         self.taskTime = 20;
         self.shortBreakTime = 15;
         self.longBreakTime = 20;
@@ -159,6 +157,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 {
     [super viewWillAppear:YES];
     
+    self.navigationItem.title = self.taskName;
+
     self.timerLabel.font = self.timerLabelFont;
     
     if (self.isFullView) {
@@ -308,7 +308,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.floatingButton.hidden = YES;
     } completion:^(BOOL finished) {
         self.startButton.hidden = NO;
-        self.taskTitleLabel.hidden = NO;
+        self.navigationItem.title = self.taskName;
         self.cycleLabel.hidden = NO;
         self.totalTaskTimeLabel.hidden = NO;
         self.editButton.hidden = NO;
@@ -341,7 +341,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.skipButton.hidden = YES;
     self.editButton.hidden = YES;
     self.eventListButton.hidden = YES;
-    self.taskTitleLabel.hidden = YES;
+    self.navigationItem.title = @"";
     self.cycleLabel.hidden = YES;
     self.totalTaskTimeLabel.hidden = YES;
 //    [UIView animateWithDuration:0.5 animations:^{
@@ -1018,8 +1018,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.shortBreakColorString = newTask.shortBreakColorString;
         self.longBreakColorString = newTask.longBreakColorString;
         
-        self.taskTitleLabel.text = newTask.name;
-
+        if (self.isFullView) {
+            self.navigationItem.title = newTask.name;
+        } else {
+            self.navigationItem.title = @"";
+        }
+        
 //        if ([self backupExist]) {
 //            [self removeTaskInfoBackup];
 //        }
@@ -1241,7 +1245,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     [self setUpTimerViewInterface];
     
-    self.taskTitleLabel.text = @"";
+    self.navigationItem.title = @"Pomo List";
 }
 
 #pragma mark - Edit the task method
@@ -1314,7 +1318,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     [self backUpTaskInfo];
     
-    self.taskTitleLabel.text = task.name;
+    self.navigationItem.title = task.name;
     
     if (changed) {
         [self resetTimer:nil];

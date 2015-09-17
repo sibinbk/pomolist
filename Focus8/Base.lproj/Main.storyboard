@@ -91,12 +91,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDU-a9-fSk">
-                                        <rect key="frame" x="275" y="27" width="50" height="32"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGN-t0-a6M" customClass="DesignableButton" customModule="Focus8" customModuleProvider="target">
                                         <rect key="frame" x="540" y="540" width="40" height="40"/>
                                         <constraints>
@@ -185,7 +179,6 @@
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="600" id="0hq-9c-gJK"/>
-                                    <constraint firstAttribute="centerX" secondItem="HDU-a9-fSk" secondAttribute="centerX" id="9a3-KJ-E4f"/>
                                     <constraint firstItem="0XI-tj-U9C" firstAttribute="centerY" secondItem="tUD-rg-Ftj" secondAttribute="centerY" id="AT3-ND-IM5"/>
                                     <constraint firstAttribute="trailing" secondItem="yGN-t0-a6M" secondAttribute="trailing" constant="20" symbolic="YES" id="CJV-bZ-82i"/>
                                     <constraint firstItem="Mpw-xM-7LZ" firstAttribute="leading" secondItem="8tI-AJ-575" secondAttribute="leading" constant="20" id="Dir-Dm-hmi"/>
@@ -201,7 +194,6 @@
                                     <constraint firstItem="MOQ-vB-fhb" firstAttribute="centerY" secondItem="8tI-AJ-575" secondAttribute="bottom" multiplier="0.35" id="Zhh-zS-EQs"/>
                                     <constraint firstAttribute="bottom" secondItem="cDM-OH-ZrW" secondAttribute="bottom" constant="20" symbolic="YES" id="mh1-1Z-i5H"/>
                                     <constraint firstItem="MZS-7O-ZJV" firstAttribute="centerX" secondItem="8tI-AJ-575" secondAttribute="centerX" multiplier="1.5" constant="20" id="myE-up-Qy7"/>
-                                    <constraint firstItem="HDU-a9-fSk" firstAttribute="top" secondItem="8tI-AJ-575" secondAttribute="top" constant="27" id="ryT-rl-ABm"/>
                                     <constraint firstItem="gRg-ux-jgo" firstAttribute="top" secondItem="8tI-AJ-575" secondAttribute="top" constant="84" id="sk4-DH-nee"/>
                                 </constraints>
                             </view>
@@ -343,7 +335,6 @@
                         <outlet property="skipButton" destination="MZS-7O-ZJV" id="sAA-Lj-Mro"/>
                         <outlet property="startButton" destination="0XI-tj-U9C" id="Eur-ru-Ou6"/>
                         <outlet property="taskTableView" destination="44o-3T-Kie" id="ryD-eF-9rM"/>
-                        <outlet property="taskTitleLabel" destination="HDU-a9-fSk" id="uGg-sd-On0"/>
                         <outlet property="timerLabel" destination="MOQ-vB-fhb" id="3Ll-jL-9UV"/>
                         <outlet property="timerLabelSpacing" destination="Zhh-zS-EQs" id="YKV-QO-pjq"/>
                         <outlet property="timerViewHeight" destination="0hq-9c-gJK" id="z60-D4-yIH"/>
@@ -1507,6 +1498,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.17254901959999999" green="0.47215137800000001" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
