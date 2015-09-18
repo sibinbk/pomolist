@@ -1293,7 +1293,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.navigationItem.title = task.name;
     
     if (changed) {
-        [self resetTimer:nil];
+        [self.repeatTimer resetTimer];
         [self setUpRepeatTimer];
         [self setUpTimerViewInterface];
     }
