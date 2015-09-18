@@ -111,7 +111,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.repeatTimer.delegate = self;
     [self setUpRepeatTimer];
     
-    // Read Screen Lock Prevent status from UserDefaults.
+    // Read settings info from UserDefaults.
     [self restoreSettingsInfo];
     
     // Fetch Task list from CoreData.
@@ -144,6 +144,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                              forBarMetrics:UIBarMetricsDefault];
     [self.navigationController navigationBar].shadowImage = [UIImage new];
     [self.navigationController navigationBar].translucent = YES;
+    
     /* Date formatter for reminder
      
      //Setup date formatter
@@ -907,18 +908,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     cell.delegate = self;
     
-    //configure left buttons
-    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"edit.png"] backgroundColor:[UIColor colorWithRed:1.0 green:149/255.0 blue:0.05 alpha:1.0] padding:25]];
-    cell.leftSwipeSettings.transition = MGSwipeTransitionDrag;
-    cell.leftExpansion.buttonIndex = 0;
-//    cell.leftExpansion.fillOnTrigger = YES;
-    
-    //configure right buttons
-    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"delete.png"] backgroundColor:[UIColor redColor] padding:25]];
-    cell.rightSwipeSettings.transition = MGSwipeTransitionDrag;
-    cell.rightExpansion.buttonIndex = 0;
-//    cell.rightExpansion.fillOnTrigger = YES;
-    
     return cell;
 }
 
@@ -944,6 +933,18 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     } else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
+    
+    //configure left buttons
+    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"edit.png"] backgroundColor:[UIColor colorWithRed:1.0 green:149/255.0 blue:0.05 alpha:1.0] padding:25]];
+    cell.leftSwipeSettings.transition = MGSwipeTransitionDrag;
+    cell.leftExpansion.buttonIndex = 0;
+    //    cell.leftExpansion.fillOnTrigger = YES;
+    
+    //configure right buttons
+    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"delete.png"] backgroundColor:[UIColor redColor] padding:25]];
+    cell.rightSwipeSettings.transition = MGSwipeTransitionDrag;
+    cell.rightExpansion.buttonIndex = 0;
+    //    cell.rightExpansion.fillOnTrigger = YES;
 }
 
 #pragma mark - TableView Delegate methods.
@@ -1008,6 +1009,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         [self.repeatTimer resetTimer]; // Stops previous task without saving the event details.
         [self setUpRepeatTimer];
         [self setUpTimerViewInterface];
+        [self closeListView];
     } else {
         NSLog(@"Same task selected");
         [self closeListView];
