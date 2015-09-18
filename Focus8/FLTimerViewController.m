@@ -433,8 +433,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         
         return;
     }
-
-    //GCD to avoid blocking UI while cancelling local notifications.
+    
+    //GCD to avoid blocking UI while cancelling local notifications. Required only when Reminder notifications are available.
     if (self.repeatTimer.isRunning) {
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSLog(@"Cancel Timer notification during reset");
@@ -444,16 +444,10 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
     [self.repeatTimer stopCountDown];
     
+    NSLog(@"Stopss");
     [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
     self.resetButton.hidden = YES;
-    
-    // Chcek if it fullview before un-hiding the skip button.
-    if (![self isFullView]) {
-        self.skipButton.hidden = YES;
-    } else
-    {
-        self.skipButton.hidden = NO;
-    }
+    self.skipButton.hidden = NO;
 }
 
 - (IBAction)skipTimer:(id)sender
@@ -471,11 +465,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
     [self.repeatTimer skipCountDown];
     
-    if (!self.repeatTimer.started) {
-        self.resetButton.hidden = YES;
-    } else {
-        self.resetButton.hidden = NO;
-    }
+    // Make Reset button visible if the timer started.
+    self.resetButton.hidden = !self.repeatTimer.started;
 }
 
 #pragma mark - schedule local notifications.
@@ -636,23 +627,19 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 - (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time
 {
-//    NSArray *taskArray = [self currentSelectedTask];
-    [self saveEventOfTask:[self currentSelectedTask] withTotalTime:time];
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"TASK FINISHED");
         self.resetButton.hidden = YES;
         self.skipButton.hidden = NO;
         // Set start button title to 'START' after finishing timer.
-       [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+        [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+        // Show task completion alert.
+        [alert showSuccess:self title:@"Well Done" subTitle:@"Task completed" closeButtonTitle:@"Done" duration:0.0f];
     });
-    
-//    self.resetButton.hidden = YES;
-//    self.skipButton.hidden = NO;
-//    // Set start button title to 'START' after finishing timer.
-//    [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
-        
-    SCLAlertView *alert = [[SCLAlertView alloc] init];
-    [alert showSuccess:self title:@"Well Done" subTitle:@"Task completed" closeButtonTitle:@"Done" duration:0.0f];
+
+    [self saveEventOfTask:[self currentSelectedTask] withTotalTime:time];
 }
 
 - (void)countDownCycleChanged:(ZGCountDownTimer *)sender cycle:(CountDownCycleType)newCycle withTaskCount:(NSInteger)count
@@ -681,20 +668,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     [UIView animateWithDuration:0.5 animations:^{
         self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
     }];
-}
-
-- (void)countDownCompleted:(ZGCountDownTimer *)sender {
-    self.resetButton.hidden = YES;
-    self.skipButton.hidden = NO;
-//     Set start button title to 'START' after finishing timer.
-    [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Task Completed"
-                                                        message:@"Count down completed"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Dismiss"
-                                              otherButtonTitles:nil];
-    [alertView show];
-    
 }
 
 - (void)taskSessionCompleted:(ZGCountDownTimer *)sender

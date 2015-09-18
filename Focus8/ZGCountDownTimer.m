@@ -233,9 +233,6 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
                 [self.delegate taskFinished:self totalTaskTime:(self.completedTaskTime - self.skippedTaskTime)];
             }
             [self resetTimer];
-//            if ([self.delegate respondsToSelector:@selector(countDownCompleted:)]) {
-//                [self.delegate countDownCompleted:self];
-//            }
         } else {
             NSTimeInterval newTimePassed = round([self calcuateTimePassed]);
             NSLog(@"New TimePassed : %f", newTimePassed);
@@ -248,9 +245,6 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
             } else {
                 if (newTimePassed >= self.totalCountDownTime){
                     // Condition becomes true if the Countdown time finishes when the App is either in background or quit.
-//                    if ([self.delegate respondsToSelector:@selector(countDownCompleted:)]) {
-//                        [self.delegate countDownCompleted:self];
-//                    }
                     if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:)]) {
                         [self.delegate taskFinished:self totalTaskTime:(self.taskTime * self.repeatCount - self.skippedTaskTime)];
                     }
