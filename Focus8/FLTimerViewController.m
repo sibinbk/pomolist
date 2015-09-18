@@ -215,12 +215,13 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 {
     if (!self.repeatTimer.isRunning) {
         if (!self.repeatTimer.started) {
-            [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
             self.resetButton.hidden = YES;
         } else {
-            [self.startButton setTitle:@"Resume" forState:UIControlStateNormal];
             self.resetButton.hidden = NO;
         }
+        
+        [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+        
         // Chcek if it fullview before un-hiding the skip button.
         if (![self isFullView]) {
             self.skipButton.hidden = YES;
@@ -228,7 +229,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
             self.skipButton.hidden = NO;
         }
     } else {
-        [self.startButton setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.startButton setImage:[UIImage imageNamed:@"PauseFilled.png"] forState:UIControlStateNormal];
         self.resetButton.hidden = NO;
         self.skipButton.hidden = YES;
     }
@@ -391,7 +392,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     if (![self.repeatTimer isRunning]) {
         [self.repeatTimer startCountDown];
-        [self.startButton setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.startButton setImage:[UIImage imageNamed:@"PauseFilled.png"] forState:UIControlStateNormal];
         self.resetButton.hidden = NO;
         self.skipButton.hidden = YES;
 
@@ -403,12 +404,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     } else {
         [self.repeatTimer pauseCountDown];
         if (!self.repeatTimer.started) {
-            [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
             self.resetButton.hidden = YES;
         } else {
-            [self.startButton setTitle:@"Resume" forState:UIControlStateNormal];
             self.resetButton.hidden = NO;
         }
+        
+        [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
         
         self.skipButton.hidden = NO;
 
@@ -442,7 +443,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
 
     [self.repeatTimer stopCountDown];
-    [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
+    
+    [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
     self.resetButton.hidden = YES;
     
     // Chcek if it fullview before un-hiding the skip button.
@@ -641,7 +643,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.resetButton.hidden = YES;
         self.skipButton.hidden = NO;
         // Set start button title to 'START' after finishing timer.
-        [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
+       [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
     });
     
 //    self.resetButton.hidden = YES;
@@ -685,7 +687,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.resetButton.hidden = YES;
     self.skipButton.hidden = NO;
 //     Set start button title to 'START' after finishing timer.
-    [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
+    [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Task Completed"
                                                         message:@"Count down completed"
                                                        delegate:nil
