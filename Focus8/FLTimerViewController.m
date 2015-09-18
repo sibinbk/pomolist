@@ -971,45 +971,33 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         }
 
         //Get currently selected task.
-        Task *oldTask = [self currentSelectedTask];
+        Task *currentTask = [self currentSelectedTask];
         
-        if (!oldTask) {
+        if (!currentTask) {
             newTask.isSelected = @YES;
             NSLog(@"No task was selected. It is a new task.");
         } else {
-            oldTask.isSelected = @NO;
+            currentTask.isSelected = @NO;
             newTask.isSelected = @YES;
             NSLog(@"Old task selection is replaced with new selection");
         }
         
-        [self saveContext];
-        
-        self.taskName = newTask.name;
-        self.taskTime = [newTask.taskTime integerValue];
-        self.shortBreakTime = [newTask.shortBreakTime integerValue];
-        self.longBreakTime = [newTask.longBreakTime integerValue];
-        self.repeatCount = [newTask.repeatCount integerValue];
-        self.longBreakDelay = [newTask.longBreakDelay integerValue];
-        self.taskColorString = newTask.taskColorString;
-        self.shortBreakColorString = newTask.shortBreakColorString;
-        self.longBreakColorString = newTask.longBreakColorString;
-        
+        // Change and save new task details.
+        [self changeTaskDetails:newTask];
+
         if (self.isFullView) {
             self.navigationItem.title = newTask.name;
         } else {
             self.navigationItem.title = @"";
         }
         
-//        if ([self backupExist]) {
-//            [self removeTaskInfoBackup];
-//        }
-        
-        [self backUpTaskInfo];
+        // Store selected task info.
+        [self saveContext];
         
         [self.repeatTimer resetTimer]; // Stops previous task without saving the event details.
         [self setUpRepeatTimer];
         [self setUpTimerViewInterface];
-        [self closeListView];
+//        [self closeListView];
     } else {
         NSLog(@"Same task selected");
         [self closeListView];
@@ -1025,6 +1013,21 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     NSArray *tasks = [self.managedObjectContext executeFetchRequest:request error:&error];
     
     return [tasks lastObject];
+}
+
+- (void)changeTaskDetails:(Task *)task
+{
+    self.taskName = task.name;
+    self.taskTime = [task.taskTime integerValue];
+    self.shortBreakTime = [task.shortBreakTime integerValue];
+    self.longBreakTime = [task.longBreakTime integerValue];
+    self.repeatCount = [task.repeatCount integerValue];
+    self.longBreakDelay = [task.longBreakDelay integerValue];
+    self.taskColorString = task.taskColorString;
+    self.shortBreakColorString = task.shortBreakColorString;
+    self.longBreakColorString = task.longBreakColorString;
+    
+    [self backUpTaskInfo];
 }
 
 #pragma mark - Coredata Context save method.
@@ -1201,10 +1204,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
 }
 
-#pragma mark - Reset Task Timer
+#pragma mark - Resets Task Timer upon task deletion.
+
 - (void)resetTaskTimer
 {
-    // Deletes without calling TaskFinished Delegate.
+    // Resets timer without calling TaskFinished Delegate when a running task is deleted.
+    
     [self.repeatTimer resetTimer];
     
     if ([self backupExist]) {
@@ -1255,7 +1260,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 {
     self.isTaskEditing = NO;
     [self performSegueWithIdentifier:@"EditTaskSegue" sender:nil];
-    
 }
 
 #pragma mark - Segue handling methods.
@@ -1283,17 +1287,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 - (void)taskController:(FLEditTaskController *)controller didChangeTask:(Task *)task withTimerValue:(BOOL)changed
 {
     NSLog(@"task delegate called");
-    self.taskName = task.name;
-    self.taskTime = [task.taskTime integerValue];
-    self.shortBreakTime = [task.shortBreakTime integerValue];
-    self.longBreakTime = [task.longBreakTime integerValue];
-    self.repeatCount = [task.repeatCount integerValue];
-    self.longBreakDelay = [task.longBreakDelay integerValue];
-    self.taskColorString = task.taskColorString;
-    self.shortBreakColorString = task.shortBreakColorString;
-    self.longBreakColorString = task.longBreakColorString;
     
-    [self backUpTaskInfo];
+    [self changeTaskDetails:task];
     
     self.navigationItem.title = task.name;
     
