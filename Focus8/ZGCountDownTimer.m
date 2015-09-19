@@ -20,6 +20,7 @@
 #define kZGCycleFinishTime                  @"cycleFinishTime"
 #define kZGRepeatCount                      @"repeatCount"
 #define kZGTaskCount                        @"taskCount"
+#define kZGCompletedTaskCount               @"completedTaskCount"
 #define kZGTimerCycleCount                  @"timerCycleCount"
 #define kZGLongBreakDelay                   @"longBreakDelay"
 #define kZGCountDownCycle                   @"countDownCycle"
@@ -39,6 +40,7 @@
 @property (nonatomic) BOOL countDownRunning;
 @property (nonatomic) BOOL cycleChanged;
 @property (nonatomic) BOOL checkCycleChangeDelegate;
+@property (nonatomic) NSInteger completedTaskCount;
 
 @end
 
@@ -206,6 +208,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
     self.timePassed = self.cycleFinishTime;
     
     [self skipToNextCycle];
+    
     if (self.cycleFinishTime > self.totalCountDownTime) {
         if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:)]) {
             [self.delegate taskFinished:self totalTaskTime:(self.completedTaskTime - self.skippedTaskTime)];
@@ -284,6 +287,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
         case ShortBreakCycle:
             self.cycleType = TaskCycle;
             self.taskCount++;
+            self.completedTaskCount++;
             self.timerCycleCount++;
             self.cycleFinishTime += self.taskTime;
             self.completedBreakTime += self.shortBreakTime;
@@ -293,6 +297,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
         case LongBreakCycle:
             self.cycleType = TaskCycle;
             self.taskCount++;
+            self.completedTaskCount++;
             self.timerCycleCount++;
             self.cycleFinishTime += self.taskTime;
             self.completedBreakTime += self.longBreakTime;
@@ -321,6 +326,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
         case ShortBreakCycle:
             self.cycleType = TaskCycle;
             self.taskCount++;
+//            self.completedTaskCount++;
             self.timerCycleCount++;
             self.cycleFinishTime += self.taskTime;
             self.completedBreakTime += self.shortBreakTime;
@@ -328,6 +334,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
         case LongBreakCycle:
             self.cycleType = TaskCycle;
             self.taskCount++;
+//            self.completedTaskCount++;
             self.timerCycleCount++;
             self.cycleFinishTime += self.taskTime;
             self.completedBreakTime += self.longBreakTime;
@@ -384,6 +391,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
     self.checkCycleChangeDelegate = YES;
     self.cycleChanged = NO;
     self.taskCount = 1;
+    self.completedTaskCount = 0;
     self.timerCycleCount = 1;
     [self notifyDelegateWithPassedTime:0 ofCycleFinishTime:self.taskTime];
 }
@@ -459,6 +467,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
              kZGSkippedTaskTime: [NSNumber numberWithDouble:self.skippedTaskTime],
              kZGRepeatCount: [NSNumber numberWithInteger:self.repeatCount],
              kZGTaskCount: [NSNumber numberWithInteger:self.taskCount],
+             kZGCompletedTaskCount: [NSNumber numberWithInteger:self.completedTaskCount],
              kZGTimerCycleCount: [NSNumber numberWithInteger:self.timerCycleCount],
              kZGLongBreakDelay : [NSNumber numberWithInteger:self.longBreakDelay],
              kZGCountDownCycle: [NSNumber numberWithInt:self.cycleType],
@@ -481,6 +490,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
     self.skippedTaskTime = [[timerInfo valueForKey:kZGSkippedTaskTime] doubleValue];
     self.repeatCount = [[timerInfo valueForKey:kZGRepeatCount] integerValue];
     self.taskCount = [[timerInfo valueForKey:kZGTaskCount] integerValue];
+    self.completedTaskCount = [[timerInfo valueForKey:kZGCompletedTaskCount] integerValue];
     self.timerCycleCount = [[timerInfo valueForKey:kZGTimerCycleCount] integerValue];
     self.longBreakDelay = [[timerInfo valueForKey:kZGLongBreakDelay] integerValue];
     self.cycleType = [[timerInfo valueForKey:kZGCountDownCycle] intValue];

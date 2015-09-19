@@ -64,6 +64,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cycleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTaskTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sessionCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
@@ -312,6 +313,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.startButton.hidden = NO;
         self.navigationItem.title = self.taskName;
         self.cycleLabel.hidden = NO;
+        self.sessionCountLabel.hidden = NO;
         self.totalTaskTimeLabel.hidden = NO;
         self.editButton.hidden = NO;
         self.eventListButton.hidden = NO;
@@ -345,6 +347,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.eventListButton.hidden = YES;
     self.navigationItem.title = @"";
     self.cycleLabel.hidden = YES;
+    self.sessionCountLabel.hidden = YES;
     self.totalTaskTimeLabel.hidden = YES;
 //    [UIView animateWithDuration:0.5 animations:^{
 //        [self.view layoutIfNeeded];
@@ -623,7 +626,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 - (void)taskTimeUpdated:(ZGCountDownTimer *)sender totalTime:(NSTimeInterval)time
 {
-    self.totalTaskTimeLabel.text = [self getDateStringForTimeInterval:time];
+    self.totalTaskTimeLabel.text = [self stringifyTotalTime:(int)time usingLongFormat:NO];
 }
 
 - (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time
@@ -666,6 +669,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
     
     self.cycleLabel.text = cycleTitle;
+    self.sessionCountLabel.text = [NSString stringWithFormat:@"%ld/%ld", (count - 1), (long) self.repeatCount];
+    
     [UIView animateWithDuration:0.5 animations:^{
         self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
     }];
@@ -1387,9 +1392,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         }
     } else {
         if (hours > 0) {
-            return [NSString stringWithFormat:@"%02i:%02i", hours, minutes];
+            return [NSString stringWithFormat:@"%ih %im", hours, minutes];
         } else {
-            return [NSString stringWithFormat:@"%02i", minutes];
+            return [NSString stringWithFormat:@"%im", minutes];
         }
     }
 }

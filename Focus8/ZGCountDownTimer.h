@@ -103,7 +103,7 @@ typedef NS_ENUM(NSInteger, CountDownCycleType) {
 /** total time required to finish upto current cycle */
 @property (nonatomic) NSTimeInterval cycleFinishTime;
 
-/** no. of completed task cycles. */
+/** Current task session number */
 @property (nonatomic) NSInteger taskCount;
 
 /** total no. of compled cycles. */
