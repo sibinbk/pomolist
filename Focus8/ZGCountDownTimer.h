@@ -40,11 +40,8 @@ typedef NS_ENUM(NSInteger, CountDownCycleType) {
 
 - (void)longBreakCompleted:(ZGCountDownTimer *)sender;
 
-// Delegate method for Cycle change notification and view colour change.
-- (void)countDownCycleChanged:(ZGCountDownTimer *)sender cycle:(CountDownCycleType)newCycle withTaskCount:(NSInteger)count;
-
-// Delegate method for Completed Task time.
-- (void)taskTimeUpdated:(ZGCountDownTimer *)sender totalTime:(NSTimeInterval)time;
+// Delegate method for Cycle change notification, view colour change and to update Summary.
+- (void)sessionChanged:(CountDownCycleType)cycle completedTask:(NSInteger)completedCount ofTotalTask:(NSInteger)totalCount withTotalTime:(NSTimeInterval)time;
 
 // Delegate method which return completed Task time.
 - (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time;

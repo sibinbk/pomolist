@@ -624,11 +624,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.timerLabel.text = [self dateStringForTimeIntervalWithoutHour:(totalTime - timePassed) withDateFormatter:nil];
 }
 
-- (void)taskTimeUpdated:(ZGCountDownTimer *)sender totalTime:(NSTimeInterval)time
-{
-    self.totalTaskTimeLabel.text = [self stringifyTotalTime:(int)time usingLongFormat:NO];
-}
-
 - (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -646,12 +641,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     [self saveEventOfTask:[self currentSelectedTask] withTotalTime:time];
 }
 
-- (void)countDownCycleChanged:(ZGCountDownTimer *)sender cycle:(CountDownCycleType)newCycle withTaskCount:(NSInteger)count
+- (void)sessionChanged:(CountDownCycleType)cycle completedTask:(NSInteger)completedCount ofTotalTask:(NSInteger)count withTotalTime:(NSTimeInterval)time
 {
     NSString *viewColorString;
     NSString *cycleTitle;
     
-    switch (newCycle) {
+    switch (cycle) {
         case TaskCycle:
             cycleTitle = [NSString stringWithFormat:@"Pomodoro # %ld", (long) count];
             viewColorString = self.taskColorString;
@@ -669,11 +664,13 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
     
     self.cycleLabel.text = cycleTitle;
-    self.sessionCountLabel.text = [NSString stringWithFormat:@"%ld/%ld", (count - 1), (long) self.repeatCount];
+    self.sessionCountLabel.text = [NSString stringWithFormat:@"%ld/%ld", completedCount, self.repeatCount];
+    self.totalTaskTimeLabel.text = [self stringifyTotalTime:(int)time usingLongFormat:NO];
     
     [UIView animateWithDuration:0.5 animations:^{
         self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
     }];
+
 }
 
 - (void)taskSessionCompleted:(ZGCountDownTimer *)sender
