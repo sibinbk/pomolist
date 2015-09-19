@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, CountDownCycleType) {
 - (void)sessionChanged:(CountDownCycleType)cycle completedTask:(NSInteger)completedCount ofTotalTask:(NSInteger)totalCount withTotalTime:(NSTimeInterval)time;
 
 // Delegate method which return completed Task time.
-- (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time;
+- (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time sessionCount:(NSInteger)count;
 
 @end
 

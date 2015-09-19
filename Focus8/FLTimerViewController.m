@@ -624,23 +624,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.timerLabel.text = [self dateStringForTimeIntervalWithoutHour:(totalTime - timePassed) withDateFormatter:nil];
 }
 
-- (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time
-{
-    SCLAlertView *alert = [[SCLAlertView alloc] init];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"TASK FINISHED");
-        self.resetButton.hidden = YES;
-        self.skipButton.hidden = NO;
-        // Set start button title to 'START' after finishing timer.
-        [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
-        // Show task completion alert.
-        [alert showSuccess:self title:@"Well Done" subTitle:@"Task completed" closeButtonTitle:@"Done" duration:0.0f];
-    });
-
-    [self saveEventOfTask:[self currentSelectedTask] withTotalTime:time];
-}
-
 - (void)sessionChanged:(CountDownCycleType)cycle completedTask:(NSInteger)completedCount ofTotalTask:(NSInteger)count withTotalTime:(NSTimeInterval)time
 {
     NSString *viewColorString;
@@ -664,13 +647,33 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
     
     self.cycleLabel.text = cycleTitle;
-    self.sessionCountLabel.text = [NSString stringWithFormat:@"%ld/%ld", completedCount, self.repeatCount];
+    self.sessionCountLabel.text = [NSString stringWithFormat:@"%ld/%ld", (long)completedCount, (long)self.repeatCount];
     self.totalTaskTimeLabel.text = [self stringifyTotalTime:(int)time usingLongFormat:NO];
     
     [UIView animateWithDuration:0.5 animations:^{
         self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
     }];
 
+}
+
+- (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time sessionCount:(NSInteger)count
+{
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"TASK FINISHED");
+        self.resetButton.hidden = YES;
+        self.skipButton.hidden = NO;
+        // Set start button title to 'START' after finishing timer.
+        [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+        // Show task completion alert.
+        [alert showSuccess:self title:@"Well Done" subTitle:@"Task completed" closeButtonTitle:@"Done" duration:0.0f];
+    });
+    
+    // Save event info if atleast one session is completed.
+    if (count > 0) {
+        [self saveEventOfTask:[self currentSelectedTask] withTotalTime:time sessionCount:count];
+    }
 }
 
 - (void)taskSessionCompleted:(ZGCountDownTimer *)sender
@@ -699,7 +702,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 #pragma mark - Save Task event method.
 
-- (void)saveEventOfTask:(Task *)task withTotalTime:(NSTimeInterval)totalTime
+- (void)saveEventOfTask:(Task *)task withTotalTime:(NSTimeInterval)totalTime sessionCount:(NSInteger)count
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSEntityDescription *eventEntity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
@@ -710,6 +713,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     //Populate Event details.
     event.finishDate = [NSDate date];
     event.totalTaskTime = [NSNumber numberWithDouble:totalTime];
+    event.totalSessionCount = [NSNumber numberWithInteger:count];
     
     [task addEventsObject:event];
     

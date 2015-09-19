@@ -44,9 +44,7 @@
 		C3616A451AAB434500C47C8A /* archive.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A421AAB434500C47C8A /* archive.png */; };
 		C3616A461AAB434500C47C8A /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A431AAB434500C47C8A /* archive@2x.png */; };
 		C3616A471AAB434500C47C8A /* archive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A441AAB434500C47C8A /* archive@3x.png */; };
-		C37567C31BA17E24009DB1D5 /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C37567BC1BA17E24009DB1D5 /* Task+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		C37567C41BA17E24009DB1D5 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C37567BE1BA17E24009DB1D5 /* Task.m */; settings = {ASSET_TAGS = (); }; };
-		C37567C51BA17E24009DB1D5 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C37567C01BA17E24009DB1D5 /* Event+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		C37567C61BA17E24009DB1D5 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C37567C21BA17E24009DB1D5 /* Event.m */; settings = {ASSET_TAGS = (); }; };
 		C38409E51BAC5BFA00097321 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38409C71BAC5BFA00097321 /* AsyncButton.swift */; settings = {ASSET_TAGS = (); }; };
 		C38409E61BAC5BFA00097321 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38409C81BAC5BFA00097321 /* AsyncImageView.swift */; settings = {ASSET_TAGS = (); }; };
@@ -100,6 +98,8 @@
 		C3B6FAC91B0DA8C50052B7E5 /* StopFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAC61B0DA8C50052B7E5 /* StopFilled@2x.png */; };
 		C3B6FACA1B0DA8C50052B7E5 /* StopFilled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B6FAC71B0DA8C50052B7E5 /* StopFilled@3x.png */; };
 		C3BB41641B078C4D00A83016 /* UIColor+FlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BB41631B078C4D00A83016 /* UIColor+FlatColors.m */; };
+		C3CB91731BAD6EAD0081B56E /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CB91701BAD6EAD0081B56E /* Event+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		C3CB91741BAD6EAD0081B56E /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CB91721BAD6EAD0081B56E /* Task+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		C3D1B6171B47D7660003419B /* FLBreakDelayPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1B6161B47D7660003419B /* FLBreakDelayPickerController.m */; };
 		C3D1B61A1B4841320003419B /* FLSessionCountPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1B6191B4841320003419B /* FLSessionCountPickerController.m */; };
 		C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D680861B3838D900C08860 /* FLReminderPickerController.m */; };
@@ -171,12 +171,8 @@
 		C3616A421AAB434500C47C8A /* archive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archive.png; sourceTree = "<group>"; };
 		C3616A431AAB434500C47C8A /* archive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@2x.png"; sourceTree = "<group>"; };
 		C3616A441AAB434500C47C8A /* archive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@3x.png"; sourceTree = "<group>"; };
-		C37567BB1BA17E24009DB1D5 /* Task+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+CoreDataProperties.h"; sourceTree = "<group>"; };
-		C37567BC1BA17E24009DB1D5 /* Task+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+CoreDataProperties.m"; sourceTree = "<group>"; };
 		C37567BD1BA17E24009DB1D5 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		C37567BE1BA17E24009DB1D5 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
-		C37567BF1BA17E24009DB1D5 /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
-		C37567C01BA17E24009DB1D5 /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
 		C37567C11BA17E24009DB1D5 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C37567C21BA17E24009DB1D5 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C38409C71BAC5BFA00097321 /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
@@ -235,6 +231,10 @@
 		C3B6FAC71B0DA8C50052B7E5 /* StopFilled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StopFilled@3x.png"; sourceTree = "<group>"; };
 		C3BB41621B078C4D00A83016 /* UIColor+FlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatColors.h"; sourceTree = "<group>"; };
 		C3BB41631B078C4D00A83016 /* UIColor+FlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FlatColors.m"; sourceTree = "<group>"; };
+		C3CB916F1BAD6EAD0081B56E /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C3CB91701BAD6EAD0081B56E /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
+		C3CB91711BAD6EAD0081B56E /* Task+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C3CB91721BAD6EAD0081B56E /* Task+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+CoreDataProperties.m"; sourceTree = "<group>"; };
 		C3D1B6151B47D7660003419B /* FLBreakDelayPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBreakDelayPickerController.h; sourceTree = "<group>"; };
 		C3D1B6161B47D7660003419B /* FLBreakDelayPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreakDelayPickerController.m; sourceTree = "<group>"; };
 		C3D1B6181B4841320003419B /* FLSessionCountPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSessionCountPickerController.h; sourceTree = "<group>"; };
@@ -450,12 +450,12 @@
 		C37567C71BA17E55009DB1D5 /* CoreDataClass */ = {
 			isa = PBXGroup;
 			children = (
-				C37567BB1BA17E24009DB1D5 /* Task+CoreDataProperties.h */,
-				C37567BC1BA17E24009DB1D5 /* Task+CoreDataProperties.m */,
+				C3CB916F1BAD6EAD0081B56E /* Event+CoreDataProperties.h */,
+				C3CB91701BAD6EAD0081B56E /* Event+CoreDataProperties.m */,
+				C3CB91711BAD6EAD0081B56E /* Task+CoreDataProperties.h */,
+				C3CB91721BAD6EAD0081B56E /* Task+CoreDataProperties.m */,
 				C37567BD1BA17E24009DB1D5 /* Task.h */,
 				C37567BE1BA17E24009DB1D5 /* Task.m */,
-				C37567BF1BA17E24009DB1D5 /* Event+CoreDataProperties.h */,
-				C37567C01BA17E24009DB1D5 /* Event+CoreDataProperties.m */,
 				C37567C11BA17E24009DB1D5 /* Event.h */,
 				C37567C21BA17E24009DB1D5 /* Event.m */,
 			);
@@ -712,10 +712,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C37567C31BA17E24009DB1D5 /* Task+CoreDataProperties.m in Sources */,
 				C38409EE1BAC5BFA00097321 /* DesignableTextView.swift in Sources */,
-				C37567C51BA17E24009DB1D5 /* Event+CoreDataProperties.m in Sources */,
 				C3BB41641B078C4D00A83016 /* UIColor+FlatColors.m in Sources */,
+				C3CB91741BAD6EAD0081B56E /* Task+CoreDataProperties.m in Sources */,
+				C3CB91731BAD6EAD0081B56E /* Event+CoreDataProperties.m in Sources */,
 				C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */,
 				C38409FE1BAC5BFA00097321 /* SpringView.swift in Sources */,
 				C38409F71BAC5BFA00097321 /* Spring.swift in Sources */,

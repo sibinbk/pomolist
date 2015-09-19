@@ -172,8 +172,8 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
 - (void)stopCountDown
 {
     if (self.started) {
-        if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:)]) {
-            [self.delegate taskFinished:self totalTaskTime:(self.completedTaskTime - self.skippedTaskTime)];
+        if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:sessionCount:)]) {
+            [self.delegate taskFinished:self totalTaskTime:(self.completedTaskTime - self.skippedTaskTime) sessionCount:(self.currentTaskCount - self.skippedTaskCount)];
         }
     }
 
@@ -208,8 +208,8 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
     [self skipToNextCycle];
     
     if (self.cycleFinishTime > self.totalCountDownTime) {
-        if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:)]) {
-            [self.delegate taskFinished:self totalTaskTime:(self.completedTaskTime - self.skippedTaskTime)];
+        if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:sessionCount:)]) {
+            [self.delegate taskFinished:self totalTaskTime:(self.completedTaskTime - self.skippedTaskTime) sessionCount:(self.currentTaskCount - self.skippedTaskCount)];
         }
         [self resetTimer];
     } else {
@@ -230,8 +230,8 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
         }
         
         if (self.cycleFinishTime > self.totalCountDownTime) {
-            if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:)]) {
-                [self.delegate taskFinished:self totalTaskTime:(self.completedTaskTime - self.skippedTaskTime)];
+            if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:sessionCount:)]) {
+                [self.delegate taskFinished:self totalTaskTime:(self.completedTaskTime - self.skippedTaskTime) sessionCount:(self.currentTaskCount - self.skippedTaskCount)];
             }
             [self resetTimer];
         } else {
@@ -246,8 +246,8 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
             } else {
                 if (newTimePassed >= self.totalCountDownTime){
                     // Condition becomes true if the Countdown time finishes when the App is either in background or quit.
-                    if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:)]) {
-                        [self.delegate taskFinished:self totalTaskTime:(self.taskTime * self.repeatCount - self.skippedTaskTime)];
+                    if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:sessionCount:)]) {
+                        [self.delegate taskFinished:self totalTaskTime:(self.taskTime * self.repeatCount - self.skippedTaskTime) sessionCount:(self.currentTaskCount - self.skippedTaskCount)];
                     }
                     [self resetTimer];
                     newTimePassed = 0; // Hack to avoid loop when the app becomes active and task is already finished.
