@@ -650,7 +650,10 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
     
     self.cycleLabel.text = cycleTitle;
-    self.sessionCountLabel.text = [NSString stringWithFormat:@"%ld/%ld", (long)completedCount, (long)self.repeatCount];
+    
+    self.sessionCountLabel.attributedText = [self combineFormattedString:[NSString stringWithFormat:@"%ld", (long) completedCount]
+                                                              withString:[NSString stringWithFormat:@"/%ld", (long) self.repeatCount]];
+    
     self.totalTaskTimeLabel.text = [self stringifyTotalTime:(int)time usingLongFormat:NO];
     
     [UIView animateWithDuration:0.5 animations:^{
@@ -1403,6 +1406,24 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
             return [NSString stringWithFormat:@"%im", minutes];
         }
     }
+}
+
+- (NSMutableAttributedString *)combineFormattedString:(NSString *)firstString withString:(NSString *)secondString
+{
+    NSDictionary *firstStringAttributes = @{
+                                            NSFontAttributeName:[UIFont systemFontOfSize:36 weight:UIFontWeightLight],
+                                            NSForegroundColorAttributeName:[UIColor whiteColor]
+                                            };
+    NSDictionary *secondStringAttributes = @{
+                                             NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightLight],
+                                             NSForegroundColorAttributeName:[UIColor lightGrayColor]
+                                             };
+    NSString *combinedString = [NSString stringWithFormat:@"%@%@", firstString, secondString];
+    NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:combinedString];
+    [modifiedString setAttributes:firstStringAttributes range:[combinedString rangeOfString:firstString]];
+    [modifiedString setAttributes:secondStringAttributes range:[combinedString rangeOfString:secondString]];
+    
+    return modifiedString;
 }
 
 @end
