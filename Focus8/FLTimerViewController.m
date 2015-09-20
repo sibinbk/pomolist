@@ -1395,13 +1395,21 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     if (longFormat) {
         if (hours > 0) {
-            return [NSString stringWithFormat:@"%i hr %i min", hours, minutes];
+            if (minutes > 0) {
+                return [NSString stringWithFormat:@"%i hr %i min", hours, minutes];
+            } else {
+                return [NSString stringWithFormat:@"%i hr", hours];
+            }
         } else {
             return [NSString stringWithFormat:@"%i min", minutes];
         }
     } else {
         if (hours > 0) {
-            return [NSString stringWithFormat:@"%ih %im", hours, minutes];
+            if (minutes > 0) {
+                return [NSString stringWithFormat:@"%ih %im", hours, minutes];
+            } else {
+                return [NSString stringWithFormat:@"%ih", hours];
+            }
         } else {
             return [NSString stringWithFormat:@"%im", minutes];
         }
