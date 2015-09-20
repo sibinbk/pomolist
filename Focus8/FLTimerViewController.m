@@ -663,15 +663,17 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
+    // Update UI.
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"TASK FINISHED");
         self.resetButton.hidden = YES;
         self.skipButton.hidden = NO;
         // Set start button title to 'START' after finishing timer.
         [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
-        // Show task completion alert.
-        [alert showSuccess:self title:@"Well Done" subTitle:@"Task completed" closeButtonTitle:@"Done" duration:0.0f];
     });
+    
+    // Show task completion alert.
+    [alert showSuccess:self title:@"Well Done" subTitle:@"Task completed" closeButtonTitle:@"Done" duration:0.0f];
     
     // Save event info if atleast one session is completed.
     if (count > 0) {

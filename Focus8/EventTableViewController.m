@@ -63,7 +63,7 @@
     
     cell.textLabel.text = task.name;
 
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Sec", (long)[event.totalTaskTime integerValue]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Sessions %ld Sec", (long)[event.totalSessionCount integerValue], (long)[event.totalTaskTime integerValue]];
     
     return cell;
 }

@@ -247,7 +247,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
                 if (newTimePassed >= self.totalCountDownTime){
                     // Condition becomes true if the Countdown time finishes when the App is either in background or quit.
                     if ([self.delegate respondsToSelector:@selector(taskFinished:totalTaskTime:sessionCount:)]) {
-                        [self.delegate taskFinished:self totalTaskTime:(self.taskTime * self.repeatCount - self.skippedTaskTime) sessionCount:(self.currentTaskCount - self.skippedTaskCount)];
+                        [self.delegate taskFinished:self totalTaskTime:(self.taskTime * self.repeatCount - self.skippedTaskTime) sessionCount:(self.repeatCount - self.skippedTaskCount)];
                     }
                     [self resetTimer];
                     newTimePassed = 0; // Hack to avoid loop when the app becomes active and task is already finished.
