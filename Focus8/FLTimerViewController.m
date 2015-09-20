@@ -75,6 +75,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerLabelSpacing;
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *summaryView;
 @property (strong, nonatomic) DesignableButton *floatingButton;
 
 @property(strong, nonatomic) ZGCountDownTimer *repeatTimer;
@@ -315,6 +316,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         self.cycleLabel.hidden = NO;
         self.sessionCountLabel.hidden = NO;
         self.totalTaskTimeLabel.hidden = NO;
+        self.summaryView.hidden = NO;
         self.editButton.hidden = NO;
         self.eventListButton.hidden = NO;
         if (!self.repeatTimer.started) {
@@ -349,6 +351,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.cycleLabel.hidden = YES;
     self.sessionCountLabel.hidden = YES;
     self.totalTaskTimeLabel.hidden = YES;
+    self.summaryView.hidden = YES;
 //    [UIView animateWithDuration:0.5 animations:^{
 //        [self.view layoutIfNeeded];
 //    } completion:^(BOOL finished) {

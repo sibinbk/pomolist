@@ -371,6 +371,7 @@
                         <outlet property="sessionCountLabel" destination="B6x-1P-mW1" id="U70-jy-A9G"/>
                         <outlet property="skipButton" destination="MZS-7O-ZJV" id="sAA-Lj-Mro"/>
                         <outlet property="startButton" destination="0XI-tj-U9C" id="Eur-ru-Ou6"/>
+                        <outlet property="summaryView" destination="mn7-EF-7sA" id="mJk-8M-2Vx"/>
                         <outlet property="taskTableView" destination="44o-3T-Kie" id="ryD-eF-9rM"/>
                         <outlet property="timerLabel" destination="MOQ-vB-fhb" id="3Ll-jL-9UV"/>
                         <outlet property="timerLabelSpacing" destination="Zhh-zS-EQs" id="YKV-QO-pjq"/>
