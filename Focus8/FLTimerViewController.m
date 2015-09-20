@@ -147,6 +147,10 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     [self.navigationController navigationBar].shadowImage = [UIImage new];
     [self.navigationController navigationBar].translucent = YES;
     
+    // Setting Summary view blur effect.
+    self.summaryView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    self.summaryView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    
     /* Date formatter for reminder
      
      //Setup date formatter
@@ -1240,8 +1244,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     [self setUpRepeatTimer];
     
     [self setUpTimerViewInterface];
-    
-    self.navigationItem.title = @"Pomo List";
 }
 
 #pragma mark - Edit the task method
@@ -1424,7 +1426,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                                             };
     NSDictionary *secondStringAttributes = @{
                                              NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightLight],
-                                             NSForegroundColorAttributeName:[UIColor lightGrayColor]
+                                             NSForegroundColorAttributeName:[UIColor whiteColor]
                                              };
     NSString *combinedString = [NSString stringWithFormat:@"%@%@", firstString, secondString];
     NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:combinedString];
