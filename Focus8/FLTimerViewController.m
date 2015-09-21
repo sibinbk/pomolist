@@ -61,6 +61,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (assign, nonatomic) BOOL isFullView;
 @property (assign, nonatomic) BOOL isTaskEditing;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cycleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTaskTimeLabel;
@@ -73,7 +74,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *listButton;
 @property (weak, nonatomic) IBOutlet UIButton *eventListButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerViewHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerLabelSpacing;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *summaryViewHeight;
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (weak, nonatomic) IBOutlet UIView *summaryView;
 @property (strong, nonatomic) DesignableButton *floatingButton;
@@ -163,7 +164,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 {
     [super viewWillAppear:YES];
     
-    self.navigationItem.title = self.taskName;
+    self.titleLabel.text = self.taskName;
 
     self.timerLabel.font = self.timerLabelFont;
     
@@ -248,18 +249,23 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     if ([[UIScreen mainScreen] bounds].size.height == 480) {
         // iPhone 4
         self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
+        self.summaryViewHeight.constant = 80;
     } else if ([[UIScreen mainScreen] bounds].size.height == 568){
         // IPhone 5
         self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
+        self.summaryViewHeight.constant = 80;
     } else if ([[UIScreen mainScreen] bounds].size.height == 667) {
         // iPhone 6
         self.timerLabelFont = [self.timerLabel.font fontWithSize:100];
+        self.summaryViewHeight.constant = 100;
     } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
         // iPhone 6+
         self.timerLabelFont = [self.timerLabel.font fontWithSize:110];
+        self.summaryViewHeight.constant = 110;
     } else {
         // iPad
         self.timerLabelFont = [self.timerLabel.font fontWithSize:120];
+        self.summaryViewHeight.constant = 140;
     }
 }
 
@@ -308,14 +314,13 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 {
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
-    self.timerLabelSpacing.constant = 0.0f;
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
         self.timerLabel.font = self.timerLabelFont;
         self.floatingButton.hidden = YES;
     } completion:^(BOOL finished) {
         self.startButton.hidden = NO;
-        self.navigationItem.title = self.taskName;
+        self.titleLabel.text = self.taskName;
         self.cycleLabel.hidden = NO;
         self.sessionCountLabel.hidden = NO;
         self.totalTaskTimeLabel.hidden = NO;
@@ -344,13 +349,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 {
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = 64;
-    self.timerLabelSpacing.constant = 20.0f;
     self.startButton.hidden = YES;
     self.resetButton.hidden = YES;
     self.skipButton.hidden = YES;
     self.editButton.hidden = YES;
     self.eventListButton.hidden = YES;
-    self.navigationItem.title = @"";
+//    self.navigationItem.title = @"";
     self.cycleLabel.hidden = YES;
     self.sessionCountLabel.hidden = YES;
     self.totalTaskTimeLabel.hidden = YES;
@@ -658,6 +662,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                                                               withString:[NSString stringWithFormat:@"/%ld", (long) self.repeatCount]];
     
     self.totalTaskTimeLabel.text = [self stringifyTotalTime:(int)time usingLongFormat:NO];
+//    self.totalTaskTimeLabel.text = @"25h 55m";
     
     [UIView animateWithDuration:0.5 animations:^{
         self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
@@ -1003,9 +1008,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         [self changeTaskDetails:newTask];
 
         if (self.isFullView) {
-            self.navigationItem.title = newTask.name;
+            self.titleLabel.text = newTask.name;
         } else {
-            self.navigationItem.title = @"";
+            self.titleLabel.text = @"";
         }
         
         // Store selected task info.
@@ -1305,7 +1310,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     [self changeTaskDetails:task];
     
-    self.navigationItem.title = task.name;
+    self.titleLabel.text = task.name;
     
     if (changed) {
         [self.repeatTimer resetTimer];
