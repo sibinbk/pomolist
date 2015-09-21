@@ -73,11 +73,13 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *listButton;
 @property (weak, nonatomic) IBOutlet UIButton *eventListButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerViewHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *summaryViewHeight;
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (weak, nonatomic) IBOutlet UIView *summaryView;
 @property (strong, nonatomic) DesignableButton *floatingButton;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *summaryViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *startButtonHeight;
 
 @property(strong, nonatomic) ZGCountDownTimer *repeatTimer;
 
@@ -249,23 +251,31 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     if ([[UIScreen mainScreen] bounds].size.height == 480) {
         // iPhone 4
         self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
-        self.summaryViewHeight.constant = 80;
+        self.summaryViewHeight.constant = 70;
+        self.startButtonHeight.constant = 70;
+        self.startButton.layer.cornerRadius = 35;
     } else if ([[UIScreen mainScreen] bounds].size.height == 568){
         // IPhone 5
         self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
         self.summaryViewHeight.constant = 80;
+        self.startButtonHeight.constant = 80;
+        self.startButton.layer.cornerRadius = 40;
     } else if ([[UIScreen mainScreen] bounds].size.height == 667) {
         // iPhone 6
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:100];
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:110];
         self.summaryViewHeight.constant = 100;
+        self.startButtonHeight.constant = 100;
+        self.startButton.layer.cornerRadius = 50;
     } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
         // iPhone 6+
         self.timerLabelFont = [self.timerLabel.font fontWithSize:110];
         self.summaryViewHeight.constant = 110;
+        self.startButtonHeight.constant = 100;
+        self.startButton.layer.cornerRadius = 50;
     } else {
         // iPad
         self.timerLabelFont = [self.timerLabel.font fontWithSize:120];
-        self.summaryViewHeight.constant = 140;
+        self.summaryViewHeight.constant = 120;
     }
 }
 
