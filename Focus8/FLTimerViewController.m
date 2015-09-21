@@ -661,8 +661,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     self.sessionCountLabel.attributedText = [self combineFormattedString:[NSString stringWithFormat:@"%ld", (long) completedCount]
                                                               withString:[NSString stringWithFormat:@"/%ld", (long) self.repeatCount]];
     
-    self.totalTaskTimeLabel.text = [self stringifyTotalTime:(int)time usingLongFormat:NO];
-//    self.totalTaskTimeLabel.text = @"25h 55m";
+    self.totalTaskTimeLabel.attributedText = [self stringifyTimeUsingAttributedString:(int)time];
     
     [UIView animateWithDuration:0.5 animations:^{
         self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
@@ -1425,7 +1424,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 - (NSMutableAttributedString *)combineFormattedString:(NSString *)firstString withString:(NSString *)secondString
 {
     NSDictionary *firstStringAttributes = @{
-                                            NSFontAttributeName:[UIFont systemFontOfSize:36 weight:UIFontWeightLight],
+                                            NSFontAttributeName:[UIFont systemFontOfSize:36 weight:UIFontWeightThin],
                                             NSForegroundColorAttributeName:[UIColor whiteColor]
                                             };
     NSDictionary *secondStringAttributes = @{
@@ -1438,6 +1437,51 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     [modifiedString setAttributes:secondStringAttributes range:[combinedString rangeOfString:secondString]];
     
     return modifiedString;
+}
+
+- (NSMutableAttributedString *)stringifyTimeUsingAttributedString:(int)seconds
+{
+    NSDictionary *timeAttributes = @{
+                                     NSFontAttributeName:[UIFont systemFontOfSize:36 weight:UIFontWeightThin],
+                                     NSForegroundColorAttributeName:[UIColor whiteColor]
+                                     };
+    NSDictionary *subAttributes = @{
+                                    NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightLight],
+                                    NSForegroundColorAttributeName:[UIColor whiteColor]
+                                    };
+
+    int remainingSeconds = seconds;
+    
+    int hours = remainingSeconds / 3600;
+    
+    remainingSeconds = remainingSeconds - hours * 3600;
+    
+    int minutes = remainingSeconds / 60;
+    
+    remainingSeconds = remainingSeconds - minutes * 60;
+    
+    NSString *minuteString = @"m";
+    NSString *hourString = @"h";
+    
+    if (hours > 0) {
+        if (minutes > 0) {
+            NSString *timeString = [NSString stringWithFormat:@"%i%@ %i%@", hours, hourString, minutes, minuteString];
+            NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
+            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:minuteString]];
+            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:hourString]];
+            return modifiedString;
+        } else {
+            NSString *timeString = [NSString stringWithFormat:@"%i%@", hours, hourString];
+            NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
+            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:hourString]];
+            return modifiedString;
+        }
+    } else {
+        NSString *timeString = [NSString stringWithFormat:@"%i%@", minutes, minuteString];
+        NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
+        [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:minuteString]];
+        return modifiedString;
+    }
 }
 
 @end
