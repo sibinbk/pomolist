@@ -75,7 +75,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerLabelSpacing;
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
-@property (weak, nonatomic) IBOutlet UIVisualEffectView *summaryView;
+@property (weak, nonatomic) IBOutlet UIView *summaryView;
 @property (strong, nonatomic) DesignableButton *floatingButton;
 
 @property(strong, nonatomic) ZGCountDownTimer *repeatTimer;
@@ -148,8 +148,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     [self.navigationController navigationBar].translucent = YES;
     
     // Setting Summary view blur effect.
-    self.summaryView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    self.summaryView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    self.summaryView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
     
     /* Date formatter for reminder
      
