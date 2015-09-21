@@ -63,6 +63,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subTimerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cycleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTaskTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sessionCountLabel;
@@ -80,6 +81,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *summaryViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *startButtonHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subTimerLabelPosition;
 
 @property(strong, nonatomic) ZGCountDownTimer *repeatTimer;
 
@@ -167,8 +169,6 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
-//    self.titleLabel.text = self.taskName;
 
     // Assign Timer label font.
     self.timerLabel.font = self.timerLabelFont;
@@ -245,7 +245,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         self.editButton.hidden = YES;
         self.eventListButton.hidden = YES;
         self.summaryView.hidden = YES;
-//        self.floatingButton.hidden = NO;
+        self.floatingButton.hidden = NO;
         
         [self.listButton setImage:[UIImage imageNamed:@"delete.png"]];
     }
@@ -340,6 +340,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     self.resetButton.hidden = self.repeatTimer.started ? NO : YES;
     self.skipButton.hidden = self.repeatTimer.isRunning ? YES : NO;
 
+    self.subTimerLabel.alpha = 1;
     self.titleLabel.alpha = 0;
     self.cycleLabel.alpha = 0;
     self.timerLabel.alpha = 0;
@@ -351,12 +352,15 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     self.eventListButton.alpha = 0;
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
+    self.subTimerLabelPosition.constant = - 40;
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
         self.titleLabel.alpha = 1;
         self.cycleLabel.alpha = 1;
         self.timerLabel.alpha = 1;
+        self.subTimerLabel.alpha = 0;
     } completion:^(BOOL finished) {
+        self.subTimerLabel.hidden = YES;
         self.startButton.alpha = 1;
         self.resetButton.alpha = 1;
         self.skipButton.alpha = 1;
@@ -372,6 +376,9 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 {
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = 64;
+    self.subTimerLabelPosition.constant = 18;
+    self.subTimerLabel.hidden = NO;
+    self.subTimerLabel.alpha = 1;
     
     self.startButton.hidden = YES;
     self.resetButton.hidden = YES;
@@ -654,7 +661,10 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 - (void)secondUpdated:(ZGCountDownTimer *)sender countDownTimePassed:(NSTimeInterval)timePassed ofTotalTime:(NSTimeInterval)totalTime
 {
     // Conversion to Time string without hour component.
-    self.timerLabel.text = [self dateStringForTimeIntervalWithoutHour:(totalTime - timePassed) withDateFormatter:nil];
+    NSString *timeString = [self dateStringForTimeIntervalWithoutHour:(totalTime - timePassed) withDateFormatter:nil];
+    
+    self.timerLabel.text = timeString;
+    self.subTimerLabel.text = timeString;
 }
 
 - (void)sessionChanged:(CountDownCycleType)cycle completedTask:(NSInteger)completedCount ofTotalTask:(NSInteger)count withTotalTime:(NSTimeInterval)time
