@@ -168,15 +168,10 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 {
     [super viewWillAppear:YES];
     
-    self.titleLabel.text = self.taskName;
+//    self.titleLabel.text = self.taskName;
 
+    // Assign Timer label font.
     self.timerLabel.font = self.timerLabelFont;
-    
-    if (self.isFullView) {
-        self.floatingButton.hidden = YES;
-    } else {
-        self.floatingButton.hidden = NO;
-    }
     
     [self.taskTableView reloadData];
 }
@@ -224,8 +219,12 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
 - (void)setUpTimerViewInterfaceWith:(BOOL)fullView;
 {
+    // Setting task title.
+    self.titleLabel.text = self.taskName;
+    
     if (fullView) {
         self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
+        
         if (!self.repeatTimer.isRunning) {
             [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
             self.resetButton.hidden = self.repeatTimer.started ? NO : YES;
@@ -845,7 +844,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 {
     NSString *text = @"Task List is empty!";
     
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:26.0f],
                                  NSForegroundColorAttributeName: [UIColor darkGrayColor]};
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
@@ -1029,12 +1028,6 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         
         // Change and save new task details.
         [self changeTaskDetails:newTask];
-
-        if (self.isFullView) {
-            self.titleLabel.text = newTask.name;
-        } else {
-            self.titleLabel.text = @"";
-        }
         
         // Store selected task info.
         [self saveContext];
@@ -1336,6 +1329,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     self.titleLabel.text = task.name;
     
     if (changed) {
+        NSLog(@"It is changed");
         [self.repeatTimer resetTimer];
         [self setUpRepeatTimer];
         [self setUpTimerViewInterfaceWith:self.isFullView];
