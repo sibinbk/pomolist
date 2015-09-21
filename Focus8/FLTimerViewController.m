@@ -99,7 +99,9 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     // Check if Back up task info is available.
     if ([self backupExist]) {
         [self restoreTaskInfo];
+        self.isFullView = YES;
     } else {
+        self.isFullView = NO;
         self.taskName = @"Pomodoro List";
         self.taskTime = 20;
         self.shortBreakTime = 15;
@@ -130,8 +132,8 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     self.taskTableView.tableFooterView = [UIView new];
     
     // Timerview handling.
-    self.isFullView = YES;
-    self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
+//    self.isFullView = YES;
+//    self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
 
     // Add Floating button to add new tasks.
     [self createAddTaskButton];
@@ -143,7 +145,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     [self setUpGestures];
     
     // Set TimerView Interface
-    [self setUpTimerViewInterface];
+    [self setUpTimerViewInterfaceWith:self.isFullView];
     
     [[self.navigationController navigationBar] setBackgroundImage:[UIImage new]
                              forBarMetrics:UIBarMetricsDefault];
@@ -220,27 +222,38 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
 #pragma mark - Timer view UI set up.
 
-- (void)setUpTimerViewInterface
+- (void)setUpTimerViewInterfaceWith:(BOOL)fullView;
 {
-    if (!self.repeatTimer.isRunning) {
-        if (!self.repeatTimer.started) {
-            self.resetButton.hidden = YES;
-        } else {
-            self.resetButton.hidden = NO;
-        }
-        
-        [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
-        
-        // Chcek if it fullview before un-hiding the skip button.
-        if (![self isFullView]) {
-            self.skipButton.hidden = YES;
-        } else {
+    if (fullView) {
+        self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
+        if (!self.repeatTimer.isRunning) {
+            if (!self.repeatTimer.started) {
+                self.resetButton.hidden = YES;
+            } else {
+                self.resetButton.hidden = NO;
+            }
+            
+            [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
             self.skipButton.hidden = NO;
+        } else {
+            [self.startButton setImage:[UIImage imageNamed:@"PauseFilled.png"] forState:UIControlStateNormal];
+            self.resetButton.hidden = NO;
+            self.skipButton.hidden = YES;
         }
     } else {
-        [self.startButton setImage:[UIImage imageNamed:@"PauseFilled.png"] forState:UIControlStateNormal];
-        self.resetButton.hidden = NO;
+        self.timerViewHeight.constant = 64;
+        self.titleLabel.hidden = YES;
+        self.cycleLabel.hidden = YES;
+        self.titleLabel.hidden = YES;
+        self.startButton.hidden = YES;
+        self.resetButton.hidden = YES;
         self.skipButton.hidden = YES;
+        self.editButton.hidden = YES;
+        self.eventListButton.hidden = YES;
+        self.summaryView.hidden = YES;
+        self.floatingButton.hidden = NO;
+        
+        [self.listButton setImage:[UIImage imageNamed:@"delete.png"]];
     }
 }
 
@@ -1027,7 +1040,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         
         [self.repeatTimer resetTimer]; // Stops previous task without saving the event details.
         [self setUpRepeatTimer];
-        [self setUpTimerViewInterface];
+        [self setUpTimerViewInterfaceWith:self.isFullView];
 //        [self closeListView];
     } else {
         NSLog(@"Same task selected");
@@ -1256,7 +1269,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     
     [self setUpRepeatTimer];
     
-    [self setUpTimerViewInterface];
+    [self setUpTimerViewInterfaceWith:self.isFullView];
 }
 
 #pragma mark - Edit the task method
@@ -1324,7 +1337,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     if (changed) {
         [self.repeatTimer resetTimer];
         [self setUpRepeatTimer];
-        [self setUpTimerViewInterface];
+        [self setUpTimerViewInterfaceWith:self.isFullView];
     }
 }
 
