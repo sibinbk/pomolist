@@ -366,29 +366,22 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         self.eventListButton.alpha = 1;
     }];
     
-    self.isFullView = !self.isFullView;
+    self.isFullView = YES;
     [self.listButton setImage:[UIImage imageNamed:@"menu.png"]];
 }
 - (void)showListView
 {
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = 64;
+    
     self.startButton.hidden = YES;
     self.resetButton.hidden = YES;
     self.skipButton.hidden = YES;
     self.editButton.hidden = YES;
     self.eventListButton.hidden = YES;
-//    self.navigationItem.title = @"";
-    self.cycleLabel.hidden = YES;
-//    self.sessionCountLabel.hidden = YES;
-//    self.totalTaskTimeLabel.hidden = YES;
     self.summaryView.hidden = YES;
-//    [UIView animateWithDuration:0.5 animations:^{
-//        [self.view layoutIfNeeded];
-//    } completion:^(BOOL finished) {
-//    }];
-//    self.isFullView = NO;
-//    [self.listButton.imageView setImage:[UIImage imageNamed:@"delete.png"]];
+
+    self.floatingButton.hidden = NO;
     self.floatingButton.alpha = 0;
     [UIView animateWithDuration:0.5
                           delay:0
@@ -398,10 +391,16 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
                      animations:^{
                          [self.view layoutIfNeeded];
                          self.floatingButton.alpha = 1;
-                         self.floatingButton.hidden = NO;
-                     } completion:NULL];
+                         self.timerLabel.alpha = 0;
+                         self.titleLabel.alpha = 0;
+                         self.cycleLabel.alpha = 0;
+                     } completion:^(BOOL finished) {
+                         self.timerLabel.hidden = YES;
+                         self.cycleLabel.hidden = YES;
+                         self.titleLabel.hidden = YES;
+                     }];
     
-    self.isFullView = !self.isFullView;
+    self.isFullView = NO;
     [self.listButton setImage:[UIImage imageNamed:@"delete.png"]];
 }
 
