@@ -25,19 +25,19 @@
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
-#define kFLTaskName                     @"taskName"
-#define kFLTaskTime                     @"taskTime"
-#define kFLShortBreakTime               @"shortBreakTime"
-#define kFLLongBreakTime                @"longBreakTime"
-#define kFLRepeatCount                  @"repeatCount"
-#define kFLLongBreakDelay               @"longBreakDelay"
-#define kFLTaskColorString              @"taskColorString"
-#define kFLShortBreakColorString        @"shortBreakColorString"
-#define kFLLongBreakColorString         @"longBreakColorString"
+static NSString * const kFLTaskName = @"taskName";
+static NSString * const kFLTaskTime = @"taskTime";
+static NSString * const kFLShortBreakTime = @"shortBreakTime";
+static NSString * const kFLLongBreakTime = @"longBreakTime";
+static NSString * const kFLRepeatCount = @"repeatCount";
+static NSString * const kFLLongBreakDelay = @"longBreakDelay";
+static NSString * const kFLTaskColorString = @"taskColorString";
+static NSString * const kFLShortBreakColorString = @"shortBreakColorString";
+static NSString * const kFLLongBreakColorString = @"longBreakColorString";
 
-#define kFLUserDefaultKey               @"FocusListUserDefaults"
-#define kFLRepeatTimer                  @"FLRepeatTimer"
-#define kFLTimerNotification            @"FLTimerNotification"
+static NSString * const kFLUserDefaultKey = @"FocusListUserDefaults";
+static NSString * const kFLRepeatTimer = @"FLRepeatTimer";
+static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
 @interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
@@ -135,7 +135,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     [self createAddTaskButton];
     
     // Adjust Timer label font size depends up on the device screen size.
-    [self setUpTimerLabelFont];
+    [self setUpFontAndViewLayout];
     
     // Add Gesture recognizer to the timer view.
     [self setUpGestures];
@@ -244,7 +244,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 #pragma mark - Timer Label Font size setter method.
 
-- (void)setUpTimerLabelFont
+- (void)setUpFontAndViewLayout
 {
     if ([[UIScreen mainScreen] bounds].size.height == 480) {
         // iPhone 4

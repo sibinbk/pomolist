@@ -18,14 +18,14 @@
 #import "ColorUtils.h"
 #import "Focus8-Swift.h"
 
-#define kTaskTimePicker          @"taskTimePicker"
-#define kShortBreakPicker        @"shortBreakPicker"
-#define kLongBreakPicker         @"longBreakPicker"
-#define kLongBreakDelayPicker    @"longBreakDelayPicker"
-#define kRepeatCountPicker       @"repeatCountPicker"
-#define kTaskColorPicker         @"taskColorPicker"
-#define kShortBreakColorPicker   @"shortBreakColorPicker"
-#define kLongBreakColorPicker    @"longBreakColorPicker"
+static NSString * const kTaskTimePicker = @"taskTimePicker";
+static NSString * const kShortBreakPicker = @"shortBreakPicker";
+static NSString * const kLongBreakPicker = @"longBreakPicker";
+static NSString * const kLongBreakDelayPicker = @"longBreakDelayPicker";
+static NSString * const kRepeatCountPicker = @"repeatCountPicker";
+static NSString * const kTaskColorPicker = @"taskColorPicker";
+static NSString * const kShortBreakColorPicker = @"shortBreakColorPicker";
+static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 
 @interface FLEditTaskController () <UITextFieldDelegate, FLTimingPickerDelegate, FLBreakDelayPickerDelagate, FLSessionCountPickerDelegate, FLColorPickerDelegate>
 
