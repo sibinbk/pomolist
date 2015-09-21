@@ -227,13 +227,8 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     if (fullView) {
         self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
         if (!self.repeatTimer.isRunning) {
-            if (!self.repeatTimer.started) {
-                self.resetButton.hidden = YES;
-            } else {
-                self.resetButton.hidden = NO;
-            }
-            
             [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+            self.resetButton.hidden = self.repeatTimer.started ? NO : YES;
             self.skipButton.hidden = NO;
         } else {
             [self.startButton setImage:[UIImage imageNamed:@"PauseFilled.png"] forState:UIControlStateNormal];
@@ -251,7 +246,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         self.editButton.hidden = YES;
         self.eventListButton.hidden = YES;
         self.summaryView.hidden = YES;
-        self.floatingButton.hidden = NO;
+//        self.floatingButton.hidden = NO;
         
         [self.listButton setImage:[UIImage imageNamed:@"delete.png"]];
     }
@@ -335,37 +330,43 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
 - (void)closeListView
 {
+    self.floatingButton.hidden = YES;
+    self.titleLabel.hidden = NO;
+    self.cycleLabel.hidden = NO;
+    self.timerLabel.hidden = NO;
+    self.startButton.hidden = NO;
+    self.summaryView.hidden = NO;
+    self.editButton.hidden = NO;
+    self.eventListButton.hidden = NO;
+    self.resetButton.hidden = self.repeatTimer.started ? NO : YES;
+    self.skipButton.hidden = self.repeatTimer.isRunning ? YES : NO;
+
+    self.titleLabel.alpha = 0;
+    self.cycleLabel.alpha = 0;
+    self.timerLabel.alpha = 0;
+    self.startButton.alpha = 0;
+    self.resetButton.alpha = 0;
+    self.skipButton.alpha = 0;
+    self.summaryView.alpha = 0;
+    self.editButton.alpha = 0;
+    self.eventListButton.alpha = 0;
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
-        self.timerLabel.font = self.timerLabelFont;
-        self.floatingButton.hidden = YES;
+        self.titleLabel.alpha = 1;
+        self.cycleLabel.alpha = 1;
+        self.timerLabel.alpha = 1;
     } completion:^(BOOL finished) {
-        self.startButton.hidden = NO;
-        self.titleLabel.text = self.taskName;
-        self.cycleLabel.hidden = NO;
-        self.sessionCountLabel.hidden = NO;
-        self.totalTaskTimeLabel.hidden = NO;
-        self.summaryView.hidden = NO;
-        self.editButton.hidden = NO;
-        self.eventListButton.hidden = NO;
-        if (!self.repeatTimer.started) {
-            self.resetButton.hidden = YES;
-        } else {
-            self.resetButton.hidden = NO;
-        }
-        
-        // Chcek if the timer is paused before un-hiding the skip button.
-        if (!self.repeatTimer.isRunning) {
-            self.skipButton.hidden = NO;
-        } else
-        {
-            self.skipButton.hidden = YES;
-        }
+        self.startButton.alpha = 1;
+        self.resetButton.alpha = 1;
+        self.skipButton.alpha = 1;
+        self.summaryView.alpha = 1;
+        self.editButton.alpha = 1;
+        self.eventListButton.alpha = 1;
     }];
     
-    self.isFullView = YES;
+    self.isFullView = !self.isFullView;
     [self.listButton setImage:[UIImage imageNamed:@"menu.png"]];
 }
 - (void)showListView
@@ -379,8 +380,8 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     self.eventListButton.hidden = YES;
 //    self.navigationItem.title = @"";
     self.cycleLabel.hidden = YES;
-    self.sessionCountLabel.hidden = YES;
-    self.totalTaskTimeLabel.hidden = YES;
+//    self.sessionCountLabel.hidden = YES;
+//    self.totalTaskTimeLabel.hidden = YES;
     self.summaryView.hidden = YES;
 //    [UIView animateWithDuration:0.5 animations:^{
 //        [self.view layoutIfNeeded];
@@ -388,7 +389,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 //    }];
 //    self.isFullView = NO;
 //    [self.listButton.imageView setImage:[UIImage imageNamed:@"delete.png"]];
-    
+    self.floatingButton.alpha = 0;
     [UIView animateWithDuration:0.5
                           delay:0
          usingSpringWithDamping:0.8
@@ -396,10 +397,11 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
                         options:0
                      animations:^{
                          [self.view layoutIfNeeded];
+                         self.floatingButton.alpha = 1;
                          self.floatingButton.hidden = NO;
-                         self.timerLabel.font = [self.timerLabel.font fontWithSize:40];
                      } completion:NULL];
-    self.isFullView = NO;
+    
+    self.isFullView = !self.isFullView;
     [self.listButton setImage:[UIImage imageNamed:@"delete.png"]];
 }
 
