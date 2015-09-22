@@ -245,7 +245,14 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         self.editButton.hidden = YES;
         self.eventListButton.hidden = YES;
         self.summaryView.hidden = YES;
+        self.subTimerLabel.hidden = NO;
         self.floatingButton.hidden = NO;
+        
+        if (!self.repeatTimer.isRunning) {
+            [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+        } else {
+            [self.startButton setImage:[UIImage imageNamed:@"PauseFilled.png"] forState:UIControlStateNormal];
+        }
         
         [self.listButton setImage:[UIImage imageNamed:@"delete.png"]];
     }
@@ -307,28 +314,44 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
 - (void)setUpGestures
 {
-    UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showListView)];
-    [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
-    [self.mainView addGestureRecognizer:swipeUp];
+    UISwipeGestureRecognizer *swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeUp)];
+    [swipeUpGesture setDirection:UISwipeGestureRecognizerDirectionUp];
+    [self.mainView addGestureRecognizer:swipeUpGesture];
     
-    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeListView)];
-    [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
-    [self.mainView addGestureRecognizer:swipeDown];
+    UISwipeGestureRecognizer *swipeDownGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDown)];
+    [swipeDownGesture setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self.mainView addGestureRecognizer:swipeDownGesture];
     
     // Adds gesture recognizers to navigation bar.
-    UISwipeGestureRecognizer *navSwipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showListView)];
-    [navSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
-    [[self.navigationController navigationBar] addGestureRecognizer:navSwipeUp];
+    UISwipeGestureRecognizer *navSwipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeUp)];
+    [navSwipeUpGesture setDirection:UISwipeGestureRecognizerDirectionUp];
+    [[self.navigationController navigationBar] addGestureRecognizer:navSwipeUpGesture];
     
-    UISwipeGestureRecognizer *navSwipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeListView)];
-    [navSwipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
-    [[self.navigationController navigationBar] addGestureRecognizer:navSwipeDown];
+    UISwipeGestureRecognizer *navSwipeDownGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDown)];
+    [navSwipeDownGesture setDirection:UISwipeGestureRecognizerDirectionDown];
+    [[self.navigationController navigationBar] addGestureRecognizer:navSwipeDownGesture];
+}
+
+- (void)swipeUp
+{
+    if (self.isFullView) {
+        [self showListView];
+    }
+}
+
+- (void)swipeDown
+{
+    if (!self.isFullView) {
+        [self closeListView];
+    }
 }
 
 # pragma mark - View handling methods.
 
 - (void)closeListView
 {
+    self.isFullView = YES;
+    
     self.floatingButton.hidden = YES;
     self.titleLabel.hidden = NO;
     self.cycleLabel.hidden = NO;
@@ -369,11 +392,12 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         self.eventListButton.alpha = 1;
     }];
     
-    self.isFullView = YES;
     [self.listButton setImage:[UIImage imageNamed:@"menu.png"]];
 }
 - (void)showListView
 {
+    self.isFullView = NO;
+    
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = 64;
     self.subTimerLabelPosition.constant = 18;
@@ -389,6 +413,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
     self.floatingButton.hidden = NO;
     self.floatingButton.alpha = 0;
+    
     [UIView animateWithDuration:0.5
                           delay:0
          usingSpringWithDamping:0.8
@@ -406,7 +431,6 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
                          self.titleLabel.hidden = YES;
                      }];
     
-    self.isFullView = NO;
     [self.listButton setImage:[UIImage imageNamed:@"delete.png"]];
 }
 
