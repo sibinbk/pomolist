@@ -633,6 +633,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
 - (void)cancelTimerNotifications
 {
+    NSLog(@"Cancel Timer Notifications");
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
@@ -1364,6 +1365,9 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     
     if (changed) {
         NSLog(@"It is changed");
+        if (self.repeatTimer.isRunning) {
+            [self cancelTimerNotifications];
+        }
         [self.repeatTimer resetTimer];
         [self setUpRepeatTimer];
         [self setUpTimerViewInterfaceWith:self.isFullView];
