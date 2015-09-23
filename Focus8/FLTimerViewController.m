@@ -21,6 +21,7 @@
 #import "FLTaskCell.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "SCLAlertView.h"
+#import "JTHamburgerButton.h"
 
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
@@ -72,11 +73,11 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *listButton;
 @property (weak, nonatomic) IBOutlet UIButton *eventListButton;
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (weak, nonatomic) IBOutlet UIView *summaryView;
 @property (strong, nonatomic) DesignableButton *floatingButton;
+@property (strong, nonatomic) JTHamburgerButton *listButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *summaryViewHeight;
@@ -133,10 +134,9 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     // A little trick for removing the cell separators
     self.taskTableView.tableFooterView = [UIView new];
     
-    // Timerview handling.
-//    self.isFullView = YES;
-//    self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
-
+    // Add animating List view button.
+    [self listAllTasksButtonSetup];
+    
     // Add Floating button to add new tasks.
     [self createAddTaskButton];
     
@@ -172,6 +172,12 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
     // Assign Timer label font.
     self.timerLabel.font = self.timerLabelFont;
+    
+    if (self.isFullView) {
+        [self.listButton setCurrentMode:JTHamburgerButtonModeHamburger];
+    } else {
+        [self.listButton setCurrentMode:JTHamburgerButtonModeCross];
+    }
     
     [self.taskTableView reloadData];
 }
@@ -253,8 +259,6 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         } else {
             [self.startButton setImage:[UIImage imageNamed:@"PauseFilled.png"] forState:UIControlStateNormal];
         }
-        
-        [self.listButton setImage:[UIImage imageNamed:@"delete.png"]];
     }
 }
 
@@ -291,6 +295,18 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         self.timerLabelFont = [self.timerLabel.font fontWithSize:120];
         self.summaryViewHeight.constant = 120;
     }
+}
+
+#pragma mark - Animating menu button.
+
+- (void)listAllTasksButtonSetup
+{
+    self.listButton = [[JTHamburgerButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.listButton.lineSpacing = 6.0;
+    [self.listButton updateAppearance];
+    [self.listButton addTarget:self action:@selector(listButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.listButton];
+    self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleDone;
 }
 
 #pragma mark - Floating button for adding new task.
@@ -346,11 +362,22 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     }
 }
 
+- (void)listButtonPressed:(id)sender
+{
+    if (![self isFullView]) {
+        [self closeListView];
+    } else {
+        [self showListView];
+    }
+}
+
 # pragma mark - View handling methods.
 
 - (void)closeListView
 {
+    [self.listButton setCurrentModeWithAnimation:JTHamburgerButtonModeHamburger];
     self.isFullView = YES;
+    self.listButton.enabled = NO;
     
     self.floatingButton.hidden = YES;
     self.titleLabel.hidden = NO;
@@ -390,13 +417,14 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         self.summaryView.alpha = 1;
         self.editButton.alpha = 1;
         self.eventListButton.alpha = 1;
+        self.listButton.enabled = YES;
     }];
-    
-    [self.listButton setImage:[UIImage imageNamed:@"menu.png"]];
 }
 - (void)showListView
 {
+    [self.listButton setCurrentModeWithAnimation:JTHamburgerButtonModeCross];
     self.isFullView = NO;
+    self.listButton.enabled = NO;
     
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = 64;
@@ -429,18 +457,8 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
                          self.timerLabel.hidden = YES;
                          self.cycleLabel.hidden = YES;
                          self.titleLabel.hidden = YES;
+                         self.listButton.enabled = YES;
                      }];
-    
-    [self.listButton setImage:[UIImage imageNamed:@"delete.png"]];
-}
-
-- (IBAction)showTaskList:(id)sender
-{
-    if (![self isFullView]) {
-        [self closeListView];
-    } else {
-        [self showListView];
-    }
 }
 
 #pragma mark - Timer methods.

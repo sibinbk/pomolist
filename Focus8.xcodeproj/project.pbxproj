@@ -78,6 +78,7 @@
 		C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */; };
 		C3A49A451B90510900F7D796 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A441B90510900F7D796 /* AudioToolbox.framework */; };
 		C3A49A471B92AF6300F7D796 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A461B92AF6300F7D796 /* AVFoundation.framework */; };
+		C3ABA5F11BB2B69E0006D69F /* JTHamburgerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3ABA5F01BB2B69E0006D69F /* JTHamburgerButton.m */; settings = {ASSET_TAGS = (); }; };
 		C3AF6F091BA3ED8300919243 /* Caribbean.caf in Resources */ = {isa = PBXBuildFile; fileRef = C3AF6F021BA3ED8300919243 /* Caribbean.caf */; settings = {ASSET_TAGS = (); }; };
 		C3AF6F0A1BA3ED8300919243 /* Glissful.caf in Resources */ = {isa = PBXBuildFile; fileRef = C3AF6F031BA3ED8300919243 /* Glissful.caf */; settings = {ASSET_TAGS = (); }; };
 		C3AF6F0B1BA3ED8300919243 /* None.caf in Resources */ = {isa = PBXBuildFile; fileRef = C3AF6F041BA3ED8300919243 /* None.caf */; settings = {ASSET_TAGS = (); }; };
@@ -210,6 +211,8 @@
 		C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoundPickerController.m; sourceTree = "<group>"; };
 		C3A49A441B90510900F7D796 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3A49A461B92AF6300F7D796 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C3ABA5EF1BB2B69E0006D69F /* JTHamburgerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTHamburgerButton.h; sourceTree = "<group>"; };
+		C3ABA5F01BB2B69E0006D69F /* JTHamburgerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTHamburgerButton.m; sourceTree = "<group>"; };
 		C3AF6F021BA3ED8300919243 /* Caribbean.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Caribbean.caf; sourceTree = "<group>"; };
 		C3AF6F031BA3ED8300919243 /* Glissful.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Glissful.caf; sourceTree = "<group>"; };
 		C3AF6F041BA3ED8300919243 /* None.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = None.caf; sourceTree = "<group>"; };
@@ -369,6 +372,7 @@
 		C35B335B1A0CBA1500061C40 /* Focus8 */ = {
 			isa = PBXGroup;
 			children = (
+				C3ABA5EE1BB2B6820006D69F /* JTHamburgerButton */,
 				C38409C61BAC5BFA00097321 /* Spring */,
 				C33AA7901B9D9EEB0052EFAF /* ColorUtils */,
 				C3ACAB751B3184C7000EF926 /* UIFlatColors */,
@@ -497,6 +501,15 @@
 				C38409E41BAC5BFA00097321 /* UnwindSegue.swift */,
 			);
 			path = Spring;
+			sourceTree = "<group>";
+		};
+		C3ABA5EE1BB2B6820006D69F /* JTHamburgerButton */ = {
+			isa = PBXGroup;
+			children = (
+				C3ABA5EF1BB2B69E0006D69F /* JTHamburgerButton.h */,
+				C3ABA5F01BB2B69E0006D69F /* JTHamburgerButton.m */,
+			);
+			name = JTHamburgerButton;
 			sourceTree = "<group>";
 		};
 		C3ACAB751B3184C7000EF926 /* UIFlatColors */ = {
@@ -735,6 +748,7 @@
 				C38409EF1BAC5BFA00097321 /* DesignableView.swift in Sources */,
 				C38409FB1BAC5BFA00097321 /* SpringLabel.swift in Sources */,
 				C38409E61BAC5BFA00097321 /* AsyncImageView.swift in Sources */,
+				C3ABA5F11BB2B69E0006D69F /* JTHamburgerButton.m in Sources */,
 				C35B33871A0CBDF400061C40 /* FLTimerViewController.m in Sources */,
 				C38409F31BAC5BFA00097321 /* LoadingView.swift in Sources */,
 				C38409FF1BAC5BFA00097321 /* TransitionManager.swift in Sources */,

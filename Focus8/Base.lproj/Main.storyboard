@@ -388,13 +388,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tYt-kl-IJV">
-                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="aOa-pv-KjY">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="showTaskList:" destination="vXZ-lx-hvc" id="BrD-Y4-eTT"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="settings.png" id="fgf-fe-M5a">
+                        <barButtonItem key="rightBarButtonItem" image="settings.png" style="done" id="fgf-fe-M5a">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="qrD-bG-VaU" kind="presentation" identifier="SettingsSegue" id="Kl7-do-Lbs"/>
@@ -408,7 +402,6 @@
                         <outlet property="cycleLabel" destination="Mpw-xM-7LZ" id="wS0-A5-fem"/>
                         <outlet property="editButton" destination="cDM-OH-ZrW" id="qnx-ff-iM2"/>
                         <outlet property="eventListButton" destination="yGN-t0-a6M" id="Rte-GP-1bO"/>
-                        <outlet property="listButton" destination="aOa-pv-KjY" id="V74-sv-lw1"/>
                         <outlet property="mainView" destination="8tI-AJ-575" id="xlE-L1-hDt"/>
                         <outlet property="resetButton" destination="tUD-rg-Ftj" id="KRX-Jo-EUv"/>
                         <outlet property="sessionCountLabel" destination="B6x-1P-mW1" id="U70-jy-A9G"/>
@@ -1604,7 +1597,6 @@
         <image name="archive.png" width="25" height="25"/>
         <image name="delete.png" width="25" height="25"/>
         <image name="edit.png" width="25" height="25"/>
-        <image name="menu.png" width="25" height="25"/>
         <image name="settings.png" width="25" height="25"/>
     </resources>
 </document>
