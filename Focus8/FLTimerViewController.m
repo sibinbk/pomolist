@@ -39,6 +39,7 @@ static NSString * const kFLLongBreakColorString = @"longBreakColorString";
 static NSString * const kFLUserDefaultKey = @"FocusListUserDefaults";
 static NSString * const kFLRepeatTimer = @"FLRepeatTimer";
 static NSString * const kFLTimerNotification = @"FLTimerNotification";
+static NSString *const kFLAppTitle = @"Listie";
 
 @interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
@@ -61,6 +62,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
 @property (assign, nonatomic) BOOL isFullView;
 @property (assign, nonatomic) BOOL isTaskEditing;
+@property (assign, nonatomic) BOOL taskSelected;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
@@ -103,9 +105,11 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     if ([self backupExist]) {
         [self restoreTaskInfo];
         self.isFullView = YES;
+        self.taskSelected = YES;
     } else {
         self.isFullView = NO;
-        self.taskName = @"Pomodoro List";
+        self.taskSelected = NO;
+        self.taskName = @"";
         self.taskTime = 20;
         self.shortBreakTime = 15;
         self.longBreakTime = 20;
@@ -115,12 +119,12 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         self.shortBreakColorString = @"2C3E50"; // Dark
         self.longBreakColorString = @"8E44AD"; // Purple
     }
-
+    
     // Set Repeat timer.
     self.repeatTimer = [ZGCountDownTimer countDownTimerWithIdentifier:kFLRepeatTimer];
     self.repeatTimer.delegate = self;
     [self setUpRepeatTimer];
-    
+
     // Read settings info from UserDefaults.
     [self restoreSettingsInfo];
     
@@ -177,6 +181,13 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         [self.listButton setCurrentMode:JTHamburgerButtonModeHamburger];
     } else {
         [self.listButton setCurrentMode:JTHamburgerButtonModeCross];
+        if (!self.taskSelected) {
+            self.subTimerLabel.hidden = YES;
+            self.navigationItem.title = kFLAppTitle;
+        } else {
+            self.subTimerLabel.hidden = NO;
+            self.navigationItem.title = @"";
+        }
     }
     
     [self.taskTableView reloadData];
@@ -229,6 +240,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     self.titleLabel.text = self.taskName;
     
     if (fullView) {
+        self.navigationItem.title = @"";
         self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
         
         if (!self.repeatTimer.isRunning) {
@@ -251,9 +263,16 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
         self.editButton.hidden = YES;
         self.eventListButton.hidden = YES;
         self.summaryView.hidden = YES;
-        self.subTimerLabel.hidden = NO;
         self.floatingButton.hidden = NO;
         
+        if (!self.taskSelected) {
+            self.subTimerLabel.hidden = YES;
+            self.navigationItem.title = kFLAppTitle;
+        } else {
+            self.subTimerLabel.hidden = NO;
+            self.navigationItem.title = @"";
+        }
+
         if (!self.repeatTimer.isRunning) {
             [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
         } else {
@@ -375,6 +394,7 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
 
 - (void)closeListView
 {
+    self.navigationItem.title = @"";
     [self.listButton setCurrentModeWithAnimation:JTHamburgerButtonModeHamburger];
     self.isFullView = YES;
     self.listButton.enabled = NO;
@@ -429,8 +449,6 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = 64;
     self.subTimerLabelPosition.constant = 18;
-    self.subTimerLabel.hidden = NO;
-    self.subTimerLabel.alpha = 1;
     
     self.startButton.hidden = YES;
     self.resetButton.hidden = YES;
@@ -438,6 +456,15 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     self.editButton.hidden = YES;
     self.eventListButton.hidden = YES;
     self.summaryView.hidden = YES;
+
+    if (!self.taskSelected) {
+        self.subTimerLabel.hidden = YES;
+        self.navigationItem.title = kFLAppTitle;
+    } else {
+        self.subTimerLabel.hidden = NO;
+        self.navigationItem.title = @"";
+    }
+    self.subTimerLabel.alpha = 1;
 
     self.floatingButton.hidden = NO;
     self.floatingButton.alpha = 0;
@@ -1079,6 +1106,9 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
             NSLog(@"Old task selection is replaced with new selection");
         }
         
+        // flag set to mark task is selected.
+        self.taskSelected = YES;
+        
         // Change and save new task details.
         [self changeTaskDetails:newTask];
         
@@ -1313,6 +1343,9 @@ static NSString * const kFLTimerNotification = @"FLTimerNotification";
     self.longBreakTime = 0;
     self.repeatCount = 0;
     self.longBreakDelay = 0;
+    
+    // flag set to mark no task is selected.
+    self.taskSelected = NO;
     
     [self setUpRepeatTimer];
     
