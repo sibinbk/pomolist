@@ -185,8 +185,8 @@ static NSString *const kFLAppTitle = @"Listie";
             self.subTimerLabel.hidden = YES;
             self.navigationItem.title = kFLAppTitle;
         } else {
-            self.subTimerLabel.hidden = NO;
             self.navigationItem.title = @"";
+            self.subTimerLabel.hidden = NO;
         }
     }
     
@@ -242,6 +242,7 @@ static NSString *const kFLAppTitle = @"Listie";
     if (fullView) {
         self.navigationItem.title = @"";
         self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
+        self.subTimerLabelPosition.constant = -60;
         
         if (!self.repeatTimer.isRunning) {
             [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
@@ -254,6 +255,7 @@ static NSString *const kFLAppTitle = @"Listie";
         }
     } else {
         self.timerViewHeight.constant = 64;
+        self.subTimerLabelPosition.constant = 18;
         self.titleLabel.hidden = YES;
         self.cycleLabel.hidden = YES;
         self.titleLabel.hidden = YES;
@@ -269,8 +271,8 @@ static NSString *const kFLAppTitle = @"Listie";
             self.subTimerLabel.hidden = YES;
             self.navigationItem.title = kFLAppTitle;
         } else {
-            self.subTimerLabel.hidden = NO;
             self.navigationItem.title = @"";
+            self.subTimerLabel.hidden = NO;
         }
 
         if (!self.repeatTimer.isRunning) {
@@ -320,7 +322,7 @@ static NSString *const kFLAppTitle = @"Listie";
 
 - (void)listAllTasksButtonSetup
 {
-    self.listButton = [[JTHamburgerButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.listButton = [[JTHamburgerButton alloc] initWithFrame:CGRectMake(0, 0, 28, 28)];
     self.listButton.lineSpacing = 6.0;
     [self.listButton updateAppearance];
     [self.listButton addTarget:self action:@selector(listButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -422,7 +424,7 @@ static NSString *const kFLAppTitle = @"Listie";
     self.eventListButton.alpha = 0;
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
-    self.subTimerLabelPosition.constant = - 40;
+    self.subTimerLabelPosition.constant = -60;
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
         self.titleLabel.alpha = 1;
@@ -461,8 +463,8 @@ static NSString *const kFLAppTitle = @"Listie";
         self.subTimerLabel.hidden = YES;
         self.navigationItem.title = kFLAppTitle;
     } else {
-        self.subTimerLabel.hidden = NO;
         self.navigationItem.title = @"";
+        self.subTimerLabel.hidden = NO;
     }
     self.subTimerLabel.alpha = 1;
 
