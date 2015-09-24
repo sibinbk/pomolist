@@ -576,21 +576,17 @@ static NSString *const kFLAppTitle = @"Listie";
         return;
     }
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Stop Timer"
-                                                                   message:@"Are you sure you want to stop timer?"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel
-                                                          handler:^(UIAlertAction * action) {
-                                                              [alert dismissViewControllerAnimated:YES completion:nil];
-                                                          }];
-    UIAlertAction *destroyAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive
-                                                          handler:^(UIAlertAction * _Nonnull action) {
-                                                              [self resetTaskTimer];
-                                                          }];
-    [alert addAction:dismissAction];
-    [alert addAction:destroyAction];
+    SCLAlertView *resetAlert = [[SCLAlertView alloc] init];
     
-    [self presentViewController:alert animated:YES completion:nil];
+    resetAlert.showAnimationType = SlideInToCenter;
+    resetAlert.hideAnimationType = SlideOutToCenter;
+    resetAlert.customViewColor = [UIColor flatAlizarinColor];
+    
+    [resetAlert addButton:@"Yes" actionBlock:^{
+        [self resetTaskTimer];
+    }];
+    
+    [resetAlert showNotice:self title:@"Reset Timer" subTitle:@"Are you sure you want to reset timer?" closeButtonTitle:@"No" duration:0.0f];
 }
 
 - (void)resetTaskTimer
@@ -630,21 +626,17 @@ static NSString *const kFLAppTitle = @"Listie";
         return;
     }
 
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Skip Timer"
-                                                                   message:@"Are you sure you want to skip timer?"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel
-                                                          handler:^(UIAlertAction * action) {
-                                                              [alert dismissViewControllerAnimated:YES completion:nil];
-                                                          }];
-    UIAlertAction *destroyAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive
-                                                          handler:^(UIAlertAction * _Nonnull action) {
-                                                              [self skipTasktimer];
-                                                          }];
-    [alert addAction:dismissAction];
-    [alert addAction:destroyAction];
+    SCLAlertView *resetAlert = [[SCLAlertView alloc] init];
     
-    [self presentViewController:alert animated:YES completion:nil];
+    resetAlert.showAnimationType = SlideInToCenter;
+    resetAlert.hideAnimationType = SlideOutToCenter;
+    resetAlert.customViewColor = [UIColor flatAlizarinColor];
+    
+    [resetAlert addButton:@"Yes" actionBlock:^{
+        [self skipTasktimer];
+    }];
+    
+    [resetAlert showNotice:self title:@"Skip Timer" subTitle:@"Are you sure you want to skip timer?" closeButtonTitle:@"No" duration:0.0f];
 
 }
 
