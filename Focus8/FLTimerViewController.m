@@ -379,14 +379,37 @@ static NSString *const kFLAppTitle = @"Listie";
 - (void)swipeDown
 {
     if (!self.isFullView) {
-        [self closeListView];
+        if (self.taskSelected) {
+            [self closeListView];
+        } else {
+            SCLAlertView *resetAlert = [[SCLAlertView alloc] init];
+            
+            resetAlert.showAnimationType = SlideInToCenter;
+            resetAlert.hideAnimationType = SlideOutToCenter;
+            resetAlert.customViewColor = [UIColor flatAlizarinColor];
+            [resetAlert removeTopCircle];
+            
+            [resetAlert showInfo:self title:@"Task not selected!" subTitle:@"Please select a task from the list" closeButtonTitle:@"OK" duration:0.0f];
+        }
+        
     }
 }
 
 - (void)listButtonPressed:(id)sender
 {
     if (![self isFullView]) {
-        [self closeListView];
+        if (self.taskSelected) {
+            [self closeListView];
+        } else {
+            SCLAlertView *resetAlert = [[SCLAlertView alloc] init];
+            
+            resetAlert.showAnimationType = SlideInToCenter;
+            resetAlert.hideAnimationType = SlideOutToCenter;
+            resetAlert.customViewColor = [UIColor flatAlizarinColor];
+            [resetAlert removeTopCircle];
+            
+            [resetAlert showInfo:self title:@"Task not selected!" subTitle:@"Please select a task from the list" closeButtonTitle:@"OK" duration:0.0f];
+        }
     } else {
         [self showListView];
     }
@@ -441,21 +464,6 @@ static NSString *const kFLAppTitle = @"Listie";
         self.eventListButton.alpha = 1;
         self.listButton.enabled = YES;
     }];
-    
-    // Checks if a selected task is available. If not returns to list view state.
-    if (!self.taskSelected) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Task not selected"
-                                                                       message:@"Please select a task from the list"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {
-                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                  [self showListView];
-                                                              }];
-        [alert addAction:dismissAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
 }
 - (void)showListView
 {
