@@ -494,13 +494,19 @@ static NSString *const kFLAppTitle = @"Listie";
 
 - (IBAction)startTimer:(id)sender
 {
-    if (self.taskTime == 0) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert!!"
-                                                            message:@"No task available, Please select one from the list"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+    if (!self.taskSelected) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Task not selected"
+                                                                       message:@"Please select a task from the list"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                  // Go back to list view.
+                                                                  [self showListView];
+                                                              }];
+        [alert addAction:dismissAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
         
         return;
     }
@@ -536,19 +542,44 @@ static NSString *const kFLAppTitle = @"Listie";
     }
 }
 
-- (IBAction)resetTimer:(id)sender
+- (IBAction)resetButtonPressed:(id)sender
 {
-    if (self.taskTime == 0) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert!!"
-                                                            message:@"No task available, Please select one from the list"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+    if (!self.taskSelected) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Task not selected"
+                                                                       message:@"Please select a task from the list"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                  // Go back to list view.
+                                                                  [self showListView];
+                                                              }];
+        [alert addAction:dismissAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
         
         return;
     }
     
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Stop Timer"
+                                                                   message:@"Are you sure you want to stop timer?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * action) {
+                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                          }];
+    UIAlertAction *destroyAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction * _Nonnull action) {
+                                                              [self resetTaskTimer];
+                                                          }];
+    [alert addAction:dismissAction];
+    [alert addAction:destroyAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)resetTaskTimer
+{
     //GCD to avoid blocking UI while cancelling local notifications. Required only when Reminder notifications are available.
     if (self.repeatTimer.isRunning) {
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -556,7 +587,7 @@ static NSString *const kFLAppTitle = @"Listie";
             [self cancelTimerNotifications];
         });
     }
-
+    
     [self.repeatTimer stopCountDown];
     
     NSLog(@"Stopss");
@@ -565,19 +596,45 @@ static NSString *const kFLAppTitle = @"Listie";
     self.skipButton.hidden = NO;
 }
 
-- (IBAction)skipTimer:(id)sender
+- (IBAction)skipButtonPressed:(id)sender
 {
-    if (self.taskTime == 0) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert!!"
-                                                            message:@"No task available, Please select one from the list"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+    if (!self.taskSelected) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Task not selected"
+                                                                       message:@"Please select a task from the list"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                  // Go back to list view.
+                                                                  [self showListView];
+                                                              }];
+        [alert addAction:dismissAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
         
         return;
     }
 
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Skip Timer"
+                                                                   message:@"Are you sure you want to skip timer?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * action) {
+                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                          }];
+    UIAlertAction *destroyAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction * _Nonnull action) {
+                                                              [self skipTasktimer];
+                                                          }];
+    [alert addAction:dismissAction];
+    [alert addAction:destroyAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+- (void)skipTasktimer
+{
     [self.repeatTimer skipCountDown];
     
     // Make Reset button visible if the timer started.
@@ -1199,7 +1256,7 @@ static NSString *const kFLAppTitle = @"Listie";
                     [self cancelAllNotificationsForTask:taskToDelete];
                 });
             }
-            [self resetTaskTimer];
+            [self initializeTaskTimer];
         } else {
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSLog(@"Cancel Reminder notifications for the task");
@@ -1217,7 +1274,7 @@ static NSString *const kFLAppTitle = @"Listie";
                 });
             }
             
-            [self resetTaskTimer];
+            [self initializeTaskTimer];
         }
         
         [context deleteObject:taskToDelete];
@@ -1329,7 +1386,7 @@ static NSString *const kFLAppTitle = @"Listie";
 
 #pragma mark - Resets Task Timer upon task deletion.
 
-- (void)resetTaskTimer
+- (void)initializeTaskTimer
 {
     // Resets timer without calling TaskFinished Delegate when a running task is deleted.
     

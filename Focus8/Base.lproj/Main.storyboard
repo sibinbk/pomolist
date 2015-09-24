@@ -100,7 +100,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="skipTimer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4Pb-VD-OCq"/>
+                                            <action selector="skipButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Wvb-xT-UPp"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUD-rg-Ftj" customClass="DesignableButton" customModule="Focus8" customModuleProvider="target">
@@ -126,7 +126,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="resetTimer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2FR-7h-CoR"/>
+                                            <action selector="resetButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fh1-ZF-VRB"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cycle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpw-xM-7LZ">
@@ -271,17 +271,11 @@
                                     <constraint firstItem="0XI-tj-U9C" firstAttribute="centerY" secondItem="MZS-7O-ZJV" secondAttribute="centerY" id="Y4z-qq-xGg"/>
                                     <constraint firstAttribute="bottom" secondItem="yGN-t0-a6M" secondAttribute="bottom" constant="10" id="Ytf-zy-jpY"/>
                                     <constraint firstItem="MOQ-vB-fhb" firstAttribute="centerY" secondItem="8tI-AJ-575" secondAttribute="bottom" multiplier="0.275" priority="750" id="Zhh-zS-EQs"/>
-                                    <constraint firstItem="7kd-9m-DBa" firstAttribute="centerX" secondItem="8tI-AJ-575" secondAttribute="centerX" id="aJe-ww-OUL"/>
                                     <constraint firstItem="MOQ-vB-fhb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8tI-AJ-575" secondAttribute="top" priority="900" constant="100" id="f7k-jk-GIb"/>
                                     <constraint firstAttribute="bottom" secondItem="cDM-OH-ZrW" secondAttribute="bottom" constant="10" id="mh1-1Z-i5H"/>
                                     <constraint firstItem="MZS-7O-ZJV" firstAttribute="centerX" secondItem="8tI-AJ-575" secondAttribute="centerX" multiplier="1.5" constant="25" id="myE-up-Qy7"/>
                                     <constraint firstItem="q8h-x4-dSc" firstAttribute="centerX" secondItem="8tI-AJ-575" secondAttribute="centerX" id="vZh-vz-YL2"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="aJe-ww-OUL"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lkx-3Y-LjB">
                                 <rect key="frame" x="0.0" y="600" width="600" height="800"/>
