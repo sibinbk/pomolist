@@ -27,6 +27,7 @@
 		C33008511A94B703003A0AEA /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084E1A94B703003A0AEA /* settings@3x.png */; };
 		C33AA7931B9D9EEB0052EFAF /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C33AA7921B9D9EEB0052EFAF /* ColorUtils.m */; };
 		C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */; };
+		C341A5BA1BB674E100ABEFB1 /* CNPPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = C341A5B91BB674E100ABEFB1 /* CNPPopupController.m */; settings = {ASSET_TAGS = (); }; };
 		C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */; };
 		C351141B1B1AEFF7005EB4B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C35114191B1AEFF7005EB4B3 /* Main.storyboard */; };
 		C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C3534E211B09A12B0015B626 /* FLColorPicker.m */; };
@@ -146,6 +147,8 @@
 		C33AA7921B9D9EEB0052EFAF /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
 		C33EE6F31A675FB300C94E61 /* ZGCountDownTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGCountDownTimer.h; sourceTree = "<group>"; };
 		C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCountDownTimer.m; sourceTree = "<group>"; };
+		C341A5B81BB674E100ABEFB1 /* CNPPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupController.h; sourceTree = "<group>"; };
+		C341A5B91BB674E100ABEFB1 /* CNPPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPPopupController.m; sourceTree = "<group>"; };
 		C347DD8C1B8F1251006E3F3E /* FLSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSettingsController.h; sourceTree = "<group>"; };
 		C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSettingsController.m; sourceTree = "<group>"; };
 		C351141A1B1AEFF7005EB4B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -347,6 +350,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		C341A5B71BB674B800ABEFB1 /* CNPPopupController */ = {
+			isa = PBXGroup;
+			children = (
+				C341A5B81BB674E100ABEFB1 /* CNPPopupController.h */,
+				C341A5B91BB674E100ABEFB1 /* CNPPopupController.m */,
+			);
+			name = CNPPopupController;
+			sourceTree = "<group>";
+		};
 		C35B33501A0CBA1500061C40 = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +384,7 @@
 		C35B335B1A0CBA1500061C40 /* Focus8 */ = {
 			isa = PBXGroup;
 			children = (
+				C341A5B71BB674B800ABEFB1 /* CNPPopupController */,
 				C3ABA5EE1BB2B6820006D69F /* JTHamburgerButton */,
 				C38409C61BAC5BFA00097321 /* Spring */,
 				C33AA7901B9D9EEB0052EFAF /* ColorUtils */,
@@ -769,6 +782,7 @@
 				C38409F91BAC5BFA00097321 /* SpringButton.swift in Sources */,
 				C38409E71BAC5BFA00097321 /* AutoTextView.swift in Sources */,
 				C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */,
+				C341A5BA1BB674E100ABEFB1 /* CNPPopupController.m in Sources */,
 				C38409F01BAC5BFA00097321 /* ImageLoader.swift in Sources */,
 				C38409ED1BAC5BFA00097321 /* DesignableTextField.swift in Sources */,
 				C35B33621A0CBA1500061C40 /* AppDelegate.m in Sources */,

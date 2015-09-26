@@ -22,6 +22,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "SCLAlertView.h"
 #import "JTHamburgerButton.h"
+#import "CNPPopupController.h"
 
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
@@ -41,7 +42,7 @@ static NSString * const kFLRepeatTimer = @"FLRepeatTimer";
 static NSString * const kFLTimerNotification = @"FLTimerNotification";
 static NSString *const kFLAppTitle = @"Listie";
 
-@interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
+@interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, CNPPopupControllerDelegate>
 
 @property (nonatomic) NSTimeInterval taskTime;
 @property (nonatomic) NSTimeInterval shortBreakTime;
@@ -80,6 +81,7 @@ static NSString *const kFLAppTitle = @"Listie";
 @property (weak, nonatomic) IBOutlet UIView *summaryView;
 @property (strong, nonatomic) DesignableButton *floatingButton;
 @property (strong, nonatomic) JTHamburgerButton *listButton;
+@property (strong, nonatomic) CNPPopupController *popupController;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timerViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *summaryViewHeight;
@@ -389,7 +391,7 @@ static NSString *const kFLAppTitle = @"Listie";
             resetAlert.customViewColor = [UIColor flatAlizarinColor];
             [resetAlert removeTopCircle];
             
-            [resetAlert showInfo:self title:@"Task not selected!" subTitle:@"Please select a task from the list" closeButtonTitle:@"OK" duration:0.0f];
+            [resetAlert showInfo:self.navigationController title:@"Task not selected!" subTitle:@"Please select a task from the list" closeButtonTitle:@"OK" duration:0.0f];
         }
         
     }
@@ -408,7 +410,7 @@ static NSString *const kFLAppTitle = @"Listie";
             resetAlert.customViewColor = [UIColor flatAlizarinColor];
             [resetAlert removeTopCircle];
             
-            [resetAlert showInfo:self title:@"Task not selected!" subTitle:@"Please select a task from the list" closeButtonTitle:@"OK" duration:0.0f];
+            [resetAlert showInfo:self.navigationController title:@"Task not selected!" subTitle:@"Please select a task from the list" closeButtonTitle:@"OK" duration:0.0f];
         }
     } else {
         [self showListView];
@@ -594,7 +596,7 @@ static NSString *const kFLAppTitle = @"Listie";
         [self resetTaskTimer];
     }];
     
-    [resetAlert showNotice:self title:@"Reset Timer" subTitle:@"Are you sure you want to reset timer?" closeButtonTitle:@"No" duration:0.0f];
+    [resetAlert showNotice:self.navigationController title:@"Reset Timer" subTitle:@"Are you sure you want to reset timer?" closeButtonTitle:@"No" duration:0.0f];
 }
 
 - (void)resetTaskTimer
@@ -644,7 +646,7 @@ static NSString *const kFLAppTitle = @"Listie";
         [self skipTasktimer];
     }];
     
-    [resetAlert showNotice:self title:@"Skip Timer" subTitle:@"Are you sure you want to skip timer?" closeButtonTitle:@"No" duration:0.0f];
+    [resetAlert showNotice:self.navigationController title:@"Skip Timer" subTitle:@"Are you sure you want to skip timer?" closeButtonTitle:@"No" duration:0.0f];
 
 }
 
@@ -835,8 +837,10 @@ static NSString *const kFLAppTitle = @"Listie";
     
     self.cycleLabel.text = cycleTitle;
     
-    self.sessionCountLabel.attributedText = [self combineFormattedString:[NSString stringWithFormat:@"%ld", (long) completedCount]
-                                                              withString:[NSString stringWithFormat:@"/%ld", (long) self.repeatCount]];
+    NSString *completedSessionCountString = [NSString stringWithFormat:@"%ld", (long) completedCount];
+    NSString *targetSessioncountString = [NSString stringWithFormat:@"/%ld", (long) self.repeatCount];
+    
+    self.sessionCountLabel.attributedText = [self combineFormattedString:completedSessionCountString withString:targetSessioncountString];
     
     self.totalTaskTimeLabel.attributedText = [self stringifyTimeUsingAttributedString:(int)time];
     
@@ -848,8 +852,6 @@ static NSString *const kFLAppTitle = @"Listie";
 
 - (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time sessionCount:(NSInteger)count
 {
-    SCLAlertView *alert = [[SCLAlertView alloc] init];
-    
     // Update UI.
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"TASK FINISHED");
@@ -859,8 +861,8 @@ static NSString *const kFLAppTitle = @"Listie";
         [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
     });
     
-    // Show task completion alert.
-    [alert showSuccess:self title:@"Well Done" subTitle:@"Task completed" closeButtonTitle:@"Done" duration:0.0f];
+    // Show task summary up on completion of task.
+    [self showTaskSummaryWithDuration:time sessionCount:count];
     
     // Save event info if atleast one session is completed.
     if (count > 0) {
@@ -1006,7 +1008,7 @@ static NSString *const kFLAppTitle = @"Listie";
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
 {
-    NSString *text = @"Add a new task to start using Listee.";
+    NSString *text = @"Add a new task to start using Listie.";
     
     NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
@@ -1023,7 +1025,7 @@ static NSString *const kFLAppTitle = @"Listie";
 {
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17.0f]};
     
-    return [[NSAttributedString alloc] initWithString:@"Continue" attributes:attributes];
+    return [[NSAttributedString alloc] initWithString:@"Add a task" attributes:attributes];
 }
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
@@ -1057,6 +1059,7 @@ static NSString *const kFLAppTitle = @"Listie";
 {
     // Do something
     NSLog(@"Empty dataset button pressed");
+    [self addNewTask];
 }
 
 #pragma mark - Fetched results controller performFetch method.
@@ -1513,6 +1516,68 @@ static NSString *const kFLAppTitle = @"Listie";
     }
 }
 
+# pragma mark - CNPPopupController methods.
+
+- (void)showTaskSummaryWithDuration:(NSTimeInterval)duration sessionCount:(NSInteger)count {
+    
+    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"Summary" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor whiteColor], NSParagraphStyleAttributeName : paragraphStyle}];
+    
+    NSAttributedString *durationTitle = [[NSAttributedString alloc] initWithString:@"Task duration" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:22], NSForegroundColorAttributeName : [UIColor whiteColor], NSParagraphStyleAttributeName : paragraphStyle}];
+    
+    NSAttributedString *sessionTitle = [[NSAttributedString alloc] initWithString:@"Sessions completed" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:22], NSForegroundColorAttributeName : [UIColor whiteColor], NSParagraphStyleAttributeName : paragraphStyle}];
+    
+    NSAttributedString *taskDurationString = [[NSAttributedString alloc] initWithAttributedString:[self stringifyTimeUsingAttributedString:duration]];
+    
+    NSAttributedString *sessionCountString = [[NSAttributedString alloc] initWithAttributedString:[self combineFormattedString:[NSString stringWithFormat:@"%ld", (long)count]
+                                                                                                                    withString:[NSString stringWithFormat:@"/%ld", (long) self.repeatCount]]];
+    
+
+    
+    CNPPopupButton *dismissButton = [[CNPPopupButton alloc] init];
+    [dismissButton setTitleColor:[UIColor colorWithRed:0.86 green:0.8 blue:0.5 alpha:1.0] forState:UIControlStateNormal];
+    dismissButton.titleLabel.font = [UIFont boldSystemFontOfSize:24];
+    [dismissButton setTitle:@"Dissmiss" forState:UIControlStateNormal];
+    dismissButton.backgroundColor = [UIColor clearColor];
+    dismissButton.selectionHandler = ^(CNPPopupButton *button){
+        [self.popupController dismissPopupControllerAnimated:YES];
+        NSLog(@"Block for button: %@", button.titleLabel.text);
+    };
+    
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.numberOfLines = 0;
+    titleLabel.attributedText = title;
+    
+    UILabel *durationTitleLabel = [[UILabel alloc] init];
+    durationTitleLabel.numberOfLines = 0;
+    durationTitleLabel.attributedText = durationTitle;
+    
+    UILabel *taskDurationLabel = [[UILabel alloc] init];
+    taskDurationLabel.numberOfLines = 0;
+    taskDurationLabel.attributedText = taskDurationString;
+    
+    UILabel *sessionTitleLabel = [[UILabel alloc] init];
+    sessionTitleLabel.numberOfLines = 0;
+    sessionTitleLabel.attributedText = sessionTitle;
+    
+    UILabel *sessionCountLabel = [[UILabel alloc] init];
+    sessionCountLabel.numberOfLines = 0;
+    sessionCountLabel.attributedText = sessionCountString;
+    
+    self.popupController = [[CNPPopupController alloc] initWithContents:@[titleLabel, durationTitleLabel, taskDurationLabel, sessionTitleLabel, sessionCountLabel, dismissButton]];
+    self.popupController.theme = [CNPPopupTheme defaultTheme];
+    self.popupController.theme.popupStyle = CNPPopupStyleCentered;
+    self.popupController.theme.presentationStyle = CNPPopupPresentationStyleSlideInFromTop;
+    self.popupController.theme.cornerRadius = 15;
+    self.popupController.theme.backgroundColor = [UIColor colorWithRed:(0.0/255.0) green:(204.0/255.0) blue:(134.0/255.0) alpha:1.0];
+//    self.popupController.theme.backgroundColor = [UIColor whiteColor];
+    self.popupController.delegate = self;
+    [self.popupController presentPopupControllerAnimated:YES];
+}
+
 # pragma mark - Helper methods to convert Time & Date to String.
 
 - (NSString *)getDateStringForTimeInterval:(NSTimeInterval)timeInterval
@@ -1604,13 +1669,19 @@ static NSString *const kFLAppTitle = @"Listie";
 
 - (NSMutableAttributedString *)combineFormattedString:(NSString *)firstString withString:(NSString *)secondString
 {
+    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
     NSDictionary *firstStringAttributes = @{
                                             NSFontAttributeName:[UIFont systemFontOfSize:36 weight:UIFontWeightThin],
-                                            NSForegroundColorAttributeName:[UIColor whiteColor]
+                                            NSForegroundColorAttributeName:[UIColor whiteColor],
+                                            NSParagraphStyleAttributeName : paragraphStyle
                                             };
     NSDictionary *secondStringAttributes = @{
                                              NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightLight],
-                                             NSForegroundColorAttributeName:[UIColor whiteColor]
+                                             NSForegroundColorAttributeName:[UIColor whiteColor],
+                                             NSParagraphStyleAttributeName : paragraphStyle
                                              };
     NSString *combinedString = [NSString stringWithFormat:@"%@%@", firstString, secondString];
     NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:combinedString];
@@ -1622,13 +1693,19 @@ static NSString *const kFLAppTitle = @"Listie";
 
 - (NSMutableAttributedString *)stringifyTimeUsingAttributedString:(int)seconds
 {
+    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+
     NSDictionary *timeAttributes = @{
                                      NSFontAttributeName:[UIFont systemFontOfSize:36 weight:UIFontWeightThin],
-                                     NSForegroundColorAttributeName:[UIColor whiteColor]
+                                     NSForegroundColorAttributeName:[UIColor whiteColor],
+                                     NSParagraphStyleAttributeName : paragraphStyle
                                      };
     NSDictionary *subAttributes = @{
                                     NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightLight],
-                                    NSForegroundColorAttributeName:[UIColor whiteColor]
+                                    NSForegroundColorAttributeName:[UIColor whiteColor],
+                                    NSParagraphStyleAttributeName : paragraphStyle
                                     };
 
     int remainingSeconds = seconds;
