@@ -898,20 +898,52 @@ static NSString *const kFLAppTitle = @"Listie";
 
 - (void)saveEventOfTask:(Task *)task withTotalTime:(NSTimeInterval)totalTime sessionCount:(NSInteger)count
 {
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription *eventEntity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
+    NSDate *taskFinishDate = [self truncateTimeFromDate:[NSDate date]];
     
-    //Initialize Event.
-    Event *event = [[Event alloc] initWithEntity:eventEntity insertIntoManagedObjectContext:context];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Event"];
+    NSCompoundPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[NSPredicate predicateWithFormat:@"task == %@", task],
+                                                                                                  [NSPredicate predicateWithFormat:@"finishDate == %@", taskFinishDate]]];
+    [request setPredicate:compoundPredicate];
     
-    //Populate Event details.
-    event.finishDate = [NSDate date];
-    event.totalTaskTime = [NSNumber numberWithDouble:totalTime];
-    event.totalSessionCount = [NSNumber numberWithInteger:count];
-    
-    [task addEventsObject:event];
+    NSError *error = nil;
+    NSArray *events = [self.managedObjectContext executeFetchRequest:request error:&error];
+
+    if (events.count == 0) {
+        NSLog(@"No event exists for this task");
+        NSEntityDescription *eventEntity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+        
+        //Initialize Event.
+        Event *newEvent = [[Event alloc] initWithEntity:eventEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        
+        //Populate Event details.
+        newEvent.finishDate = [self truncateTimeFromDate:[NSDate date]];
+        newEvent.totalTaskTime = [NSNumber numberWithDouble:totalTime];
+        newEvent.totalSessionCount = [NSNumber numberWithInteger:count];
+        
+        [task addEventsObject:newEvent];
+    } else if (events.count == 1){
+        NSLog(@"One Event exists");
+        Event *event = [events lastObject];
+        NSTimeInterval newTaskTime = [event.totalTaskTime integerValue] + totalTime;
+        NSInteger newSessionCount = [event.totalSessionCount integerValue] + count;
+        
+        event.totalTaskTime = [NSNumber numberWithDouble:newTaskTime];
+        event.totalSessionCount = [NSNumber numberWithInteger:newSessionCount];
+        
+        [task addEventsObject:event];
+    } else {
+        NSLog(@"There are more evntes for task on same day. Something wrong!!!!");
+    }
     
     [self saveContext];
+}
+
+- (NSDate *)truncateTimeFromDate:(NSDate *)fromDate;
+{
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
+    NSDateComponents *fromDateComponents = [calendar components:unitFlags fromDate:fromDate ];
+    return [calendar dateFromComponents:fromDateComponents];
 }
 
 #pragma mark - backup/restore methods
