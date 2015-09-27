@@ -901,8 +901,8 @@ static NSString *const kFLAppTitle = @"Listie";
     NSDate *taskFinishDate = [self truncateTimeFromDate:[NSDate date]];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Event"];
-    NSCompoundPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[NSPredicate predicateWithFormat:@"task == %@", task],
-                                                                                                  [NSPredicate predicateWithFormat:@"finishDate == %@", taskFinishDate]]];
+    NSCompoundPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[NSPredicate predicateWithFormat:@"finishDate == %@", taskFinishDate],
+                                                                                                  [NSPredicate predicateWithFormat:@"task == %@", task]]];
     [request setPredicate:compoundPredicate];
     
     NSError *error = nil;
