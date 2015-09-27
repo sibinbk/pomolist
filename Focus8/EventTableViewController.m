@@ -78,7 +78,7 @@
         formatter = [[NSDateFormatter alloc] init];
         [formatter setCalendar:[NSCalendar currentCalendar]];
         
-        NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"d MMMM yyyy" options:0 locale:[NSLocale currentLocale]];
+        NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"d MMMM, yyyy" options:0 locale:[NSLocale currentLocale]];
         [formatter setDateFormat:formatTemplate];
     }
     
@@ -88,6 +88,17 @@
     NSString *dateString = [formatter stringFromDate:event.finishDate];
     
     return dateString;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    
+    header.textLabel.textColor = [UIColor blackColor];
+    header.textLabel.font = [UIFont systemFontOfSize:16];
+    CGRect headerFrame = header.frame;
+    header.textLabel.frame = headerFrame;
+    header.textLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 #pragma mark - Fetched Results Controller Section
