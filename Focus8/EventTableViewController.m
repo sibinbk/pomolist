@@ -32,6 +32,7 @@
         [alert show];
     }
 }
+
 - (IBAction)dismissView:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -68,6 +69,27 @@
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    static NSDateFormatter *formatter = nil;
+    
+    if (!formatter)
+    {
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setCalendar:[NSCalendar currentCalendar]];
+        
+        NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"d MMMM yyyy" options:0 locale:[NSLocale currentLocale]];
+        [formatter setDateFormat:formatTemplate];
+    }
+    
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    Event *event = [[sectionInfo objects] objectAtIndex:0];
+    
+    NSString *dateString = [formatter stringFromDate:event.finishDate];
+    
+    return dateString;
+}
+
 #pragma mark - Fetched Results Controller Section
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -80,12 +102,14 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"finishDate" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"task.name" ascending:YES];
+//    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"task.uniqueID" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor1];
     fetchRequest.sortDescriptors = sortDescriptors;
+    
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                     managedObjectContext:context
-                                                                      sectionNameKeyPath:nil
+                                                                      sectionNameKeyPath:@"finishDate"
                                                                                cacheName:nil];
     _fetchedResultsController.delegate = self;
     return _fetchedResultsController;
