@@ -71,23 +71,27 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    static NSDateFormatter *formatter = nil;
-    
-    if (!formatter)
-    {
-        formatter = [[NSDateFormatter alloc] init];
-        [formatter setCalendar:[NSCalendar currentCalendar]];
-        
-        NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"d MMMM, yyyy" options:0 locale:[NSLocale currentLocale]];
-        [formatter setDateFormat:formatTemplate];
-    }
-    
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    Event *event = [[sectionInfo objects] objectAtIndex:0];
-    
-    NSString *dateString = [formatter stringFromDate:event.finishDate];
-    
-    return dateString;
+    return [sectionInfo name];
+}
+
+#pragma mark - Tableview delegate.
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        
+        NSError *error = nil;
+        if (![context save:&error]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error in saving data", @"Error in saving data")
+                                                            message:[NSString stringWithFormat:NSLocalizedString(@"Error was: %@, quitting.", @"Error was: %@, quitting."), [error localizedDescription]]
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -109,18 +113,19 @@
         return _fetchedResultsController;
     }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"task.name" ascending:YES];
-//    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"task.uniqueID" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor1];
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:30];
+
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"finishDate" ascending:NO];
+    NSArray *sortDescriptors = @[sortDescriptor];
     fetchRequest.sortDescriptors = sortDescriptors;
     
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                    managedObjectContext:context
-                                                                      sectionNameKeyPath:@"finishDate"
+                                                                    managedObjectContext:self.managedObjectContext
+                                                                      sectionNameKeyPath:@"dateSection"
                                                                                cacheName:nil];
     _fetchedResultsController.delegate = self;
     return _fetchedResultsController;

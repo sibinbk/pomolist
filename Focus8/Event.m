@@ -13,4 +13,15 @@
 
 // Insert code here to add functionality to your managed object subclass
 
+@dynamic dateSection;
+
+- (NSString *)dateSection {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    formatter.dateStyle = NSDateFormatterMediumStyle;
+    NSString *sectionTitle = [formatter stringFromDate:self.finishDate];
+    
+    return sectionTitle;
+}
+
 @end
