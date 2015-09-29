@@ -213,7 +213,7 @@
                                             NSParagraphStyleAttributeName : paragraphStyle
                                             };
     NSDictionary *secondStringAttributes = @{
-                                             NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightLight],
+                                             NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightLight],
                                              NSForegroundColorAttributeName:[UIColor blackColor],
                                              NSParagraphStyleAttributeName : paragraphStyle
                                              };
@@ -222,9 +222,9 @@
     NSString *secondString;
     
     if (count > 1) {
-        secondString = @"Sessions";
+        secondString = @"sessions";
     } else {
-        secondString = @"Session";
+        secondString = @"session";
     }
     
     NSString *combinedString = [NSString stringWithFormat:@"%@%@", firstString, secondString];
