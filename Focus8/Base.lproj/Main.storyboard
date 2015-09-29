@@ -955,6 +955,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bJj-WR-0CA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="68" id="ck7-56-OIb" customClass="FLEventCell">
                                 <rect key="frame" x="0.0" y="86" width="600" height="68"/>
@@ -967,8 +968,8 @@
                                             <rect key="frame" x="4" y="2" width="592" height="64"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLo-XW-Ehv">
-                                                    <rect key="frame" x="16" y="22" width="46" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <rect key="frame" x="16" y="18" width="65" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -999,7 +1000,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="PLo-XW-Ehv" firstAttribute="leading" secondItem="ocD-f6-6z2" secondAttribute="leading" constant="16" id="0dj-PT-rrf"/>
                                                 <constraint firstItem="mMi-Oe-XFj" firstAttribute="trailing" secondItem="emU-WP-8qV" secondAttribute="trailing" id="K61-pV-Nqi"/>
@@ -1010,7 +1011,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" red="1" green="1" blue="0.91578343531468531" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="ocD-f6-6z2" firstAttribute="top" secondItem="W0K-Qj-cec" secondAttribute="top" constant="2" id="EhL-wQ-bI5"/>
                                         <constraint firstAttribute="trailing" secondItem="ocD-f6-6z2" secondAttribute="trailing" constant="4" id="TE5-63-Oka"/>
@@ -1032,6 +1033,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="QHc-Wk-pSp">
                         <barButtonItem key="leftBarButtonItem" image="delete.png" id="CLi-wj-KzP">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="dismissView:" destination="PCe-6I-CjY" id="IRE-Kb-umQ"/>
                             </connections>
@@ -1579,6 +1581,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2V5-Tr-gV8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
