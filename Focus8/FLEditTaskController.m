@@ -283,6 +283,18 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     self.taskName = self.taskNameField.text;
 }
 
+#pragma mark - tableview datasource.
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30.0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.5;
+}
+
 #pragma mark - tableview delegate method
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
