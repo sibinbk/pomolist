@@ -119,7 +119,7 @@
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:30];
 
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"finishDate" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"finishTime" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
     fetchRequest.sortDescriptors = sortDescriptors;
     

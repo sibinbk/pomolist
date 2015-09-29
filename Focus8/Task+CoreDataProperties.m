@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.m
 //  Focus8
 //
-//  Created by Sibin Baby on 19/09/2015.
+//  Created by Sibin Baby on 29/09/2015.
 //  Copyright © 2015 FocusApps. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

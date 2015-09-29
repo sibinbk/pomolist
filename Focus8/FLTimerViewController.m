@@ -898,10 +898,11 @@ static NSString *const kFLAppTitle = @"Listie";
 
 - (void)saveEventOfTask:(Task *)task withTotalTime:(NSTimeInterval)totalTime sessionCount:(NSInteger)count
 {
-    NSDate *taskFinishDate = [self truncateTimeFromDate:[NSDate date]];
+    NSDate *finishTime = [NSDate date];
+    NSDate *finishDate = [self truncateTimeFromDate:finishTime];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Event"];
-    NSCompoundPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[NSPredicate predicateWithFormat:@"finishDate == %@", taskFinishDate],
+    NSCompoundPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[NSPredicate predicateWithFormat:@"finishDate == %@", finishDate],
                                                                                                   [NSPredicate predicateWithFormat:@"task == %@", task]]];
     [request setPredicate:compoundPredicate];
     
@@ -916,7 +917,8 @@ static NSString *const kFLAppTitle = @"Listie";
         Event *newEvent = [[Event alloc] initWithEntity:eventEntity insertIntoManagedObjectContext:self.managedObjectContext];
         
         //Populate Event details.
-        newEvent.finishDate = [self truncateTimeFromDate:[NSDate date]];
+        newEvent.finishTime = finishTime;
+        newEvent.finishDate = finishDate;
         newEvent.totalTaskTime = [NSNumber numberWithDouble:totalTime];
         newEvent.totalSessionCount = [NSNumber numberWithInteger:count];
         
@@ -927,6 +929,7 @@ static NSString *const kFLAppTitle = @"Listie";
         NSTimeInterval newTaskTime = [event.totalTaskTime integerValue] + totalTime;
         NSInteger newSessionCount = [event.totalSessionCount integerValue] + count;
         
+        event.finishTime = finishTime;
         event.totalTaskTime = [NSNumber numberWithDouble:newTaskTime];
         event.totalSessionCount = [NSNumber numberWithInteger:newSessionCount];
         

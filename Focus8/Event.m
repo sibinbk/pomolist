@@ -18,8 +18,8 @@
 - (NSString *)dateSection {
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    formatter.dateStyle = NSDateFormatterMediumStyle;
-    NSString *sectionTitle = [formatter stringFromDate:self.finishDate];
+    formatter.dateStyle = NSDateFormatterFullStyle;
+    NSString *sectionTitle = [formatter stringFromDate:self.finishTime];
     
     return sectionTitle;
 }

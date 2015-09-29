@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.h
 //  Focus8
 //
-//  Created by Sibin Baby on 19/09/2015.
+//  Created by Sibin Baby on 29/09/2015.
 //  Copyright © 2015 FocusApps. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,8 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Event (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSDate *finishDate;
-@property (nullable, nonatomic, retain) NSNumber *totalTaskTime;
 @property (nullable, nonatomic, retain) NSNumber *totalSessionCount;
+@property (nullable, nonatomic, retain) NSNumber *totalTaskTime;
+@property (nullable, nonatomic, retain) NSDate *finishTime;
 @property (nullable, nonatomic, retain) Task *task;
 
 @end
