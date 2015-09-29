@@ -82,9 +82,9 @@
     NSString * titleString;
     
     if ([self.sessionCountArray[row] intValue] == 1) {
-        titleString = [NSString stringWithFormat:@"%@ pomodoro", self.sessionCountArray[row]];
+        titleString = [NSString stringWithFormat:@"%@ session", self.sessionCountArray[row]];
     } else {
-        titleString = [NSString stringWithFormat:@"%@ pomodoros", self.sessionCountArray[row]];
+        titleString = [NSString stringWithFormat:@"%@ sessions", self.sessionCountArray[row]];
     }
     
     return titleString;

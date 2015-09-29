@@ -188,15 +188,15 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     self.longBreakLabel.text = [self stringifyTime:(int)self.longBreakTime];
     
     if (self.longBreakDelay == 1) {
-        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoro", (int)self.longBreakDelay];
+        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d session", (int)self.longBreakDelay];
     } else {
-        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoros", (int)self.longBreakDelay];
+        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d sessions", (int)self.longBreakDelay];
     }
     
     if (self.repeatCount == 1) {
-        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoro", (int)self.repeatCount];
+        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d session", (int)self.repeatCount];
     } else {
-        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoros", (int)self.repeatCount];
+        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d sessions", (int)self.repeatCount];
     }
     
     self.totalTaskTimeLabel.text = [self stringifyTotalTaskTime:(self.taskTime * self.repeatCount) usingLongFormat:YES];
@@ -389,7 +389,7 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
         
         if ([sender isEqualToString:kTaskColorPicker]) {
             colorPicker.selectedColorString = self.taskColorString;
-            colorPicker.navigationItem.title = @"Pomodoro";
+            colorPicker.navigationItem.title = @"Task Session";
         } else if ([sender isEqualToString:kShortBreakColorPicker]) {
             colorPicker.selectedColorString = self.shortBreakColorString;
             colorPicker.navigationItem.title = @"Short Break";
@@ -472,9 +472,9 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     self.longBreakDelay = delay;
     
     if (delay == 1) {
-        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoro", (int)delay];
+        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d session", (int)delay];
     } else {
-        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d pomodoros", (int)delay];
+        self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d sessions", (int)delay];
     }
 }
 
@@ -485,9 +485,9 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     self.repeatCount = count;
     
     if (count == 1) {
-        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoro", (int)count];
+        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d session", (int)count];
     } else {
-        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d pomodoros", (int)count];
+        self.taskGoalLabel.text = [NSString stringWithFormat:@"%d sessions", (int)count];
     }
     
     self.totalTaskTimeLabel.text = [self stringifyTotalTaskTime:(self.taskTime * count) usingLongFormat:YES];

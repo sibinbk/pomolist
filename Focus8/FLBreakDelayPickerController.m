@@ -80,9 +80,9 @@
     NSString *titleString;
     
     if ([self.delayListArray[row] intValue] == 1) {
-        titleString = [NSString stringWithFormat:@"%@ pomodoro", self.delayListArray[row]];
+        titleString = [NSString stringWithFormat:@"%@ session", self.delayListArray[row]];
     } else {
-        titleString = [NSString stringWithFormat:@"%@ pomodoros", self.delayListArray[row]];
+        titleString = [NSString stringWithFormat:@"%@ sessions", self.delayListArray[row]];
     }
     
     return titleString;

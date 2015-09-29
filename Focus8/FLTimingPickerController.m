@@ -47,7 +47,7 @@
     
     switch (self.timingPickerType) {
         case TaskTimePicker:
-            self.titleLabel.text = @"Pomodoro";
+            self.titleLabel.text = @"Task Session";
             self.timeListArray = self.taskSessionArray;
             break;
         case ShortBreakPicker:
