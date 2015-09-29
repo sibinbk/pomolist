@@ -8,6 +8,7 @@
 
 #import "EventTableViewController.h"
 #import "AppDelegate.h"
+#import "FLEventCell.h"
 #import "Task.h"
 #import "Event.h"
 
@@ -21,6 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // A little trick for removing the cell separators
+    self.tableView.tableFooterView = [UIView new];
     
     NSError *error = nil;
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -40,6 +44,11 @@
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 68.0;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return [[_fetchedResultsController sections] count];
@@ -54,7 +63,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"EventCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    FLEventCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
 
@@ -62,9 +71,9 @@
     
     Task *task = event.task;
     
-    cell.textLabel.text = task.name;
-
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Sessions %ld Sec", (long)[event.totalSessionCount integerValue], (long)[event.totalTaskTime integerValue]];
+    cell.nameLabel.text = task.name;
+    cell.durationLabel.attributedText = [self timeStringFromDuration:(int)[event.totalTaskTime integerValue]];
+    cell.sessionCountLabel.attributedText = [self sessionCountStringFromCount:[event.totalSessionCount integerValue]];
     
     return cell;
 }
@@ -98,8 +107,10 @@
 {
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     
+    header.tintColor = [UIColor colorWithRed:(255.0/255.0) green:(255.0/255.0) blue:(234.0/255.0) alpha:1];
     header.textLabel.textColor = [UIColor blackColor];
     header.textLabel.font = [UIFont systemFontOfSize:16];
+    header.textLabel.backgroundColor = [UIColor clearColor];
     CGRect headerFrame = header.frame;
     header.textLabel.frame = headerFrame;
     header.textLabel.textAlignment = NSTextAlignmentCenter;
@@ -188,6 +199,91 @@
         case NSFetchedResultsChangeMove:
         case NSFetchedResultsChangeUpdate:
             break;
+    }
+}
+
+- (NSMutableAttributedString *)sessionCountStringFromCount:(NSInteger)count
+{
+    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *firstStringAttributes = @{
+                                            NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightLight],
+                                            NSForegroundColorAttributeName:[UIColor blackColor],
+                                            NSParagraphStyleAttributeName : paragraphStyle
+                                            };
+    NSDictionary *secondStringAttributes = @{
+                                             NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightLight],
+                                             NSForegroundColorAttributeName:[UIColor blackColor],
+                                             NSParagraphStyleAttributeName : paragraphStyle
+                                             };
+    NSString *firstString = [NSString stringWithFormat:@"%ld", (long)count];
+    
+    NSString *secondString;
+    
+    if (count > 1) {
+        secondString = @"Sessions";
+    } else {
+        secondString = @"Session";
+    }
+    
+    NSString *combinedString = [NSString stringWithFormat:@"%@%@", firstString, secondString];
+    NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:combinedString];
+    [modifiedString setAttributes:firstStringAttributes range:[combinedString rangeOfString:firstString]];
+    [modifiedString setAttributes:secondStringAttributes range:[combinedString rangeOfString:secondString]];
+    
+    return modifiedString;
+}
+
+- (NSMutableAttributedString *)timeStringFromDuration:(int)seconds
+{
+    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *timeAttributes = @{
+                                     NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightMedium],
+                                     NSForegroundColorAttributeName:[UIColor blackColor],
+                                     NSParagraphStyleAttributeName : paragraphStyle
+                                     };
+    NSDictionary *subAttributes = @{
+                                    NSFontAttributeName:[UIFont systemFontOfSize:18 weight:UIFontWeightMedium],
+                                    NSForegroundColorAttributeName:[UIColor blackColor],
+                                    NSParagraphStyleAttributeName : paragraphStyle
+                                    };
+    
+    int remainingSeconds = seconds;
+    
+    int hours = remainingSeconds / 3600;
+    
+    remainingSeconds = remainingSeconds - hours * 3600;
+    
+    int minutes = remainingSeconds / 60;
+    
+    remainingSeconds = remainingSeconds - minutes * 60;
+    
+    NSString *minuteString = @"min";
+    NSString *hourString = @"hr";
+    
+    if (hours > 0) {
+        if (minutes > 0) {
+            NSString *timeString = [NSString stringWithFormat:@"%i%@ %i%@", hours, hourString, minutes, minuteString];
+            NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
+            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:minuteString]];
+            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:hourString]];
+            return modifiedString;
+        } else {
+            NSString *timeString = [NSString stringWithFormat:@"%i%@", hours, hourString];
+            NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
+            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:hourString]];
+            return modifiedString;
+        }
+    } else {
+        NSString *timeString = [NSString stringWithFormat:@"%i%@", minutes, minuteString];
+        NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
+        [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:minuteString]];
+        return modifiedString;
     }
 }
 

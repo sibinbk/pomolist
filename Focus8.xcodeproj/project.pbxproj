@@ -47,6 +47,7 @@
 		C3616A471AAB434500C47C8A /* archive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3616A441AAB434500C47C8A /* archive@3x.png */; };
 		C37567C41BA17E24009DB1D5 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C37567BE1BA17E24009DB1D5 /* Task.m */; settings = {ASSET_TAGS = (); }; };
 		C37567C61BA17E24009DB1D5 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C37567C21BA17E24009DB1D5 /* Event.m */; settings = {ASSET_TAGS = (); }; };
+		C3817EF81BBA364900B1F168 /* FLEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3817EF71BBA364900B1F168 /* FLEventCell.m */; settings = {ASSET_TAGS = (); }; };
 		C38409E51BAC5BFA00097321 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38409C71BAC5BFA00097321 /* AsyncButton.swift */; settings = {ASSET_TAGS = (); }; };
 		C38409E61BAC5BFA00097321 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38409C81BAC5BFA00097321 /* AsyncImageView.swift */; settings = {ASSET_TAGS = (); }; };
 		C38409E71BAC5BFA00097321 /* AutoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38409C91BAC5BFA00097321 /* AutoTextView.swift */; settings = {ASSET_TAGS = (); }; };
@@ -179,6 +180,8 @@
 		C37567BE1BA17E24009DB1D5 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		C37567C11BA17E24009DB1D5 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		C37567C21BA17E24009DB1D5 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		C3817EF61BBA364900B1F168 /* FLEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEventCell.h; sourceTree = "<group>"; };
+		C3817EF71BBA364900B1F168 /* FLEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEventCell.m; sourceTree = "<group>"; };
 		C38409C71BAC5BFA00097321 /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		C38409C81BAC5BFA00097321 /* AsyncImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		C38409C91BAC5BFA00097321 /* AutoTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoTextView.swift; sourceTree = "<group>"; };
@@ -414,6 +417,8 @@
 				C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */,
 				C3EA01F51B0CE3EE00C321BF /* FLTaskCell.h */,
 				C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */,
+				C3817EF61BBA364900B1F168 /* FLEventCell.h */,
+				C3817EF71BBA364900B1F168 /* FLEventCell.m */,
 				C3EA01F11B0A27DF00C321BF /* FLColorCell.h */,
 				C3EA01F21B0A27DF00C321BF /* FLColorCell.m */,
 				C37567C71BA17E55009DB1D5 /* CoreDataClass */,
@@ -786,6 +791,7 @@
 				C38409F01BAC5BFA00097321 /* ImageLoader.swift in Sources */,
 				C38409ED1BAC5BFA00097321 /* DesignableTextField.swift in Sources */,
 				C35B33621A0CBA1500061C40 /* AppDelegate.m in Sources */,
+				C3817EF81BBA364900B1F168 /* FLEventCell.m in Sources */,
 				C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */,
 				C35B335F1A0CBA1500061C40 /* main.m in Sources */,
 				C3EA01F31B0A27DF00C321BF /* FLColorCell.m in Sources */,
