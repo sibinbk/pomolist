@@ -847,7 +847,6 @@ static NSString *const kFLAppTitle = @"Listie";
     [UIView animateWithDuration:0.5 animations:^{
         self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
     }];
-
 }
 
 - (void)taskFinished:(ZGCountDownTimer *)sender totalTaskTime:(NSTimeInterval)time sessionCount:(NSInteger)count
@@ -1517,7 +1516,7 @@ static NSString *const kFLAppTitle = @"Listie";
     }
 }
 
-#pragma mark - FLTaskController delegate.
+#pragma mark - FLEditTaskController delegate.
 
 - (void)taskController:(FLEditTaskController *)controller didChangeTask:(Task *)task withTimerValue:(BOOL)changed
 {
@@ -1525,17 +1524,40 @@ static NSString *const kFLAppTitle = @"Listie";
     
     [self changeTaskDetails:task];
     
-    self.titleLabel.text = task.name;
-    
-    if (changed) {
-        NSLog(@"It is changed");
+    if (!changed) {
+        // Timer values not changed. Resets only task name and view color.
+        
+        self.titleLabel.text = self.taskName;
+        
+        NSString *viewColorString;
+        CountDownCycleType cycle = self.repeatTimer.cycleType;
+        
+        switch (cycle) {
+            case TaskCycle:
+                viewColorString = self.taskColorString;
+                break;
+            case ShortBreakCycle:
+                viewColorString = self.shortBreakColorString;
+                break;
+            case LongBreakCycle:
+                viewColorString = self.longBreakColorString;
+                break;
+            default:
+                break;
+        }
+        
+        self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
+        
+    } else {
+        NSLog(@"Timer values changed");
+        
         if (self.repeatTimer.isRunning) {
             [self cancelTimerNotifications];
         }
         [self.repeatTimer resetTimer];
         [self setUpRepeatTimer];
         [self setUpTimerViewInterfaceWith:self.isFullView];
-    }
+     }
 }
 
 #pragma mark - FLSettingsController delegate.

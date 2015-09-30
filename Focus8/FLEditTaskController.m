@@ -74,6 +74,7 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 
 @property (assign, nonatomic, getter = isNameTaken) BOOL nameTaken;
 @property (assign, nonatomic) BOOL isActiveField;
+@property (assign, nonatomic) BOOL timerChanged;
 @property (strong, nonatomic) NSString *oldName;
 
 @end
@@ -89,6 +90,10 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 {
     NSLog(@"View did load");
     [super viewDidLoad];
+
+    
+    // Flag to check change in timer values.
+    self.timerChanged = NO;
 
     /* Date formatter code.
      
@@ -156,7 +161,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
         self.taskColorString = self.task.taskColorString;
         self.shortBreakColorString = self.task.shortBreakColorString;
         self.longBreakColorString = self.task.longBreakColorString;
-        
     } else {
         self.taskName = nil;
         self.uniqueID = [NSString stringWithFormat:@"%@",[NSDate date]];
@@ -475,6 +479,8 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
             self.longBreakTime = selectedTime;
             break;
     }
+    
+    self.timerChanged = YES;
 }
 
 #pragma mark - Long Break Delay picker delegate method.
@@ -488,6 +494,8 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     } else {
         self.longBreakDelayLabel.text = [NSString stringWithFormat:@"%d sessions", (int)delay];
     }
+    
+    self.timerChanged = YES;
 }
 
 # pragma mark - Target session count picker delagate.
@@ -503,6 +511,8 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     }
     
     self.totalTaskTimeLabel.text = [self stringifyTotalTaskTime:(self.taskTime * count) usingLongFormat:YES];
+    
+    self.timerChanged = YES;
 }
 
 #pragma mark - ColorPicker delegate method.
@@ -651,7 +661,7 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
         } else {
             if ([self.task.isSelected boolValue]) {
                 NSLog(@"delegate method called");
-                [self.delegate taskController:self didChangeTask:self.task withTimerValue:YES];
+                [self.delegate taskController:self didChangeTask:self.task withTimerValue:self.timerChanged];
             }
         }
     }
