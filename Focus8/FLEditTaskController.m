@@ -47,7 +47,7 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 @property (weak, nonatomic) IBOutlet UILabel *longBreakLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longBreakDelayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *taskGoalLabel;
-@property (weak, nonatomic) IBOutlet UILabel *totalTaskTimeLabel;
+@property (weak, nonatomic) IBOutlet DesignableLabel *totalTaskTimeLabel;
 @property (weak, nonatomic) IBOutlet DesignableView *taskColorView;
 @property (weak, nonatomic) IBOutlet DesignableView *shortBreakColorView;
 @property (weak, nonatomic) IBOutlet DesignableView *longBreakColorView;
@@ -94,7 +94,7 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     
     // Flag to check change in timer values.
     self.timerChanged = NO;
-
+    
     /* Date formatter code.
      
     //Setup date formatter
@@ -469,6 +469,8 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
             self.taskTimeLabel.text = [self stringifyTime:selectedTime];
             self.totalTaskTimeLabel.text = [self stringifyTotalTaskTime:(selectedTime * self.repeatCount) usingLongFormat:YES];
             self.taskTime = selectedTime;
+            // Animate totalTaskTime label.
+            [self animateTotalTaskTimeLabel];
             break;
         case ShortBreakPicker:
             self.shortBreakLabel.text = [self stringifyTime:selectedTime];
@@ -513,6 +515,18 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     self.totalTaskTimeLabel.text = [self stringifyTotalTaskTime:(self.taskTime * count) usingLongFormat:YES];
     
     self.timerChanged = YES;
+    
+    // Animate totalTaskTime label.
+    [self animateTotalTaskTimeLabel];
+}
+
+- (void)animateTotalTaskTimeLabel
+{
+    self.totalTaskTimeLabel.animation = @"zoomIn";
+    self.totalTaskTimeLabel.duration = 0.5;
+    self.totalTaskTimeLabel.delay = 0.3;
+    
+    [self.totalTaskTimeLabel animate];
 }
 
 #pragma mark - ColorPicker delegate method.
@@ -684,6 +698,9 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 
 - (NSString *)stringifyTotalTaskTime:(int)seconds usingLongFormat:(BOOL)longFormat
 {
+    NSString *hourString;
+    NSString *minuteString;
+
     int remainingSeconds = seconds;
     
     int hours = remainingSeconds / 3600;
@@ -694,15 +711,27 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     
     remainingSeconds = remainingSeconds - minutes * 60;
     
+    if (hours > 1) {
+        hourString = @"hours";
+    } else {
+        hourString = @"hour";
+    }
+    
+    if (minutes > 1) {
+        minuteString = @"minutes";
+    } else {
+        minuteString = @"minute";
+    }
+    
     if (longFormat) {
         if (hours > 0) {
             if (minutes > 0) {
-                return [NSString stringWithFormat:@"%i hr %i min", hours, minutes];
+                return [NSString stringWithFormat:@"%i %@ %i %@", hours, hourString, minutes, minuteString];
             } else {
-                return [NSString stringWithFormat:@"%i hr", hours];
+                return [NSString stringWithFormat:@"%i %@", hours, hourString];
             }
         } else {
-            return [NSString stringWithFormat:@"%i min", minutes];
+            return [NSString stringWithFormat:@"%i %@", minutes, minuteString];
         }
     } else {
         if (hours > 0) {
