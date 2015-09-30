@@ -16,7 +16,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @interface FLSettingsController () <FLSoundPickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *alarmSoundLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *muteSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *preventScreenLockSwitch;
 
 @end
@@ -29,16 +28,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     self.alarmSoundLabel.text = self.alarmSound;
     
-    // Check if Mute is On.
-    self.muteSwitch.on = ![JSQSystemSoundPlayer sharedPlayer].on;
-    
     // Check if Screen Lock Timer is disabled.
     self.preventScreenLockSwitch.on = [UIApplication sharedApplication].idleTimerDisabled;
-}
-
-- (IBAction)muteAllSound:(UISwitch *)sender
-{
-    [[JSQSystemSoundPlayer sharedPlayer] toggleSoundPlayerOn:!sender.on];
 }
 
 - (IBAction)preventScreenLock:(UISwitch *)sender
