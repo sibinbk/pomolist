@@ -10,11 +10,14 @@
 #import "JSQSystemSoundPlayer.h"
 #import "FLSoundPickerController.h"
 #import <Social/Social.h>
+#import <MessageUI/MessageUI.h>
+
+static int const MY_APP_STORE_ID = 527097956; // Change it with original App ID before uploading Binary
 
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
-@interface FLSettingsController () <FLSoundPickerControllerDelegate>
+@interface FLSettingsController () <FLSoundPickerControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *alarmSoundLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *preventScreenLockSwitch;
@@ -82,23 +85,24 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 - (void)shareItOnfacebook
 {
     // Facebook
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-    {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
         SLComposeViewController *fbPost = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [fbPost setInitialText:@"ABCD"];
-        [fbPost addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8"]];
-        [fbPost setCompletionHandler:^(SLComposeViewControllerResult result)
-         {
-             if (result == SLComposeViewControllerResultCancelled)
+        if (fbPost) {
+            [fbPost setInitialText:@"ABCD"];
+            [fbPost addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8"]];
+            [fbPost setCompletionHandler:^(SLComposeViewControllerResult result)
              {
-                 NSLog(@"The user cancelled.");
-             }
-             else if (result == SLComposeViewControllerResultDone)
-             {
-                 NSLog(@"The user sent the post.");
-             }
-         }];
-        [self presentViewController:fbPost animated:YES completion:nil];
+                 if (result == SLComposeViewControllerResultCancelled)
+                 {
+                     NSLog(@"The user cancelled.");
+                 }
+                 else if (result == SLComposeViewControllerResultDone)
+                 {
+                     NSLog(@"The user sent the post.");
+                 }
+             }];
+            [self presentViewController:fbPost animated:YES completion:nil];
+        }
     }
     else
     {
@@ -118,23 +122,24 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 - (void)shareItOnTwitter
 {
     // Twitter
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-    {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
         SLComposeViewController *tweet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        [tweet setInitialText:@"ABCD App"];
-        [tweet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8"]];
-        [tweet setCompletionHandler:^(SLComposeViewControllerResult result) {
-            if (result == SLComposeViewControllerResultCancelled)
-             {
-                 NSLog(@"The user cancelled.");
-             }
-             else if (result == SLComposeViewControllerResultDone)
-             {
-                 NSLog(@"The user sent the tweet");
-             }
-         }];
-        
-        [self presentViewController:tweet animated:YES completion:nil];
+        if (tweet) {
+            [tweet setInitialText:@"ABCD App"];
+            [tweet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8"]];
+            [tweet setCompletionHandler:^(SLComposeViewControllerResult result) {
+                if (result == SLComposeViewControllerResultCancelled)
+                {
+                    NSLog(@"The user cancelled.");
+                }
+                else if (result == SLComposeViewControllerResultDone)
+                {
+                    NSLog(@"The user sent the tweet");
+                }
+            }];
+            
+            [self presentViewController:tweet animated:YES completion:nil];
+        }
     }
     else
     {
@@ -151,8 +156,76 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
 }
 
+- (void)shareItAsTextMessage
+{
+    if ([MFMessageComposeViewController canSendText]) {
+        MFMessageComposeViewController *messageComposeViewController = [[MFMessageComposeViewController alloc] init];
+        messageComposeViewController.messageComposeDelegate = self;
+        messageComposeViewController.body = @"Hi, check this new iOS app, https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8";
+        [self presentViewController:messageComposeViewController animated:YES completion:nil];
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"SMS failed"
+                                                                       message:@"You cannot send the SMS"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                              }];
+        [alert addAction:dismissAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+- (void)sendFeedBack
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailComposeViewController = [[MFMailComposeViewController alloc] init];
+        mailComposeViewController.mailComposeDelegate = self;
+        [mailComposeViewController setToRecipients:@[@"sibinbk@gmail.com"]];
+        [mailComposeViewController setSubject:@"App Feedback"];
+        [self presentViewController:mailComposeViewController animated:YES completion:nil];
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Email failed"
+                                                                       message:@"You cannot send the email"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                              }];
+        [alert addAction:dismissAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+
+}
+
+- (void)openAppLink
+{
+    NSURL *appURL = [NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d", MY_APP_STORE_ID]];
+    
+    [[UIApplication sharedApplication] openURL:appURL];
+}
+
+#pragma mark - Mail composer delegate method.
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    // Dismiss the mail composer.
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - tableview delegate methods.
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == 2) {
         
         switch (indexPath.row) {
@@ -161,6 +234,16 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                 break;
             case 1:
                 [self shareItOnTwitter];
+                break;
+            case 2:
+                [self shareItAsTextMessage];
+                break;
+            case 3:
+                [self sendFeedBack];
+                break;
+            case 4:
+                [self openAppLink];
+                break;
             default:
                 break;
         }
