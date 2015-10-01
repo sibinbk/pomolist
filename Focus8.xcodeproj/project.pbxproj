@@ -34,6 +34,7 @@
 		C3534E261B09A63E0015B626 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C3534E231B09A63E0015B626 /* Checkmark.png */; };
 		C3534E271B09A63E0015B626 /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3534E241B09A63E0015B626 /* Checkmark@2x.png */; };
 		C3534E281B09A63E0015B626 /* Checkmark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3534E251B09A63E0015B626 /* Checkmark@3x.png */; };
+		C3537A6A1BBCD65200A79C78 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3537A691BBCD65200A79C78 /* Social.framework */; };
 		C35B335F1A0CBA1500061C40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C35B335E1A0CBA1500061C40 /* main.m */; };
 		C35B33621A0CBA1500061C40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C35B33611A0CBA1500061C40 /* AppDelegate.m */; };
 		C35B33651A0CBA1500061C40 /* Focus8.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C35B33631A0CBA1500061C40 /* Focus8.xcdatamodeld */; };
@@ -158,6 +159,7 @@
 		C3534E231B09A63E0015B626 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
 		C3534E241B09A63E0015B626 /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark@2x.png"; sourceTree = "<group>"; };
 		C3534E251B09A63E0015B626 /* Checkmark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark@3x.png"; sourceTree = "<group>"; };
+		C3537A691BBCD65200A79C78 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C35B33591A0CBA1500061C40 /* Focus8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Focus8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C35B335D1A0CBA1500061C40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C35B335E1A0CBA1500061C40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3537A6A1BBCD65200A79C78 /* Social.framework in Frameworks */,
 				C3A49A471B92AF6300F7D796 /* AVFoundation.framework in Frameworks */,
 				C3A49A451B90510900F7D796 /* AudioToolbox.framework in Frameworks */,
 				D47D80DDBE58ED9BF22F172C /* libPods.a in Frameworks */,
@@ -368,8 +371,6 @@
 				C35B335B1A0CBA1500061C40 /* Focus8 */,
 				C35B33781A0CBA1500061C40 /* Focus8Tests */,
 				C35B335A1A0CBA1500061C40 /* Products */,
-				C3A49A461B92AF6300F7D796 /* AVFoundation.framework */,
-				C3A49A441B90510900F7D796 /* AudioToolbox.framework */,
 				A6D9FEBE3EEE0420823F1CC7 /* Pods */,
 				DC954C7D587B637345C0B597 /* Frameworks */,
 			);
@@ -556,6 +557,9 @@
 		DC954C7D587B637345C0B597 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3537A691BBCD65200A79C78 /* Social.framework */,
+				C3A49A461B92AF6300F7D796 /* AVFoundation.framework */,
+				C3A49A441B90510900F7D796 /* AudioToolbox.framework */,
 				78E09210CA49F9208CF4B91D /* libPods.a */,
 			);
 			name = Frameworks;
