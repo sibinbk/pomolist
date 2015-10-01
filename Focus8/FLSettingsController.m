@@ -200,6 +200,55 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 }
 
+-(void)reviewTheApp
+{
+    UIAlertController *alertAction = [UIAlertController alertControllerWithTitle:@"Rate Listie"
+                                                                         message:@"What do you think about Listie?"
+                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *LikeAction = [UIAlertAction actionWithTitle:@"Love it"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                           [self openAppLink];
+                                                           [alertAction dismissViewControllerAnimated:YES completion:nil];
+                                                       }];
+    UIAlertAction *dislikeAction = [UIAlertAction actionWithTitle:@"I don't like it"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * _Nonnull action) {
+                                                              [self appDislikeAction];
+                                                              [alertAction dismissViewControllerAnimated:YES completion:nil];
+                                                          }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:^(UIAlertAction * _Nonnull action) {
+                                                        [alertAction dismissViewControllerAnimated:YES completion:nil];
+                                                    }];
+    [alertAction addAction:LikeAction];
+    [alertAction addAction:dislikeAction];
+    [alertAction addAction:cancel];
+    
+    [self presentViewController:alertAction animated:YES completion:nil];
+}
+
+- (void)appDislikeAction
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Rated"
+                                                                   message:@"Thanks for rating the app. Would you like to tell us what needs to improve with the app?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* noAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                        }];
+    UIAlertAction* yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action) {
+                                                         [self sendFeedBack];
+                                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                                     }];
+    [alert addAction:noAction];
+    [alert addAction:yesAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)openAppLink
 {
     NSURL *appURL = [NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d", MY_APP_STORE_ID]];
@@ -242,7 +291,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                 [self sendFeedBack];
                 break;
             case 4:
-                [self openAppLink];
+                [self reviewTheApp];
                 break;
             default:
                 break;
