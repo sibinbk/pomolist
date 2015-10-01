@@ -1465,7 +1465,10 @@ static NSString *const kFLAppTitle = @"Listie";
     self.repeatCount = 0;
     self.longBreakDelay = 0;
     
-    // flag set to mark no task is selected.
+    // Changes the view color to 'Alizarin' when a task is deleted.
+    self.taskColorString = @"E74C3C";
+    
+    // Flag set to mark no task is selected.
     self.taskSelected = NO;
     
     [self setUpRepeatTimer];
