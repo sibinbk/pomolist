@@ -691,7 +691,7 @@ static NSString *const kFLAppTitle = @"Listie";
         switch (cycleType) {
             case TaskCycle:
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
-                notification.alertBody = [NSString stringWithFormat:@"Pomodoro %d completed. Take a break! - Goal %d/%d", taskCount, taskCount, (int)self.repeatCount] ;
+                notification.alertBody = [NSString stringWithFormat:@"Task Session %d completed. Take a break! - Goal %d sessions", taskCount, (int)self.repeatCount];
                 if (![self checkIfLongBreakCycle:taskCount]) {
                     cycleType = ShortBreakCycle;
                     tempCycleFinishTime += self.shortBreakTime;
@@ -726,7 +726,7 @@ static NSString *const kFLAppTitle = @"Listie";
     finalNotification.soundName = [NSString stringWithFormat:@"%@.caf", self.alarmSound];
     finalNotification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
     finalNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(self.totalCountDownTime - timePassed)];
-    finalNotification.alertBody = [NSString stringWithFormat:@"Well done. Task completed! - Goal %d/%d", taskCount, (int)self.repeatCount];
+    finalNotification.alertBody = [NSString stringWithFormat:@"Well done. Task completed! - Goal %d sessions", (int)self.repeatCount];
     [[UIApplication sharedApplication] scheduleLocalNotification:finalNotification];
 }
 
@@ -829,7 +829,7 @@ static NSString *const kFLAppTitle = @"Listie";
     
     switch (cycle) {
         case TaskCycle:
-            cycleTitle = [NSString stringWithFormat:@"Pomodoro # %ld", (long) count];
+            cycleTitle = @"Task Session";
             viewColorString = self.taskColorString;
             break;
         case ShortBreakCycle:
