@@ -1136,7 +1136,7 @@ static NSString *const kFLAppTitle = @"Listie";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70.0;
+    return 72.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1174,9 +1174,9 @@ static NSString *const kFLAppTitle = @"Listie";
     cell.taskColorView.backgroundColor = [UIColor colorWithString:task.taskColorString];
     
     if (![task.isSelected boolValue]) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.checkMarkButton.hidden = YES;
     } else {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.checkMarkButton.hidden = NO;
     }
     
     //configure left buttons

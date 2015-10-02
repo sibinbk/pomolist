@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet DesignableView *taskColorView;
 @property (weak, nonatomic) IBOutlet UILabel *taskTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *checkMarkButton;
 
 @end

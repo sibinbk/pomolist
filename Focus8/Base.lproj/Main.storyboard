@@ -275,25 +275,25 @@
                                 <rect key="frame" x="0.0" y="600" width="600" height="800"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="TaskCell" rowHeight="70" id="dKl-oX-aik" customClass="FLTaskCell">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="70"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="TaskCell" rowHeight="72" id="dKl-oX-aik" customClass="FLTaskCell">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dKl-oX-aik" id="37M-rx-rQh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="71.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0o-hJ-VQ5" customClass="DesignableView" customModule="Focus8" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="3" width="64" height="64"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4G-C4-6h2">
-                                                            <rect key="frame" x="14" y="6" width="37" height="36"/>
+                                                            <rect key="frame" x="14" y="6" width="36.5" height="36"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8n-Pg-ljA">
-                                                            <rect key="frame" x="20" y="38" width="24" height="17"/>
+                                                            <rect key="frame" x="20" y="38" width="23.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -315,7 +315,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWW-ZE-9lW">
-                                                    <rect key="frame" x="148" y="36" width="1" height="20"/>
+                                                    <rect key="frame" x="148" y="44" width="1" height="20"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="56G-bV-qFv"/>
@@ -323,40 +323,47 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3h 20m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUJ-8e-nQs">
-                                                    <rect key="frame" x="155" y="36" width="56" height="20"/>
+                                                    <rect key="frame" x="155" y="44" width="56" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFb-13-0mH">
-                                                    <rect key="frame" x="80" y="8" width="76" height="24"/>
+                                                    <rect key="frame" x="80" y="12" width="76" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Cycles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3H-J0-pjA">
-                                                    <rect key="frame" x="80" y="36" width="63" height="20"/>
+                                                    <rect key="frame" x="80" y="44" width="63" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i73-r7-wtM">
+                                                    <rect key="frame" x="555" y="21" width="30" height="30"/>
+                                                    <state key="normal" image="Checked.png"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="B3H-J0-pjA" firstAttribute="top" secondItem="vFb-13-0mH" secondAttribute="bottom" constant="4" id="2pn-L1-FHY"/>
+                                                <constraint firstItem="B3H-J0-pjA" firstAttribute="top" secondItem="vFb-13-0mH" secondAttribute="bottom" constant="8" id="2pn-L1-FHY"/>
                                                 <constraint firstItem="qWW-ZE-9lW" firstAttribute="leading" secondItem="B3H-J0-pjA" secondAttribute="trailing" constant="6" id="8Kf-NU-LW9"/>
                                                 <constraint firstItem="L0o-hJ-VQ5" firstAttribute="leading" secondItem="37M-rx-rQh" secondAttribute="leading" constant="8" id="EN2-PY-iVk"/>
+                                                <constraint firstItem="i73-r7-wtM" firstAttribute="centerY" secondItem="37M-rx-rQh" secondAttribute="centerY" id="NaE-Gg-EcK"/>
                                                 <constraint firstItem="B3H-J0-pjA" firstAttribute="leading" secondItem="vFb-13-0mH" secondAttribute="leading" id="QNy-RB-kau"/>
                                                 <constraint firstItem="zUJ-8e-nQs" firstAttribute="centerY" secondItem="B3H-J0-pjA" secondAttribute="centerY" id="Rfq-un-zeo"/>
                                                 <constraint firstItem="vFb-13-0mH" firstAttribute="leading" secondItem="B3H-J0-pjA" secondAttribute="leading" id="Uh8-9l-nwA"/>
                                                 <constraint firstAttribute="centerY" secondItem="L0o-hJ-VQ5" secondAttribute="centerY" id="Ve4-VJ-EeA"/>
                                                 <constraint firstItem="zUJ-8e-nQs" firstAttribute="leading" secondItem="qWW-ZE-9lW" secondAttribute="trailing" constant="6" id="cRs-NC-b5H"/>
-                                                <constraint firstItem="vFb-13-0mH" firstAttribute="top" secondItem="37M-rx-rQh" secondAttribute="top" constant="8" id="v4z-8O-Ev7"/>
+                                                <constraint firstAttribute="trailing" secondItem="i73-r7-wtM" secondAttribute="trailing" constant="15" id="d8u-yA-jwn"/>
+                                                <constraint firstItem="vFb-13-0mH" firstAttribute="top" secondItem="37M-rx-rQh" secondAttribute="top" constant="12" id="v4z-8O-Ev7"/>
                                                 <constraint firstItem="vFb-13-0mH" firstAttribute="leading" secondItem="L0o-hJ-VQ5" secondAttribute="trailing" constant="8" id="vgf-tm-JHD"/>
                                                 <constraint firstItem="zUJ-8e-nQs" firstAttribute="centerY" secondItem="qWW-ZE-9lW" secondAttribute="centerY" id="wsy-Ir-V2w"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="checkMarkButton" destination="i73-r7-wtM" id="KOK-3s-CyU"/>
                                             <outlet property="cycleCountLabel" destination="B3H-J0-pjA" id="6e1-hN-Ap6"/>
                                             <outlet property="taskColorView" destination="L0o-hJ-VQ5" id="auJ-Dv-tve"/>
                                             <outlet property="taskNameLabel" destination="vFb-13-0mH" id="dsb-dJ-0fT"/>
@@ -1709,6 +1716,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Checked.png" width="30" height="30"/>
         <image name="Checkmark.png" width="25" height="25"/>
         <image name="Play.png" width="32" height="32"/>
         <image name="archive.png" width="25" height="25"/>
