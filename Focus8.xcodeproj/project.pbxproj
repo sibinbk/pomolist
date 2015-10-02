@@ -86,6 +86,12 @@
 		C38409FF1BAC5BFA00097321 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38409E21BAC5BFA00097321 /* TransitionManager.swift */; settings = {ASSET_TAGS = (); }; };
 		C3840A001BAC5BFA00097321 /* TransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38409E31BAC5BFA00097321 /* TransitionZoom.swift */; settings = {ASSET_TAGS = (); }; };
 		C3840A011BAC5BFA00097321 /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38409E41BAC5BFA00097321 /* UnwindSegue.swift */; settings = {ASSET_TAGS = (); }; };
+		C39ACF831BBE462F004EA540 /* EditCell.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF801BBE462F004EA540 /* EditCell.png */; settings = {ASSET_TAGS = (); }; };
+		C39ACF841BBE462F004EA540 /* EditCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF811BBE462F004EA540 /* EditCell@2x.png */; settings = {ASSET_TAGS = (); }; };
+		C39ACF851BBE462F004EA540 /* EditCell@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF821BBE462F004EA540 /* EditCell@3x.png */; settings = {ASSET_TAGS = (); }; };
+		C39ACF891BBE463A004EA540 /* TrashCell.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF861BBE463A004EA540 /* TrashCell.png */; settings = {ASSET_TAGS = (); }; };
+		C39ACF8A1BBE463A004EA540 /* TrashCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF871BBE463A004EA540 /* TrashCell@2x.png */; settings = {ASSET_TAGS = (); }; };
+		C39ACF8B1BBE463A004EA540 /* TrashCell@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF881BBE463A004EA540 /* TrashCell@3x.png */; settings = {ASSET_TAGS = (); }; };
 		C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */; };
 		C3A49A451B90510900F7D796 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A441B90510900F7D796 /* AudioToolbox.framework */; };
 		C3A49A471B92AF6300F7D796 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A461B92AF6300F7D796 /* AVFoundation.framework */; };
@@ -224,6 +230,12 @@
 		C38409E21BAC5BFA00097321 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		C38409E31BAC5BFA00097321 /* TransitionZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionZoom.swift; sourceTree = "<group>"; };
 		C38409E41BAC5BFA00097321 /* UnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindSegue.swift; sourceTree = "<group>"; };
+		C39ACF801BBE462F004EA540 /* EditCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EditCell.png; sourceTree = "<group>"; };
+		C39ACF811BBE462F004EA540 /* EditCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EditCell@2x.png"; sourceTree = "<group>"; };
+		C39ACF821BBE462F004EA540 /* EditCell@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EditCell@3x.png"; sourceTree = "<group>"; };
+		C39ACF861BBE463A004EA540 /* TrashCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrashCell.png; sourceTree = "<group>"; };
+		C39ACF871BBE463A004EA540 /* TrashCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrashCell@2x.png"; sourceTree = "<group>"; };
+		C39ACF881BBE463A004EA540 /* TrashCell@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrashCell@3x.png"; sourceTree = "<group>"; };
 		C3A103861A2AD52800B1F6BD /* Focus8-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Focus8-Prefix.pch"; sourceTree = "<group>"; };
 		C3A49A3B1B9032D300F7D796 /* FLSoundPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSoundPickerController.h; sourceTree = "<group>"; };
 		C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoundPickerController.m; sourceTree = "<group>"; };
@@ -303,6 +315,12 @@
 		C33008271A94A439003A0AEA /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				C39ACF861BBE463A004EA540 /* TrashCell.png */,
+				C39ACF871BBE463A004EA540 /* TrashCell@2x.png */,
+				C39ACF881BBE463A004EA540 /* TrashCell@3x.png */,
+				C39ACF801BBE462F004EA540 /* EditCell.png */,
+				C39ACF811BBE462F004EA540 /* EditCell@2x.png */,
+				C39ACF821BBE462F004EA540 /* EditCell@3x.png */,
 				C307559D1BBE339900490951 /* Pause.png */,
 				C307559E1BBE339900490951 /* Pause@2x.png */,
 				C307559F1BBE339900490951 /* Pause@3x.png */,
@@ -663,6 +681,7 @@
 				C33008391A94A439003A0AEA /* plus@3x.png in Resources */,
 				C33008441A94AFB7003A0AEA /* delete@2x.png in Resources */,
 				C30755A31BBE339900490951 /* Pause.png in Resources */,
+				C39ACF8B1BBE463A004EA540 /* TrashCell@3x.png in Resources */,
 				C38409F41BAC5BFA00097321 /* LoadingView.xib in Resources */,
 				C3AF6F0F1BA3ED8300919243 /* Woodpecker.caf in Resources */,
 				C38409F11BAC5BFA00097321 /* Info.plist in Resources */,
@@ -675,6 +694,7 @@
 				C30755A51BBE339900490951 /* Pause@3x.png in Resources */,
 				C3AF6F0E1BA3ED8300919243 /* RobotsRattle.caf in Resources */,
 				C3B6FAC91B0DA8C50052B7E5 /* StopFilled@2x.png in Resources */,
+				C39ACF831BBE462F004EA540 /* EditCell.png in Resources */,
 				C3B6FAC21B0DA8BB0052B7E5 /* SkipFilled.png in Resources */,
 				C3534E281B09A63E0015B626 /* Checkmark@3x.png in Resources */,
 				C33008311A94A439003A0AEA /* edit.png in Resources */,
@@ -682,6 +702,8 @@
 				C35B33701A0CBA1500061C40 /* LaunchScreen.xib in Resources */,
 				C3537A701BBD76BA00A79C78 /* Settings.bundle in Resources */,
 				C3616A471AAB434500C47C8A /* archive@3x.png in Resources */,
+				C39ACF8A1BBE463A004EA540 /* TrashCell@2x.png in Resources */,
+				C39ACF851BBE462F004EA540 /* EditCell@3x.png in Resources */,
 				C33008361A94A439003A0AEA /* info@3x.png in Resources */,
 				C35B336D1A0CBA1500061C40 /* Images.xcassets in Resources */,
 				C3B6FAC81B0DA8C50052B7E5 /* StopFilled.png in Resources */,
@@ -692,6 +714,8 @@
 				C30755A61BBE339900490951 /* Play.png in Resources */,
 				C33008381A94A439003A0AEA /* plus@2x.png in Resources */,
 				C330084A1A94B625003A0AEA /* menu@2x.png in Resources */,
+				C39ACF841BBE462F004EA540 /* EditCell@2x.png in Resources */,
+				C39ACF891BBE463A004EA540 /* TrashCell.png in Resources */,
 				C330084B1A94B625003A0AEA /* menu@3x.png in Resources */,
 				C3616A451AAB434500C47C8A /* archive.png in Resources */,
 				C30755A41BBE339900490951 /* Pause@2x.png in Resources */,

@@ -1180,16 +1180,14 @@ static NSString *const kFLAppTitle = @"Listie";
     }
     
     //configure left buttons
-    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"edit.png"] backgroundColor:[UIColor colorWithRed:1.0 green:149/255.0 blue:0.05 alpha:1.0] padding:25]];
+    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"EditCell.png"] backgroundColor:[UIColor colorWithString:@"#E67E22"] padding:25]];
     cell.leftSwipeSettings.transition = MGSwipeTransitionDrag;
     cell.leftExpansion.buttonIndex = 0;
-    //    cell.leftExpansion.fillOnTrigger = YES;
     
     //configure right buttons
-    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"delete.png"] backgroundColor:[UIColor redColor] padding:25]];
+    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TrashCell.png"] backgroundColor:[UIColor colorWithString:@"#FF5733"] padding:25]];
     cell.rightSwipeSettings.transition = MGSwipeTransitionDrag;
     cell.rightExpansion.buttonIndex = 0;
-    //    cell.rightExpansion.fillOnTrigger = YES;
 }
 
 #pragma mark - TableView Delegate methods.
