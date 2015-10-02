@@ -77,6 +77,8 @@ static NSString *const kFLAppTitle = @"Listie";
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *eventListButton;
+@property (weak, nonatomic) IBOutlet UILabel *editButtonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *eventListButtonLabel;
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (weak, nonatomic) IBOutlet UIView *summaryView;
 @property (strong, nonatomic) DesignableButton *floatingButton;
@@ -275,6 +277,8 @@ static NSString *const kFLAppTitle = @"Listie";
         self.skipButton.hidden = YES;
         self.editButton.hidden = YES;
         self.eventListButton.hidden = YES;
+        self.editButtonLabel.hidden = YES;
+        self.eventListButtonLabel.hidden = YES;
         self.summaryView.hidden = YES;
         self.floatingButton.hidden = NO;
         
@@ -443,6 +447,8 @@ static NSString *const kFLAppTitle = @"Listie";
     self.summaryView.hidden = NO;
     self.editButton.hidden = NO;
     self.eventListButton.hidden = NO;
+    self.editButtonLabel.hidden = NO;
+    self.eventListButtonLabel.hidden = NO;
     self.resetButton.hidden = self.repeatTimer.started ? NO : YES;
     self.skipButton.hidden = self.repeatTimer.isRunning ? YES : NO;
 
@@ -456,6 +462,8 @@ static NSString *const kFLAppTitle = @"Listie";
     self.summaryView.alpha = 0;
     self.editButton.alpha = 0;
     self.eventListButton.alpha = 0;
+    self.editButtonLabel.alpha = 0;
+    self.eventListButtonLabel.alpha = 0;
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
     self.subTimerLabelPosition.constant = -60;
@@ -473,6 +481,9 @@ static NSString *const kFLAppTitle = @"Listie";
         self.summaryView.alpha = 1;
         self.editButton.alpha = 1;
         self.eventListButton.alpha = 1;
+        self.editButtonLabel.alpha = 1;
+        self.eventListButtonLabel.alpha = 1;
+
         self.listButton.enabled = YES;
     }];
 }
@@ -491,6 +502,8 @@ static NSString *const kFLAppTitle = @"Listie";
     self.skipButton.hidden = YES;
     self.editButton.hidden = YES;
     self.eventListButton.hidden = YES;
+    self.editButtonLabel.hidden = YES;
+    self.eventListButtonLabel.hidden = YES;
     self.summaryView.hidden = YES;
 
     if (!self.taskSelected) {
