@@ -256,11 +256,11 @@ static NSString *const kFLAppTitle = @"Listie";
         self.subTimerLabelPosition.constant = -60;
         
         if (!self.repeatTimer.isRunning) {
-            [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+            [self.startButton setImage:[UIImage imageNamed:@"Play.png"] forState:UIControlStateNormal];
             self.resetButton.hidden = self.repeatTimer.started ? NO : YES;
             self.skipButton.hidden = NO;
         } else {
-            [self.startButton setImage:[UIImage imageNamed:@"PauseFilled.png"] forState:UIControlStateNormal];
+            [self.startButton setImage:[UIImage imageNamed:@"Pause.png"] forState:UIControlStateNormal];
             self.resetButton.hidden = NO;
             self.skipButton.hidden = YES;
         }
@@ -287,9 +287,9 @@ static NSString *const kFLAppTitle = @"Listie";
         }
 
         if (!self.repeatTimer.isRunning) {
-            [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+            [self.startButton setImage:[UIImage imageNamed:@"Play.png"] forState:UIControlStateNormal];
         } else {
-            [self.startButton setImage:[UIImage imageNamed:@"PauseFilled.png"] forState:UIControlStateNormal];
+            [self.startButton setImage:[UIImage imageNamed:@"Pause.png"] forState:UIControlStateNormal];
         }
     }
 }
@@ -547,7 +547,7 @@ static NSString *const kFLAppTitle = @"Listie";
     
     if (![self.repeatTimer isRunning]) {
         [self.repeatTimer startCountDown];
-        [self.startButton setImage:[UIImage imageNamed:@"PauseFilled.png"] forState:UIControlStateNormal];
+        [self.startButton setImage:[UIImage imageNamed:@"Pause.png"] forState:UIControlStateNormal];
         self.resetButton.hidden = NO;
         self.skipButton.hidden = YES;
 
@@ -564,7 +564,7 @@ static NSString *const kFLAppTitle = @"Listie";
             self.resetButton.hidden = NO;
         }
         
-        [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+        [self.startButton setImage:[UIImage imageNamed:@"Play.png"] forState:UIControlStateNormal];
         
         self.skipButton.hidden = NO;
 
@@ -621,7 +621,7 @@ static NSString *const kFLAppTitle = @"Listie";
     [self.repeatTimer stopCountDown];
     
     NSLog(@"Stopss");
-    [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+    [self.startButton setImage:[UIImage imageNamed:@"Play.png"] forState:UIControlStateNormal];
     self.resetButton.hidden = YES;
     self.skipButton.hidden = NO;
 }
@@ -866,7 +866,7 @@ static NSString *const kFLAppTitle = @"Listie";
         self.resetButton.hidden = YES;
         self.skipButton.hidden = NO;
         // Set start button title to 'START' after finishing timer.
-        [self.startButton setImage:[UIImage imageNamed:@"PlayFilled.png"] forState:UIControlStateNormal];
+        [self.startButton setImage:[UIImage imageNamed:@"Play.png"] forState:UIControlStateNormal];
     });
     
     // Show task summary up on completion of task.
