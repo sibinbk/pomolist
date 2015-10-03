@@ -42,6 +42,12 @@ static NSString * const kFLRepeatTimer = @"FLRepeatTimer";
 static NSString * const kFLTimerNotification = @"FLTimerNotification";
 static NSString *const kFLAppTitle = @"Listie";
 
+typedef NS_ENUM(NSInteger, LabelViewType) {
+    ProgressView,
+    SummaryView,
+    TaskListView
+};
+
 @interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, CNPPopupControllerDelegate>
 
 @property (nonatomic) NSTimeInterval taskTime;
@@ -859,12 +865,15 @@ static NSString *const kFLAppTitle = @"Listie";
     
     self.cycleLabel.text = cycleTitle;
     
+    // Determines type of formatted string for different labels.
+    LabelViewType labelViewType = ProgressView;
+    
     NSString *completedSessionCountString = [NSString stringWithFormat:@"%ld", (long) completedCount];
     NSString *targetSessioncountString = [NSString stringWithFormat:@"/%ld", (long) self.repeatCount];
     
-    self.sessionCountLabel.attributedText = [self combineFormattedString:completedSessionCountString withString:targetSessioncountString];
+    self.sessionCountLabel.attributedText = [self formattedSessionString:completedSessionCountString withString:targetSessioncountString forLabelType:labelViewType];
     
-    self.totalTaskTimeLabel.attributedText = [self stringifyTimeUsingAttributedString:(int)time];
+    self.totalTaskTimeLabel.attributedText = [self formattedTimeString:(int)time forLabelType:ProgressView];
     
     [UIView animateWithDuration:0.5 animations:^{
         self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
@@ -1608,6 +1617,9 @@ static NSString *const kFLAppTitle = @"Listie";
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
+    // Determines type of formatted string for different labels.
+    LabelViewType labelViewType = SummaryView;
+    
     NSAttributedString *durationTitle = [[NSAttributedString alloc] initWithString:@"Workout time" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18 weight:UIFontWeightRegular],
                                                                                                                 NSForegroundColorAttributeName : [UIColor whiteColor], NSParagraphStyleAttributeName : paragraphStyle}];
     
@@ -1615,9 +1627,9 @@ static NSString *const kFLAppTitle = @"Listie";
                                                                                                                      NSForegroundColorAttributeName : [UIColor whiteColor],
                                                                                                                      NSParagraphStyleAttributeName : paragraphStyle}];
     
-    NSAttributedString *taskDurationString = [[NSAttributedString alloc] initWithAttributedString:[self timeStringForSummaryView:(int)duration]];
+    NSAttributedString *taskDurationString = [[NSAttributedString alloc] initWithAttributedString:[self formattedTimeString:(int)duration forLabelType:labelViewType]];
     
-    NSAttributedString *sessionCountString = [[NSAttributedString alloc] initWithAttributedString:[self sessionStringForSummaryView:completedSessionCountString withString:targetSessioncountString]];
+    NSAttributedString *sessionCountString = [[NSAttributedString alloc] initWithAttributedString:[self formattedSessionString:completedSessionCountString withString:targetSessioncountString forLabelType:labelViewType]];
     
     CNPPopupButton *dismissButton = [[CNPPopupButton alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
     [dismissButton setTitleColor:[UIColor colorWithRed:(44.0/255.0) green:(62.0/255.0) blue:(80.0/255.0) alpha:1.0] forState:UIControlStateNormal];
@@ -1744,22 +1756,53 @@ static NSString *const kFLAppTitle = @"Listie";
     }
 }
 
-- (NSMutableAttributedString *)combineFormattedString:(NSString *)firstString withString:(NSString *)secondString
+- (NSMutableAttributedString *)formattedSessionString:(NSString *)firstString withString:(NSString *)secondString forLabelType:(LabelViewType)labelViewType
 {
+    UIFont * firstStringFont;
+    UIFont *secondStringFont;
+    UIColor *firstStringColor;
+    UIColor *secondStringColor;
+    
+    switch (labelViewType) {
+        case ProgressView:
+            NSLog(@"Progress View");
+            firstStringFont = [UIFont systemFontOfSize:36 weight:UIFontWeightThin];
+            secondStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
+            firstStringColor = [UIColor whiteColor];
+            secondStringColor = [UIColor whiteColor];
+            break;
+        case SummaryView:
+            NSLog(@"Summary View");
+            firstStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightLight];
+            secondStringFont = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+            firstStringColor = [UIColor whiteColor];
+            secondStringColor = [UIColor whiteColor];
+            break;
+        case TaskListView:
+            NSLog(@"Task List View");
+            firstStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightLight];
+            secondStringFont = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+            firstStringColor = [UIColor whiteColor];
+            secondStringColor = [UIColor whiteColor];
+        default:
+            break;
+    }
+    
     NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
     NSDictionary *firstStringAttributes = @{
-                                            NSFontAttributeName:[UIFont systemFontOfSize:36 weight:UIFontWeightThin],
-                                            NSForegroundColorAttributeName:[UIColor whiteColor],
+                                            NSFontAttributeName:firstStringFont,
+                                            NSForegroundColorAttributeName:firstStringColor,
                                             NSParagraphStyleAttributeName : paragraphStyle
                                             };
     NSDictionary *secondStringAttributes = @{
-                                             NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightLight],
-                                             NSForegroundColorAttributeName:[UIColor whiteColor],
+                                             NSFontAttributeName:secondStringFont,
+                                             NSForegroundColorAttributeName:secondStringColor,
                                              NSParagraphStyleAttributeName : paragraphStyle
                                              };
+    
     NSString *combinedString = [NSString stringWithFormat:@"%@%@", firstString, secondString];
     NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:combinedString];
     [modifiedString setAttributes:firstStringAttributes range:[combinedString rangeOfString:firstString]];
@@ -1768,23 +1811,53 @@ static NSString *const kFLAppTitle = @"Listie";
     return modifiedString;
 }
 
-- (NSMutableAttributedString *)stringifyTimeUsingAttributedString:(int)seconds
+- (NSMutableAttributedString *)formattedTimeString:(int)seconds forLabelType:(LabelViewType)labelViewType
 {
+    UIFont *timeStringFont;
+    UIFont *subStringFont;
+    UIColor *timeStringColor;
+    UIColor *subStringColor;
+    
+    switch (labelViewType) {
+        case ProgressView:
+            NSLog(@"Progress View");
+            timeStringFont = [UIFont systemFontOfSize:36 weight:UIFontWeightThin];
+            subStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
+            timeStringColor = [UIColor whiteColor];
+            subStringColor = [UIColor whiteColor];
+            break;
+        case SummaryView:
+            NSLog(@"Summary View");
+            timeStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightLight];
+            subStringFont = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+            timeStringColor = [UIColor whiteColor];
+            subStringColor = [UIColor whiteColor];
+            break;
+        case TaskListView:
+            NSLog(@"Task List View");
+            timeStringFont = [UIFont systemFontOfSize:36 weight:UIFontWeightThin];
+            subStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
+            timeStringColor = [UIColor whiteColor];
+            subStringColor = [UIColor whiteColor];
+        default:
+            break;
+    }
+
     NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyle.alignment = NSTextAlignmentCenter;
-
+    
     NSDictionary *timeAttributes = @{
-                                     NSFontAttributeName:[UIFont systemFontOfSize:36 weight:UIFontWeightThin],
-                                     NSForegroundColorAttributeName:[UIColor whiteColor],
+                                     NSFontAttributeName:timeStringFont,
+                                     NSForegroundColorAttributeName:timeStringColor,
                                      NSParagraphStyleAttributeName : paragraphStyle
                                      };
     NSDictionary *subAttributes = @{
-                                    NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightLight],
-                                    NSForegroundColorAttributeName:[UIColor whiteColor],
+                                    NSFontAttributeName:subStringFont,
+                                    NSForegroundColorAttributeName:subStringColor,
                                     NSParagraphStyleAttributeName : paragraphStyle
                                     };
-
+    
     int remainingSeconds = seconds;
     
     int hours = remainingSeconds / 3600;
@@ -1797,81 +1870,6 @@ static NSString *const kFLAppTitle = @"Listie";
     
     NSString *minuteString = @"m";
     NSString *hourString = @"h";
-    
-    if (hours > 0) {
-        if (minutes > 0) {
-            NSString *timeString = [NSString stringWithFormat:@"%i%@ %i%@", hours, hourString, minutes, minuteString];
-            NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
-            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:minuteString]];
-            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:hourString]];
-            return modifiedString;
-        } else {
-            NSString *timeString = [NSString stringWithFormat:@"%i%@", hours, hourString];
-            NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
-            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:hourString]];
-            return modifiedString;
-        }
-    } else {
-        NSString *timeString = [NSString stringWithFormat:@"%i%@", minutes, minuteString];
-        NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
-        [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:minuteString]];
-        return modifiedString;
-    }
-}
-
-- (NSMutableAttributedString *)sessionStringForSummaryView:(NSString *)firstString withString:(NSString *)secondString
-{
-    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
-    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-    paragraphStyle.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary *firstStringAttributes = @{
-                                            NSFontAttributeName:[UIFont systemFontOfSize:40 weight:UIFontWeightLight],
-                                            NSForegroundColorAttributeName:[UIColor whiteColor],
-                                            NSParagraphStyleAttributeName : paragraphStyle
-                                            };
-    NSDictionary *secondStringAttributes = @{
-                                             NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightLight],
-                                             NSForegroundColorAttributeName:[UIColor whiteColor],
-                                             NSParagraphStyleAttributeName : paragraphStyle
-                                             };
-    NSString *combinedString = [NSString stringWithFormat:@"%@%@", firstString, secondString];
-    NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:combinedString];
-    [modifiedString setAttributes:firstStringAttributes range:[combinedString rangeOfString:firstString]];
-    [modifiedString setAttributes:secondStringAttributes range:[combinedString rangeOfString:secondString]];
-    
-    return modifiedString;
-}
-
-- (NSMutableAttributedString *)timeStringForSummaryView:(int)seconds
-{
-    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
-    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-    paragraphStyle.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary *timeAttributes = @{
-                                     NSFontAttributeName:[UIFont systemFontOfSize:40 weight:UIFontWeightLight],
-                                     NSForegroundColorAttributeName:[UIColor whiteColor],
-                                     NSParagraphStyleAttributeName : paragraphStyle
-                                     };
-    NSDictionary *subAttributes = @{
-                                    NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightLight],
-                                    NSForegroundColorAttributeName:[UIColor whiteColor],
-                                    NSParagraphStyleAttributeName : paragraphStyle
-                                    };
-    
-    int remainingSeconds = seconds;
-    
-    int hours = remainingSeconds / 3600;
-    
-    remainingSeconds = remainingSeconds - hours * 3600;
-    
-    int minutes = remainingSeconds / 60;
-    
-    remainingSeconds = remainingSeconds - minutes * 60;
-    
-    NSString *minuteString = @"min";
-    NSString *hourString = @"hr";
     
     if (hours > 0) {
         if (minutes > 0) {
