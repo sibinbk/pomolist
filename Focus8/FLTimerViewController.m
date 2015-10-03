@@ -1180,13 +1180,16 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 - (void)configureCell:(FLTaskCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Task *task = [_fetchedResultsController objectAtIndexPath:indexPath];
-//    cell.textLabel.text = task.name;
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld minutes task / %ld minutes break", (long) [task.taskTime integerValue], (long)[task.shortBreakTime integerValue]];
+
     cell.taskNameLabel.text = task.name;
-    cell.cycleCountLabel.text = [NSString stringWithFormat:@"%@ Cycles", task.repeatCount];
     cell.taskTimeLabel.text = [NSString stringWithFormat:@"%d", [task.taskTime intValue]/ 60];
     int totalTaskTime = [task.taskTime intValue] * [task.repeatCount intValue];
-    cell.totalTimeLabel.text = [self stringForTaskCellWithTime:totalTaskTime usingLongFormat:YES];
+    
+    NSString *sessionCountString = [NSString stringWithFormat:@"%@ ", task.repeatCount];
+    NSString *subString = [task.repeatCount integerValue] > 1 ? @"sessions" : @"session";
+    
+    cell.cycleCountLabel.attributedText = [self formattedSessionString:sessionCountString withString:subString forLabelType:TaskListView];
+    cell.totalTimeLabel.attributedText = [self formattedTimeString:totalTaskTime forLabelType:TaskListView];
     
 //    cell.reminderDateLabel.text = (indexPath.row % 3 == 0) ? @"26 May 2015 6:00 pm" : nil;
     
@@ -1765,25 +1768,22 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     switch (labelViewType) {
         case ProgressView:
-            NSLog(@"Progress View");
             firstStringFont = [UIFont systemFontOfSize:36 weight:UIFontWeightThin];
             secondStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
             firstStringColor = [UIColor whiteColor];
             secondStringColor = [UIColor whiteColor];
             break;
         case SummaryView:
-            NSLog(@"Summary View");
             firstStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightLight];
             secondStringFont = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
             firstStringColor = [UIColor whiteColor];
             secondStringColor = [UIColor whiteColor];
             break;
         case TaskListView:
-            NSLog(@"Task List View");
-            firstStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightLight];
-            secondStringFont = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
-            firstStringColor = [UIColor whiteColor];
-            secondStringColor = [UIColor whiteColor];
+            firstStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
+            secondStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
+            firstStringColor = [UIColor darkGrayColor];
+            secondStringColor = [UIColor darkGrayColor];
         default:
             break;
     }
@@ -1820,25 +1820,22 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     switch (labelViewType) {
         case ProgressView:
-            NSLog(@"Progress View");
             timeStringFont = [UIFont systemFontOfSize:36 weight:UIFontWeightThin];
             subStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
             timeStringColor = [UIColor whiteColor];
             subStringColor = [UIColor whiteColor];
             break;
         case SummaryView:
-            NSLog(@"Summary View");
             timeStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightLight];
             subStringFont = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
             timeStringColor = [UIColor whiteColor];
             subStringColor = [UIColor whiteColor];
             break;
         case TaskListView:
-            NSLog(@"Task List View");
-            timeStringFont = [UIFont systemFontOfSize:36 weight:UIFontWeightThin];
-            subStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
-            timeStringColor = [UIColor whiteColor];
-            subStringColor = [UIColor whiteColor];
+            timeStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
+            subStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
+            timeStringColor = [UIColor darkGrayColor];
+            subStringColor = [UIColor darkGrayColor];
         default:
             break;
     }
