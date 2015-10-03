@@ -1082,7 +1082,7 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWu-gJ-jpF">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWu-gJ-jpF">
                                                     <rect key="frame" x="549" y="23" width="36" height="20"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="12%">
@@ -1099,6 +1099,7 @@
                                             <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="PLo-XW-Ehv" firstAttribute="leading" secondItem="ocD-f6-6z2" secondAttribute="leading" constant="15" id="0dj-PT-rrf"/>
+                                                <constraint firstItem="xWu-gJ-jpF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PLo-XW-Ehv" secondAttribute="trailing" constant="15" id="5Lc-uI-F0a"/>
                                                 <constraint firstItem="mMi-Oe-XFj" firstAttribute="leading" secondItem="PLo-XW-Ehv" secondAttribute="leading" id="6vN-sp-wFR"/>
                                                 <constraint firstItem="PLo-XW-Ehv" firstAttribute="top" secondItem="ocD-f6-6z2" secondAttribute="top" constant="8" id="FbX-bW-jb2"/>
                                                 <constraint firstAttribute="trailing" secondItem="xWu-gJ-jpF" secondAttribute="trailing" constant="15" id="KGk-aG-Ljz"/>

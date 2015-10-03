@@ -1442,9 +1442,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         case NSFetchedResultsChangeUpdate:
             NSLog(@"Updating");
             [self configureCell:(FLTaskCell *)[self.taskTableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-//            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-//            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//            [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
         case NSFetchedResultsChangeMove:
             NSLog(@"Moving");
@@ -1635,7 +1632,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     NSAttributedString *sessionCountString = [[NSAttributedString alloc] initWithAttributedString:[self formattedSessionString:completedSessionCountString withString:targetSessioncountString forLabelType:labelViewType]];
     
     CNPPopupButton *dismissButton = [[CNPPopupButton alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
-    [dismissButton setTitleColor:[UIColor colorWithRed:(44.0/255.0) green:(62.0/255.0) blue:(80.0/255.0) alpha:1.0] forState:UIControlStateNormal];
+    [dismissButton setTitleColor:[UIColor colorWithString:@"F0C30E"] forState:UIControlStateNormal];
     dismissButton.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
     [dismissButton setTitle:@"Dissmiss" forState:UIControlStateNormal];
     dismissButton.backgroundColor = [UIColor clearColor];
@@ -1665,7 +1662,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     self.popupController.theme.presentationStyle = CNPPopupPresentationStyleSlideInFromTop;
     self.popupController.theme.cornerRadius = 15;
     self.popupController.theme.maxPopupWidth = 280;
-    self.popupController.theme.backgroundColor = [UIColor colorWithRed:(52.0/255.0) green:(152.0/255.0) blue:(219.0/255.0) alpha:1.0];
+//    self.popupController.theme.backgroundColor = [UIColor colorWithRed:(52.0/255.0) green:(152.0/255.0) blue:(219.0/255.0) alpha:1.0];
+    self.popupController.theme.backgroundColor = [UIColor colorWithString:@"4B5B6A"];
     self.popupController.delegate = self;
     [self.popupController presentPopupControllerAnimated:YES];
 }
