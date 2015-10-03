@@ -9,6 +9,7 @@
 #import "EventTableViewController.h"
 #import "AppDelegate.h"
 #import "FLEventCell.h"
+#import "ColorUtils.h"
 #import "Task.h"
 #import "Event.h"
 
@@ -210,12 +211,12 @@
     NSDictionary *firstStringAttributes = @{
                                             NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightLight],
                                             NSForegroundColorAttributeName:[UIColor blackColor],
-                                            NSParagraphStyleAttributeName : paragraphStyle
+                                            NSParagraphStyleAttributeName :paragraphStyle
                                             };
     NSDictionary *secondStringAttributes = @{
                                              NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightLight],
                                              NSForegroundColorAttributeName:[UIColor blackColor],
-                                             NSParagraphStyleAttributeName : paragraphStyle
+                                             NSParagraphStyleAttributeName :paragraphStyle
                                              };
     NSString *firstString = [NSString stringWithFormat:@"%ld", (long)count];
     
@@ -243,13 +244,13 @@
     
     NSDictionary *timeAttributes = @{
                                      NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightMedium],
-                                     NSForegroundColorAttributeName:[UIColor blackColor],
-                                     NSParagraphStyleAttributeName : paragraphStyle
+                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"3498DB"],
+                                     NSParagraphStyleAttributeName :paragraphStyle
                                      };
     NSDictionary *subAttributes = @{
-                                    NSFontAttributeName:[UIFont systemFontOfSize:18 weight:UIFontWeightMedium],
-                                    NSForegroundColorAttributeName:[UIColor blackColor],
-                                    NSParagraphStyleAttributeName : paragraphStyle
+                                    NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightMedium],
+                                    NSForegroundColorAttributeName:[UIColor colorWithString:@"3498DB"],
+                                    NSParagraphStyleAttributeName :paragraphStyle
                                     };
     
     int remainingSeconds = seconds;
