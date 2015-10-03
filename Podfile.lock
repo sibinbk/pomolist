@@ -2,18 +2,21 @@ PODS:
   - DZNEmptyDataSet (1.7.1)
   - JSQSystemSoundPlayer (4.1.0)
   - MGSwipeTableCell (1.5.1)
+  - NSAttributedString+CCLFormat (1.1.1)
   - SCLAlertView-Objective-C (0.7.5)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
   - JSQSystemSoundPlayer
   - MGSwipeTableCell
+  - NSAttributedString+CCLFormat
   - SCLAlertView-Objective-C
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12
   JSQSystemSoundPlayer: 98392a1064d9af1292493f71036b9154f79d203f
   MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
+  NSAttributedString+CCLFormat: f3826cbae249afbdf322aba4932673b865454086
   SCLAlertView-Objective-C: 5692f7b848999537af0079d6891c3a11040e3a22
 
 COCOAPODS: 0.38.2

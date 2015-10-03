@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "FLEventCell.h"
 #import "ColorUtils.h"
+#import "NSAttributedString+CCLFormat.h"
 #import "Task.h"
 #import "Event.h"
 
@@ -75,7 +76,11 @@
     double taskPercentage = [self percentageOfTaskCompleted:event];
     NSLog(@"Task percentage : %0.2f%%",  taskPercentage);
     cell.nameLabel.text = task.name;
-    cell.eventInfoLabel.attributedText = [self timeStringFromDuration:(int)[event.totalTaskTime integerValue]];
+    
+    NSAttributedString *completedTimeString = [self timeStringFromCompletedDuration:(int)[event.totalTaskTime integerValue]];
+    NSAttributedString *actualTimeString = [self timeStringFromTargetDuration:(int)([task.taskTime integerValue] * [task.repeatCount integerValue])];
+    
+    cell.eventInfoLabel.attributedText = [NSAttributedString attributedStringWithFormat:@"%@%@", completedTimeString, actualTimeString];
     cell.percentageLabel.attributedText = [self formattedPercentageString:[self percentageOfTaskCompleted:event]];
     
     return cell;
@@ -255,20 +260,20 @@
     return modifiedString;
 }
 
-- (NSMutableAttributedString *)timeStringFromDuration:(int)seconds
+- (NSMutableAttributedString *)timeStringFromCompletedDuration:(int)seconds
 {
     NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
     NSDictionary *timeAttributes = @{
-                                     NSFontAttributeName:[UIFont systemFontOfSize:18 weight:UIFontWeightRegular],
-                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"1E2C37"],
+                                     NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightRegular],
+                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
                                      NSParagraphStyleAttributeName:paragraphStyle
                                      };
     NSDictionary *subAttributes = @{
-                                    NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
-                                    NSForegroundColorAttributeName:[UIColor colorWithString:@"1E2C37"],
+                                    NSFontAttributeName:[UIFont systemFontOfSize:18 weight:UIFontWeightRegular],
+                                    NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
                                     NSParagraphStyleAttributeName:paragraphStyle
                                     };
     
@@ -306,6 +311,57 @@
     }
 }
 
+- (NSMutableAttributedString *)timeStringFromTargetDuration:(int)seconds
+{
+    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *timeAttributes = @{
+                                     NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
+                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                     NSParagraphStyleAttributeName:paragraphStyle
+                                     };
+    NSDictionary *subAttributes = @{
+                                    NSFontAttributeName:[UIFont systemFontOfSize:12 weight:UIFontWeightRegular],
+                                    NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                    NSParagraphStyleAttributeName:paragraphStyle
+                                    };
+    
+    int remainingSeconds = seconds;
+    
+    int hours = remainingSeconds / 3600;
+    
+    remainingSeconds = remainingSeconds - hours * 3600;
+    
+    int minutes = remainingSeconds / 60;
+    
+    remainingSeconds = remainingSeconds - minutes * 60;
+    
+    NSString *minuteString = @"m";
+    NSString *hourString = @"h";
+    
+    if (hours > 0) {
+        if (minutes > 0) {
+            NSString *timeString = [NSString stringWithFormat:@" / %i%@ %i%@", hours, hourString, minutes, minuteString];
+            NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
+            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:minuteString]];
+            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:hourString]];
+            return modifiedString;
+        } else {
+            NSString *timeString = [NSString stringWithFormat:@" / %i%@", hours, hourString];
+            NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
+            [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:hourString]];
+            return modifiedString;
+        }
+    } else {
+        NSString *timeString = [NSString stringWithFormat:@" / %i%@", minutes, minuteString];
+        NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:timeString attributes:timeAttributes];
+        [modifiedString setAttributes:subAttributes range:[timeString rangeOfString:minuteString]];
+        return modifiedString;
+    }
+}
+
 - (NSMutableAttributedString *)formattedPercentageString:(double)taskPercentage
 {
     NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
@@ -313,12 +369,12 @@
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
     NSDictionary *percentageStringAttributes = @{
-                                                 NSFontAttributeName:[UIFont systemFontOfSize:30 weight:UIFontWeightLight],
+                                                 NSFontAttributeName:[UIFont systemFontOfSize:36 weight:UIFontWeightLight],
                                                  NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
                                                  NSParagraphStyleAttributeName:paragraphStyle
                                                  };
     NSDictionary *subStringAttributes = @{
-                                          NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
+                                          NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightRegular],
                                           NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
                                           NSParagraphStyleAttributeName:paragraphStyle
                                           };

@@ -7,161 +7,179 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		036088EE368B2D8FE168C2434DAC731A /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B82E01C02FD313D57A02C0D342C36C /* Pods-dummy.m */; };
 		0D0945E6B17992C28C7E636E0794A707 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F04A6760EB8287166B8F874B7FF5A7B6 /* UIImage+ImageEffects.m */; };
-		1A0E0C0DE58FC94EEB27CBDD290369DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */; };
 		1B1BB71FF686A4E3D48D720220993F8E /* SCLAlertViewStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B582BE22A60A7EC06D0B1E865DBBD62B /* SCLAlertViewStyleKit.m */; };
-		26BDCA063CAF26DF105CE5CFD318A2DE /* DZNEmptyDataSet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E376DB9D05DB2074540DC4A24AB8A9C /* DZNEmptyDataSet-dummy.m */; };
+		1F4D8E069C2B40288E38A07950894B4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */; };
 		2E7B85329AA3E43220D3331DB2B9D7E8 /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23AFEB79A558DBB1254BA3D8451E819C /* SCLAlertView.m */; };
+		3202D44CBA7FEAD9D82736B4AB0B43F6 /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEB26C47CCD8D55415153A4DC034FC8 /* JSQSystemSoundPlayer.m */; };
 		3300A7D09A4CA8BD99797C3E0DCBEDD1 /* SCLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7090234790623D0CA5EE14110825A253 /* SCLButton.m */; };
+		33159043BD4A558A94B1DCE48D827E46 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8A734229F1058003E08419B6456636 /* AudioToolbox.framework */; };
+		37B2FF4F57B07BE4C482BD9CF85BF8D0 /* JSQSystemSoundPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 50463B328D3CF29B51298C1B88F40C38 /* JSQSystemSoundPlayer.h */; };
 		37ECC0EBCE2A9DF67468F8379BD55AAE /* SCLButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 421E58FC4D8D78813C1C0956297C2B90 /* SCLButton.h */; };
-		3F1AB7104FF6F9EC8C0C0D6537F45F6A /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6926ED69DD90D0122620292C915E6B5F /* MGSwipeTableCell.h */; };
+		3CDD03E76541109DBAF329525EAC09FB /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2303A338826A9E348DD0D854D213A9E5 /* MGSwipeTableCell.h */; };
+		4B6CDA757769D838AB7BA55E220157C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */; };
 		4BB66C8BFD7474857E5ECA996FC5ED4A /* SCLMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 14FBBFC8E68DF9F42673B5B73641D94D /* SCLMacros.h */; };
-		4F7B8E430CF1598A92990597AD2DA0C9 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128AF36B9CD2CEDABE7D6DE14145DDD /* UIScrollView+EmptyDataSet.m */; };
-		5693C11CD3D80F51536C4A9615A5ABB3 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96320E2EE473B8888A67B1FC36A3B3A0 /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		57A76FBB697C85E3E93FF7F0BF27B0D9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC0736ABBED8793A26B7ABB76D718BE /* AudioToolbox.framework */; };
+		566F1E75CE525E7FE9DA758F9FA8C8B2 /* DZNEmptyDataSet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AB833C7388632B6CAB9C271DE1E12D /* DZNEmptyDataSet-dummy.m */; };
+		5808EEEEABC4A3F9FCAE7287B103E081 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */; };
+		5B0EE14E39B758A3B549791F504B6A4F /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 586AC0FFFA488F3DC09A2027A17F24D2 /* MGSwipeButton.h */; };
 		5DC1CB5D1ED9BFDE11AA27C61CD32BE2 /* SCLAlertViewResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 774EF90DF9F5615F86CB5A04AAF92227 /* SCLAlertViewResponder.m */; };
-		68155B844F2F7914910F049A17BE9986 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */; };
-		71CF04E83A3D37EF143928A77C18F07E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */; };
-		8DCE8B2A3C284CD5A89745CCB398E0F7 /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8921254285B093BF7978A8E5558E4F71 /* MGSwipeTableCell-dummy.m */; };
+		66833AE4F51062A3D9374300012AA6B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA8A01A22A060957788596DA99AEF09 /* UIKit.framework */; };
+		7553D0CD5701E6DC8E8F338911D4569E /* NSAttributedString+CCLFormat-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CC96662A10022BB6D7430D5810AD7768 /* NSAttributedString+CCLFormat-dummy.m */; };
+		848269DBC3E97246B5057241993219B7 /* UIScrollView+EmptyDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = C1681334C843393DA8435C2FE5065B60 /* UIScrollView+EmptyDataSet.h */; };
+		86DEDA1A7DB7E6E651E8A105AE03127B /* NSAttributedString+CCLFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DD44410DCBE74589149DAC775D47EC /* NSAttributedString+CCLFormat.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8A8ACA091A8074F1857D595FD54E7CA8 /* JSQSystemSoundPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFF46FA500EFEAEFD72ABB9E5CFE74 /* JSQSystemSoundPlayer-dummy.m */; };
+		8B413FE199BDD4F47DC366BCEF982CB9 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8EB627A9AF911B561C39FE54D2A0F /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		9C7FCF5D5402979CCD52FEF11D70226E /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2DCF176A2FE3DAD6F0455656DD73C1 /* SCLTimerDisplay.m */; };
-		A1043EAEEDB34B633688B2BE84506490 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2EA88AF67EC730787BF171DA7E031C /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A1CEBA082DB736A7FCAE0C47463848D1 /* SCLAlertView-Objective-C-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EDF3C68FE756E179F5950ED3237FFA /* SCLAlertView-Objective-C-dummy.m */; };
+		A47944498DC1E6CC251A5EE002ADF46E /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D7C52EF71638493758AB4B2CC8015E /* Pods-dummy.m */; };
+		B5614BC6387B867CED21132DF4B73358 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */; };
 		B94F9C4602B4F8C1ECB9650E8E8DBAD4 /* SCLTimerDisplay.h in Headers */ = {isa = PBXBuildFile; fileRef = 49B2837D662314937A410932A07FBCC7 /* SCLTimerDisplay.h */; };
 		BACB57ED0E2E4F2FA878323B0FD14E0D /* UIImage+ImageEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C032F54C03E2C7475879E00EB8CC53 /* UIImage+ImageEffects.h */; };
-		BF06E6CF7660135F4DBA79F1BBC777AC /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = A084035C8598A6D9941058F1B4CF2A0D /* MGSwipeButton.h */; };
-		CAFC32B15BDCBD453CCD1499B657DEE1 /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D1D43990DB43179883B52E52A18DE2 /* JSQSystemSoundPlayer.m */; };
-		CC71550531FDB3A04F3ADAD062C9A707 /* JSQSystemSoundPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = E458820F2D088A37724FCD37BF143B64 /* JSQSystemSoundPlayer.h */; };
 		CCC4A21F6CAD762DE145EB848FD89DF1 /* SCLAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = D7342E9ACEBF46BA8429B722C4A390EA /* SCLAlertView.h */; };
-		CF68D6B515FFB860C5DB383B570DB0A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E50C14588D2F977A100B13B437FAB9F /* UIKit.framework */; };
-		D3810C279D6F9F931C67115CAA4305FA /* JSQSystemSoundPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E409FC74F1174712F59FE738324E9C /* JSQSystemSoundPlayer-dummy.m */; };
-		DACDD9EB88694D1896D9B603E3680DB4 /* UIScrollView+EmptyDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 9343897421C59AC561A33349684792CD /* UIScrollView+EmptyDataSet.h */; };
-		DDF907D5F391E05F6692E8990B028248 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E50C14588D2F977A100B13B437FAB9F /* UIKit.framework */; };
+		CE23FC1857D455750746016D3953B5D6 /* NSAttributedString+CCLFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C06D6D7660450BDE99819C507FB9B2D /* NSAttributedString+CCLFormat.h */; };
+		D4DE392670F0CB1AA7255DDE31511DD1 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 098D8DA6A0083DF0703594CE37ED1E46 /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		E7F5B7888E79FDE67ABBCAE2EB445D3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */; };
-		E8EA5AA632A2C5F48A633F2E14CA6843 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */; };
+		EB3E4BAB5938E2036EA4524AB9E7F549 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA8A01A22A060957788596DA99AEF09 /* UIKit.framework */; };
+		EBB07F1902E1C1C3BA98256585B1AE24 /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB092608BA218ACE26F9F27DBA653EC /* MGSwipeTableCell-dummy.m */; };
 		ECDB19ED1EE2CAD190D6A6D588221510 /* SCLAlertViewStyleKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E2593318E89853F3E1978570CB1943AF /* SCLAlertViewStyleKit.h */; };
+		F4259843DF8382D1138A4D55F428D188 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E06EC3A70093E5DB0BDF745A8FD3C6FB /* UIScrollView+EmptyDataSet.m */; };
+		F9214AF9FEC24E39FF60EB2AE0D5279A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */; };
 		FFF2F9DB90C54139128B44426E340B89 /* SCLAlertViewResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = B42292D1C69B6545994DE1602CF0C6F0 /* SCLAlertViewResponder.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		35AE839EB980C13AC315BDEA58169AD0 /* PBXContainerItemProxy */ = {
+		490C4096C07379AE8F88094197039BF2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 15A418EC3FFE09B56D469811BF294C27;
-			remoteInfo = JSQSystemSoundPlayer;
+			remoteGlobalIDString = 24F62132F20435B3D2AC72AE7A56FA1B;
+			remoteInfo = MGSwipeTableCell;
 		};
-		3F394787B4AE480207582FC110BFEF43 /* PBXContainerItemProxy */ = {
+		61B6E0077A373FB1C77F1B1303E4048D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8000C18B7F5A399C56A040B298897A0B;
 			remoteInfo = "SCLAlertView-Objective-C";
 		};
-		4B25FBB405FFBDA2643F7137464AA0DB /* PBXContainerItemProxy */ = {
+		6A36CB216C54A19099A48436B1E3FFD2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1DC68747078F947829FB76F43A0E82A5;
+			remoteGlobalIDString = A7A89A4748401BD6A32418FB98344F2C;
+			remoteInfo = JSQSystemSoundPlayer;
+		};
+		94A76B3A37400A3B093B88760C132EC4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 882A7A2C9304BE80C6406137C975BAD1;
 			remoteInfo = DZNEmptyDataSet;
 		};
-		AB03BEF371C6D25B6DFBF1C054578C8C /* PBXContainerItemProxy */ = {
+		D9E2CF48234C86FB5E7C5C0B721A756B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 35DBDEB8F7EF1902CB0C098486D91DF7;
-			remoteInfo = MGSwipeTableCell;
+			remoteGlobalIDString = A7A70ED10544D33FBC67255D8F044B24;
+			remoteInfo = "NSAttributedString+CCLFormat";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041264D9F54D89177792AAF824F4E634 /* MGSwipeTableCell.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.xcconfig; sourceTree = "<group>"; };
+		042DC84752EEAE8899E95D2038771444 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		098D8DA6A0083DF0703594CE37ED1E46 /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
+		0C06D6D7660450BDE99819C507FB9B2D /* NSAttributedString+CCLFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CCLFormat.h"; sourceTree = "<group>"; };
 		14FBBFC8E68DF9F42673B5B73641D94D /* SCLMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SCLMacros.h; path = SCLAlertView/SCLMacros.h; sourceTree = "<group>"; };
 		15A529C27057E4A57D259CBC6E6CE49C /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		201DE7472EF608A5D9C9E51C16BE6D05 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		17D7C52EF71638493758AB4B2CC8015E /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		18D273D1E8BE82E87DE68CBDE872AAF3 /* SCLAlertView-Objective-C.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SCLAlertView-Objective-C.xcconfig"; sourceTree = "<group>"; };
+		1BB059DEB32C7FC9F9B1FAB69D341B53 /* DZNEmptyDataSet-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "DZNEmptyDataSet-Private.xcconfig"; sourceTree = "<group>"; };
+		1BE6AC85DA02796183D7836D96349926 /* SCLAlertView-Objective-C-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-Objective-C-prefix.pch"; sourceTree = "<group>"; };
+		1EC4FEBC9577F4671D1FF2490B45EDC4 /* libMGSwipeTableCell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMGSwipeTableCell.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2303A338826A9E348DD0D854D213A9E5 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
 		23AFEB79A558DBB1254BA3D8451E819C /* SCLAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SCLAlertView.m; path = SCLAlertView/SCLAlertView.m; sourceTree = "<group>"; };
 		28EDF3C68FE756E179F5950ED3237FFA /* SCLAlertView-Objective-C-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SCLAlertView-Objective-C-dummy.m"; sourceTree = "<group>"; };
-		3747F481A8D4A8377A5FDED285B92C5F /* libJSQSystemSoundPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJSQSystemSoundPlayer.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DF8278510CC1847EE35AFBCBC03326D /* DZNEmptyDataSet-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "DZNEmptyDataSet-Private.xcconfig"; sourceTree = "<group>"; };
+		2E5026236C76C28046433236079272A6 /* libDZNEmptyDataSet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDZNEmptyDataSet.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BB092608BA218ACE26F9F27DBA653EC /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
 		421E58FC4D8D78813C1C0956297C2B90 /* SCLButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SCLButton.h; path = SCLAlertView/SCLButton.h; sourceTree = "<group>"; };
+		44DD44410DCBE74589149DAC775D47EC /* NSAttributedString+CCLFormat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+CCLFormat.m"; sourceTree = "<group>"; };
 		49B2837D662314937A410932A07FBCC7 /* SCLTimerDisplay.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SCLTimerDisplay.h; path = SCLAlertView/SCLTimerDisplay.h; sourceTree = "<group>"; };
-		4C4595FEAB4BFCC74AC1702A163C7421 /* DZNEmptyDataSet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DZNEmptyDataSet.xcconfig; sourceTree = "<group>"; };
-		555E81CFD53C390FBE2A16C7EC3834B8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		56AA5720EF60AC2C8CC955B296DBBF71 /* JSQSystemSoundPlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JSQSystemSoundPlayer.xcconfig; sourceTree = "<group>"; };
-		62CE14C318E3B6068ED6668189E2DB7A /* SCLAlertView-Objective-C-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-Objective-C-prefix.pch"; sourceTree = "<group>"; };
-		62E172E3F4C1822BBE14F340B655BA80 /* MGSwipeTableCell-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MGSwipeTableCell-Private.xcconfig"; sourceTree = "<group>"; };
-		63E61A643CDB4B191BE47661DB0DD1E1 /* libDZNEmptyDataSet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDZNEmptyDataSet.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		49F8EB627A9AF911B561C39FE54D2A0F /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
+		50463B328D3CF29B51298C1B88F40C38 /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSQSystemSoundPlayer.h; path = JSQSystemSoundPlayer/JSQSystemSoundPlayer/JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
+		586AC0FFFA488F3DC09A2027A17F24D2 /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
 		641AE05DD55E5E6AC1590CD7B4A18F97 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		665566EEC703D72A65D437E4DE090E68 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		6926ED69DD90D0122620292C915E6B5F /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
-		69BE0BA81046F9437A90BE1736E827C0 /* JSQSystemSoundPlayer-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "JSQSystemSoundPlayer-Private.xcconfig"; sourceTree = "<group>"; };
+		6BEB26C47CCD8D55415153A4DC034FC8 /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSQSystemSoundPlayer.m; path = JSQSystemSoundPlayer/JSQSystemSoundPlayer/JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
+		6D6562F1AF0E65FC45F15B4E6B80E350 /* NSAttributedString+CCLFormat-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CCLFormat-prefix.pch"; sourceTree = "<group>"; };
 		7090234790623D0CA5EE14110825A253 /* SCLButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SCLButton.m; path = SCLAlertView/SCLButton.m; sourceTree = "<group>"; };
-		74CFCBA653FE5432914608AF85CCB646 /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
+		73AB833C7388632B6CAB9C271DE1E12D /* DZNEmptyDataSet-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DZNEmptyDataSet-dummy.m"; sourceTree = "<group>"; };
 		774EF90DF9F5615F86CB5A04AAF92227 /* SCLAlertViewResponder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SCLAlertViewResponder.m; path = SCLAlertView/SCLAlertViewResponder.m; sourceTree = "<group>"; };
-		8128AF36B9CD2CEDABE7D6DE14145DDD /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+EmptyDataSet.m"; path = "Source/UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
-		8921254285B093BF7978A8E5558E4F71 /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
-		8E376DB9D05DB2074540DC4A24AB8A9C /* DZNEmptyDataSet-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DZNEmptyDataSet-dummy.m"; sourceTree = "<group>"; };
-		8E50C14588D2F977A100B13B437FAB9F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		90D1D43990DB43179883B52E52A18DE2 /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSQSystemSoundPlayer.m; path = JSQSystemSoundPlayer/JSQSystemSoundPlayer/JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
-		9343897421C59AC561A33349684792CD /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+EmptyDataSet.h"; path = "Source/UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
-		96320E2EE473B8888A67B1FC36A3B3A0 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
-		9717F078E4F7CB680BE58D44DCEB1227 /* SCLAlertView-Objective-C.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SCLAlertView-Objective-C.xcconfig"; sourceTree = "<group>"; };
-		A084035C8598A6D9941058F1B4CF2A0D /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
-		A3B82E01C02FD313D57A02C0D342C36C /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		7F8A734229F1058003E08419B6456636 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		84BCFC33BB673863EDC8CE42BAC8F181 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		8CCFF46FA500EFEAEFD72ABB9E5CFE74 /* JSQSystemSoundPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JSQSystemSoundPlayer-dummy.m"; sourceTree = "<group>"; };
+		90EEBAEBEB2590CC1F0252FCE12AA9C2 /* JSQSystemSoundPlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JSQSystemSoundPlayer.xcconfig; sourceTree = "<group>"; };
+		A201C628369804C4E9BDA9EEBC951C06 /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
+		A218AD736327340DA11F19D4A446372D /* libJSQSystemSoundPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJSQSystemSoundPlayer.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4BC7D658D2759E41FB5E2A2E0935747 /* DZNEmptyDataSet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DZNEmptyDataSet.xcconfig; sourceTree = "<group>"; };
 		A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A90300538F90506F3C479E3A2CFDC759 /* libNSAttributedString+CCLFormat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libNSAttributedString+CCLFormat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF2DCF176A2FE3DAD6F0455656DD73C1 /* SCLTimerDisplay.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SCLTimerDisplay.m; path = SCLAlertView/SCLTimerDisplay.m; sourceTree = "<group>"; };
-		B2B73FB3231D5C45A5EF8A62C29CAB44 /* JSQSystemSoundPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSQSystemSoundPlayer-prefix.pch"; sourceTree = "<group>"; };
 		B42292D1C69B6545994DE1602CF0C6F0 /* SCLAlertViewResponder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SCLAlertViewResponder.h; path = SCLAlertView/SCLAlertViewResponder.h; sourceTree = "<group>"; };
 		B582BE22A60A7EC06D0B1E865DBBD62B /* SCLAlertViewStyleKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SCLAlertViewStyleKit.m; path = SCLAlertView/SCLAlertViewStyleKit.m; sourceTree = "<group>"; };
 		B7C032F54C03E2C7475879E00EB8CC53 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "SCLAlertView/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BBE9F46B222806E316DD614362F5265F /* libMGSwipeTableCell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMGSwipeTableCell.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCEB846810D7137041A2F0A7B8186A81 /* NSAttributedString+CCLFormat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "NSAttributedString+CCLFormat.xcconfig"; sourceTree = "<group>"; };
+		BD4F6718EC096284BF71FFB6CD550D11 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		BEA8A01A22A060957788596DA99AEF09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		BF1817837EA22C1700CAD97669C27D3E /* MGSwipeTableCell-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MGSwipeTableCell-Private.xcconfig"; sourceTree = "<group>"; };
 		BF59BC15D23E1E1912C8F334E7236813 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		C3E409FC74F1174712F59FE738324E9C /* JSQSystemSoundPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JSQSystemSoundPlayer-dummy.m"; sourceTree = "<group>"; };
+		C0EC84DD6F4684EFB19FD85C436627D3 /* JSQSystemSoundPlayer-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "JSQSystemSoundPlayer-Private.xcconfig"; sourceTree = "<group>"; };
+		C1681334C843393DA8435C2FE5065B60 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+EmptyDataSet.h"; path = "Source/UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		C42D08F5385DBA8EC8879B690CE659D1 /* SCLAlertView-Objective-C-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SCLAlertView-Objective-C-Private.xcconfig"; sourceTree = "<group>"; };
+		CBC667E307258512EEBB66F02AFFA105 /* JSQSystemSoundPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSQSystemSoundPlayer-prefix.pch"; sourceTree = "<group>"; };
+		CC96662A10022BB6D7430D5810AD7768 /* NSAttributedString+CCLFormat-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+CCLFormat-dummy.m"; sourceTree = "<group>"; };
+		D2B83E34CD72183A4375A196D0846D9A /* DZNEmptyDataSet-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DZNEmptyDataSet-prefix.pch"; sourceTree = "<group>"; };
 		D7342E9ACEBF46BA8429B722C4A390EA /* SCLAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SCLAlertView.h; path = SCLAlertView/SCLAlertView.h; sourceTree = "<group>"; };
-		DBC0736ABBED8793A26B7ABB76D718BE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		DCD71426B481091882BA767AF7E95B41 /* DZNEmptyDataSet-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DZNEmptyDataSet-prefix.pch"; sourceTree = "<group>"; };
+		E06EC3A70093E5DB0BDF745A8FD3C6FB /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+EmptyDataSet.m"; path = "Source/UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		E2593318E89853F3E1978570CB1943AF /* SCLAlertViewStyleKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SCLAlertViewStyleKit.h; path = SCLAlertView/SCLAlertViewStyleKit.h; sourceTree = "<group>"; };
-		E458820F2D088A37724FCD37BF143B64 /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSQSystemSoundPlayer.h; path = JSQSystemSoundPlayer/JSQSystemSoundPlayer/JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
-		EC2EA88AF67EC730787BF171DA7E031C /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
-		EFE27F2DAFEF1A05030445890D292CD7 /* MGSwipeTableCell.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.xcconfig; sourceTree = "<group>"; };
+		ED50D59583CA5E33016C85EAC5D85DEB /* NSAttributedString+CCLFormat-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "NSAttributedString+CCLFormat-Private.xcconfig"; sourceTree = "<group>"; };
 		F04A6760EB8287166B8F874B7FF5A7B6 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "SCLAlertView/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		F76B85BFABDB321B92E17E7CCEA1BAFB /* libSCLAlertView-Objective-C.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSCLAlertView-Objective-C.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		220078E04F1955B55BF34D35BDF1BBFA /* Frameworks */ = {
+		53E1A525100FC660477F8109149EDA02 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8EA5AA632A2C5F48A633F2E14CA6843 /* Foundation.framework in Frameworks */,
+				5808EEEEABC4A3F9FCAE7287B103E081 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4EB1B26F8E6695DC7508750D641E3A14 /* Frameworks */ = {
+		67E628F858655B1FD72E74D7D6A471EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57A76FBB697C85E3E93FF7F0BF27B0D9 /* AudioToolbox.framework in Frameworks */,
-				71CF04E83A3D37EF143928A77C18F07E /* Foundation.framework in Frameworks */,
-				CF68D6B515FFB860C5DB383B570DB0A7 /* UIKit.framework in Frameworks */,
+				1F4D8E069C2B40288E38A07950894B4A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A8AE86FD1FFB5375C56D004405222D4 /* Frameworks */ = {
+		901518C8DAEC1F4090E9F0B54255C700 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68155B844F2F7914910F049A17BE9986 /* Foundation.framework in Frameworks */,
-				DDF907D5F391E05F6692E8990B028248 /* UIKit.framework in Frameworks */,
+				F9214AF9FEC24E39FF60EB2AE0D5279A /* Foundation.framework in Frameworks */,
+				66833AE4F51062A3D9374300012AA6B8 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A730B3C85B8AE9629C560122DD047054 /* Frameworks */ = {
+		B11C0BF148BA4A0F6DE4C028538B8C75 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A0E0C0DE58FC94EEB27CBDD290369DB /* Foundation.framework in Frameworks */,
+				33159043BD4A558A94B1DCE48D827E46 /* AudioToolbox.framework in Frameworks */,
+				B5614BC6387B867CED21132DF4B73358 /* Foundation.framework in Frameworks */,
+				EB3E4BAB5938E2036EA4524AB9E7F549 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +188,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7F5B7888E79FDE67ABBCAE2EB445D3A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D97419A55B437B31424394299FA3F32F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B6CDA757769D838AB7BA55E220157C8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,39 +210,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1A53EAF38CDDEAD6BD3A442CF6FF2E8E /* JSQSystemSoundPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				E458820F2D088A37724FCD37BF143B64 /* JSQSystemSoundPlayer.h */,
-				90D1D43990DB43179883B52E52A18DE2 /* JSQSystemSoundPlayer.m */,
-				B18413F4689F8DD13A3035A51F6DB114 /* Support Files */,
-			);
-			path = JSQSystemSoundPlayer;
-			sourceTree = "<group>";
-		};
-		24758917D91B81A1BC481564078B487E /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				4C4595FEAB4BFCC74AC1702A163C7421 /* DZNEmptyDataSet.xcconfig */,
-				3DF8278510CC1847EE35AFBCBC03326D /* DZNEmptyDataSet-Private.xcconfig */,
-				8E376DB9D05DB2074540DC4A24AB8A9C /* DZNEmptyDataSet-dummy.m */,
-				DCD71426B481091882BA767AF7E95B41 /* DZNEmptyDataSet-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/DZNEmptyDataSet";
-			sourceTree = "<group>";
-		};
-		4FC9E7424FC79CEB09783F4567D69FCA /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				DBC0736ABBED8793A26B7ABB76D718BE /* AudioToolbox.framework */,
-				A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */,
-				8E50C14588D2F977A100B13B437FAB9F /* UIKit.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		58FC2530988B1D607A1DE2EEDB713EDE /* SCLAlertView-Objective-C */ = {
+		26512E9068F2F48D8CCBCCA388B08756 /* SCLAlertView-Objective-C */ = {
 			isa = PBXGroup;
 			children = (
 				D7342E9ACEBF46BA8429B722C4A390EA /* SCLAlertView.h */,
@@ -232,9 +226,99 @@
 				AF2DCF176A2FE3DAD6F0455656DD73C1 /* SCLTimerDisplay.m */,
 				B7C032F54C03E2C7475879E00EB8CC53 /* UIImage+ImageEffects.h */,
 				F04A6760EB8287166B8F874B7FF5A7B6 /* UIImage+ImageEffects.m */,
-				BBC1722568BA9CD5FDB6EE4A34B0E74C /* Support Files */,
+				4ABE5224723C1C177884FE3CEE9C4A31 /* Support Files */,
 			);
 			path = "SCLAlertView-Objective-C";
+			sourceTree = "<group>";
+		};
+		314A0AAB324289C4F075E2D0B164DAC3 /* DZNEmptyDataSet */ = {
+			isa = PBXGroup;
+			children = (
+				C1681334C843393DA8435C2FE5065B60 /* UIScrollView+EmptyDataSet.h */,
+				E06EC3A70093E5DB0BDF745A8FD3C6FB /* UIScrollView+EmptyDataSet.m */,
+				497864B0841904990400168E8546A216 /* Support Files */,
+			);
+			path = DZNEmptyDataSet;
+			sourceTree = "<group>";
+		};
+		34B2443725C916CFE354F2EAEC3BA471 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				041264D9F54D89177792AAF824F4E634 /* MGSwipeTableCell.xcconfig */,
+				BF1817837EA22C1700CAD97669C27D3E /* MGSwipeTableCell-Private.xcconfig */,
+				3BB092608BA218ACE26F9F27DBA653EC /* MGSwipeTableCell-dummy.m */,
+				A201C628369804C4E9BDA9EEBC951C06 /* MGSwipeTableCell-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MGSwipeTableCell";
+			sourceTree = "<group>";
+		};
+		35738D305A3807DDE63391E47576E758 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				90EEBAEBEB2590CC1F0252FCE12AA9C2 /* JSQSystemSoundPlayer.xcconfig */,
+				C0EC84DD6F4684EFB19FD85C436627D3 /* JSQSystemSoundPlayer-Private.xcconfig */,
+				8CCFF46FA500EFEAEFD72ABB9E5CFE74 /* JSQSystemSoundPlayer-dummy.m */,
+				CBC667E307258512EEBB66F02AFFA105 /* JSQSystemSoundPlayer-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/JSQSystemSoundPlayer";
+			sourceTree = "<group>";
+		};
+		431232910EBAB38EB5B887B89408E092 /* NSAttributedString+CCLFormat */ = {
+			isa = PBXGroup;
+			children = (
+				0C06D6D7660450BDE99819C507FB9B2D /* NSAttributedString+CCLFormat.h */,
+				44DD44410DCBE74589149DAC775D47EC /* NSAttributedString+CCLFormat.m */,
+				90265D945F0BE60DA225FCA7EAD184EB /* Support Files */,
+			);
+			path = "NSAttributedString+CCLFormat";
+			sourceTree = "<group>";
+		};
+		497864B0841904990400168E8546A216 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A4BC7D658D2759E41FB5E2A2E0935747 /* DZNEmptyDataSet.xcconfig */,
+				1BB059DEB32C7FC9F9B1FAB69D341B53 /* DZNEmptyDataSet-Private.xcconfig */,
+				73AB833C7388632B6CAB9C271DE1E12D /* DZNEmptyDataSet-dummy.m */,
+				D2B83E34CD72183A4375A196D0846D9A /* DZNEmptyDataSet-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DZNEmptyDataSet";
+			sourceTree = "<group>";
+		};
+		4ABE5224723C1C177884FE3CEE9C4A31 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				18D273D1E8BE82E87DE68CBDE872AAF3 /* SCLAlertView-Objective-C.xcconfig */,
+				C42D08F5385DBA8EC8879B690CE659D1 /* SCLAlertView-Objective-C-Private.xcconfig */,
+				28EDF3C68FE756E179F5950ED3237FFA /* SCLAlertView-Objective-C-dummy.m */,
+				1BE6AC85DA02796183D7836D96349926 /* SCLAlertView-Objective-C-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SCLAlertView-Objective-C";
+			sourceTree = "<group>";
+		};
+		4FC9E7424FC79CEB09783F4567D69FCA /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7F8A734229F1058003E08419B6456636 /* AudioToolbox.framework */,
+				A704DF92E45FEB4C4CD205068947CE27 /* Foundation.framework */,
+				BEA8A01A22A060957788596DA99AEF09 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		4FF8DE9D81A39C58249299FCFFDD7022 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				586AC0FFFA488F3DC09A2027A17F24D2 /* MGSwipeButton.h */,
+				098D8DA6A0083DF0703594CE37ED1E46 /* MGSwipeButton.m */,
+				2303A338826A9E348DD0D854D213A9E5 /* MGSwipeTableCell.h */,
+				49F8EB627A9AF911B561C39FE54D2A0F /* MGSwipeTableCell.m */,
+				34B2443725C916CFE354F2EAEC3BA471 /* Support Files */,
+			);
+			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -242,10 +326,22 @@
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
-				AEEDAA7023EDDEEED2F3A2FA1AEB048E /* Pods */,
+				E812E8D507F754E4F7BCFFEA793F37A2 /* Pods */,
 				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
 				D2411A5FE7F7A004607BED49990C37F4 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		90265D945F0BE60DA225FCA7EAD184EB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BCEB846810D7137041A2F0A7B8186A81 /* NSAttributedString+CCLFormat.xcconfig */,
+				ED50D59583CA5E33016C85EAC5D85DEB /* NSAttributedString+CCLFormat-Private.xcconfig */,
+				CC96662A10022BB6D7430D5810AD7768 /* NSAttributedString+CCLFormat-dummy.m */,
+				6D6562F1AF0E65FC45F15B4E6B80E350 /* NSAttributedString+CCLFormat-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/NSAttributedString+CCLFormat";
 			sourceTree = "<group>";
 		};
 		952EEBFAF8F7E620423C9F156F25A506 /* Pods */ = {
@@ -253,81 +349,23 @@
 			children = (
 				15A529C27057E4A57D259CBC6E6CE49C /* Pods-acknowledgements.markdown */,
 				BF59BC15D23E1E1912C8F334E7236813 /* Pods-acknowledgements.plist */,
-				A3B82E01C02FD313D57A02C0D342C36C /* Pods-dummy.m */,
+				17D7C52EF71638493758AB4B2CC8015E /* Pods-dummy.m */,
 				641AE05DD55E5E6AC1590CD7B4A18F97 /* Pods-resources.sh */,
-				665566EEC703D72A65D437E4DE090E68 /* Pods.debug.xcconfig */,
-				201DE7472EF608A5D9C9E51C16BE6D05 /* Pods.release.xcconfig */,
+				BD4F6718EC096284BF71FFB6CD550D11 /* Pods.debug.xcconfig */,
+				84BCFC33BB673863EDC8CE42BAC8F181 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			path = "Target Support Files/Pods";
 			sourceTree = "<group>";
 		};
-		AEEDAA7023EDDEEED2F3A2FA1AEB048E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E1BD75950BEE21E35D732FBE49401054 /* DZNEmptyDataSet */,
-				1A53EAF38CDDEAD6BD3A442CF6FF2E8E /* JSQSystemSoundPlayer */,
-				B7EF077659AFC07DDE1E701826AF7189 /* MGSwipeTableCell */,
-				58FC2530988B1D607A1DE2EEDB713EDE /* SCLAlertView-Objective-C */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		B18413F4689F8DD13A3035A51F6DB114 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				56AA5720EF60AC2C8CC955B296DBBF71 /* JSQSystemSoundPlayer.xcconfig */,
-				69BE0BA81046F9437A90BE1736E827C0 /* JSQSystemSoundPlayer-Private.xcconfig */,
-				C3E409FC74F1174712F59FE738324E9C /* JSQSystemSoundPlayer-dummy.m */,
-				B2B73FB3231D5C45A5EF8A62C29CAB44 /* JSQSystemSoundPlayer-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/JSQSystemSoundPlayer";
-			sourceTree = "<group>";
-		};
-		B7EF077659AFC07DDE1E701826AF7189 /* MGSwipeTableCell */ = {
-			isa = PBXGroup;
-			children = (
-				A084035C8598A6D9941058F1B4CF2A0D /* MGSwipeButton.h */,
-				EC2EA88AF67EC730787BF171DA7E031C /* MGSwipeButton.m */,
-				6926ED69DD90D0122620292C915E6B5F /* MGSwipeTableCell.h */,
-				96320E2EE473B8888A67B1FC36A3B3A0 /* MGSwipeTableCell.m */,
-				CB3269829CBDCE0C2E66D583851404D6 /* Support Files */,
-			);
-			path = MGSwipeTableCell;
-			sourceTree = "<group>";
-		};
-		BBC1722568BA9CD5FDB6EE4A34B0E74C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9717F078E4F7CB680BE58D44DCEB1227 /* SCLAlertView-Objective-C.xcconfig */,
-				C42D08F5385DBA8EC8879B690CE659D1 /* SCLAlertView-Objective-C-Private.xcconfig */,
-				28EDF3C68FE756E179F5950ED3237FFA /* SCLAlertView-Objective-C-dummy.m */,
-				62CE14C318E3B6068ED6668189E2DB7A /* SCLAlertView-Objective-C-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SCLAlertView-Objective-C";
-			sourceTree = "<group>";
-		};
-		CB3269829CBDCE0C2E66D583851404D6 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				EFE27F2DAFEF1A05030445890D292CD7 /* MGSwipeTableCell.xcconfig */,
-				62E172E3F4C1822BBE14F340B655BA80 /* MGSwipeTableCell-Private.xcconfig */,
-				8921254285B093BF7978A8E5558E4F71 /* MGSwipeTableCell-dummy.m */,
-				74CFCBA653FE5432914608AF85CCB646 /* MGSwipeTableCell-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/MGSwipeTableCell";
-			sourceTree = "<group>";
-		};
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				63E61A643CDB4B191BE47661DB0DD1E1 /* libDZNEmptyDataSet.a */,
-				3747F481A8D4A8377A5FDED285B92C5F /* libJSQSystemSoundPlayer.a */,
-				BBE9F46B222806E316DD614362F5265F /* libMGSwipeTableCell.a */,
-				555E81CFD53C390FBE2A16C7EC3834B8 /* libPods.a */,
+				2E5026236C76C28046433236079272A6 /* libDZNEmptyDataSet.a */,
+				A218AD736327340DA11F19D4A446372D /* libJSQSystemSoundPlayer.a */,
+				1EC4FEBC9577F4671D1FF2490B45EDC4 /* libMGSwipeTableCell.a */,
+				A90300538F90506F3C479E3A2CFDC759 /* libNSAttributedString+CCLFormat.a */,
+				042DC84752EEAE8899E95D2038771444 /* libPods.a */,
 				F76B85BFABDB321B92E17E7CCEA1BAFB /* libSCLAlertView-Objective-C.a */,
 			);
 			name = Products;
@@ -341,19 +379,39 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		E1BD75950BEE21E35D732FBE49401054 /* DZNEmptyDataSet */ = {
+		D3235BF09809EBE1F18FB2330CFAF78E /* JSQSystemSoundPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				9343897421C59AC561A33349684792CD /* UIScrollView+EmptyDataSet.h */,
-				8128AF36B9CD2CEDABE7D6DE14145DDD /* UIScrollView+EmptyDataSet.m */,
-				24758917D91B81A1BC481564078B487E /* Support Files */,
+				50463B328D3CF29B51298C1B88F40C38 /* JSQSystemSoundPlayer.h */,
+				6BEB26C47CCD8D55415153A4DC034FC8 /* JSQSystemSoundPlayer.m */,
+				35738D305A3807DDE63391E47576E758 /* Support Files */,
 			);
-			path = DZNEmptyDataSet;
+			path = JSQSystemSoundPlayer;
+			sourceTree = "<group>";
+		};
+		E812E8D507F754E4F7BCFFEA793F37A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				314A0AAB324289C4F075E2D0B164DAC3 /* DZNEmptyDataSet */,
+				D3235BF09809EBE1F18FB2330CFAF78E /* JSQSystemSoundPlayer */,
+				4FF8DE9D81A39C58249299FCFFDD7022 /* MGSwipeTableCell */,
+				431232910EBAB38EB5B887B89408E092 /* NSAttributedString+CCLFormat */,
+				26512E9068F2F48D8CCBCCA388B08756 /* SCLAlertView-Objective-C */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		0F228361300FE40379C1F6EDB65DDDC1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				848269DBC3E97246B5057241993219B7 /* UIScrollView+EmptyDataSet.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		529A41FD4FADAF012E97612447D29C05 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -368,75 +426,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6B11AB0AC48077AC76754792FC9A937F /* Headers */ = {
+		733BCC551F50574CD725D78157764B5C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC71550531FDB3A04F3ADAD062C9A707 /* JSQSystemSoundPlayer.h in Headers */,
+				CE23FC1857D455750746016D3953B5D6 /* NSAttributedString+CCLFormat.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A6B41408DF1C77B764FB4CA8277FCBBF /* Headers */ = {
+		7DCC6288E9DD140B4E1C448097F424A3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DACDD9EB88694D1896D9B603E3680DB4 /* UIScrollView+EmptyDataSet.h in Headers */,
+				37B2FF4F57B07BE4C482BD9CF85BF8D0 /* JSQSystemSoundPlayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F31085479108EFEEE02665077F0441EE /* Headers */ = {
+		DA9880B06A313BB599F1A5BA32ED5CD9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF06E6CF7660135F4DBA79F1BBC777AC /* MGSwipeButton.h in Headers */,
-				3F1AB7104FF6F9EC8C0C0D6537F45F6A /* MGSwipeTableCell.h in Headers */,
+				5B0EE14E39B758A3B549791F504B6A4F /* MGSwipeButton.h in Headers */,
+				3CDD03E76541109DBAF329525EAC09FB /* MGSwipeTableCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		15A418EC3FFE09B56D469811BF294C27 /* JSQSystemSoundPlayer */ = {
+		24F62132F20435B3D2AC72AE7A56FA1B /* MGSwipeTableCell */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 375D24D53FD631FFC5E3E4CAE13ED481 /* Build configuration list for PBXNativeTarget "JSQSystemSoundPlayer" */;
+			buildConfigurationList = EA6B18FE8765F82173A050017F18BC57 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
 			buildPhases = (
-				1137604849C4748793E0C5EA38180605 /* Sources */,
-				4EB1B26F8E6695DC7508750D641E3A14 /* Frameworks */,
-				6B11AB0AC48077AC76754792FC9A937F /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = JSQSystemSoundPlayer;
-			productName = JSQSystemSoundPlayer;
-			productReference = 3747F481A8D4A8377A5FDED285B92C5F /* libJSQSystemSoundPlayer.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		1DC68747078F947829FB76F43A0E82A5 /* DZNEmptyDataSet */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7EBCBB587EBA14852153BF058F96D9BB /* Build configuration list for PBXNativeTarget "DZNEmptyDataSet" */;
-			buildPhases = (
-				64AB153044762ED35F477607CF69FCD0 /* Sources */,
-				9A8AE86FD1FFB5375C56D004405222D4 /* Frameworks */,
-				A6B41408DF1C77B764FB4CA8277FCBBF /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DZNEmptyDataSet;
-			productName = DZNEmptyDataSet;
-			productReference = 63E61A643CDB4B191BE47661DB0DD1E1 /* libDZNEmptyDataSet.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		35DBDEB8F7EF1902CB0C098486D91DF7 /* MGSwipeTableCell */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 42FC98C271D7FCA22DCEF8955CAD17E3 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
-			buildPhases = (
-				CCCE1CDF9236043C5A1C3E08E384C59B /* Sources */,
-				A730B3C85B8AE9629C560122DD047054 /* Frameworks */,
-				F31085479108EFEEE02665077F0441EE /* Headers */,
+				DA09118FAA3D08C22582D870A0735350 /* Sources */,
+				D97419A55B437B31424394299FA3F32F /* Frameworks */,
+				DA9880B06A313BB599F1A5BA32ED5CD9 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -444,27 +468,7 @@
 			);
 			name = MGSwipeTableCell;
 			productName = MGSwipeTableCell;
-			productReference = BBE9F46B222806E316DD614362F5265F /* libMGSwipeTableCell.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		4DD5EFF6AE736B9FEB7E2751B288F946 /* Pods */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DBFC9904434B70D9341C67561E85CB48 /* Build configuration list for PBXNativeTarget "Pods" */;
-			buildPhases = (
-				B13EFD6D407956D2E7424D109964AD1D /* Sources */,
-				220078E04F1955B55BF34D35BDF1BBFA /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F7C262627C0EC80D43206CE578E56F70 /* PBXTargetDependency */,
-				A2B17D28078048DD450153A0339BA956 /* PBXTargetDependency */,
-				0FF3B8D23781F56786913053E6DDC574 /* PBXTargetDependency */,
-				56040584D9F509FCA669625480FB44BF /* PBXTargetDependency */,
-			);
-			name = Pods;
-			productName = Pods;
-			productReference = 555E81CFD53C390FBE2A16C7EC3834B8 /* libPods.a */;
+			productReference = 1EC4FEBC9577F4671D1FF2490B45EDC4 /* libMGSwipeTableCell.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		8000C18B7F5A399C56A040B298897A0B /* SCLAlertView-Objective-C */ = {
@@ -482,6 +486,78 @@
 			name = "SCLAlertView-Objective-C";
 			productName = "SCLAlertView-Objective-C";
 			productReference = F76B85BFABDB321B92E17E7CCEA1BAFB /* libSCLAlertView-Objective-C.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		882A7A2C9304BE80C6406137C975BAD1 /* DZNEmptyDataSet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABCEAB61AD5795E43D705CA4604D07EA /* Build configuration list for PBXNativeTarget "DZNEmptyDataSet" */;
+			buildPhases = (
+				7F32B94D728C3F23491A7190C7170BDC /* Sources */,
+				901518C8DAEC1F4090E9F0B54255C700 /* Frameworks */,
+				0F228361300FE40379C1F6EDB65DDDC1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DZNEmptyDataSet;
+			productName = DZNEmptyDataSet;
+			productReference = 2E5026236C76C28046433236079272A6 /* libDZNEmptyDataSet.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A7A70ED10544D33FBC67255D8F044B24 /* NSAttributedString+CCLFormat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8B32AB527FA2C1D9CBC14931D6E13F0 /* Build configuration list for PBXNativeTarget "NSAttributedString+CCLFormat" */;
+			buildPhases = (
+				E8E648611C25DD36F407A692ACCB5362 /* Sources */,
+				67E628F858655B1FD72E74D7D6A471EC /* Frameworks */,
+				733BCC551F50574CD725D78157764B5C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NSAttributedString+CCLFormat";
+			productName = "NSAttributedString+CCLFormat";
+			productReference = A90300538F90506F3C479E3A2CFDC759 /* libNSAttributedString+CCLFormat.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A7A89A4748401BD6A32418FB98344F2C /* JSQSystemSoundPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3872F15F796027E968B7243D6531FFA /* Build configuration list for PBXNativeTarget "JSQSystemSoundPlayer" */;
+			buildPhases = (
+				8FB97ABBAC45575E04DB69D6D6AE31FB /* Sources */,
+				B11C0BF148BA4A0F6DE4C028538B8C75 /* Frameworks */,
+				7DCC6288E9DD140B4E1C448097F424A3 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JSQSystemSoundPlayer;
+			productName = JSQSystemSoundPlayer;
+			productReference = A218AD736327340DA11F19D4A446372D /* libJSQSystemSoundPlayer.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D5DE39F0FDB0210E23685EB0D8D34D18 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7119121DC41FBC09217EC42BCFF6EEB /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				58FA689463043E10557A90DCFFF7936D /* Sources */,
+				53E1A525100FC660477F8109149EDA02 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				71FB4D44070E6B616C1BEA665863D376 /* PBXTargetDependency */,
+				C29649A9772D073F2A1BD7F88A28FD43 /* PBXTargetDependency */,
+				9ADE64F7F531366E4C0D8D7752BB03F0 /* PBXTargetDependency */,
+				AD05BDE609306D7E24ED06664620158F /* PBXTargetDependency */,
+				547D61A62A5D749417E2CBDAE2FBD78C /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = 042DC84752EEAE8899E95D2038771444 /* libPods.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -505,31 +581,22 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1DC68747078F947829FB76F43A0E82A5 /* DZNEmptyDataSet */,
-				15A418EC3FFE09B56D469811BF294C27 /* JSQSystemSoundPlayer */,
-				35DBDEB8F7EF1902CB0C098486D91DF7 /* MGSwipeTableCell */,
-				4DD5EFF6AE736B9FEB7E2751B288F946 /* Pods */,
+				882A7A2C9304BE80C6406137C975BAD1 /* DZNEmptyDataSet */,
+				A7A89A4748401BD6A32418FB98344F2C /* JSQSystemSoundPlayer */,
+				24F62132F20435B3D2AC72AE7A56FA1B /* MGSwipeTableCell */,
+				A7A70ED10544D33FBC67255D8F044B24 /* NSAttributedString+CCLFormat */,
+				D5DE39F0FDB0210E23685EB0D8D34D18 /* Pods */,
 				8000C18B7F5A399C56A040B298897A0B /* SCLAlertView-Objective-C */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1137604849C4748793E0C5EA38180605 /* Sources */ = {
+		58FA689463043E10557A90DCFFF7936D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3810C279D6F9F931C67115CAA4305FA /* JSQSystemSoundPlayer-dummy.m in Sources */,
-				CAFC32B15BDCBD453CCD1499B657DEE1 /* JSQSystemSoundPlayer.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64AB153044762ED35F477607CF69FCD0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				26BDCA063CAF26DF105CE5CFD318A2DE /* DZNEmptyDataSet-dummy.m in Sources */,
-				4F7B8E430CF1598A92990597AD2DA0C9 /* UIScrollView+EmptyDataSet.m in Sources */,
+				A47944498DC1E6CC251A5EE002ADF46E /* Pods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,54 +614,95 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B13EFD6D407956D2E7424D109964AD1D /* Sources */ = {
+		7F32B94D728C3F23491A7190C7170BDC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				036088EE368B2D8FE168C2434DAC731A /* Pods-dummy.m in Sources */,
+				566F1E75CE525E7FE9DA758F9FA8C8B2 /* DZNEmptyDataSet-dummy.m in Sources */,
+				F4259843DF8382D1138A4D55F428D188 /* UIScrollView+EmptyDataSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CCCE1CDF9236043C5A1C3E08E384C59B /* Sources */ = {
+		8FB97ABBAC45575E04DB69D6D6AE31FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1043EAEEDB34B633688B2BE84506490 /* MGSwipeButton.m in Sources */,
-				8DCE8B2A3C284CD5A89745CCB398E0F7 /* MGSwipeTableCell-dummy.m in Sources */,
-				5693C11CD3D80F51536C4A9615A5ABB3 /* MGSwipeTableCell.m in Sources */,
+				8A8ACA091A8074F1857D595FD54E7CA8 /* JSQSystemSoundPlayer-dummy.m in Sources */,
+				3202D44CBA7FEAD9D82736B4AB0B43F6 /* JSQSystemSoundPlayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA09118FAA3D08C22582D870A0735350 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4DE392670F0CB1AA7255DDE31511DD1 /* MGSwipeButton.m in Sources */,
+				EBB07F1902E1C1C3BA98256585B1AE24 /* MGSwipeTableCell-dummy.m in Sources */,
+				8B413FE199BDD4F47DC366BCEF982CB9 /* MGSwipeTableCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8E648611C25DD36F407A692ACCB5362 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7553D0CD5701E6DC8E8F338911D4569E /* NSAttributedString+CCLFormat-dummy.m in Sources */,
+				86DEDA1A7DB7E6E651E8A105AE03127B /* NSAttributedString+CCLFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0FF3B8D23781F56786913053E6DDC574 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MGSwipeTableCell;
-			target = 35DBDEB8F7EF1902CB0C098486D91DF7 /* MGSwipeTableCell */;
-			targetProxy = AB03BEF371C6D25B6DFBF1C054578C8C /* PBXContainerItemProxy */;
-		};
-		56040584D9F509FCA669625480FB44BF /* PBXTargetDependency */ = {
+		547D61A62A5D749417E2CBDAE2FBD78C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "SCLAlertView-Objective-C";
 			target = 8000C18B7F5A399C56A040B298897A0B /* SCLAlertView-Objective-C */;
-			targetProxy = 3F394787B4AE480207582FC110BFEF43 /* PBXContainerItemProxy */;
+			targetProxy = 61B6E0077A373FB1C77F1B1303E4048D /* PBXContainerItemProxy */;
 		};
-		A2B17D28078048DD450153A0339BA956 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JSQSystemSoundPlayer;
-			target = 15A418EC3FFE09B56D469811BF294C27 /* JSQSystemSoundPlayer */;
-			targetProxy = 35AE839EB980C13AC315BDEA58169AD0 /* PBXContainerItemProxy */;
-		};
-		F7C262627C0EC80D43206CE578E56F70 /* PBXTargetDependency */ = {
+		71FB4D44070E6B616C1BEA665863D376 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DZNEmptyDataSet;
-			target = 1DC68747078F947829FB76F43A0E82A5 /* DZNEmptyDataSet */;
-			targetProxy = 4B25FBB405FFBDA2643F7137464AA0DB /* PBXContainerItemProxy */;
+			target = 882A7A2C9304BE80C6406137C975BAD1 /* DZNEmptyDataSet */;
+			targetProxy = 94A76B3A37400A3B093B88760C132EC4 /* PBXContainerItemProxy */;
+		};
+		9ADE64F7F531366E4C0D8D7752BB03F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MGSwipeTableCell;
+			target = 24F62132F20435B3D2AC72AE7A56FA1B /* MGSwipeTableCell */;
+			targetProxy = 490C4096C07379AE8F88094197039BF2 /* PBXContainerItemProxy */;
+		};
+		AD05BDE609306D7E24ED06664620158F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "NSAttributedString+CCLFormat";
+			target = A7A70ED10544D33FBC67255D8F044B24 /* NSAttributedString+CCLFormat */;
+			targetProxy = D9E2CF48234C86FB5E7C5C0B721A756B /* PBXContainerItemProxy */;
+		};
+		C29649A9772D073F2A1BD7F88A28FD43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JSQSystemSoundPlayer;
+			target = A7A89A4748401BD6A32418FB98344F2C /* JSQSystemSoundPlayer */;
+			targetProxy = 6A36CB216C54A19099A48436B1E3FFD2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		1D2D1988ABD4019509FCB0F74AD1DA94 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF1817837EA22C1700CAD97669C27D3E /* MGSwipeTableCell-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		35767F4A2FC8214E9C015D54EAAAC57A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C42D08F5385DBA8EC8879B690CE659D1 /* SCLAlertView-Objective-C-Private.xcconfig */;
@@ -611,9 +719,25 @@
 			};
 			name = Debug;
 		};
-		6D9DA5A3D71019690AE6BA13E6CEEA1C /* Debug */ = {
+		3579F919B463BD5CA734ECF6558298B4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 665566EEC703D72A65D437E4DE090E68 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = ED50D59583CA5E33016C85EAC5D85DEB /* NSAttributedString+CCLFormat-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/NSAttributedString+CCLFormat/NSAttributedString+CCLFormat-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		6ECB4EB45C5DE15FF75B35A9F584D01A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD4F6718EC096284BF71FFB6CD550D11 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -621,6 +745,22 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		872087AC4980C1A18A771C81503ACD11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BB059DEB32C7FC9F9B1FAB69D341B53 /* DZNEmptyDataSet-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/DZNEmptyDataSet/DZNEmptyDataSet-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -643,37 +783,21 @@
 			};
 			name = Release;
 		};
-		8EA5A993FD48299F411D7C452FBCE3D6 /* Release */ = {
+		A2A60573DB7FDB9D742F49046AD07F4D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DF8278510CC1847EE35AFBCBC03326D /* DZNEmptyDataSet-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DZNEmptyDataSet/DZNEmptyDataSet-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		9B04C35A64D76FECECC63DFED6F3E884 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62E172E3F4C1822BBE14F340B655BA80 /* MGSwipeTableCell-Private.xcconfig */;
+			baseConfigurationReference = BF1817837EA22C1700CAD97669C27D3E /* MGSwipeTableCell-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
-			name = Release;
+			name = Debug;
 		};
 		A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -714,12 +838,12 @@
 			};
 			name = Debug;
 		};
-		ABFDF9891D80A41A410CB919F3CA892F /* Debug */ = {
+		A96BFF4643BCAAA7ABBD1C1CAC9346A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DF8278510CC1847EE35AFBCBC03326D /* DZNEmptyDataSet-Private.xcconfig */;
+			baseConfigurationReference = C0EC84DD6F4684EFB19FD85C436627D3 /* JSQSystemSoundPlayer-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DZNEmptyDataSet/DZNEmptyDataSet-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/JSQSystemSoundPlayer/JSQSystemSoundPlayer-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
@@ -730,9 +854,25 @@
 			};
 			name = Debug;
 		};
-		D1B126D5E0779466F078A31A3E26268A /* Release */ = {
+		BC1C18E3C71C3294F19F391A11ECA2AB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 201DE7472EF608A5D9C9E51C16BE6D05 /* Pods.release.xcconfig */;
+			baseConfigurationReference = ED50D59583CA5E33016C85EAC5D85DEB /* NSAttributedString+CCLFormat-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/NSAttributedString+CCLFormat/NSAttributedString+CCLFormat-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D7E8655152CF6C0B8485EAF06AF204B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84BCFC33BB673863EDC8CE42BAC8F181 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -746,9 +886,9 @@
 			};
 			name = Release;
 		};
-		DCFF262F2923D54A8959C4C52F576FE4 /* Release */ = {
+		E9A28DF8EFBCF21F94FB1594E795C58F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69BE0BA81046F9437A90BE1736E827C0 /* JSQSystemSoundPlayer-Private.xcconfig */;
+			baseConfigurationReference = C0EC84DD6F4684EFB19FD85C436627D3 /* JSQSystemSoundPlayer-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/JSQSystemSoundPlayer/JSQSystemSoundPlayer-prefix.pch";
@@ -761,38 +901,6 @@
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
-		};
-		E4CCFDEC5772CFB94BF792A201270695 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62E172E3F4C1822BBE14F340B655BA80 /* MGSwipeTableCell-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		F8C02310864DD0D309E63587AF7D79CF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69BE0BA81046F9437A90BE1736E827C0 /* JSQSystemSoundPlayer-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/JSQSystemSoundPlayer/JSQSystemSoundPlayer-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
 		};
 		FB45FFD90572718D82AB9092B750F0CA /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -828,6 +936,22 @@
 			};
 			name = Release;
 		};
+		FC432DE4DDAE92B4141012DBBD499CD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BB059DEB32C7FC9F9B1FAB69D341B53 /* DZNEmptyDataSet-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/DZNEmptyDataSet/DZNEmptyDataSet-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -836,33 +960,6 @@
 			buildConfigurations = (
 				A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */,
 				FB45FFD90572718D82AB9092B750F0CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		375D24D53FD631FFC5E3E4CAE13ED481 /* Build configuration list for PBXNativeTarget "JSQSystemSoundPlayer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F8C02310864DD0D309E63587AF7D79CF /* Debug */,
-				DCFF262F2923D54A8959C4C52F576FE4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		42FC98C271D7FCA22DCEF8955CAD17E3 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E4CCFDEC5772CFB94BF792A201270695 /* Debug */,
-				9B04C35A64D76FECECC63DFED6F3E884 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7EBCBB587EBA14852153BF058F96D9BB /* Build configuration list for PBXNativeTarget "DZNEmptyDataSet" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ABFDF9891D80A41A410CB919F3CA892F /* Debug */,
-				8EA5A993FD48299F411D7C452FBCE3D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -876,11 +973,47 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBFC9904434B70D9341C67561E85CB48 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+		ABCEAB61AD5795E43D705CA4604D07EA /* Build configuration list for PBXNativeTarget "DZNEmptyDataSet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6D9DA5A3D71019690AE6BA13E6CEEA1C /* Debug */,
-				D1B126D5E0779466F078A31A3E26268A /* Release */,
+				872087AC4980C1A18A771C81503ACD11 /* Debug */,
+				FC432DE4DDAE92B4141012DBBD499CD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8B32AB527FA2C1D9CBC14931D6E13F0 /* Build configuration list for PBXNativeTarget "NSAttributedString+CCLFormat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC1C18E3C71C3294F19F391A11ECA2AB /* Debug */,
+				3579F919B463BD5CA734ECF6558298B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D3872F15F796027E968B7243D6531FFA /* Build configuration list for PBXNativeTarget "JSQSystemSoundPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A96BFF4643BCAAA7ABBD1C1CAC9346A3 /* Debug */,
+				E9A28DF8EFBCF21F94FB1594E795C58F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7119121DC41FBC09217EC42BCFF6EEB /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ECB4EB45C5DE15FF75B35A9F584D01A /* Debug */,
+				D7E8655152CF6C0B8485EAF06AF204B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA6B18FE8765F82173A050017F18BC57 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2A60573DB7FDB9D742F49046AD07F4D /* Debug */,
+				1D2D1988ABD4019509FCB0F74AD1DA94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
