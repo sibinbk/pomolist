@@ -48,7 +48,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 68.0;
+    return 70.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -272,7 +272,7 @@
                                      NSParagraphStyleAttributeName:paragraphStyle
                                      };
     NSDictionary *subAttributes = @{
-                                    NSFontAttributeName:[UIFont systemFontOfSize:18 weight:UIFontWeightRegular],
+                                    NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightRegular],
                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
                                     NSParagraphStyleAttributeName:paragraphStyle
                                     };
@@ -323,7 +323,7 @@
                                      NSParagraphStyleAttributeName:paragraphStyle
                                      };
     NSDictionary *subAttributes = @{
-                                    NSFontAttributeName:[UIFont systemFontOfSize:12 weight:UIFontWeightRegular],
+                                    NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
                                     NSParagraphStyleAttributeName:paragraphStyle
                                     };
