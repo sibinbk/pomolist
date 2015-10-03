@@ -76,7 +76,6 @@
     NSLog(@"Task percentage : %0.2f%%",  taskPercentage);
     cell.nameLabel.text = task.name;
     cell.eventInfoLabel.attributedText = [self timeStringFromDuration:(int)[event.totalTaskTime integerValue]];
-//    cell.sessionCountLabel.attributedText = [self sessionCountStringFromCount:[event.totalSessionCount integerValue]];
     cell.percentageLabel.attributedText = [self formattedPercentageString:[self percentageOfTaskCompleted:event]];
     
     return cell;
@@ -129,6 +128,11 @@
     CGRect headerFrame = header.frame;
     header.textLabel.frame = headerFrame;
     header.textLabel.textAlignment = NSTextAlignmentCenter;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 26;
 }
 
 #pragma mark - Fetched Results Controller Section
@@ -226,12 +230,12 @@
     NSDictionary *firstStringAttributes = @{
                                             NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightLight],
                                             NSForegroundColorAttributeName:[UIColor blackColor],
-                                            NSParagraphStyleAttributeName :paragraphStyle
+                                            NSParagraphStyleAttributeName:paragraphStyle
                                             };
     NSDictionary *secondStringAttributes = @{
                                              NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightLight],
                                              NSForegroundColorAttributeName:[UIColor blackColor],
-                                             NSParagraphStyleAttributeName :paragraphStyle
+                                             NSParagraphStyleAttributeName:paragraphStyle
                                              };
     NSString *firstString = [NSString stringWithFormat:@"%ld", (long)count];
     
@@ -260,12 +264,12 @@
     NSDictionary *timeAttributes = @{
                                      NSFontAttributeName:[UIFont systemFontOfSize:18 weight:UIFontWeightRegular],
                                      NSForegroundColorAttributeName:[UIColor colorWithString:@"1E2C37"],
-                                     NSParagraphStyleAttributeName :paragraphStyle
+                                     NSParagraphStyleAttributeName:paragraphStyle
                                      };
     NSDictionary *subAttributes = @{
                                     NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"1E2C37"],
-                                    NSParagraphStyleAttributeName :paragraphStyle
+                                    NSParagraphStyleAttributeName:paragraphStyle
                                     };
     
     int remainingSeconds = seconds;
@@ -309,15 +313,15 @@
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
     NSDictionary *percentageStringAttributes = @{
-                                            NSFontAttributeName:[UIFont systemFontOfSize:30 weight:UIFontWeightLight],
-                                            NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
-                                            NSParagraphStyleAttributeName :paragraphStyle
-                                            };
+                                                 NSFontAttributeName:[UIFont systemFontOfSize:30 weight:UIFontWeightLight],
+                                                 NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                                 NSParagraphStyleAttributeName:paragraphStyle
+                                                 };
     NSDictionary *subStringAttributes = @{
-                                             NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
-                                             NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
-                                             NSParagraphStyleAttributeName :paragraphStyle
-                                             };
+                                          NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
+                                          NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                          NSParagraphStyleAttributeName:paragraphStyle
+                                          };
     
     NSString *percentageString = [NSString stringWithFormat:@"%0.f", taskPercentage];
     NSString *subString = @"%";
@@ -329,6 +333,5 @@
     
     return modifiedString;
 }
-
 
 @end

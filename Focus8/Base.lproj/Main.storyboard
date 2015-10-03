@@ -1044,7 +1044,7 @@
             </objects>
             <point key="canvasLocation" x="2053" y="549"/>
         </scene>
-        <!--Events-->
+        <!--Stats-->
         <scene sceneID="X64-RD-6YR">
             <objects>
                 <tableViewController id="PCe-6I-CjY" customClass="EventTableViewController" sceneMemberID="viewController">
@@ -1087,7 +1087,7 @@
                                                     <attributedString key="attributedText">
                                                         <fragment content="12%">
                                                             <attributes>
-                                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="17" name="HelveticaNeue"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
@@ -1127,7 +1127,7 @@
                             <outlet property="delegate" destination="PCe-6I-CjY" id="EcM-at-dYc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Events" id="QHc-Wk-pSp">
+                    <navigationItem key="navigationItem" title="Stats" id="QHc-Wk-pSp">
                         <barButtonItem key="leftBarButtonItem" image="delete.png" id="CLi-wj-KzP">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
