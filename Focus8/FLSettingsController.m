@@ -276,7 +276,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 2) {
-        
         switch (indexPath.row) {
             case 0:
                 [self shareItOnfacebook];
@@ -287,15 +286,17 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
             case 2:
                 [self shareItAsTextMessage];
                 break;
-            case 3:
-                [self sendFeedBack];
-                break;
-            case 4:
-                [self reviewTheApp];
-                break;
             default:
                 break;
         }
+    }
+    
+    if (indexPath.section == 3 && indexPath.row == 0 ) {
+        [self sendFeedBack];
+    }
+    
+    if (indexPath.section == 4 && indexPath.row == 0) {
+        [self reviewTheApp];
     }
 }
 @end
