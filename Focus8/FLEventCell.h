@@ -10,7 +10,7 @@
 
 @interface FLEventCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sessionCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *eventInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *percentageLabel;
 
 @end

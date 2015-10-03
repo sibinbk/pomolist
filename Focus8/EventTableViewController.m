@@ -72,11 +72,26 @@
     
     Task *task = event.task;
     
+    double taskPercentage = [self percentageOfTaskCompleted:event];
+    NSLog(@"Task percentage : %0.2f%%",  taskPercentage);
     cell.nameLabel.text = task.name;
-    cell.durationLabel.attributedText = [self timeStringFromDuration:(int)[event.totalTaskTime integerValue]];
-    cell.sessionCountLabel.attributedText = [self sessionCountStringFromCount:[event.totalSessionCount integerValue]];
+    cell.eventInfoLabel.attributedText = [self timeStringFromDuration:(int)[event.totalTaskTime integerValue]];
+//    cell.sessionCountLabel.attributedText = [self sessionCountStringFromCount:[event.totalSessionCount integerValue]];
+    cell.percentageLabel.attributedText = [self formattedPercentageString:[self percentageOfTaskCompleted:event]];
     
     return cell;
+}
+
+- (double)percentageOfTaskCompleted:(Event *)event
+{
+    Task *task = event.task;
+    
+    double actualTaskDuration = [task.taskTime integerValue] * [task.repeatCount integerValue];
+    double completedTaskDuration = [event.totalTaskTime integerValue];
+    
+    double percentageCompleted = round((completedTaskDuration / actualTaskDuration) * 100);
+    
+    return percentageCompleted;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -243,13 +258,13 @@
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
     NSDictionary *timeAttributes = @{
-                                     NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightMedium],
-                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"3498DB"],
+                                     NSFontAttributeName:[UIFont systemFontOfSize:18 weight:UIFontWeightRegular],
+                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"1E2C37"],
                                      NSParagraphStyleAttributeName :paragraphStyle
                                      };
     NSDictionary *subAttributes = @{
-                                    NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightMedium],
-                                    NSForegroundColorAttributeName:[UIColor colorWithString:@"3498DB"],
+                                    NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
+                                    NSForegroundColorAttributeName:[UIColor colorWithString:@"1E2C37"],
                                     NSParagraphStyleAttributeName :paragraphStyle
                                     };
     
@@ -263,8 +278,8 @@
     
     remainingSeconds = remainingSeconds - minutes * 60;
     
-    NSString *minuteString = @"min";
-    NSString *hourString = @"hr";
+    NSString *minuteString = @"m";
+    NSString *hourString = @"h";
     
     if (hours > 0) {
         if (minutes > 0) {
@@ -286,5 +301,34 @@
         return modifiedString;
     }
 }
+
+- (NSMutableAttributedString *)formattedPercentageString:(double)taskPercentage
+{
+    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *percentageStringAttributes = @{
+                                            NSFontAttributeName:[UIFont systemFontOfSize:30 weight:UIFontWeightLight],
+                                            NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                            NSParagraphStyleAttributeName :paragraphStyle
+                                            };
+    NSDictionary *subStringAttributes = @{
+                                             NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
+                                             NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                             NSParagraphStyleAttributeName :paragraphStyle
+                                             };
+    
+    NSString *percentageString = [NSString stringWithFormat:@"%0.f", taskPercentage];
+    NSString *subString = @"%";
+    
+    NSString *combinedString = [NSString stringWithFormat:@"%@%@", percentageString, subString];
+    NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:combinedString];
+    [modifiedString setAttributes:percentageStringAttributes range:[combinedString rangeOfString:percentageString]];
+    [modifiedString setAttributes:subStringAttributes range:[combinedString rangeOfString:subString]];
+    
+    return modifiedString;
+}
+
 
 @end
