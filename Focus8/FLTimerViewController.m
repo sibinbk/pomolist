@@ -23,6 +23,7 @@
 #import "SCLAlertView.h"
 #import "JTHamburgerButton.h"
 #import "CNPPopupController.h"
+#import "NSAttributedString+CCLFormat.h"
 
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
@@ -891,6 +892,9 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         [self.startButton setImage:[UIImage imageNamed:@"Play.png"] forState:UIControlStateNormal];
     });
     
+    NSLog(@"Task time = %f", self.taskTime);
+    NSLog(@"Repeat Count = %ld", (long)self.repeatCount);
+    
     // Show task summary up on completion of task.
     [self showTaskSummaryWithDuration:time sessionCount:count];
     
@@ -1610,6 +1614,10 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 - (void)showTaskSummaryWithDuration:(NSTimeInterval)duration sessionCount:(NSInteger)count {
     
+    double actualTaskDuration = self.taskTime * self.repeatCount;
+    double completedTaskDuration = duration;
+    double percentageCompleted = round((completedTaskDuration / actualTaskDuration) * 100);
+    
     NSString *completedSessionCountString = [NSString stringWithFormat:@"%ld", (long) count];
     NSString *targetSessioncountString = [NSString stringWithFormat:@"/%ld", (long) self.repeatCount];
     
@@ -1617,19 +1625,25 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
-    // Determines type of formatted string for different labels.
-    LabelViewType labelViewType = SummaryView;
+    NSAttributedString *summaryString = [[NSAttributedString alloc] initWithAttributedString:[self summaryStringWithTaskPercentage:percentageCompleted]];
     
-    NSAttributedString *durationTitle = [[NSAttributedString alloc] initWithString:@"Workout time" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18 weight:UIFontWeightRegular],
+    NSAttributedString *durationTitle = [[NSAttributedString alloc] initWithString:@"Duration" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18 weight:UIFontWeightLight],
                                                                                                                 NSForegroundColorAttributeName : [UIColor whiteColor], NSParagraphStyleAttributeName : paragraphStyle}];
     
-    NSAttributedString *sessionTitle = [[NSAttributedString alloc] initWithString:@"Sessions completed" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18 weight:UIFontWeightRegular],
+    NSAttributedString *sessionTitle = [[NSAttributedString alloc] initWithString:@"Sessions Completed" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18 weight:UIFontWeightLight],
                                                                                                                      NSForegroundColorAttributeName : [UIColor whiteColor],
+
                                                                                                                      NSParagraphStyleAttributeName : paragraphStyle}];
+    
+    // Determines type of formatted string for different labels.
+    LabelViewType labelViewType = SummaryView;
     
     NSAttributedString *taskDurationString = [[NSAttributedString alloc] initWithAttributedString:[self formattedTimeString:(int)duration forLabelType:labelViewType]];
     
     NSAttributedString *sessionCountString = [[NSAttributedString alloc] initWithAttributedString:[self formattedSessionString:completedSessionCountString withString:targetSessioncountString forLabelType:labelViewType]];
+    
+    NSAttributedString *combinedDurationString = [NSAttributedString attributedStringWithFormat:@"%@ \n %@", taskDurationString, durationTitle];
+    NSAttributedString *combinedSessionString = [NSAttributedString attributedStringWithFormat:@"%@ \n %@", sessionCountString, sessionTitle];
     
     CNPPopupButton *dismissButton = [[CNPPopupButton alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
     [dismissButton setTitleColor:[UIColor colorWithString:@"F0C30E"] forState:UIControlStateNormal];
@@ -1640,29 +1654,30 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         [self.popupController dismissPopupControllerAnimated:YES];
     };
     
-    UILabel *durationTitleLabel = [[UILabel alloc] init];
-    durationTitleLabel.numberOfLines = 0;
-    durationTitleLabel.attributedText = durationTitle;
+    UILabel *summaryLabel = [[UILabel alloc] init];
+    summaryLabel.numberOfLines = 0;
+    summaryLabel.textAlignment = NSTextAlignmentCenter;
+    summaryLabel.attributedText = summaryString;
     
     UILabel *taskDurationLabel = [[UILabel alloc] init];
     taskDurationLabel.numberOfLines = 0;
-    taskDurationLabel.attributedText = taskDurationString;
-    
-    UILabel *sessionTitleLabel = [[UILabel alloc] init];
-    sessionTitleLabel.numberOfLines = 0;
-    sessionTitleLabel.attributedText = sessionTitle;
+    taskDurationLabel.textAlignment = NSTextAlignmentCenter;
+    taskDurationLabel.attributedText = combinedDurationString;
     
     UILabel *sessionCountLabel = [[UILabel alloc] init];
+    sessionCountLabel.textAlignment = NSTextAlignmentCenter;
     sessionCountLabel.numberOfLines = 0;
-    sessionCountLabel.attributedText = sessionCountString;
+    sessionCountLabel.attributedText = combinedSessionString;
     
-    self.popupController = [[CNPPopupController alloc] initWithContents:@[durationTitleLabel, taskDurationLabel, sessionTitleLabel, sessionCountLabel, dismissButton]];
+    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 1)];
+    customView.backgroundColor = [UIColor whiteColor];
+    
+    self.popupController = [[CNPPopupController alloc] initWithContents:@[summaryLabel, taskDurationLabel, sessionCountLabel, customView, dismissButton]];
     self.popupController.theme = [CNPPopupTheme defaultTheme];
     self.popupController.theme.popupStyle = CNPPopupStyleCentered;
     self.popupController.theme.presentationStyle = CNPPopupPresentationStyleSlideInFromTop;
     self.popupController.theme.cornerRadius = 15;
     self.popupController.theme.maxPopupWidth = 280;
-//    self.popupController.theme.backgroundColor = [UIColor colorWithRed:(52.0/255.0) green:(152.0/255.0) blue:(219.0/255.0) alpha:1.0];
     self.popupController.theme.backgroundColor = [UIColor colorWithString:@"4B5B6A"];
     self.popupController.delegate = self;
     [self.popupController presentPopupControllerAnimated:YES];
@@ -1772,7 +1787,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
             secondStringColor = [UIColor whiteColor];
             break;
         case SummaryView:
-            firstStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightLight];
+            firstStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightThin];
             secondStringFont = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
             firstStringColor = [UIColor whiteColor];
             secondStringColor = [UIColor whiteColor];
@@ -1824,7 +1839,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
             subStringColor = [UIColor whiteColor];
             break;
         case SummaryView:
-            timeStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightLight];
+            timeStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightThin];
             subStringFont = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
             timeStringColor = [UIColor whiteColor];
             subStringColor = [UIColor whiteColor];
@@ -1886,5 +1901,35 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         return modifiedString;
     }
 }
+
+- (NSMutableAttributedString *)summaryStringWithTaskPercentage:(double)percentage
+{
+    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *percentageAttributes = @{
+                                           NSFontAttributeName:[UIFont systemFontOfSize:50 weight:UIFontWeightThin],
+                                           NSForegroundColorAttributeName:[UIColor whiteColor],
+                                           NSParagraphStyleAttributeName:paragraphStyle
+                                           };
+    NSDictionary *symbolAttributes = @{
+                                           NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightLight],
+                                           NSForegroundColorAttributeName:[UIColor whiteColor],
+                                           NSParagraphStyleAttributeName:paragraphStyle
+                                           };
+    NSDictionary *summaryAttributes = @{
+                                        NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightLight],
+                                        NSForegroundColorAttributeName:[UIColor whiteColor],
+                                        NSParagraphStyleAttributeName:paragraphStyle
+                                        };
+    NSString *percentageString = [NSString stringWithFormat:@"%0.f", percentage];
+    NSString *symbolString = @"%";
+    NSString *summaryString = [NSString stringWithFormat:@"You have completed \n %@%@ \n of the task", percentageString, symbolString];
+    NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:summaryString attributes:summaryAttributes];
+    [modifiedString setAttributes:percentageAttributes range:[summaryString rangeOfString:percentageString]];
+    [modifiedString setAttributes:symbolAttributes range:[summaryString rangeOfString:symbolString]];
+    return modifiedString;
+ }
 
 @end
