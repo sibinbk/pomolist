@@ -73,8 +73,6 @@
     
     Task *task = event.task;
     
-    double taskPercentage = [self percentageOfTaskCompleted:event];
-    NSLog(@"Task percentage : %0.2f%%",  taskPercentage);
     cell.nameLabel.text = task.name;
     
     NSAttributedString *completedTimeString = [self timeStringFromCompletedDuration:(int)[event.totalTaskTime integerValue]];
@@ -189,22 +187,15 @@
     
     switch (type) {
         case NSFetchedResultsChangeInsert:
-            NSLog(@"Inserting");
             [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
-            NSLog(@"Deleting");
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeUpdate:
-            NSLog(@"Updating");
-//            [self configureCell:(UITableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            //            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            //            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            //            [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
             break;
         case NSFetchedResultsChangeMove:
-            NSLog(@"Moving");
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationRight];
             break;
