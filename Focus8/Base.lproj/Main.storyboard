@@ -300,7 +300,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dKl-oX-aik" id="37M-rx-rQh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="71.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0o-hJ-VQ5" customClass="DesignableView" customModule="Focus8" customModuleProvider="target">
@@ -357,7 +357,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFb-13-0mH">
-                                                    <rect key="frame" x="80" y="12" width="76" height="24"/>
+                                                    <rect key="frame" x="80" y="12" width="75.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -391,6 +391,7 @@
                                                 <constraint firstAttribute="centerY" secondItem="L0o-hJ-VQ5" secondAttribute="centerY" id="Ve4-VJ-EeA"/>
                                                 <constraint firstItem="zUJ-8e-nQs" firstAttribute="leading" secondItem="qWW-ZE-9lW" secondAttribute="trailing" constant="6" id="cRs-NC-b5H"/>
                                                 <constraint firstAttribute="trailing" secondItem="i73-r7-wtM" secondAttribute="trailing" constant="15" id="d8u-yA-jwn"/>
+                                                <constraint firstItem="i73-r7-wtM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vFb-13-0mH" secondAttribute="trailing" constant="15" id="r2e-CB-SJe"/>
                                                 <constraint firstItem="vFb-13-0mH" firstAttribute="top" secondItem="37M-rx-rQh" secondAttribute="top" constant="12" id="v4z-8O-Ev7"/>
                                                 <constraint firstItem="vFb-13-0mH" firstAttribute="leading" secondItem="L0o-hJ-VQ5" secondAttribute="trailing" constant="8" id="vgf-tm-JHD"/>
                                                 <constraint firstItem="zUJ-8e-nQs" firstAttribute="centerY" secondItem="qWW-ZE-9lW" secondAttribute="centerY" id="wsy-Ir-V2w"/>
