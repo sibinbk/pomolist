@@ -41,7 +41,7 @@ static NSString * const kFLLongBreakColorString = @"longBreakColorString";
 static NSString * const kFLUserDefaultKey = @"FocusListUserDefaults";
 static NSString * const kFLRepeatTimer = @"FLRepeatTimer";
 static NSString * const kFLTimerNotification = @"FLTimerNotification";
-static NSString *const kFLAppTitle = @"Listie";
+static NSString *const kFLAppTitle = @"Listee";
 
 typedef NS_ENUM(NSInteger, LabelViewType) {
     ProgressView,
