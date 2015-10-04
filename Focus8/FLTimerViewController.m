@@ -587,12 +587,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         [self.startButton setImage:[UIImage imageNamed:@"Play.png"] forState:UIControlStateNormal];
         
         self.skipButton.hidden = NO;
-
-        // GCD to avoid blocking UI while cancelling local notifications.
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSLog(@"Cancel Timer notifications while Pause");
-            [self cancelTimerNotifications];
-        });
+        
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
     }
 }
 
@@ -632,10 +628,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 {
     //GCD to avoid blocking UI while cancelling local notifications. Required only when Reminder notifications are available.
     if (self.repeatTimer.isRunning) {
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSLog(@"Cancel Timer notification during reset");
-            [self cancelTimerNotifications];
-        });
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
     }
     
     [self.repeatTimer stopCountDown];
@@ -781,11 +774,11 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 #pragma mark - cancel local notifications.
 
-- (void)cancelTimerNotifications
-{
-    NSLog(@"Cancel Timer Notifications");
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-}
+//- (void)cancelTimerNotifications
+//{
+//    NSLog(@"Cancel Timer Notifications");
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//}
 
 /* Reminde notification cancelling code.
  
@@ -1236,10 +1229,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         //
         
         if (self.repeatTimer.isRunning) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSLog(@"Cancel Timer notifications related to the task");
-                [self cancelTimerNotifications];
-            });
+            [[UIApplication sharedApplication] cancelAllLocalNotifications];
         }
 
         //Get currently selected task.
@@ -1357,10 +1347,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         // Check the task to be deleted is currently selected task. If so reset all timer info related to the task.
         if ([taskToDelete.isSelected boolValue]) {
             if (self.repeatTimer.isRunning) {
-                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSLog(@"Cancel Timer notifications related to the task");
-                    [self cancelTimerNotifications];
-                });
+                [[UIApplication sharedApplication] cancelAllLocalNotifications];
             }
             
             [self initializeTaskTimer];
@@ -1588,8 +1575,9 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         NSLog(@"Timer values changed");
         
         if (self.repeatTimer.isRunning) {
-            [self cancelTimerNotifications];
+            [[UIApplication sharedApplication] cancelAllLocalNotifications];
         }
+        
         [self.repeatTimer resetTimer];
         [self setUpRepeatTimer];
         [self setUpTimerViewInterfaceWith:self.isFullView];
