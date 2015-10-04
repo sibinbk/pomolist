@@ -1229,6 +1229,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         //
         
         if (self.repeatTimer.isRunning) {
+            NSLog(@"Cancels local notifs when another task is selected");
             [[UIApplication sharedApplication] cancelAllLocalNotifications];
         }
 
@@ -1347,6 +1348,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         // Check the task to be deleted is currently selected task. If so reset all timer info related to the task.
         if ([taskToDelete.isSelected boolValue]) {
             if (self.repeatTimer.isRunning) {
+                NSLog(@"Cancelling local notifications when selected task is being deleted");
                 [[UIApplication sharedApplication] cancelAllLocalNotifications];
             }
             
