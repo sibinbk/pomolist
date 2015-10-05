@@ -320,11 +320,13 @@
 				C313B8511BC1582300C2871D /* LaunchIcon@3x.png */,
 			);
 			name = LaunchIcons;
+			path = ../Sounds;
 			sourceTree = "<group>";
 		};
 		C33008271A94A439003A0AEA /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				C313B8481BC150F200C2871D /* LaunchIcons */,
 				C39ACFA41BBE93E8004EA540 /* Statistics.png */,
 				C39ACFA51BBE93E8004EA540 /* Statistics@2x.png */,
 				C39ACFA61BBE93E8004EA540 /* Statistics@3x.png */,
@@ -574,7 +576,6 @@
 		C3AF6F011BA3ED8300919243 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				C313B8481BC150F200C2871D /* LaunchIcons */,
 				C3AF6F021BA3ED8300919243 /* Caribbean.caf */,
 				C3AF6F031BA3ED8300919243 /* Glissful.caf */,
 				C3AF6F041BA3ED8300919243 /* None.caf */,

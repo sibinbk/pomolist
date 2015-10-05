@@ -61,7 +61,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="0uO-Lj-US2" kind="presentation" identifier="eventListSegue" id="495-Dj-zuc"/>
+                                            <action selector="showEventList:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tH5-Vh-qQH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZS-7O-ZJV" customClass="DesignableButton" customModule="Focus8" customModuleProvider="target">
@@ -442,6 +442,7 @@
                         <outlet property="titleLabel" destination="7kd-9m-DBa" id="9og-H9-Yqc"/>
                         <outlet property="totalTaskTimeLabel" destination="gRg-ux-jgo" id="0Jq-w1-nPx"/>
                         <segue destination="QYY-c0-pPP" kind="presentation" identifier="EditTaskSegue" id="GOD-pm-KDP"/>
+                        <segue destination="0uO-Lj-US2" kind="presentation" identifier="eventListSegue" id="EoH-Ma-qOq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

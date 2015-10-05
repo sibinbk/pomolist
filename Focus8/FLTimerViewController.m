@@ -88,7 +88,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 @property (weak, nonatomic) IBOutlet UILabel *eventListButtonLabel;
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (weak, nonatomic) IBOutlet UIView *summaryView;
-@property (strong, nonatomic) DesignableButton *floatingButton;
+@property (strong, nonatomic) DesignableButton *addTaskButton;
+@property (strong, nonatomic) DesignableButton *statsViewButton;
 @property (strong, nonatomic) JTHamburgerButton *listButton;
 @property (strong, nonatomic) CNPPopupController *popupController;
 
@@ -153,7 +154,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     [self listAllTasksButtonSetup];
     
     // Add Floating button to add new tasks.
-    [self createAddTaskButton];
+    [self createFloatingButtons];
     
     // Adjust Timer label font size depends up on the device screen size.
     [self setUpFontAndViewLayout];
@@ -287,7 +288,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         self.editButtonLabel.hidden = YES;
         self.eventListButtonLabel.hidden = YES;
         self.summaryView.hidden = YES;
-        self.floatingButton.hidden = NO;
+        self.addTaskButton.hidden = NO;
+        self.statsViewButton.hidden = NO;
         
         if (!self.taskSelected) {
             self.subTimerLabel.hidden = YES;
@@ -352,21 +354,35 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleDone;
 }
 
-#pragma mark - Floating button for adding new task.
+#pragma mark - Floating button for adding new task and Stat view list.
 
-- (void)createAddTaskButton
+- (void)createFloatingButtons
 {
-    self.floatingButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)/2 - 30, CGRectGetHeight(self.view.frame) - 80 , 60, 60)];
-    self.floatingButton.cornerRadius = 30;
-    self.floatingButton.backgroundColor = [UIColor flatPeterRiverColor];
-    self.floatingButton.shadowColor = [UIColor grayColor];
-    self.floatingButton.shadowRadius = 2;
-    self.floatingButton.shadowOffsetY = 1;
-    self.floatingButton.shadowOpacity = 3;
-    [self.floatingButton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
-    [self.floatingButton addTarget:self action:@selector(addNewTask) forControlEvents:UIControlEventTouchUpInside];
-    self.floatingButton.hidden = YES;
-    [self.view addSubview:self.floatingButton];
+    self.addTaskButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)/2 - 30, CGRectGetHeight(self.view.frame) - 80 , 60, 60)];
+    self.addTaskButton.cornerRadius = 30;
+    self.addTaskButton.backgroundColor = [UIColor flatBelizeHoleColor];
+    self.addTaskButton.shadowColor = [UIColor grayColor];
+    self.addTaskButton.shadowRadius = 2;
+    self.addTaskButton.shadowOffsetY = 1;
+    self.addTaskButton.shadowOpacity = 3;
+    [self.addTaskButton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
+    [self.addTaskButton addTarget:self action:@selector(addNewTask) forControlEvents:UIControlEventTouchUpInside];
+    self.addTaskButton.hidden = YES;
+    self.statsViewButton.hidden = YES;
+    [self.view addSubview:self.addTaskButton];
+    
+    self.statsViewButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame) - 70, CGRectGetHeight(self.view.frame) - 70 , 40, 40)];
+    self.statsViewButton.cornerRadius = 20;
+    self.statsViewButton.backgroundColor = [UIColor flatGreenSeaColor];
+    self.statsViewButton.shadowColor = [UIColor grayColor];
+    self.statsViewButton.shadowRadius = 2;
+    self.statsViewButton.shadowOffsetY = 1;
+    self.statsViewButton.shadowOpacity = 3;
+    [self.statsViewButton setImage:[UIImage imageNamed:@"Statistics"] forState:UIControlStateNormal];
+    [self.statsViewButton addTarget:self action:@selector(showEventList:) forControlEvents:UIControlEventTouchUpInside];
+    self.statsViewButton.hidden = YES;
+    [self.view addSubview:self.statsViewButton];
+
 }
 
 #pragma mark - Gestures for animation
@@ -446,7 +462,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     self.isFullView = YES;
     self.listButton.enabled = NO;
     
-    self.floatingButton.hidden = YES;
+    self.addTaskButton.hidden = YES;
+    self.statsViewButton.hidden = YES;
     self.titleLabel.hidden = NO;
     self.cycleLabel.hidden = NO;
     self.timerLabel.hidden = NO;
@@ -522,8 +539,10 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     }
     self.subTimerLabel.alpha = 1;
 
-    self.floatingButton.hidden = NO;
-    self.floatingButton.alpha = 0;
+    self.addTaskButton.hidden = NO;
+    self.statsViewButton.hidden = NO;
+    self.addTaskButton.alpha = 0;
+    self.statsViewButton.alpha = 0;
     
     [UIView animateWithDuration:0.5
                           delay:0
@@ -532,7 +551,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
                         options:0
                      animations:^{
                          [self.view layoutIfNeeded];
-                         self.floatingButton.alpha = 1;
+                         self.addTaskButton.alpha = 1;
+                         self.statsViewButton.alpha = 1;
                          self.timerLabel.alpha = 0;
                          self.titleLabel.alpha = 0;
                          self.cycleLabel.alpha = 0;
@@ -1519,6 +1539,13 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 {
     self.isTaskEditing = NO;
     [self performSegueWithIdentifier:@"EditTaskSegue" sender:nil];
+}
+
+#pragma mark - Show Event list/ Status view
+
+- (IBAction)showEventList:(id)sender
+{
+    [self performSegueWithIdentifier:@"eventListSegue" sender:nil];
 }
 
 #pragma mark - Segue handling methods.
