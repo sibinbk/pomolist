@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "ColorUtils.h"
 #import "NSAttributedString+CCLFormat.h"
+#import "Focus8-Swift.h"
 #import "Task.h"
 #import "Event.h"
 
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *percentageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *completedTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *completedSessionLabel;
+@property (weak, nonatomic) IBOutlet DesignableView *todayView;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;

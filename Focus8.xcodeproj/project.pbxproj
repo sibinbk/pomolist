@@ -120,6 +120,9 @@
 		C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */; };
 		C3EFAEA21A13462D003D641C /* FLEditTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEA11A13462D003D641C /* FLEditTaskController.m */; };
 		C3F1F4571BC36CED007F252C /* FLTodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1F4561BC36CED007F252C /* FLTodayViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C3F1F45B1BC40815007F252C /* Today.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F4581BC40815007F252C /* Today.png */; settings = {ASSET_TAGS = (); }; };
+		C3F1F45C1BC40815007F252C /* Today@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F4591BC40815007F252C /* Today@2x.png */; settings = {ASSET_TAGS = (); }; };
+		C3F1F45D1BC40815007F252C /* Today@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F45A1BC40815007F252C /* Today@3x.png */; settings = {ASSET_TAGS = (); }; };
 		D47D80DDBE58ED9BF22F172C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E09210CA49F9208CF4B91D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -280,6 +283,9 @@
 		C3EFAEA11A13462D003D641C /* FLEditTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEditTaskController.m; sourceTree = "<group>"; };
 		C3F1F4551BC36CED007F252C /* FLTodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTodayViewController.h; sourceTree = "<group>"; };
 		C3F1F4561BC36CED007F252C /* FLTodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTodayViewController.m; sourceTree = "<group>"; };
+		C3F1F4581BC40815007F252C /* Today.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Today.png; sourceTree = "<group>"; };
+		C3F1F4591BC40815007F252C /* Today@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Today@2x.png"; sourceTree = "<group>"; };
+		C3F1F45A1BC40815007F252C /* Today@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Today@3x.png"; sourceTree = "<group>"; };
 		FF6F532B5432F27442F9C513 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -333,6 +339,9 @@
 				C39ACFA41BBE93E8004EA540 /* Statistics.png */,
 				C39ACFA51BBE93E8004EA540 /* Statistics@2x.png */,
 				C39ACFA61BBE93E8004EA540 /* Statistics@3x.png */,
+				C3F1F4581BC40815007F252C /* Today.png */,
+				C3F1F4591BC40815007F252C /* Today@2x.png */,
+				C3F1F45A1BC40815007F252C /* Today@3x.png */,
 				C39ACF9E1BBE8ADF004EA540 /* Modify.png */,
 				C39ACF9F1BBE8ADF004EA540 /* Modify@2x.png */,
 				C39ACFA01BBE8ADF004EA540 /* Modify@3x.png */,
@@ -691,6 +700,7 @@
 				C33008511A94B703003A0AEA /* settings@3x.png in Resources */,
 				C3B6FAC31B0DA8BB0052B7E5 /* SkipFilled@2x.png in Resources */,
 				C3B6FAC41B0DA8BB0052B7E5 /* SkipFilled@3x.png in Resources */,
+				C3F1F45D1BC40815007F252C /* Today@3x.png in Resources */,
 				C3AF6F0B1BA3ED8300919243 /* None.caf in Resources */,
 				C33008391A94A439003A0AEA /* plus@3x.png in Resources */,
 				C33008441A94AFB7003A0AEA /* delete@2x.png in Resources */,
@@ -734,6 +744,7 @@
 				C33008371A94A439003A0AEA /* plus.png in Resources */,
 				C313B8541BC1582300C2871D /* LaunchIcon@3x.png in Resources */,
 				C33008501A94B703003A0AEA /* settings@2x.png in Resources */,
+				C3F1F45C1BC40815007F252C /* Today@2x.png in Resources */,
 				C3AF6F0A1BA3ED8300919243 /* Glissful.caf in Resources */,
 				C39ACFA71BBE93E8004EA540 /* Statistics.png in Resources */,
 				C330084F1A94B703003A0AEA /* settings.png in Resources */,
@@ -741,6 +752,7 @@
 				C39ACFA11BBE8ADF004EA540 /* Modify.png in Resources */,
 				C30755A81BBE339900490951 /* Play@3x.png in Resources */,
 				C33008451A94AFB7003A0AEA /* delete@3x.png in Resources */,
+				C3F1F45B1BC40815007F252C /* Today.png in Resources */,
 				C39ACF971BBE4E72004EA540 /* Checked@3x.png in Resources */,
 				C30755A71BBE339900490951 /* Play@2x.png in Resources */,
 			);

@@ -56,7 +56,7 @@
                                             <constraint firstAttribute="height" constant="50" id="Z5U-P4-Lv9"/>
                                         </constraints>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="14"/>
-                                        <state key="normal" image="Statistics.png">
+                                        <state key="normal" image="Today.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1303,7 +1303,7 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="16"/>
+                                        <real key="value" value="14"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1329,11 +1329,12 @@
                         <outlet property="completedTimeLabel" destination="Kd8-6k-tfy" id="iQt-fn-EJE"/>
                         <outlet property="percentageLabel" destination="qcn-3u-YKg" id="4J0-FI-UUq"/>
                         <outlet property="taskNameLabel" destination="vjx-NV-XLd" id="iZo-ff-kAD"/>
+                        <outlet property="todayView" destination="8pR-KZ-OdL" id="Cyz-Un-YMe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n2S-RF-Hn2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2438" y="2313"/>
+            <point key="canvasLocation" x="2423" y="1636"/>
         </scene>
         <!--Color Picker-->
         <scene sceneID="bsC-mI-ZHq">
@@ -1952,7 +1953,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yt2-RI-yl0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1626" y="2313"/>
+            <point key="canvasLocation" x="1641" y="1636"/>
         </scene>
     </scenes>
     <resources>
@@ -1961,6 +1962,7 @@
         <image name="Modify.png" width="20" height="20"/>
         <image name="Play.png" width="32" height="32"/>
         <image name="Statistics.png" width="20" height="20"/>
+        <image name="Today.png" width="20" height="20"/>
         <image name="delete.png" width="25" height="25"/>
         <image name="settings.png" width="25" height="25"/>
     </resources>
