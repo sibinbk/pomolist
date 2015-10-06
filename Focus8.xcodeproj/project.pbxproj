@@ -119,6 +119,7 @@
 		C3EA01F31B0A27DF00C321BF /* FLColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F21B0A27DF00C321BF /* FLColorCell.m */; };
 		C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */; };
 		C3EFAEA21A13462D003D641C /* FLEditTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFAEA11A13462D003D641C /* FLEditTaskController.m */; };
+		C3F1F4571BC36CED007F252C /* FLTodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1F4561BC36CED007F252C /* FLTodayViewController.m */; settings = {ASSET_TAGS = (); }; };
 		D47D80DDBE58ED9BF22F172C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E09210CA49F9208CF4B91D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -277,6 +278,8 @@
 		C3EA01F61B0CE3EE00C321BF /* FLTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTaskCell.m; sourceTree = "<group>"; };
 		C3EFAEA01A13462D003D641C /* FLEditTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEditTaskController.h; sourceTree = "<group>"; };
 		C3EFAEA11A13462D003D641C /* FLEditTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEditTaskController.m; sourceTree = "<group>"; };
+		C3F1F4551BC36CED007F252C /* FLTodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTodayViewController.h; sourceTree = "<group>"; };
+		C3F1F4561BC36CED007F252C /* FLTodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTodayViewController.m; sourceTree = "<group>"; };
 		FF6F532B5432F27442F9C513 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -436,6 +439,8 @@
 				C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */,
 				C3616A3F1AAB021A00C47C8A /* EventTableViewController.h */,
 				C3616A401AAB021A00C47C8A /* EventTableViewController.m */,
+				C3F1F4551BC36CED007F252C /* FLTodayViewController.h */,
+				C3F1F4561BC36CED007F252C /* FLTodayViewController.m */,
 				C3D680851B3838D900C08860 /* FLReminderPickerController.h */,
 				C3D680861B3838D900C08860 /* FLReminderPickerController.m */,
 				C3D680891B3BBC6300C08860 /* FLTimingPickerController.h */,
@@ -830,6 +835,7 @@
 				C33AA7931B9D9EEB0052EFAF /* ColorUtils.m in Sources */,
 				C38409F51BAC5BFA00097321 /* Misc.swift in Sources */,
 				C38409F91BAC5BFA00097321 /* SpringButton.swift in Sources */,
+				C3F1F4571BC36CED007F252C /* FLTodayViewController.m in Sources */,
 				C38409E71BAC5BFA00097321 /* AutoTextView.swift in Sources */,
 				C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */,
 				C341A5BA1BB674E100ABEFB1 /* CNPPopupController.m in Sources */,

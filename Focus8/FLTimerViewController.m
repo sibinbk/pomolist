@@ -84,8 +84,10 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *eventListButton;
+@property (weak, nonatomic) IBOutlet UIButton *todayViewButton;
 @property (weak, nonatomic) IBOutlet UILabel *editButtonLabel;
 @property (weak, nonatomic) IBOutlet UILabel *eventListButtonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *todayButtonLabel;
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (weak, nonatomic) IBOutlet UIView *summaryView;
 @property (strong, nonatomic) DesignableButton *addTaskButton;
@@ -285,8 +287,10 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         self.skipButton.hidden = YES;
         self.editButton.hidden = YES;
         self.eventListButton.hidden = YES;
+        self.todayViewButton.hidden = YES;
         self.editButtonLabel.hidden = YES;
         self.eventListButtonLabel.hidden = YES;
+        self.todayButtonLabel.hidden = YES;
         self.summaryView.hidden = YES;
         self.addTaskButton.hidden = NO;
         self.statsViewButton.hidden = NO;
@@ -471,8 +475,10 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     self.summaryView.hidden = NO;
     self.editButton.hidden = NO;
     self.eventListButton.hidden = NO;
+    self.todayViewButton.hidden = NO;
     self.editButtonLabel.hidden = NO;
     self.eventListButtonLabel.hidden = NO;
+    self.todayButtonLabel.hidden = NO;
     self.resetButton.hidden = self.repeatTimer.started ? NO : YES;
     self.skipButton.hidden = self.repeatTimer.isRunning ? YES : NO;
 
@@ -486,8 +492,10 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     self.summaryView.alpha = 0;
     self.editButton.alpha = 0;
     self.eventListButton.alpha = 0;
+    self.todayViewButton.alpha = 0;
     self.editButtonLabel.alpha = 0;
     self.eventListButtonLabel.alpha = 0;
+    self.todayButtonLabel.alpha = 0;
     [self.view setNeedsUpdateConstraints];
     self.timerViewHeight.constant = CGRectGetHeight(self.view.frame);
     self.subTimerLabelPosition.constant = -60;
@@ -505,8 +513,10 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         self.summaryView.alpha = 1;
         self.editButton.alpha = 1;
         self.eventListButton.alpha = 1;
+        self.todayViewButton.alpha = 1;
         self.editButtonLabel.alpha = 1;
         self.eventListButtonLabel.alpha = 1;
+        self.todayButtonLabel.alpha = 1;
 
         self.listButton.enabled = YES;
     }];
@@ -527,8 +537,10 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     self.editButton.hidden = YES;
     self.eventListButton.hidden = YES;
     self.editButtonLabel.hidden = YES;
+    self.todayViewButton.hidden = YES;
     self.eventListButtonLabel.hidden = YES;
     self.summaryView.hidden = YES;
+    self.todayButtonLabel.hidden = YES;
 
     if (!self.taskSelected) {
         self.subTimerLabel.hidden = YES;
@@ -1545,8 +1557,15 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 - (IBAction)showEventList:(id)sender
 {
-    [self performSegueWithIdentifier:@"eventListSegue" sender:nil];
+    [self performSegueWithIdentifier:@"EventListSegue" sender:nil];
 }
+
+#pragma mark - Show Today view
+- (IBAction)showTodayView:(id)sender
+{
+    [self performSegueWithIdentifier:@"TodayViewSegue" sender:nil];
+}
+
 
 #pragma mark - Segue handling methods.
 
