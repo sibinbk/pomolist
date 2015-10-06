@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "FLEditTaskController.h"
 #import "FLSettingsController.h"
+#import "FLTodayViewController.h"
 #import "ZGCountDownTimer.h"
 #import "Task.h"
 #import "Event.h"
@@ -1525,21 +1526,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 - (IBAction)editTask:(id)sender
 {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-    request.predicate = [NSPredicate predicateWithFormat:@"isSelected == YES"];
+    Task *task = [self currentSelectedTask];
     
-    Task *task;
-    NSError *error = nil;
-    NSArray *tasks = [self.managedObjectContext executeFetchRequest:request error:&error];
-    
-    if ([tasks count] == 0) {
-        NSLog(@"Could not find task details! Check the details");
-    } else if ([tasks count] == 1){
-       task = [tasks lastObject];
-    } else {
-        NSLog(@"Multple tasks selected, Something wrong");
-    }
-
     self.isTaskEditing = YES;
     
     [self performSegueWithIdentifier:@"EditTaskSegue" sender:task];
@@ -1563,7 +1551,9 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 #pragma mark - Show Today view
 - (IBAction)showTodayView:(id)sender
 {
-    [self performSegueWithIdentifier:@"TodayViewSegue" sender:nil];
+    Task *task = [self currentSelectedTask];
+    
+    [self performSegueWithIdentifier:@"TodayViewSegue" sender:task];
 }
 
 
@@ -1577,6 +1567,12 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         editTaskController.delegate = self;
         editTaskController.task = sender;
         editTaskController.taskEditing = self.isTaskEditing;
+    }
+    
+    if ([segue.identifier isEqualToString:@"TodayViewSegue"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        FLTodayViewController *todayViewController = (FLTodayViewController *)navigationController.topViewController;
+        todayViewController.task = sender;
     }
     
     if ([segue.identifier isEqualToString:@"SettingsSegue"]) {

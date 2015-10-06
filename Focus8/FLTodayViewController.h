@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class  Task;
+
 @interface FLTodayViewController : UIViewController
+
+@property (strong, nonatomic) Task *task;
 
 @end
