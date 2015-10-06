@@ -1957,7 +1957,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
                                         };
     NSString *percentageString = [NSString stringWithFormat:@"%0.f", percentage];
     NSString *symbolString = @"%";
-    NSString *summaryString = [NSString stringWithFormat:@"You have completed \n %@%@ \n of the task", percentageString, symbolString];
+    NSString *summaryString = [NSString stringWithFormat:@"You have completed\n %@%@ \nof the task", percentageString, symbolString];
     NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:summaryString attributes:summaryAttributes];
     [modifiedString setAttributes:percentageAttributes range:[summaryString rangeOfString:percentageString]];
     [modifiedString setAttributes:symbolAttributes range:[summaryString rangeOfString:symbolString]];
