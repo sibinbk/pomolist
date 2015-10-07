@@ -533,6 +533,8 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 
 - (IBAction)save:(UIBarButtonItem *)sender
 {
+    [self.view endEditing:YES];
+    
     // Check if the task name is empty.
     if (self.taskName.length < 1) {
         SCLAlertView *nameAlert = [[SCLAlertView alloc] init];
@@ -546,7 +548,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
         }];
         
         [nameAlert showNotice:self.navigationController title:@"Warning!" subTitle:@"The name field cannot be empty. Please enter a valid name" closeButtonTitle:nil duration:0.0f];
-        
     } else {
         // Check if the task name exist.
         if (self.isNameTaken) {
@@ -555,7 +556,7 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
             nameAlert.hideAnimationType = SlideOutToCenter;
             nameAlert.customViewColor = [UIColor flatWisteriaColor];
             
-            [nameAlert addButton:@"Continue" actionBlock:^{
+            [nameAlert addButton:@"Save" actionBlock:^{
                 [self saveTaskInfo];
             }];
             
