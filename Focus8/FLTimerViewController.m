@@ -1234,15 +1234,14 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         cell.checkMarkButton.hidden = NO;
     }
     
-    //configure left buttons
-    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"EditCell.png"] backgroundColor:[UIColor colorWithString:@"#E67E22"] padding:25]];
-    cell.leftSwipeSettings.transition = MGSwipeTransitionDrag;
-    cell.leftExpansion.buttonIndex = 0;
-    
     //configure right buttons
-    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TrashCell.png"] backgroundColor:[UIColor colorWithString:@"#FF5733"] padding:25]];
-    cell.rightSwipeSettings.transition = MGSwipeTransitionDrag;
+    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TrashCell.png"] backgroundColor:[UIColor colorWithRed:1.0 green:59/255.0 blue:50/255.0 alpha:1.0] padding:15],
+                          [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"EditCell.png"] backgroundColor:[UIColor colorWithRed:1.0 green:149/255.0 blue:0.05 alpha:1.0] padding:15],
+                          [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TrashCell.png"] backgroundColor:[UIColor colorWithRed:0 green:122/255.0 blue:1.0 alpha:1.0] padding:15]];
+    cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
     cell.rightExpansion.buttonIndex = 0;
+    cell.rightExpansion.fillOnTrigger = YES;
+    cell.rightExpansion.threshold = 1.1;
 }
 
 #pragma mark - TableView Delegate methods.
@@ -1396,13 +1395,22 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     }
     
     // Edit button
-    if (direction == MGSwipeDirectionLeftToRight && index == 0) {
+    if (direction == MGSwipeDirectionRightToLeft && index == 1) {
         NSIndexPath * path = [self.taskTableView indexPathForCell:cell];
         Task *task = [_fetchedResultsController objectAtIndexPath:path];
         self.isTaskEditing = YES;
         
         [self performSegueWithIdentifier:@"EditTaskSegue" sender:task];
     }
+    
+    // Today view button
+    if (direction == MGSwipeDirectionRightToLeft && index == 2) {
+        NSIndexPath * path = [self.taskTableView indexPathForCell:cell];
+        Task *task = [_fetchedResultsController objectAtIndexPath:path];
+        
+        [self performSegueWithIdentifier:@"TodayViewSegue" sender:task];
+    }
+
     
     return YES;
 }
