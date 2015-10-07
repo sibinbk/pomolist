@@ -176,7 +176,7 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
         NSUInteger randomIndex = arc4random_uniform(11);
         
         self.taskColorString = self.colorStringArray[randomIndex];
-        self.shortBreakColorString = @"34495E"; // Wet Asphalt
+        self.shortBreakColorString = @"2C3E50"; // Midnight Blue
         self.longBreakColorString = @"2C3E50";  // Midnight Blue
     }
 }

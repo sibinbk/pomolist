@@ -43,7 +43,6 @@
                        @"Peter River",
                        @"Wisteria",
                        @"Deep Purple",
-                       @"Wet Asphalt",
                        @"Midnight Blue"];
     
     self.colorStrings = @[@"C0392B",
@@ -57,7 +56,6 @@
                          @"3498DB",
                          @"8E44AD",
                          @"673AB7",
-                         @"34495E",
                          @"2C3E50"];
     
     self.colors = [NSDictionary dictionaryWithObjects:self.colorNames forKeys:self.colorStrings];
@@ -129,7 +127,9 @@
     cell.checkmarkButton.animation = @"zoomIn";
     cell.checkmarkButton.duration = 0.5;
     cell.checkmarkButton.hidden = NO;
-    [cell.checkmarkButton animate];
+    [cell.checkmarkButton animateNext:^{
+        [self exitColorPicker];
+    }];
 }
 
 - (void)exitColorPicker
