@@ -65,10 +65,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 @property (strong, nonatomic) NSString *alarmSound;
 @property (strong, nonatomic) UIFont *timerLabelFont;
 
-/*
- @property (strong, nonatomic) NSDateFormatter *formatter;
- */
-
 @property (assign, nonatomic) BOOL isFullView;
 @property (assign, nonatomic) BOOL isTaskEditing;
 @property (assign, nonatomic) BOOL taskSelected;
@@ -125,11 +121,11 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         self.isFullView = NO;
         self.taskSelected = NO;
         self.taskName = @"";
-        self.taskTime = 20;
-        self.shortBreakTime = 15;
-        self.longBreakTime = 20;
-        self.repeatCount = 3;
-        self.longBreakDelay = 2;
+        self.taskTime = 0;
+        self.shortBreakTime = 0;
+        self.longBreakTime = 0;
+        self.repeatCount = 0;
+        self.longBreakDelay = 0;
         self.taskColorString = @"E74C3C"; // Alizarin
         self.shortBreakColorString = @"2C3E50"; // Dark
         self.longBreakColorString = @"8E44AD"; // Purple
@@ -184,14 +180,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     // Setting Summary view blur effect.
     self.summaryView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
-    
-    /* Date formatter for reminder
-     
-     //Setup date formatter
-     self.formatter = [[NSDateFormatter alloc] init];
-     NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM dd 'at' h:mm a" options:0 locale:[NSLocale currentLocale]];
-     [self.formatter setDateFormat:format];
-     */
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -222,7 +210,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 - (void)setUpRepeatTimer
 {
     self.totalCountDownTime = [self calculateTotalCountDownTime:self.repeatCount];
-    NSLog(@"Total count down time : %f", self.totalCountDownTime);
     
     __weak FLTimerViewController *weakSelf = self;
     
@@ -234,7 +221,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         timer.longBreakDelay = weakSelf.longBreakDelay;
         timer.totalCountDownTime = weakSelf.totalCountDownTime;
     } restoreFromBackUp:^(ZGCountDownTimer *timer) {
-        NSLog(@"Restores from ZGCountDown backup");
     }];
 }
 
@@ -247,11 +233,9 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     if (self.longBreakDelay > 0) {
         longBreakCount = totalBreakCount / self.longBreakDelay;
-        NSLog(@"Long break count : %d", longBreakCount);
     }
     
     NSTimeInterval totalTime = (self.taskTime * repeatCount) + (self.longBreakTime * longBreakCount) + (self.shortBreakTime * (totalBreakCount - longBreakCount));
-    NSLog(@"Total Time = %f", totalTime);
     
     return totalTime;
 }
@@ -387,7 +371,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     [self.statsViewButton addTarget:self action:@selector(showEventList:) forControlEvents:UIControlEventTouchUpInside];
     self.statsViewButton.hidden = YES;
     [self.view addSubview:self.statsViewButton];
-
 }
 
 #pragma mark - Gestures for animation
@@ -615,7 +598,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
         // GCD to avoid blocking UI when the loacal notification setup loop runs.
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSLog(@"Setup local notification");
             [self scheduleTimerNotifications];
         });
     } else {
@@ -656,8 +638,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     }
     
     [self.repeatTimer stopCountDown];
-    
-    NSLog(@"Stopss");
+
     [self.startButton setImage:[UIImage imageNamed:@"Play.png"] forState:UIControlStateNormal];
     self.resetButton.hidden = YES;
     self.skipButton.hidden = NO;
@@ -763,60 +744,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     }
 }
 
-/* Reminder notification.
- 
-- (void)scheduleReminderNotificationForTask:(Task *)task
-{
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.soundName = UILocalNotificationDefaultSoundName;
-    notification.fireDate = task.reminderDate;
-    notification.alertBody = [NSString stringWithFormat:@"%@ is due now", task.name];
-    notification.userInfo = @{@"uniqueID" : task.uniqueID};
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-}
-
-*/
-
-#pragma mark - cancel local notifications.
-
-//- (void)cancelTimerNotifications
-//{
-//    NSLog(@"Cancel Timer Notifications");
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-//}
-
-/* Reminde notification cancelling code.
- 
-- (void)cancelReminderNotificationForTask:(Task *)task
-{
-    for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-        NSDictionary *userInfoCurrent = notification.userInfo;
-        NSString *uniqueID = [userInfoCurrent valueForKey:@"uniqueID"];
-        if ([uniqueID isEqualToString:task.uniqueID])
-        {
-            NSLog(@"UID : %@", uniqueID);
-            //Cancelling local notification
-            [[UIApplication sharedApplication] cancelLocalNotification:notification];
-        }
-    }
-}
-
-- (void)cancelAllNotificationsForTask:(Task *)task
-{
-    for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-        NSDictionary *userInfo = notification.userInfo;
-        NSString *uniqueID = [userInfo valueForKey:@"uniqueID"];
-        NSString *timerNotificationID = [userInfo valueForKey:@"timerNotificationID"];
-        if ([uniqueID isEqualToString:task.uniqueID] || [timerNotificationID isEqualToString:kFLTimerNotification]) {
-            NSLog(@"Local notifcation Cancelled");
-            [[UIApplication sharedApplication] cancelLocalNotification:notification];
-        }
-    }
-}
-*/
-
 # pragma mark - Change notification sound.
 
 - (void)changeNotificationSound:(NSString *)sound
@@ -827,7 +754,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     for (UILocalNotification *notification in notifications) {
         notification.soundName = [NSString stringWithFormat:@"%@.caf", sound];
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-        NSLog(@"Notification changed");
     }
 }
 
@@ -885,15 +811,11 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 {
     // Update UI.
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"TASK FINISHED");
         self.resetButton.hidden = YES;
         self.skipButton.hidden = NO;
         // Set start button title to 'START' after finishing timer.
         [self.startButton setImage:[UIImage imageNamed:@"Play.png"] forState:UIControlStateNormal];
     });
-    
-    NSLog(@"Task time = %f", self.taskTime);
-    NSLog(@"Repeat Count = %ld", (long)self.repeatCount);
     
     // Show task summary up on completion of task.
     [self showTaskSummaryWithDuration:time sessionCount:count];
@@ -944,7 +866,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     NSArray *events = [self.managedObjectContext executeFetchRequest:request error:&error];
 
     if (events.count == 0) {
-        NSLog(@"No event exists for this task");
         NSEntityDescription *eventEntity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
         
         //Initialize Event.
@@ -957,8 +878,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         newEvent.totalSessionCount = [NSNumber numberWithInteger:count];
         
         [task addEventsObject:newEvent];
-    } else if (events.count == 1){
-        NSLog(@"One Event exists");
+    } else {
         Event *event = [events lastObject];
         NSTimeInterval newTaskTime = [event.totalTaskTime integerValue] + totalTime;
         NSInteger newSessionCount = [event.totalSessionCount integerValue] + count;
@@ -968,8 +888,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         event.totalSessionCount = [NSNumber numberWithInteger:newSessionCount];
         
         [task addEventsObject:event];
-    } else {
-        NSLog(@"There are more evntes for task on same day. Something wrong!!!!");
     }
     
     [self saveContext];
@@ -1060,11 +978,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 #pragma mark - Empty Dataset data source.
 
-//- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
-//{
-//    return [UIImage imageNamed:@"Checkmark"];
-//}
-
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
 {
     NSString *text = @"Empty Task List!";
@@ -1153,8 +1066,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSString *cellIdentifier = (indexPath.row %3 == 0) ? @"TaskCell2" : @"TaskCell";
-
     static NSString *CellIdentifier = @"TaskCell";
     
     FLTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -1180,12 +1091,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     cell.cycleCountLabel.attributedText = [self formattedSessionString:sessionCountString withString:subString forLabelType:TaskListView];
     cell.totalTimeLabel.attributedText = [self formattedTimeString:totalTaskTime forLabelType:TaskListView];
-    
-//    cell.reminderDateLabel.text = (indexPath.row % 3 == 0) ? @"26 May 2015 6:00 pm" : nil;
-    
-/*  reminder label.
- cell.reminderDateLabel.text = [self.formatter stringFromDate:task.reminderDate];
- */
     cell.taskColorView.backgroundColor = [UIColor colorWithString:task.taskColorString];
     
     if (![task.isSelected boolValue]) {
@@ -1204,7 +1109,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
                           [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"EditCell.png"] backgroundColor:[UIColor colorWithRed:1.0 green:149/255.0 blue:0.05 alpha:1.0] padding:20]];
     cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
     cell.rightExpansion.buttonIndex = 0;
-//    cell.rightExpansion.fillOnTrigger = YES;
     cell.rightExpansion.threshold = 1.1;
 }
 
@@ -1213,9 +1117,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.taskTableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"Row: %li - %@", (long)indexPath.row, cell.textLabel.text);
     
     Task *newTask = [_fetchedResultsController objectAtIndexPath:indexPath];
     
@@ -1228,7 +1129,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
             
             [selectAlert addButton:@"Yes" actionBlock:^{
                 // Cancel all timer notifications.
-                NSLog(@"Cancels all notifications");
                 [[UIApplication sharedApplication] cancelAllLocalNotifications];
                 [self selectNewTask:newTask];
             }];
@@ -1238,7 +1138,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
             [self selectNewTask:newTask];
         }
     } else {
-        NSLog(@"Same task selected");
         [self closeListView];
     }
 }
@@ -1250,11 +1149,9 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     if (!currentTask) {
         newTask.isSelected = @YES;
-        NSLog(@"No task was selected. It is a new task.");
     } else {
         currentTask.isSelected = @NO;
         newTask.isSelected = @YES;
-        NSLog(@"Old task selection is replaced with new selection");
     }
     
     // flag set to mark task is selected.
@@ -1304,7 +1201,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 {
     NSError *error = nil;
     if ([self.managedObjectContext hasChanges]) {
-        NSLog(@"Context changed");
         if (![self.managedObjectContext save:&error]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error")
                                                             message:NSLocalizedString(@"Error in saving new task", @"Error in saving new task")
@@ -1320,9 +1216,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 -(BOOL) swipeTableCell:(MGSwipeTableCell*) cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL) fromExpansion
 {
-    NSLog(@"Delegate: button tapped, %@ position, index %d, from Expansion: %@",
-          direction == MGSwipeDirectionLeftToRight ? @"left" : @"right", (int)index, fromExpansion ? @"YES" : @"NO");
-    
     // Delete button
     if (direction == MGSwipeDirectionRightToLeft && index == 0) {
         NSIndexPath * path = [self.taskTableView indexPathForCell:cell];
@@ -1358,7 +1251,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         [self performSegueWithIdentifier:@"TodayViewSegue" sender:task];
     }
 
-    
     return YES;
 }
 
@@ -1413,19 +1305,15 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     switch (type) {
         case NSFetchedResultsChangeInsert:
-            NSLog(@"Inserting");
             [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
-            NSLog(@"Deleting");
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeUpdate:
-            NSLog(@"Updating");
             [self configureCell:(FLTaskCell *)[self.taskTableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
-            NSLog(@"Moving");
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
@@ -1501,7 +1389,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     // Check the task to be deleted is currently selected task. If so reset all timer info related to the task.
     if ([task.isSelected boolValue]) {
         if (self.repeatTimer.isRunning) {
-            NSLog(@"Cancelling local notifications when selected task is being deleted");
             [[UIApplication sharedApplication] cancelAllLocalNotifications];
         }
         
@@ -1511,7 +1398,12 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     [self.managedObjectContext deleteObject:task];
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Error! %@", error);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error in saving data", @"Error in saving data")
+                                                        message:[NSString stringWithFormat:NSLocalizedString(@"Error was: %@, quitting.", @"Error was: %@, quitting."), [error localizedDescription]]
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+                                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 
@@ -1561,8 +1453,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 - (void)taskController:(FLEditTaskController *)controller didChangeTask:(Task *)task withTimerValue:(BOOL)changed
 {
-    NSLog(@"task delegate called");
-    
     [self changeTaskDetails:task];
     
     if (!changed) {
@@ -1590,8 +1480,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         self.mainView.backgroundColor = [UIColor colorWithString:viewColorString];
         
     } else {
-        NSLog(@"Timer values changed");
-        
         if (self.repeatTimer.isRunning) {
             [[UIApplication sharedApplication] cancelAllLocalNotifications];
         }
