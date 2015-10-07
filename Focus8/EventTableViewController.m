@@ -48,7 +48,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70.0;
+    return 80.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -259,12 +259,12 @@
     
     NSDictionary *timeAttributes = @{
                                      NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightRegular],
-                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"4B3F72"],
                                      NSParagraphStyleAttributeName:paragraphStyle
                                      };
     NSDictionary *subAttributes = @{
                                     NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightRegular],
-                                    NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                    NSForegroundColorAttributeName:[UIColor colorWithString:@"4B3F72"],
                                     NSParagraphStyleAttributeName:paragraphStyle
                                     };
     
@@ -310,12 +310,12 @@
     
     NSDictionary *timeAttributes = @{
                                      NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
-                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                     NSForegroundColorAttributeName:[UIColor colorWithString:@"4B3F72"],
                                      NSParagraphStyleAttributeName:paragraphStyle
                                      };
     NSDictionary *subAttributes = @{
                                     NSFontAttributeName:[UIFont systemFontOfSize:14 weight:UIFontWeightRegular],
-                                    NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                    NSForegroundColorAttributeName:[UIColor colorWithString:@"4B3F72"],
                                     NSParagraphStyleAttributeName:paragraphStyle
                                     };
     
@@ -360,13 +360,13 @@
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
     NSDictionary *percentageStringAttributes = @{
-                                                 NSFontAttributeName:[UIFont systemFontOfSize:36 weight:UIFontWeightLight],
-                                                 NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                                 NSFontAttributeName:[UIFont systemFontOfSize:34 weight:UIFontWeightLight],
+                                                 NSForegroundColorAttributeName:[UIColor colorWithString:@"3066BE"],
                                                  NSParagraphStyleAttributeName:paragraphStyle
                                                  };
     NSDictionary *subStringAttributes = @{
                                           NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightRegular],
-                                          NSForegroundColorAttributeName:[UIColor colorWithString:@"2980B9"],
+                                          NSForegroundColorAttributeName:[UIColor colorWithString:@"3066BE"],
                                           NSParagraphStyleAttributeName:paragraphStyle
                                           };
     
