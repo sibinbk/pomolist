@@ -17,6 +17,7 @@
 #import "UIColor+FlatColors.h"
 #import "ColorUtils.h"
 #import "Focus8-Swift.h"
+#import "SCLAlertView.h"
 
 static NSString * const kTaskTimePicker = @"taskTimePicker";
 static NSString * const kShortBreakPicker = @"shortBreakPicker";
@@ -558,24 +559,23 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 {
     // Check if the task name is empty.
     if (self.taskName.length < 1) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Attention!"
-                                                                       message:@"Task name can't be empty. Please enter a valid name"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction * action) {
-                                                       [alert dismissViewControllerAnimated:YES completion:nil];
-                                                       // Bring back keyboard to enter task name.
-                                                       [self.taskNameField becomeFirstResponder];
-                                                   }];
-        [alert addAction:dismissAction];
+        SCLAlertView *nameAlert = [[SCLAlertView alloc] init];
+        nameAlert.showAnimationType = SlideInToCenter;
+        nameAlert.hideAnimationType = SlideOutToCenter;
+        nameAlert.customViewColor = [UIColor flatAlizarinColor];
         
-        [self presentViewController:alert animated:YES completion:nil];
+        [nameAlert addButton:@"Ok" actionBlock:^{
+            // Bring back keyboard to enter task name.
+            [self.taskNameField becomeFirstResponder];
+        }];
+        
+        [nameAlert showNotice:self.navigationController title:@"Warning!" subTitle:@"The name field cannot be empty. Please enter a valid name" closeButtonTitle:nil duration:0.0f];
         
     } else {
         // Check if the task name exist.
         if (self.isNameTaken) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Attention!"
-                                                                           message:@"Task name exists. Please enter another name"
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Duplicate Name!"
+                                                                           message:@"This name already exists. Do you still want to continue with the same name?"
                                                                     preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                                   handler:^(UIAlertAction * action) {
