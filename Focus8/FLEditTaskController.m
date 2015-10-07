@@ -10,7 +10,6 @@
 #import "AppDelegate.h"
 #import "Task.h"
 #import "FLColorPicker.h"
-// #import "FLReminderPickerController.h"
 #import "FLTimingPickerController.h"
 #import "FLBreakDelayPickerController.h"
 #import "FLSessionCountPickerController.h"
@@ -39,10 +38,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 @property (strong, nonatomic) NSArray *longBreakDelayArray;
 
 @property (weak, nonatomic) IBOutlet UITextField *taskNameField;
-/*
-@property (weak, nonatomic) IBOutlet UILabel *reminderTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *reminderDateLabel;
- */
 @property (weak, nonatomic) IBOutlet UILabel *taskTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *shortBreakLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longBreakLabel;
@@ -66,10 +61,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 @property (strong, nonatomic) NSString *taskColorString;
 @property (strong, nonatomic) NSString *shortBreakColorString;
 @property (strong, nonatomic) NSString *longBreakColorString;
-/* 
-@property (strong, nonatomic) NSDate *reminderDate;
-@property (strong, nonatomic) NSDateFormatter *formatter;
-*/
 
 @property (strong, nonatomic) NSArray *colorStringArray;
 
@@ -89,20 +80,11 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 
 - (void)viewDidLoad
 {
-    NSLog(@"View did load");
     [super viewDidLoad];
 
     
     // Flag to check change in timer values.
     self.timerChanged = NO;
-    
-    /* Date formatter code.
-     
-    //Setup date formatter
-    self.formatter = [[NSDateFormatter alloc] init];
-    NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM d, yyyy hh:mm a" options:0 locale:[NSLocale currentLocale]];
-    [self.formatter setDateFormat:format];
-    */
     
     // Register tap gesture recognizer to dismiss keyboard if tapped outside textfield.
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
@@ -147,15 +129,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     if ([self isTaskEditing]) {
         self.oldName = self.task.name;
         self.taskName = self.task.name;
-        /*
-        if (self.task.reminderDate != nil) {
-            self.reminderTitleLabel.text = @"Remind on";
-            self.reminderDateLabel.text = [self.formatter stringFromDate:self.task.reminderDate];
-        }
-        */
-/*
-        self.reminderDate = self.task.reminderDate; // Empty reminder date. 
- */
         self.taskTime = [self.task.taskTime doubleValue];
         self.shortBreakTime = [self.task.shortBreakTime doubleValue];
         self.longBreakTime = [self.task.longBreakTime doubleValue];
@@ -186,8 +159,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
-    NSLog(@"View will appear");
     
     self.taskNameField.text = self.taskName;
     self.taskTimeLabel.text = [self stringifyTime:(int)self.taskTime];
@@ -222,37 +193,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
         [self.taskNameField becomeFirstResponder];
     }
 }
-
-#pragma mark - schedule local notifications for Reminder date
-
-/* Reminder notification code.
- 
-- (void)scheduleReminderNotificationForTask:(Task *)task
-{
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.soundName = UILocalNotificationDefaultSoundName;
-    notification.fireDate = task.reminderDate;
-    notification.alertBody = [NSString stringWithFormat:@"%@ is due now", task.name];
-    notification.userInfo = @{@"uniqueID" : task.uniqueID};
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-}
-
-- (void)cancelReminderNotificationForTask:(Task *)task
-{
-    for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-        NSDictionary *userInfoCurrent = notification.userInfo;
-        NSString *uniqueID = [userInfoCurrent valueForKey:@"uniqueID"];
-        if ([uniqueID isEqualToString:task.uniqueID])
-        {
-            NSLog(@"UID : %@", uniqueID);
-            //Cancelling local notification
-            [[UIApplication sharedApplication] cancelLocalNotification:notification];
-        }
-    }
-}
-*/
 
 #pragma mark - Keyboard handling methods.
 
@@ -308,13 +248,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    /* Reminder picker segue method.
-     
-    if (indexPath.section == 1 && indexPath.row == 0) {
-        [self performSegueWithIdentifier:@"reminderPickerSegue" sender:nil];
-    }
-    */
-    
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             self.timingPickerType = TaskTimePicker;
@@ -359,15 +292,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    /* prepare segue method for Reminder picker.
-     
-    if ([segue.identifier isEqualToString:@"reminderPickerSegue"]) {
-        FLReminderPickerController *reminderPicker = segue.destinationViewController;
-        reminderPicker.reminderDate = self.reminderDate;
-        reminderPicker.delegate = self;
-    }
-     */
-    
     if ([segue.identifier isEqualToString:@"timingPickerSegue"]) {
         FLTimingPickerController *timingPicker = segue.destinationViewController;
         timingPicker.delegate = self;
@@ -621,7 +545,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
             
         } else {
             if ([self.task.isSelected boolValue]) {
-                NSLog(@"delegate method called");
                 [self.delegate taskController:self didChangeTask:self.task withTimerValue:self.timerChanged];
             }
         }
@@ -689,15 +612,4 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     }
 }
 
-#pragma mark - Reminder date's second component truncation method.
-
-/*
-- (NSDate *)truncateSecondsForDate:(NSDate *)fromDate;
-{
-    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-    NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
-    NSDateComponents *fromDateComponents = [calendar components:unitFlags fromDate:fromDate ];
-    return [calendar dateFromComponents:fromDateComponents];
-}
-*/
 @end
