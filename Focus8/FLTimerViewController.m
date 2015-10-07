@@ -636,23 +636,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 - (IBAction)resetButtonPressed:(id)sender
 {
-    if (!self.taskSelected) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Task not selected"
-                                                                       message:@"Please select a task from the list"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {
-                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                  // Go back to list view.
-                                                                  [self showListView];
-                                                              }];
-        [alert addAction:dismissAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        
-        return;
-    }
-    
     SCLAlertView *resetAlert = [[SCLAlertView alloc] init];
     
     resetAlert.showAnimationType = SlideInToCenter;
@@ -663,12 +646,11 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         [self resetTaskTimer];
     }];
     
-    [resetAlert showNotice:self.navigationController title:@"Reset Timer" subTitle:@"Are you sure you want to reset timer?" closeButtonTitle:@"No" duration:0.0f];
+    [resetAlert showNotice:self.navigationController title:@"Reset Timer" subTitle:@"This will reset your entire timer. Are you sure you want to reset?" closeButtonTitle:@"No" duration:0.0f];
 }
 
 - (void)resetTaskTimer
 {
-    //GCD to avoid blocking UI while cancelling local notifications. Required only when Reminder notifications are available.
     if (self.repeatTimer.isRunning) {
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
     }
@@ -683,23 +665,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 - (IBAction)skipButtonPressed:(id)sender
 {
-    if (!self.taskSelected) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Task not selected"
-                                                                       message:@"Please select a task from the list"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {
-                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                  // Go back to list view.
-                                                                  [self showListView];
-                                                              }];
-        [alert addAction:dismissAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        
-        return;
-    }
-
     SCLAlertView *resetAlert = [[SCLAlertView alloc] init];
     
     resetAlert.showAnimationType = SlideInToCenter;
@@ -710,7 +675,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         [self skipTasktimer];
     }];
     
-    [resetAlert showNotice:self.navigationController title:@"Skip Timer" subTitle:@"Are you sure you want to skip timer?" closeButtonTitle:@"No" duration:0.0f];
+    [resetAlert showNotice:self.navigationController title:@"Skip Timer" subTitle:@"This will skip the current session. Are you sure you want to skip?" closeButtonTitle:@"No" duration:0.0f];
 
 }
 
@@ -1668,7 +1633,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     NSAttributedString *summaryString = [[NSAttributedString alloc] initWithAttributedString:[self summaryStringWithTaskPercentage:percentageCompleted]];
     
-    NSAttributedString *durationTitle = [[NSAttributedString alloc] initWithString:@"Duration" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18 weight:UIFontWeightLight],
+    NSAttributedString *durationTitle = [[NSAttributedString alloc] initWithString:@"Task duration" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18 weight:UIFontWeightLight],
                                                                                                                 NSForegroundColorAttributeName : [UIColor whiteColor], NSParagraphStyleAttributeName : paragraphStyle}];
     
     NSAttributedString *sessionTitle = [[NSAttributedString alloc] initWithString:@"Sessions Completed" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18 weight:UIFontWeightLight],
@@ -1683,8 +1648,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     NSAttributedString *sessionCountString = [[NSAttributedString alloc] initWithAttributedString:[self formattedSessionString:completedSessionCountString withString:targetSessioncountString forLabelType:labelViewType]];
     
-    NSAttributedString *combinedDurationString = [NSAttributedString attributedStringWithFormat:@"%@ \n %@", taskDurationString, durationTitle];
-    NSAttributedString *combinedSessionString = [NSAttributedString attributedStringWithFormat:@"%@ \n %@", sessionCountString, sessionTitle];
+    NSAttributedString *combinedDurationString = [NSAttributedString attributedStringWithFormat:@"\n%@ \n %@", durationTitle, taskDurationString];
+    NSAttributedString *combinedSessionString = [NSAttributedString attributedStringWithFormat:@"%@ \n %@", sessionTitle, sessionCountString];
     
     CNPPopupButton *dismissButton = [[CNPPopupButton alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
     [dismissButton setTitleColor:[UIColor colorWithString:@"F0C30E"] forState:UIControlStateNormal];
@@ -1718,7 +1683,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     self.popupController.theme.popupStyle = CNPPopupStyleCentered;
     self.popupController.theme.presentationStyle = CNPPopupPresentationStyleSlideInFromTop;
     self.popupController.theme.cornerRadius = 15;
-    self.popupController.theme.maxPopupWidth = 280;
+    self.popupController.theme.maxPopupWidth = 300;
     self.popupController.theme.backgroundColor = [UIColor colorWithString:@"4B5B6A"];
     self.popupController.delegate = self;
     [self.popupController presentPopupControllerAnimated:YES];
@@ -1830,8 +1795,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         case SummaryView:
             firstStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightThin];
             secondStringFont = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
-            firstStringColor = [UIColor whiteColor];
-            secondStringColor = [UIColor whiteColor];
+            firstStringColor = [UIColor colorWithString:@"F0C30E"];
+            secondStringColor = [UIColor colorWithString:@"F0C30E"];
             break;
         case TaskListView:
             firstStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
@@ -1882,8 +1847,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         case SummaryView:
             timeStringFont = [UIFont systemFontOfSize:40 weight:UIFontWeightThin];
             subStringFont = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
-            timeStringColor = [UIColor whiteColor];
-            subStringColor = [UIColor whiteColor];
+            timeStringColor = [UIColor colorWithString:@"F0C30E"];
+            subStringColor = [UIColor colorWithString:@"F0C30E"];
             break;
         case TaskListView:
             timeStringFont = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
@@ -1951,12 +1916,12 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     NSDictionary *percentageAttributes = @{
                                            NSFontAttributeName:[UIFont systemFontOfSize:50 weight:UIFontWeightThin],
-                                           NSForegroundColorAttributeName:[UIColor whiteColor],
+                                           NSForegroundColorAttributeName:[UIColor colorWithString:@"F0C30E"],
                                            NSParagraphStyleAttributeName:paragraphStyle
                                            };
     NSDictionary *symbolAttributes = @{
                                            NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightLight],
-                                           NSForegroundColorAttributeName:[UIColor whiteColor],
+                                           NSForegroundColorAttributeName:[UIColor colorWithString:@"F0C30E"],
                                            NSParagraphStyleAttributeName:paragraphStyle
                                            };
     NSDictionary *summaryAttributes = @{
@@ -1966,7 +1931,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
                                         };
     NSString *percentageString = [NSString stringWithFormat:@"%0.f", percentage];
     NSString *symbolString = @"%";
-    NSString *summaryString = [NSString stringWithFormat:@"You have completed\n %@%@ \nof the task", percentageString, symbolString];
+    NSString *summaryString = [NSString stringWithFormat:@"You have completed\n %@%@ \n of the task", percentageString, symbolString];
     NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:summaryString attributes:summaryAttributes];
     [modifiedString setAttributes:percentageAttributes range:[summaryString rangeOfString:percentageString]];
     [modifiedString setAttributes:symbolAttributes range:[summaryString rangeOfString:symbolString]];
