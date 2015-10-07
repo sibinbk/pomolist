@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *completedTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *completedSessionLabel;
 @property (weak, nonatomic) IBOutlet DesignableView *todayView;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
@@ -85,6 +86,7 @@
     NSString *targetSessioncountString = [NSString stringWithFormat:@" %ld", (long) [task.repeatCount integerValue]];
     /* 'Space' before targetSessionCount string is a must. Otherwise the rage of string calculation could be wrong when both target and completed session counts are same. */
     
+    self.dateLabel.text = [self dateStringForDate:today];
     self.taskNameLabel.text = task.name;
     self.percentageLabel.attributedText = [self formattedTaskPercentageString:[self percentageOfTaskCompleted:event]];
     
@@ -100,6 +102,14 @@
     return [calendar dateFromComponents:fromDateComponents];
 }
 
+- (NSString *)dateStringForDate:(NSDate *)date
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    formatter.dateStyle = NSDateFormatterMediumStyle;
+    NSString *dateString = [formatter stringFromDate:date];
+    
+    return dateString;
+}
 - (double)percentageOfTaskCompleted:(Event *)event
 {
     if (!event) {

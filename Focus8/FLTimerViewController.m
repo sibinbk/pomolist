@@ -1293,7 +1293,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         [self.repeatTimer resetTimer]; // Stops previous task without saving the event details.
         [self setUpRepeatTimer];
         [self setUpTimerViewInterfaceWith:self.isFullView];
-//        [self closeListView];
+        [self closeListView];
     } else {
         NSLog(@"Same task selected");
         [self closeListView];
