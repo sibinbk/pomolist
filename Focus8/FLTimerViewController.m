@@ -363,7 +363,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 - (void)createFloatingButtons
 {
-    self.addTaskButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)/2 - 30, CGRectGetHeight(self.view.frame) - 80 , 60, 60)];
+    self.addTaskButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)/2 - 30, CGRectGetHeight(self.view.frame) - 80, 60, 60)];
     self.addTaskButton.cornerRadius = 30;
     self.addTaskButton.backgroundColor = [UIColor flatBelizeHoleColor];
     self.addTaskButton.shadowColor = [UIColor grayColor];
@@ -376,7 +376,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     self.statsViewButton.hidden = YES;
     [self.view addSubview:self.addTaskButton];
     
-    self.statsViewButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame) - 70, CGRectGetHeight(self.view.frame) - 70 , 40, 40)];
+    self.statsViewButton = [[DesignableButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame) - 70, CGRectGetHeight(self.view.frame) - 70, 40, 40)];
     self.statsViewButton.cornerRadius = 20;
     self.statsViewButton.backgroundColor = [UIColor flatGreenSeaColor];
     self.statsViewButton.shadowColor = [UIColor grayColor];
@@ -425,16 +425,8 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         if (self.taskSelected) {
             [self closeListView];
         } else {
-            SCLAlertView *resetAlert = [[SCLAlertView alloc] init];
-            
-            resetAlert.showAnimationType = SlideInToCenter;
-            resetAlert.hideAnimationType = SlideOutToCenter;
-            resetAlert.customViewColor = [UIColor flatAlizarinColor];
-            [resetAlert removeTopCircle];
-            
-            [resetAlert showInfo:self.navigationController title:@"Task not selected!" subTitle:@"Please select a task from the list" closeButtonTitle:@"OK" duration:0.0f];
+            [self showTaskListAlert];
         }
-        
     }
 }
 
@@ -444,17 +436,34 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         if (self.taskSelected) {
             [self closeListView];
         } else {
-            SCLAlertView *resetAlert = [[SCLAlertView alloc] init];
-            
-            resetAlert.showAnimationType = SlideInToCenter;
-            resetAlert.hideAnimationType = SlideOutToCenter;
-            resetAlert.customViewColor = [UIColor flatAlizarinColor];
-            [resetAlert removeTopCircle];
-            
-            [resetAlert showInfo:self.navigationController title:@"Task not selected!" subTitle:@"Please select a task from the list" closeButtonTitle:@"OK" duration:0.0f];
+            [self showTaskListAlert];
         }
     } else {
         [self showListView];
+    }
+}
+
+- (void)showTaskListAlert
+{
+    if ([self.fetchedResultsController.fetchedObjects count] == 0) {
+        SCLAlertView *emptyAlert = [[SCLAlertView alloc] init];
+        
+        emptyAlert.showAnimationType = SlideInToCenter;
+        emptyAlert.hideAnimationType = SlideOutToCenter;
+        emptyAlert.customViewColor = [UIColor flatAlizarinColor];
+        [emptyAlert addButton:@"Add a Task" actionBlock:^{
+            [self addNewTask];
+        }];
+        
+        [emptyAlert showInfo:self.navigationController title:@"Empty Task List" subTitle:@"Please add a new task to start using Listee" closeButtonTitle:@"Dismiss" duration:0.0f];
+    } else {
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+        
+        alert.showAnimationType = SlideInToCenter;
+        alert.hideAnimationType = SlideOutToCenter;
+        alert.customViewColor = [UIColor flatAlizarinColor];
+        
+        [alert showInfo:self.navigationController title:@"Task not selected!" subTitle:@"Please select a task from the list" closeButtonTitle:@"OK" duration:0.0f];
     }
 }
 
