@@ -1717,9 +1717,9 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     NSString *secondsInString = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds]];
     
     if (hours == 0) {
-        return [NSString stringWithFormat:NSLocalizedString(@"%02.0f:%@", @"Short format for elapsed time (minute:second). Example: 05:3.4"), minutes, secondsInString];
+        return [NSString stringWithFormat:@"%02.0f:%@", minutes, secondsInString];
     } else {
-        return [NSString stringWithFormat:NSLocalizedString(@"%.0f:%02.0f:%@", @"Short format for elapsed time (hour:minute:second). Example: 1:05:3.4"), hours, minutes, secondsInString];
+        return [NSString stringWithFormat:@"%.0f:%02.0f:%@", hours, minutes, secondsInString];
     }
 }
 
@@ -1740,7 +1740,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     NSString *secondsInString = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds]];
     
-    return [NSString stringWithFormat:NSLocalizedString(@"%02.0f:%@", @"Short format for elapsed time (minute:second). Example: 05:3.4"), minutes, secondsInString];
+    return [NSString stringWithFormat:@"%02.0f:%@", minutes, secondsInString];
 }
 
 - (NSString *)stringForTaskCellWithTime:(int)seconds usingLongFormat:(BOOL)longFormat
