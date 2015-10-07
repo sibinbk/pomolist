@@ -737,7 +737,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         switch (cycleType) {
             case TaskCycle:
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
-                notification.alertBody = [NSString stringWithFormat:@"%@- Task Session %d completed. Take a break! Target sessions - %d", self.taskName, taskCount, (int)self.repeatCount];
+                notification.alertBody = [NSString stringWithFormat:@"%@ - Session %d completed. Take a break! Target sessions - %d", self.taskName, taskCount, (int)self.repeatCount];
                 if (![self checkIfLongBreakCycle:taskCount]) {
                     cycleType = ShortBreakCycle;
                     tempCycleFinishTime += self.shortBreakTime;
