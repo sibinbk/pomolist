@@ -80,9 +80,6 @@
 		C39ACF831BBE462F004EA540 /* EditCell.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF801BBE462F004EA540 /* EditCell.png */; settings = {ASSET_TAGS = (); }; };
 		C39ACF841BBE462F004EA540 /* EditCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF811BBE462F004EA540 /* EditCell@2x.png */; settings = {ASSET_TAGS = (); }; };
 		C39ACF851BBE462F004EA540 /* EditCell@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF821BBE462F004EA540 /* EditCell@3x.png */; settings = {ASSET_TAGS = (); }; };
-		C39ACF891BBE463A004EA540 /* TrashCell.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF861BBE463A004EA540 /* TrashCell.png */; settings = {ASSET_TAGS = (); }; };
-		C39ACF8A1BBE463A004EA540 /* TrashCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF871BBE463A004EA540 /* TrashCell@2x.png */; settings = {ASSET_TAGS = (); }; };
-		C39ACF8B1BBE463A004EA540 /* TrashCell@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF881BBE463A004EA540 /* TrashCell@3x.png */; settings = {ASSET_TAGS = (); }; };
 		C39ACF951BBE4E72004EA540 /* Checked.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF921BBE4E72004EA540 /* Checked.png */; settings = {ASSET_TAGS = (); }; };
 		C39ACF961BBE4E72004EA540 /* Checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF931BBE4E72004EA540 /* Checked@2x.png */; settings = {ASSET_TAGS = (); }; };
 		C39ACF971BBE4E72004EA540 /* Checked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39ACF941BBE4E72004EA540 /* Checked@3x.png */; settings = {ASSET_TAGS = (); }; };
@@ -123,6 +120,12 @@
 		C3F1F45B1BC40815007F252C /* Today.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F4581BC40815007F252C /* Today.png */; settings = {ASSET_TAGS = (); }; };
 		C3F1F45C1BC40815007F252C /* Today@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F4591BC40815007F252C /* Today@2x.png */; settings = {ASSET_TAGS = (); }; };
 		C3F1F45D1BC40815007F252C /* Today@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F45A1BC40815007F252C /* Today@3x.png */; settings = {ASSET_TAGS = (); }; };
+		C3F1F46A1BC4AB78007F252C /* TodayCell.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F4641BC4AB78007F252C /* TodayCell.png */; settings = {ASSET_TAGS = (); }; };
+		C3F1F46B1BC4AB78007F252C /* TodayCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F4651BC4AB78007F252C /* TodayCell@2x.png */; settings = {ASSET_TAGS = (); }; };
+		C3F1F46C1BC4AB78007F252C /* TodayCell@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F4661BC4AB78007F252C /* TodayCell@3x.png */; settings = {ASSET_TAGS = (); }; };
+		C3F1F46D1BC4AB78007F252C /* TrashCell.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F4671BC4AB78007F252C /* TrashCell.png */; settings = {ASSET_TAGS = (); }; };
+		C3F1F46E1BC4AB78007F252C /* TrashCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F4681BC4AB78007F252C /* TrashCell@2x.png */; settings = {ASSET_TAGS = (); }; };
+		C3F1F46F1BC4AB78007F252C /* TrashCell@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F1F4691BC4AB78007F252C /* TrashCell@3x.png */; settings = {ASSET_TAGS = (); }; };
 		D47D80DDBE58ED9BF22F172C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E09210CA49F9208CF4B91D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -228,9 +231,6 @@
 		C39ACF801BBE462F004EA540 /* EditCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EditCell.png; sourceTree = "<group>"; };
 		C39ACF811BBE462F004EA540 /* EditCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EditCell@2x.png"; sourceTree = "<group>"; };
 		C39ACF821BBE462F004EA540 /* EditCell@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EditCell@3x.png"; sourceTree = "<group>"; };
-		C39ACF861BBE463A004EA540 /* TrashCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrashCell.png; sourceTree = "<group>"; };
-		C39ACF871BBE463A004EA540 /* TrashCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrashCell@2x.png"; sourceTree = "<group>"; };
-		C39ACF881BBE463A004EA540 /* TrashCell@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrashCell@3x.png"; sourceTree = "<group>"; };
 		C39ACF921BBE4E72004EA540 /* Checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checked.png; sourceTree = "<group>"; };
 		C39ACF931BBE4E72004EA540 /* Checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checked@2x.png"; sourceTree = "<group>"; };
 		C39ACF941BBE4E72004EA540 /* Checked@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checked@3x.png"; sourceTree = "<group>"; };
@@ -286,6 +286,12 @@
 		C3F1F4581BC40815007F252C /* Today.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Today.png; sourceTree = "<group>"; };
 		C3F1F4591BC40815007F252C /* Today@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Today@2x.png"; sourceTree = "<group>"; };
 		C3F1F45A1BC40815007F252C /* Today@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Today@3x.png"; sourceTree = "<group>"; };
+		C3F1F4641BC4AB78007F252C /* TodayCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TodayCell.png; sourceTree = "<group>"; };
+		C3F1F4651BC4AB78007F252C /* TodayCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TodayCell@2x.png"; sourceTree = "<group>"; };
+		C3F1F4661BC4AB78007F252C /* TodayCell@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TodayCell@3x.png"; sourceTree = "<group>"; };
+		C3F1F4671BC4AB78007F252C /* TrashCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrashCell.png; sourceTree = "<group>"; };
+		C3F1F4681BC4AB78007F252C /* TrashCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrashCell@2x.png"; sourceTree = "<group>"; };
+		C3F1F4691BC4AB78007F252C /* TrashCell@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrashCell@3x.png"; sourceTree = "<group>"; };
 		FF6F532B5432F27442F9C513 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -348,12 +354,15 @@
 				C39ACF921BBE4E72004EA540 /* Checked.png */,
 				C39ACF931BBE4E72004EA540 /* Checked@2x.png */,
 				C39ACF941BBE4E72004EA540 /* Checked@3x.png */,
-				C39ACF861BBE463A004EA540 /* TrashCell.png */,
-				C39ACF871BBE463A004EA540 /* TrashCell@2x.png */,
-				C39ACF881BBE463A004EA540 /* TrashCell@3x.png */,
 				C39ACF801BBE462F004EA540 /* EditCell.png */,
 				C39ACF811BBE462F004EA540 /* EditCell@2x.png */,
 				C39ACF821BBE462F004EA540 /* EditCell@3x.png */,
+				C3F1F4641BC4AB78007F252C /* TodayCell.png */,
+				C3F1F4651BC4AB78007F252C /* TodayCell@2x.png */,
+				C3F1F4661BC4AB78007F252C /* TodayCell@3x.png */,
+				C3F1F4671BC4AB78007F252C /* TrashCell.png */,
+				C3F1F4681BC4AB78007F252C /* TrashCell@2x.png */,
+				C3F1F4691BC4AB78007F252C /* TrashCell@3x.png */,
 				C307559D1BBE339900490951 /* Pause.png */,
 				C307559E1BBE339900490951 /* Pause@2x.png */,
 				C307559F1BBE339900490951 /* Pause@3x.png */,
@@ -699,13 +708,13 @@
 			files = (
 				C33008511A94B703003A0AEA /* settings@3x.png in Resources */,
 				C3B6FAC31B0DA8BB0052B7E5 /* SkipFilled@2x.png in Resources */,
+				C3F1F46D1BC4AB78007F252C /* TrashCell.png in Resources */,
 				C3B6FAC41B0DA8BB0052B7E5 /* SkipFilled@3x.png in Resources */,
 				C3F1F45D1BC40815007F252C /* Today@3x.png in Resources */,
 				C3AF6F0B1BA3ED8300919243 /* None.caf in Resources */,
 				C33008391A94A439003A0AEA /* plus@3x.png in Resources */,
 				C33008441A94AFB7003A0AEA /* delete@2x.png in Resources */,
 				C30755A31BBE339900490951 /* Pause.png in Resources */,
-				C39ACF8B1BBE463A004EA540 /* TrashCell@3x.png in Resources */,
 				C38409F41BAC5BFA00097321 /* LoadingView.xib in Resources */,
 				C3AF6F0F1BA3ED8300919243 /* Woodpecker.caf in Resources */,
 				C39ACFA81BBE93E8004EA540 /* Statistics@2x.png in Resources */,
@@ -717,20 +726,22 @@
 				C3AF6F0D1BA3ED8300919243 /* RingRing.caf in Resources */,
 				C39ACFA21BBE8ADF004EA540 /* Modify@2x.png in Resources */,
 				C30755A51BBE339900490951 /* Pause@3x.png in Resources */,
+				C3F1F46B1BC4AB78007F252C /* TodayCell@2x.png in Resources */,
 				C3AF6F0E1BA3ED8300919243 /* RobotsRattle.caf in Resources */,
 				C3B6FAC91B0DA8C50052B7E5 /* StopFilled@2x.png in Resources */,
 				C39ACF961BBE4E72004EA540 /* Checked@2x.png in Resources */,
 				C39ACF831BBE462F004EA540 /* EditCell.png in Resources */,
 				C3B6FAC21B0DA8BB0052B7E5 /* SkipFilled.png in Resources */,
 				C39ACFA91BBE93E8004EA540 /* Statistics@3x.png in Resources */,
+				C3F1F46E1BC4AB78007F252C /* TrashCell@2x.png in Resources */,
 				C3534E281B09A63E0015B626 /* Checkmark@3x.png in Resources */,
 				C33008431A94AFB7003A0AEA /* delete.png in Resources */,
 				C35B33701A0CBA1500061C40 /* LaunchScreen.xib in Resources */,
+				C3F1F46C1BC4AB78007F252C /* TodayCell@3x.png in Resources */,
 				C39ACFA31BBE8ADF004EA540 /* Modify@3x.png in Resources */,
 				C3537A701BBD76BA00A79C78 /* Settings.bundle in Resources */,
 				C313B8531BC1582300C2871D /* LaunchIcon@2x.png in Resources */,
 				C313B8521BC1582300C2871D /* LaunchIcon@1x.png in Resources */,
-				C39ACF8A1BBE463A004EA540 /* TrashCell@2x.png in Resources */,
 				C39ACF851BBE462F004EA540 /* EditCell@3x.png in Resources */,
 				C35B336D1A0CBA1500061C40 /* Images.xcassets in Resources */,
 				C3B6FAC81B0DA8C50052B7E5 /* StopFilled.png in Resources */,
@@ -739,8 +750,9 @@
 				C30755A61BBE339900490951 /* Play.png in Resources */,
 				C33008381A94A439003A0AEA /* plus@2x.png in Resources */,
 				C39ACF841BBE462F004EA540 /* EditCell@2x.png in Resources */,
-				C39ACF891BBE463A004EA540 /* TrashCell.png in Resources */,
+				C3F1F46F1BC4AB78007F252C /* TrashCell@3x.png in Resources */,
 				C30755A41BBE339900490951 /* Pause@2x.png in Resources */,
+				C3F1F46A1BC4AB78007F252C /* TodayCell.png in Resources */,
 				C33008371A94A439003A0AEA /* plus.png in Resources */,
 				C313B8541BC1582300C2871D /* LaunchIcon@3x.png in Resources */,
 				C33008501A94B703003A0AEA /* settings@2x.png in Resources */,

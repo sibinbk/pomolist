@@ -1235,7 +1235,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     }
     
     //configure left buttons
-    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TrashCell.png"] backgroundColor:[UIColor colorWithRed:0 green:122/255.0 blue:1.0 alpha:1.0] padding:15]];
+    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TodayCell.png"] backgroundColor:[UIColor colorWithRed:0 green:122/255.0 blue:1.0 alpha:1.0] padding:15]];
     cell.leftSwipeSettings.transition = MGSwipeTransitionBorder;
     cell.leftExpansion.buttonIndex = 0;
     
