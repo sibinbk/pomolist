@@ -320,10 +320,10 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         self.startButton.layer.cornerRadius = 46;
     } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
         // iPhone 6+
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:110];
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:116];
         self.summaryViewHeight.constant = 110;
-        self.startButtonHeight.constant = 100;
-        self.startButton.layer.cornerRadius = 50;
+        self.startButtonHeight.constant = 96;
+        self.startButton.layer.cornerRadius = 48;
     }
 }
 
