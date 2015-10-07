@@ -158,7 +158,6 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
         [self backUpTimerInfo];
         
         if (self.defaultTimer) {
-            NSLog(@"Timer invalidated");
             [self.defaultTimer invalidate];
             self.defaultTimer = nil;
         }
@@ -190,7 +189,6 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
     }
     
     if (self.defaultTimer) {
-        NSLog(@"Timer invalidated");
         [self.defaultTimer invalidate];
         self.defaultTimer = nil;
     }
@@ -236,7 +234,6 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
             [self resetTimer];
         } else {
             NSTimeInterval newTimePassed = round([self calcuateTimePassed]);
-            NSLog(@"New TimePassed : %f", newTimePassed);
             
             if (newTimePassed < self.cycleFinishTime) {
                 [self notifyDelegateWithPassedTime:newTimePassed ofCycleFinishTime:self.cycleFinishTime];
@@ -256,7 +253,6 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
                     while (self.cycleFinishTime < newTimePassed) {
                         // Check current countdown cycle and skip to next cycle.
                         [self skipToNextCycle];
-                        NSLog(@"In the loop");
                     }
                     [self notifyDelegateWithPassedTime:newTimePassed ofCycleFinishTime:self.cycleFinishTime];
                 }
@@ -344,9 +340,7 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
 - (NSTimeInterval)calcuateTimePassed
 {
     NSTimeInterval tempTimePassed = [[NSDate date] timeIntervalSinceDate:self.startCountDate];
-    NSLog(@"TempTime passed: %f", tempTimePassed);
-    NSLog(@"Old TimePassed : %f", self.timePassed);
-    
+
     // Checks previous value to avoid skipping the count number.
     if ((tempTimePassed - self.timePassed) < 0.5) {
         return (tempTimePassed + 1.0);
@@ -395,7 +389,6 @@ static NSMutableDictionary *_countDownTimersWithIdentifier;
 
 - (void)notifyDelegateWithPassedTime:(NSTimeInterval)timePassed ofCycleFinishTime:(NSTimeInterval)finishTime
 {
-    NSLog(@"Delegate called");
     // Delegate method to update current Timer value.
     if ([self.delegate respondsToSelector:@selector(secondUpdated:countDownTimePassed:ofTotalTime:)]) {
         [self.delegate secondUpdated:self countDownTimePassed:timePassed ofTotalTime:finishTime];
