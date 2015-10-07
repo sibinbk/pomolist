@@ -109,6 +109,7 @@
 		C3CB91741BAD6EAD0081B56E /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CB91721BAD6EAD0081B56E /* Task+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		C3D1B6171B47D7660003419B /* FLBreakDelayPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1B6161B47D7660003419B /* FLBreakDelayPickerController.m */; };
 		C3D1B61A1B4841320003419B /* FLSessionCountPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1B6191B4841320003419B /* FLSessionCountPickerController.m */; };
+		C3D3546B1BC598F3000B2726 /* FLWalkthroughController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D3546A1BC598F3000B2726 /* FLWalkthroughController.m */; settings = {ASSET_TAGS = (); }; };
 		C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D680861B3838D900C08860 /* FLReminderPickerController.m */; };
 		C3D6808B1B3BBC6300C08860 /* FLTimingPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D6808A1B3BBC6300C08860 /* FLTimingPickerController.m */; };
 		C3EA01F31B0A27DF00C321BF /* FLColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EA01F21B0A27DF00C321BF /* FLColorCell.m */; };
@@ -264,6 +265,8 @@
 		C3D1B6161B47D7660003419B /* FLBreakDelayPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreakDelayPickerController.m; sourceTree = "<group>"; };
 		C3D1B6181B4841320003419B /* FLSessionCountPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSessionCountPickerController.h; sourceTree = "<group>"; };
 		C3D1B6191B4841320003419B /* FLSessionCountPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSessionCountPickerController.m; sourceTree = "<group>"; };
+		C3D354691BC598F3000B2726 /* FLWalkthroughController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWalkthroughController.h; sourceTree = "<group>"; };
+		C3D3546A1BC598F3000B2726 /* FLWalkthroughController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWalkthroughController.m; sourceTree = "<group>"; };
 		C3D680851B3838D900C08860 /* FLReminderPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLReminderPickerController.h; sourceTree = "<group>"; };
 		C3D680861B3838D900C08860 /* FLReminderPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLReminderPickerController.m; sourceTree = "<group>"; };
 		C3D680891B3BBC6300C08860 /* FLTimingPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTimingPickerController.h; sourceTree = "<group>"; };
@@ -432,6 +435,8 @@
 				C35B33881A0CBE5400061C40 /* ZGCountDownTimer */,
 				C35B33601A0CBA1500061C40 /* AppDelegate.h */,
 				C35B33611A0CBA1500061C40 /* AppDelegate.m */,
+				C3D354691BC598F3000B2726 /* FLWalkthroughController.h */,
+				C3D3546A1BC598F3000B2726 /* FLWalkthroughController.m */,
 				C35B33851A0CBDF400061C40 /* FLTimerViewController.h */,
 				C35B33861A0CBDF400061C40 /* FLTimerViewController.m */,
 				C3EFAEA01A13462D003D641C /* FLEditTaskController.h */,
@@ -813,6 +818,7 @@
 				C37567C41BA17E24009DB1D5 /* Task.m in Sources */,
 				C38409EF1BAC5BFA00097321 /* DesignableView.swift in Sources */,
 				C38409FB1BAC5BFA00097321 /* SpringLabel.swift in Sources */,
+				C3D3546B1BC598F3000B2726 /* FLWalkthroughController.m in Sources */,
 				C38409E61BAC5BFA00097321 /* AsyncImageView.swift in Sources */,
 				C35B33871A0CBDF400061C40 /* FLTimerViewController.m in Sources */,
 				C38409F31BAC5BFA00097321 /* LoadingView.swift in Sources */,
