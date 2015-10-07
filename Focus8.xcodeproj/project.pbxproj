@@ -27,7 +27,6 @@
 		C33008511A94B703003A0AEA /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C330084E1A94B703003A0AEA /* settings@3x.png */; };
 		C33AA7931B9D9EEB0052EFAF /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C33AA7921B9D9EEB0052EFAF /* ColorUtils.m */; };
 		C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */; };
-		C341A5BA1BB674E100ABEFB1 /* CNPPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = C341A5B91BB674E100ABEFB1 /* CNPPopupController.m */; settings = {ASSET_TAGS = (); }; };
 		C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */; };
 		C351141B1B1AEFF7005EB4B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C35114191B1AEFF7005EB4B3 /* Main.storyboard */; };
 		C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C3534E211B09A12B0015B626 /* FLColorPicker.m */; };
@@ -92,7 +91,6 @@
 		C3A49A3D1B9032D300F7D796 /* FLSoundPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */; };
 		C3A49A451B90510900F7D796 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A441B90510900F7D796 /* AudioToolbox.framework */; };
 		C3A49A471B92AF6300F7D796 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A49A461B92AF6300F7D796 /* AVFoundation.framework */; };
-		C3ABA5F11BB2B69E0006D69F /* JTHamburgerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3ABA5F01BB2B69E0006D69F /* JTHamburgerButton.m */; settings = {ASSET_TAGS = (); }; };
 		C3AF6F091BA3ED8300919243 /* Caribbean.caf in Resources */ = {isa = PBXBuildFile; fileRef = C3AF6F021BA3ED8300919243 /* Caribbean.caf */; settings = {ASSET_TAGS = (); }; };
 		C3AF6F0A1BA3ED8300919243 /* Glissful.caf in Resources */ = {isa = PBXBuildFile; fileRef = C3AF6F031BA3ED8300919243 /* Glissful.caf */; settings = {ASSET_TAGS = (); }; };
 		C3AF6F0B1BA3ED8300919243 /* None.caf in Resources */ = {isa = PBXBuildFile; fileRef = C3AF6F041BA3ED8300919243 /* None.caf */; settings = {ASSET_TAGS = (); }; };
@@ -164,8 +162,6 @@
 		C33AA7921B9D9EEB0052EFAF /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
 		C33EE6F31A675FB300C94E61 /* ZGCountDownTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGCountDownTimer.h; sourceTree = "<group>"; };
 		C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCountDownTimer.m; sourceTree = "<group>"; };
-		C341A5B81BB674E100ABEFB1 /* CNPPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupController.h; sourceTree = "<group>"; };
-		C341A5B91BB674E100ABEFB1 /* CNPPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPPopupController.m; sourceTree = "<group>"; };
 		C347DD8C1B8F1251006E3F3E /* FLSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSettingsController.h; sourceTree = "<group>"; };
 		C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSettingsController.m; sourceTree = "<group>"; };
 		C351141A1B1AEFF7005EB4B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -245,8 +241,6 @@
 		C3A49A3C1B9032D300F7D796 /* FLSoundPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoundPickerController.m; sourceTree = "<group>"; };
 		C3A49A441B90510900F7D796 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3A49A461B92AF6300F7D796 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		C3ABA5EF1BB2B69E0006D69F /* JTHamburgerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTHamburgerButton.h; sourceTree = "<group>"; };
-		C3ABA5F01BB2B69E0006D69F /* JTHamburgerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTHamburgerButton.m; sourceTree = "<group>"; };
 		C3AF6F021BA3ED8300919243 /* Caribbean.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Caribbean.caf; sourceTree = "<group>"; };
 		C3AF6F031BA3ED8300919243 /* Glissful.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Glissful.caf; sourceTree = "<group>"; };
 		C3AF6F041BA3ED8300919243 /* None.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = None.caf; sourceTree = "<group>"; };
@@ -409,15 +403,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		C341A5B71BB674B800ABEFB1 /* CNPPopupController */ = {
-			isa = PBXGroup;
-			children = (
-				C341A5B81BB674E100ABEFB1 /* CNPPopupController.h */,
-				C341A5B91BB674E100ABEFB1 /* CNPPopupController.m */,
-			);
-			name = CNPPopupController;
-			sourceTree = "<group>";
-		};
 		C35B33501A0CBA1500061C40 = {
 			isa = PBXGroup;
 			children = (
@@ -441,8 +426,6 @@
 		C35B335B1A0CBA1500061C40 /* Focus8 */ = {
 			isa = PBXGroup;
 			children = (
-				C341A5B71BB674B800ABEFB1 /* CNPPopupController */,
-				C3ABA5EE1BB2B6820006D69F /* JTHamburgerButton */,
 				C38409C61BAC5BFA00097321 /* Spring */,
 				C33AA7901B9D9EEB0052EFAF /* ColorUtils */,
 				C3ACAB751B3184C7000EF926 /* UIFlatColors */,
@@ -576,15 +559,6 @@
 				C38409E41BAC5BFA00097321 /* UnwindSegue.swift */,
 			);
 			path = Spring;
-			sourceTree = "<group>";
-		};
-		C3ABA5EE1BB2B6820006D69F /* JTHamburgerButton */ = {
-			isa = PBXGroup;
-			children = (
-				C3ABA5EF1BB2B69E0006D69F /* JTHamburgerButton.h */,
-				C3ABA5F01BB2B69E0006D69F /* JTHamburgerButton.m */,
-			);
-			name = JTHamburgerButton;
 			sourceTree = "<group>";
 		};
 		C3ACAB751B3184C7000EF926 /* UIFlatColors */ = {
@@ -840,7 +814,6 @@
 				C38409EF1BAC5BFA00097321 /* DesignableView.swift in Sources */,
 				C38409FB1BAC5BFA00097321 /* SpringLabel.swift in Sources */,
 				C38409E61BAC5BFA00097321 /* AsyncImageView.swift in Sources */,
-				C3ABA5F11BB2B69E0006D69F /* JTHamburgerButton.m in Sources */,
 				C35B33871A0CBDF400061C40 /* FLTimerViewController.m in Sources */,
 				C38409F31BAC5BFA00097321 /* LoadingView.swift in Sources */,
 				C38409FF1BAC5BFA00097321 /* TransitionManager.swift in Sources */,
@@ -862,7 +835,6 @@
 				C3F1F4571BC36CED007F252C /* FLTodayViewController.m in Sources */,
 				C38409E71BAC5BFA00097321 /* AutoTextView.swift in Sources */,
 				C3EA01F71B0CE3EE00C321BF /* FLTaskCell.m in Sources */,
-				C341A5BA1BB674E100ABEFB1 /* CNPPopupController.m in Sources */,
 				C38409F01BAC5BFA00097321 /* ImageLoader.swift in Sources */,
 				C38409ED1BAC5BFA00097321 /* DesignableTextField.swift in Sources */,
 				C35B33621A0CBA1500061C40 /* AppDelegate.m in Sources */,
