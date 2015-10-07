@@ -1244,7 +1244,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
                           [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"EditCell.png"] backgroundColor:[UIColor colorWithRed:1.0 green:149/255.0 blue:0.05 alpha:1.0] padding:20]];
     cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
     cell.rightExpansion.buttonIndex = 0;
-    cell.rightExpansion.fillOnTrigger = YES;
+//    cell.rightExpansion.fillOnTrigger = YES;
     cell.rightExpansion.threshold = 1.1;
 }
 
@@ -1260,44 +1260,56 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     Task *newTask = [_fetchedResultsController objectAtIndexPath:indexPath];
     
     if (![newTask.isSelected boolValue]) {
-        //
-        /* Check if the timer is running. If so add an Alert to let the customer know that the selecting the task will Stop previous task timer */
-        //
-        
-        if (self.repeatTimer.isRunning) {
-            NSLog(@"Cancels local notifs when another task is selected");
-            [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        }
-
-        //Get currently selected task.
-        Task *currentTask = [self currentSelectedTask];
-        
-        if (!currentTask) {
-            newTask.isSelected = @YES;
-            NSLog(@"No task was selected. It is a new task.");
+        if (self.repeatTimer.started) {
+            SCLAlertView *selectAlert = [[SCLAlertView alloc] init];
+            selectAlert.showAnimationType = SlideInToCenter;
+            selectAlert.hideAnimationType = SlideOutToCenter;
+            selectAlert.customViewColor = [UIColor flatAlizarinColor];
+            
+            [selectAlert addButton:@"Yes" actionBlock:^{
+                // Cancel all timer notifications.
+                NSLog(@"Cancels all notifications");
+                [[UIApplication sharedApplication] cancelAllLocalNotifications];
+                [self selectNewTask:newTask];
+            }];
+            
+            [selectAlert showNotice:self.navigationController title:@"Warning!" subTitle:@"Selecting this task will reset previous task timer. Are you sure you want to select it?" closeButtonTitle:@"No" duration:0.0f];
         } else {
-            currentTask.isSelected = @NO;
-            newTask.isSelected = @YES;
-            NSLog(@"Old task selection is replaced with new selection");
+            [self selectNewTask:newTask];
         }
-        
-        // flag set to mark task is selected.
-        self.taskSelected = YES;
-        
-        // Change and save new task details.
-        [self changeTaskDetails:newTask];
-        
-        // Store selected task info.
-        [self saveContext];
-        
-        [self.repeatTimer resetTimer]; // Stops previous task without saving the event details.
-        [self setUpRepeatTimer];
-        [self setUpTimerViewInterfaceWith:self.isFullView];
-        [self closeListView];
     } else {
         NSLog(@"Same task selected");
         [self closeListView];
     }
+}
+
+- (void)selectNewTask:(Task *)newTask
+{
+    //Get currently selected task.
+    Task *currentTask = [self currentSelectedTask];
+    
+    if (!currentTask) {
+        newTask.isSelected = @YES;
+        NSLog(@"No task was selected. It is a new task.");
+    } else {
+        currentTask.isSelected = @NO;
+        newTask.isSelected = @YES;
+        NSLog(@"Old task selection is replaced with new selection");
+    }
+    
+    // flag set to mark task is selected.
+    self.taskSelected = YES;
+    
+    // Change and save new task details.
+    [self changeTaskDetails:newTask];
+    
+    // Store selected task info.
+    [self saveContext];
+    
+    [self.repeatTimer resetTimer]; // Stops previous task without saving the event details.
+    [self setUpRepeatTimer];
+    [self setUpTimerViewInterfaceWith:self.isFullView];
+    [self closeListView];
 }
 
 - (Task *)currentSelectedTask
@@ -1354,48 +1366,19 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     // Delete button
     if (direction == MGSwipeDirectionRightToLeft && index == 0) {
         NSIndexPath * path = [self.taskTableView indexPathForCell:cell];
-        NSManagedObjectContext *context = [self managedObjectContext];
         Task *taskToDelete = [_fetchedResultsController objectAtIndexPath:path];
- 
-    /* Cancelling Local notifications when the task is deleted.
-     
-        // Check the task to be deleted is currently selected task. If so reset all timer info related to the task.
-        if ([taskToDelete.isSelected boolValue]) {
-            if (!self.repeatTimer.isRunning) {
-                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSLog(@"Cancel Reminder notifications while task is Paused");
-                    [self cancelReminderNotificationForTask:taskToDelete];
-                });
-            } else {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSLog(@"Cancel All notifications related to the task");
-                    [self cancelAllNotificationsForTask:taskToDelete];
-                });
-            }
-            [self initializeTaskTimer];
-        } else {
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSLog(@"Cancel Reminder notifications for the task");
-                [self cancelReminderNotificationForTask:taskToDelete];
-            });
-        }
-     */
         
-        // Check the task to be deleted is currently selected task. If so reset all timer info related to the task.
-        if ([taskToDelete.isSelected boolValue]) {
-            if (self.repeatTimer.isRunning) {
-                NSLog(@"Cancelling local notifications when selected task is being deleted");
-                [[UIApplication sharedApplication] cancelAllLocalNotifications];
-            }
-            
-            [self initializeTaskTimer];
-        }
+        SCLAlertView *deleteAlert = [[SCLAlertView alloc] init];
         
-        [context deleteObject:taskToDelete];
-        NSError *error = nil;
-        if (![context save:&error]) {
-            NSLog(@"Error! %@", error);
-        }
+        deleteAlert.showAnimationType = SlideInToCenter;
+        deleteAlert.hideAnimationType = SlideOutToCenter;
+        deleteAlert.customViewColor = [UIColor flatAlizarinColor];
+        
+        [deleteAlert addButton:@"Yes" actionBlock:^{
+            [self deleteTask:taskToDelete];
+        }];
+        
+        [deleteAlert showNotice:self.navigationController title:@"Delete task" subTitle:@"Are you sure you want to delete this task?" closeButtonTitle:@"No" duration:0.0f];
     }
     
     // Edit button
@@ -1551,6 +1534,25 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 {
     self.isTaskEditing = NO;
     [self performSegueWithIdentifier:@"EditTaskSegue" sender:nil];
+}
+
+- (void)deleteTask:(Task *)task
+{
+    // Check the task to be deleted is currently selected task. If so reset all timer info related to the task.
+    if ([task.isSelected boolValue]) {
+        if (self.repeatTimer.isRunning) {
+            NSLog(@"Cancelling local notifications when selected task is being deleted");
+            [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        }
+        
+        [self initializeTaskTimer];
+    }
+    
+    [self.managedObjectContext deleteObject:task];
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Error! %@", error);
+    }
 }
 
 #pragma mark - Show Event list/ Status view
