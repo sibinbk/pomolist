@@ -131,6 +131,8 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
                 Turquoise
                 Nephritis
                 Belize Hole
+                Peter River
+                Wisteria
                 Deep Purple
      */
     
