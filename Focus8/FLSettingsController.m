@@ -64,7 +64,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
 -(void)soundPickerController:(FLSoundPickerController *)controller didSelectSound:(NSString *)sound
 {
-    NSLog(@"delegate");
     self.alarmSoundLabel.text = sound;
     self.alarmSound = sound;
 }
@@ -90,14 +89,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         if (fbPost) {
             [fbPost setInitialText:@"ABCD"];
             [fbPost addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8"]];
-            [fbPost setCompletionHandler:^(SLComposeViewControllerResult result)
-             {
-                 if (result == SLComposeViewControllerResultCancelled) {
-                     NSLog(@"The user cancelled.");
-                 } else if (result == SLComposeViewControllerResultDone) {
-                     NSLog(@"The user sent the post.");
-                 }
-             }];
+            [fbPost setCompletionHandler:^(SLComposeViewControllerResult result) {
+            }];
+            
             [self presentViewController:fbPost animated:YES completion:nil];
         }
     } else {
@@ -123,11 +117,6 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
             [tweet setInitialText:@"ABCD App"];
             [tweet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8"]];
             [tweet setCompletionHandler:^(SLComposeViewControllerResult result) {
-                if (result == SLComposeViewControllerResultCancelled) {
-                    NSLog(@"The user cancelled.");
-                } else if (result == SLComposeViewControllerResultDone) {
-                    NSLog(@"The user sent the tweet");
-                }
             }];
             
             [self presentViewController:tweet animated:YES completion:nil];
