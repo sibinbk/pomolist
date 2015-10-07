@@ -737,7 +737,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         switch (cycleType) {
             case TaskCycle:
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
-                notification.alertBody = [NSString stringWithFormat:@"Task Session %d completed. Take a break! - Goal %d sessions", taskCount, (int)self.repeatCount];
+                notification.alertBody = [NSString stringWithFormat:@"%@- Task Session %d completed. Take a break! Target sessions - %d", self.taskName, taskCount, (int)self.repeatCount];
                 if (![self checkIfLongBreakCycle:taskCount]) {
                     cycleType = ShortBreakCycle;
                     tempCycleFinishTime += self.shortBreakTime;
@@ -749,7 +749,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
                 
             case ShortBreakCycle:
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
-                notification.alertBody = @"Short Break completed";
+                notification.alertBody = @"Short Break completed. Get back to work!";
                 cycleType = TaskCycle;
                 tempCycleFinishTime += self.taskTime;
                 taskCount++;
@@ -757,7 +757,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
                 
             case LongBreakCycle:
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
-                notification.alertBody = @"Long Break completed";
+                notification.alertBody = @"Long Break completed. Get back to work!";
                 cycleType = TaskCycle;
                 tempCycleFinishTime += self.taskTime;
                 taskCount++;
@@ -772,7 +772,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     finalNotification.soundName = [NSString stringWithFormat:@"%@.caf", self.alarmSound];
     finalNotification.userInfo = @{@"timerNotificationID" : kFLTimerNotification};
     finalNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(self.totalCountDownTime - timePassed)];
-    finalNotification.alertBody = [NSString stringWithFormat:@"Well done. Task completed! - Goal %d sessions", (int)self.repeatCount];
+    finalNotification.alertBody = [NSString stringWithFormat:@"You have completed all sessions for %@. Well Done!", self.taskName];
     [[UIApplication sharedApplication] scheduleLocalNotification:finalNotification];
 }
 
