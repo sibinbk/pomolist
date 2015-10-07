@@ -437,30 +437,6 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     }
 }
 
-#pragma mark - FLDatePickerController delegate methods.
-
-/* Date picker delegate methods.
- 
-- (void)pickerController:(FLReminderPickerController *)controller reminderSetOn:(NSDate *)reminderDate
-{
-    self.reminderDate = [self truncateSecondsForDate:reminderDate];
-    self.reminderTitleLabel.text = @"Remind on";
-    self.reminderDateLabel.textColor = [UIColor blackColor];
-    self.reminderDateLabel.text = [self.formatter stringFromDate:self.reminderDate];
-}
-
-- (void)pickerController:(FLReminderPickerController *)controller reminderRemoved:(BOOL)removed
-{
-    if (removed) {
-        self.reminderDate = nil;
-    }
-    
-    self.reminderTitleLabel.text = @"Add a reminder (Optional!)";
-    self.reminderDateLabel.text = @" ";
-    self.reminderDateLabel.textColor = [UIColor grayColor];
-}
-*/
-
 #pragma mark - Timing picker delegate methods.
 
 - (void)pickerController:(FLTimingPickerController *)controller didSelectValue:(NSTimeInterval)selectedTime forPicker:(TimingPickerType)picker
@@ -574,90 +550,58 @@ static NSString * const kLongBreakColorPicker = @"longBreakColorPicker";
     } else {
         // Check if the task name exist.
         if (self.isNameTaken) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Duplicate Name!"
-                                                                           message:@"This name already exists. Do you still want to continue with the same name?"
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {
-                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                      // Bring back keyboard to enter task name.
-                                                                      [self.taskNameField becomeFirstResponder];
-                                                                  }];
-            [alert addAction:dismissAction];
-        
-            [self presentViewController:alert animated:YES completion:nil];
+            SCLAlertView *nameAlert = [[SCLAlertView alloc] init];
+            nameAlert.showAnimationType = SlideInToCenter;
+            nameAlert.hideAnimationType = SlideOutToCenter;
+            nameAlert.customViewColor = [UIColor flatWisteriaColor];
+            
+            [nameAlert addButton:@"Continue" actionBlock:^{
+                [self saveTaskInfo];
+            }];
+            
+            [nameAlert addButton:@"Change" actionBlock:^{
+                // Bring back keyboard to enter task name.
+                [self.taskNameField becomeFirstResponder];
+            }];
+            
+            [nameAlert showNotice:self.navigationController title:@"Duplicate Name!" subTitle:@"This name already exists. Do you still want to continue with the same name?" closeButtonTitle:nil duration:0.0f];
         
         } else {
-        
-            if (self.isActiveField) {
-                [self.view endEditing:YES];
-            }
-        
-            if (self.task == nil) {
-                self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[self managedObjectContext]];
-            
-                // Set unique ID when task is created for the first time.
-                self.task.uniqueID = self.uniqueID;
-            }
-        
-            self.task.name = self.taskName;
-            self.task.taskTime = [NSNumber numberWithDouble:self.taskTime];
-            self.task.shortBreakTime = [NSNumber numberWithDouble:self.shortBreakTime];
-            self.task.longBreakTime = [NSNumber numberWithDouble:self.longBreakTime];
-            self.task.longBreakDelay = [NSNumber numberWithInteger:self.longBreakDelay];
-            self.task.repeatCount = [NSNumber numberWithInteger:self.repeatCount];
-        
-            // Task object stores cycle colors as Hex string.
-        
-            self.task.taskColorString = self.taskColorString;
-            self.task.shortBreakColorString = self.shortBreakColorString;
-            self.task.longBreakColorString = self.longBreakColorString;
-        
-            // Adds nil to reminder date.
-            self.task.reminderDate = nil;
-        
-            /* Reminder date handling code here. */
-        
-            //        NSLog(@"Old reinder date : %@", self.task.reminderDate);
-            //        NSLog(@"New reminder date : %@", self.reminderDate);
-            //        if (![self.task.reminderDate isEqualToDate:self.reminderDate]) {
-            //            if (!self.task.reminderDate) {
-            //                if (self.reminderDate) {
-            //                    self.task.reminderDate = self.reminderDate;
-            //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            //                        NSLog(@"schedule reminder notification");
-            //                        [self scheduleReminderNotificationForTask:self.task];
-            //                    });
-            //                } else {
-            //                    NSLog(@"Both dates are nill");
-            //                    /* This line executes when bothe Reimder dates are nill but not captured while comparing both dates. */
-            //                }
-            //            } else {
-            //                if (!self.reminderDate) {
-            //                    self.task.reminderDate = nil;
-            //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            //                        NSLog(@"cancel old reminder notification");
-            //                        [self cancelReminderNotificationForTask:self.task];
-            //                    });
-            //                } else {
-            //                    self.task.reminderDate = self.reminderDate;
-            //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            //                        NSLog(@"cancel old reminder notification");
-            //                        [self cancelReminderNotificationForTask:self.task];
-            //                    });
-            //                    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            //                        NSLog(@"schedule reminder notification");
-            //                        [self scheduleReminderNotificationForTask:self.task];
-            //                    });
-            //                }
-            //            }
-            //        } else {
-            //            NSLog(@"No change in reminder date");
-            //        }
-        
-            [self saveAndDismiss];
+            [self saveTaskInfo];
         }
     }
+}
+
+- (void)saveTaskInfo
+{
+    if (self.isActiveField) {
+        [self.view endEditing:YES];
+    }
+    
+    if (self.task == nil) {
+        self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[self managedObjectContext]];
+        
+        // Set unique ID when task is created for the first time.
+        self.task.uniqueID = self.uniqueID;
+    }
+    
+    self.task.name = self.taskName;
+    self.task.taskTime = [NSNumber numberWithDouble:self.taskTime];
+    self.task.shortBreakTime = [NSNumber numberWithDouble:self.shortBreakTime];
+    self.task.longBreakTime = [NSNumber numberWithDouble:self.longBreakTime];
+    self.task.longBreakDelay = [NSNumber numberWithInteger:self.longBreakDelay];
+    self.task.repeatCount = [NSNumber numberWithInteger:self.repeatCount];
+    
+    // Task object stores cycle colors as Hex string.
+    
+    self.task.taskColorString = self.taskColorString;
+    self.task.shortBreakColorString = self.shortBreakColorString;
+    self.task.longBreakColorString = self.longBreakColorString;
+    
+    // Adds nil to reminder date.
+    self.task.reminderDate = nil;
+    
+    [self saveAndDismiss];
 }
 
 - (void)saveAndDismiss
