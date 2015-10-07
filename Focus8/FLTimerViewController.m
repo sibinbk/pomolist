@@ -1086,41 +1086,34 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 
 #pragma mark - Empty Dataset data source.
 
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
-{
-    return [UIImage imageNamed:@"Checkmark"];
-}
+//- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
+//{
+//    return [UIImage imageNamed:@"Checkmark"];
+//}
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
 {
-    NSString *text = @"Task List is empty!";
+    NSString *text = @"Empty Task List!";
     
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:26.0f],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"AvenirNext-Medium" size:30],
+                                 NSForegroundColorAttributeName: [UIColor blackColor]};
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
 {
-    NSString *text = @"Add a new task to start using Listie.";
+    NSString *text = @"Your task list is empty. Please add a new task by pressing '+' button below.";
     
     NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
     paragraph.alignment = NSTextAlignmentCenter;
     
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
-                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular" size:18],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor],
                                  NSParagraphStyleAttributeName: paragraph};
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
-{
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17.0f]};
-    
-    return [[NSAttributedString alloc] initWithString:@"Add a task" attributes:attributes];
 }
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
@@ -1148,13 +1141,6 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
 {
     return YES;
-}
-
-- (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView
-{
-    // Do something
-    NSLog(@"Empty dataset button pressed");
-    [self addNewTask];
 }
 
 #pragma mark - Fetched results controller performFetch method.
