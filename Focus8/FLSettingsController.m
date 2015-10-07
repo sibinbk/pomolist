@@ -92,22 +92,17 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
             [fbPost addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8"]];
             [fbPost setCompletionHandler:^(SLComposeViewControllerResult result)
              {
-                 if (result == SLComposeViewControllerResultCancelled)
-                 {
+                 if (result == SLComposeViewControllerResultCancelled) {
                      NSLog(@"The user cancelled.");
-                 }
-                 else if (result == SLComposeViewControllerResultDone)
-                 {
+                 } else if (result == SLComposeViewControllerResultDone) {
                      NSLog(@"The user sent the post.");
                  }
              }];
             [self presentViewController:fbPost animated:YES completion:nil];
         }
-    }
-    else
-    {
+    } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Can't share it!!"
-                                                                       message:@"You are not logged in to your Facebook account.  Please login in to you Facebook account first."
+                                                                       message:@"You are not logged in to your Facebook account.  Please login in to your Facebook account first."
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
@@ -128,12 +123,9 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
             [tweet setInitialText:@"ABCD App"];
             [tweet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8"]];
             [tweet setCompletionHandler:^(SLComposeViewControllerResult result) {
-                if (result == SLComposeViewControllerResultCancelled)
-                {
+                if (result == SLComposeViewControllerResultCancelled) {
                     NSLog(@"The user cancelled.");
-                }
-                else if (result == SLComposeViewControllerResultDone)
-                {
+                } else if (result == SLComposeViewControllerResultDone) {
                     NSLog(@"The user sent the tweet");
                 }
             }];
@@ -144,7 +136,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     else
     {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Can't tweet it!!"
-                                                                       message:@"You are not logged in to your Twitter account. Please login in to you Twitter account first."
+                                                                       message:@"You are not logged in to your Twitter account. Please login in to your Twitter account first."
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
@@ -164,8 +156,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         messageComposeViewController.body = @"Hi, check this new iOS app, https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8";
         [self presentViewController:messageComposeViewController animated:YES completion:nil];
     } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"SMS failed"
-                                                                       message:@"You cannot send the SMS"
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!!"
+                                                                       message:@"SMS failed"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
@@ -183,11 +175,11 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         MFMailComposeViewController *mailComposeViewController = [[MFMailComposeViewController alloc] init];
         mailComposeViewController.mailComposeDelegate = self;
         [mailComposeViewController setToRecipients:@[@"sibinbk@gmail.com"]];
-        [mailComposeViewController setSubject:@"App Feedback"];
+        [mailComposeViewController setSubject:@"Feedback"];
         [self presentViewController:mailComposeViewController animated:YES completion:nil];
     } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Email failed"
-                                                                       message:@"You cannot send the email"
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!!"
+                                                                       message:@"Email failed"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
@@ -197,13 +189,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
         
         [self presentViewController:alert animated:YES completion:nil];
     }
-
 }
 
 -(void)reviewTheApp
 {
-    UIAlertController *alertAction = [UIAlertController alertControllerWithTitle:@"Rate Listie"
-                                                                         message:@"What do you think about Listie?"
+    UIAlertController *alertAction = [UIAlertController alertControllerWithTitle:@"Rate Listee"
+                                                                         message:@"What do you think about Listee?"
                                                                   preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *LikeAction = [UIAlertAction actionWithTitle:@"Love it"
                                                          style:UIAlertActionStyleDefault
@@ -211,7 +202,13 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                                                            [self openAppLink];
                                                            [alertAction dismissViewControllerAnimated:YES completion:nil];
                                                        }];
-    UIAlertAction *dislikeAction = [UIAlertAction actionWithTitle:@"I don't like it"
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"It's ok"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * _Nonnull action) {
+                                                              [self appDislikeAction];
+                                                              [alertAction dismissViewControllerAnimated:YES completion:nil];
+                                                          }];
+    UIAlertAction *dislikeAction = [UIAlertAction actionWithTitle:@"Hate it"
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * _Nonnull action) {
                                                               [self appDislikeAction];
@@ -223,6 +220,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
                                                         [alertAction dismissViewControllerAnimated:YES completion:nil];
                                                     }];
     [alertAction addAction:LikeAction];
+    [alertAction addAction:okAction];
     [alertAction addAction:dislikeAction];
     [alertAction addAction:cancel];
     
