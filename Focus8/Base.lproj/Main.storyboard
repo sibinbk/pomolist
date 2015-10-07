@@ -310,21 +310,21 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dKl-oX-aik" id="37M-rx-rQh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="71.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0o-hJ-VQ5" customClass="DesignableView" customModule="Focus8" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="3" width="64" height="64"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4G-C4-6h2">
-                                                            <rect key="frame" x="14" y="6" width="37" height="36"/>
+                                                            <rect key="frame" x="14" y="6" width="36.5" height="36"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8n-Pg-ljA">
-                                                            <rect key="frame" x="20" y="38" width="24" height="17"/>
+                                                            <rect key="frame" x="20" y="38" width="23.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -367,8 +367,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFb-13-0mH">
-                                                    <rect key="frame" x="80" y="12" width="76" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <rect key="frame" x="80" y="10" width="80" height="28"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -391,7 +391,7 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="B3H-J0-pjA" firstAttribute="top" secondItem="vFb-13-0mH" secondAttribute="bottom" constant="8" id="2pn-L1-FHY"/>
+                                                <constraint firstItem="B3H-J0-pjA" firstAttribute="top" secondItem="vFb-13-0mH" secondAttribute="bottom" constant="6" id="2pn-L1-FHY"/>
                                                 <constraint firstItem="qWW-ZE-9lW" firstAttribute="leading" secondItem="B3H-J0-pjA" secondAttribute="trailing" constant="6" id="8Kf-NU-LW9"/>
                                                 <constraint firstItem="L0o-hJ-VQ5" firstAttribute="leading" secondItem="37M-rx-rQh" secondAttribute="leading" constant="8" id="EN2-PY-iVk"/>
                                                 <constraint firstItem="i73-r7-wtM" firstAttribute="centerY" secondItem="37M-rx-rQh" secondAttribute="centerY" id="NaE-Gg-EcK"/>
@@ -402,7 +402,7 @@
                                                 <constraint firstItem="zUJ-8e-nQs" firstAttribute="leading" secondItem="qWW-ZE-9lW" secondAttribute="trailing" constant="6" id="cRs-NC-b5H"/>
                                                 <constraint firstAttribute="trailing" secondItem="i73-r7-wtM" secondAttribute="trailing" constant="15" id="d8u-yA-jwn"/>
                                                 <constraint firstItem="i73-r7-wtM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vFb-13-0mH" secondAttribute="trailing" constant="15" id="r2e-CB-SJe"/>
-                                                <constraint firstItem="vFb-13-0mH" firstAttribute="top" secondItem="37M-rx-rQh" secondAttribute="top" constant="12" id="v4z-8O-Ev7"/>
+                                                <constraint firstItem="vFb-13-0mH" firstAttribute="top" secondItem="37M-rx-rQh" secondAttribute="top" constant="10" id="v4z-8O-Ev7"/>
                                                 <constraint firstItem="vFb-13-0mH" firstAttribute="leading" secondItem="L0o-hJ-VQ5" secondAttribute="trailing" constant="8" id="vgf-tm-JHD"/>
                                                 <constraint firstItem="zUJ-8e-nQs" firstAttribute="centerY" secondItem="qWW-ZE-9lW" secondAttribute="centerY" id="wsy-Ir-V2w"/>
                                             </constraints>
