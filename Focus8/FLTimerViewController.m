@@ -623,7 +623,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         [self resetTaskTimer];
     }];
     
-    [resetAlert showNotice:self.navigationController title:@"Reset Timer" subTitle:@"This will reset your entire timer. Are you sure you want to reset?" closeButtonTitle:@"No" duration:0.0f];
+    [resetAlert showNotice:self.navigationController title:@"Reset Timer" subTitle:@"Are you sure you want to reset timer?" closeButtonTitle:@"No" duration:0.0f];
 }
 
 - (void)resetTaskTimer
@@ -651,7 +651,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         [self skipTasktimer];
     }];
     
-    [resetAlert showNotice:self.navigationController title:@"Skip Timer" subTitle:@"This will skip the current session. Are you sure you want to skip?" closeButtonTitle:@"No" duration:0.0f];
+    [resetAlert showNotice:self.navigationController title:@"Skip Timer" subTitle:@"Are you sure you want to skip current session?" closeButtonTitle:@"No" duration:0.0f];
 
 }
 
