@@ -302,32 +302,28 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 {
     if ([[UIScreen mainScreen] bounds].size.height == 480) {
         // iPhone 4
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:86];
         self.summaryViewHeight.constant = 70;
-        self.startButtonHeight.constant = 70;
-        self.startButton.layer.cornerRadius = 35;
+        self.startButtonHeight.constant = 76;
+        self.startButton.layer.cornerRadius = 38;
     } else if ([[UIScreen mainScreen] bounds].size.height == 568){
         // IPhone 5
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:80];
+        self.timerLabelFont = [self.timerLabel.font fontWithSize:90];
         self.summaryViewHeight.constant = 80;
-        self.startButtonHeight.constant = 80;
-        self.startButton.layer.cornerRadius = 40;
+        self.startButtonHeight.constant = 84;
+        self.startButton.layer.cornerRadius = 42;
     } else if ([[UIScreen mainScreen] bounds].size.height == 667) {
         // iPhone 6
         self.timerLabelFont = [self.timerLabel.font fontWithSize:110];
         self.summaryViewHeight.constant = 100;
-        self.startButtonHeight.constant = 100;
-        self.startButton.layer.cornerRadius = 50;
+        self.startButtonHeight.constant = 92;
+        self.startButton.layer.cornerRadius = 46;
     } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
         // iPhone 6+
         self.timerLabelFont = [self.timerLabel.font fontWithSize:110];
         self.summaryViewHeight.constant = 110;
         self.startButtonHeight.constant = 100;
         self.startButton.layer.cornerRadius = 50;
-    } else {
-        // iPad
-        self.timerLabelFont = [self.timerLabel.font fontWithSize:120];
-        self.summaryViewHeight.constant = 120;
     }
 }
 
@@ -596,10 +592,9 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         self.resetButton.hidden = NO;
         self.skipButton.hidden = YES;
 
-        // GCD to avoid blocking UI when the loacal notification setup loop runs.
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self scheduleTimerNotifications];
-        });
+        // Schedule notifications.
+        [self scheduleTimerNotifications];
+        
     } else {
         [self.repeatTimer pauseCountDown];
         if (!self.repeatTimer.started) {
