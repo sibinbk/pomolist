@@ -14,7 +14,7 @@
 #import <MessageUI/MessageUI.h>
 #import <EAIntroView/EAIntroView.h>
 
-static int const MY_APP_STORE_ID = 527097956; // Change it with original App ID before uploading Binary
+static int const MY_APP_STORE_ID = 1047719965; // Change it with original App ID before uploading Binary
 
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
@@ -96,16 +96,16 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
         SLComposeViewController *fbPost = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         if (fbPost) {
-            [fbPost setInitialText:@"ABCD"];
-            [fbPost addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8"]];
+            [fbPost setInitialText:@"Listee App"];
+            [fbPost addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/listee-procrastinators-to/id1047719965?ls=1&mt=8"]];
             [fbPost setCompletionHandler:^(SLComposeViewControllerResult result) {
             }];
             
             [self presentViewController:fbPost animated:YES completion:nil];
         }
     } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Can't share it!!"
-                                                                       message:@"You are not logged in to your Facebook account.  Please login in to your Facebook account first."
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Can't share it!"
+                                                                       message:@"You are not logged in to your Facebook account."
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
@@ -123,18 +123,16 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
         SLComposeViewController *tweet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         if (tweet) {
-            [tweet setInitialText:@"ABCD App"];
-            [tweet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8"]];
+            [tweet setInitialText:@"Listee App"];
+            [tweet addURL:[NSURL URLWithString:@"https://itunes.apple.com/app/listee-procrastinators-to/id1047719965?ls=1&mt=8"]];
             [tweet setCompletionHandler:^(SLComposeViewControllerResult result) {
             }];
             
             [self presentViewController:tweet animated:YES completion:nil];
         }
-    }
-    else
-    {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Can't tweet it!!"
-                                                                       message:@"You are not logged in to your Twitter account. Please login in to your Twitter account first."
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Can't tweet it!"
+                                                                       message:@"You are not logged in to your Twitter account."
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
@@ -151,7 +149,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     if ([MFMessageComposeViewController canSendText]) {
         MFMessageComposeViewController *messageComposeViewController = [[MFMessageComposeViewController alloc] init];
         messageComposeViewController.messageComposeDelegate = self;
-        messageComposeViewController.body = @"Hi, check this new iOS app, https://itunes.apple.com/app/abcd-alphabet-with-phonics/id527097956?mt=8";
+        messageComposeViewController.body = @"Hi, check this new productivity app, Listee - https://itunes.apple.com/app/listee-procrastinators-to/id1047719965?ls=1&mt=8";
         [self presentViewController:messageComposeViewController animated:YES completion:nil];
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!!"
@@ -172,7 +170,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailComposeViewController = [[MFMailComposeViewController alloc] init];
         mailComposeViewController.mailComposeDelegate = self;
-        [mailComposeViewController setToRecipients:@[@"sibinbk@gmail.com"]];
+        [mailComposeViewController setToRecipients:@[@"listee.app@gmail.com"]];
         [mailComposeViewController setSubject:@"Feedback"];
         [self presentViewController:mailComposeViewController animated:YES completion:nil];
     } else {
