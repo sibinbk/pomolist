@@ -330,8 +330,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName1]];
     
     EAIntroPage *page2 = [EAIntroPage page];
-    page2.title = @"Prorastinate no more!";
-    page2.desc = @"Split your task into smaller sessions. Finish one session at a time. Take a break after each session. Its that simple";
+    page2.title = @"Procrastinate no more!";
+    page2.desc = @"Split task into smaller sessions. Finish one session at a time. Take a break after each session. It's that simple";
     page2.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page2.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
     page2.bgColor = [UIColor flatAlizarinColor];
