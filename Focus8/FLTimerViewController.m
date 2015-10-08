@@ -43,7 +43,8 @@ static NSString * const kFLLongBreakColorString = @"longBreakColorString";
 static NSString * const kFLUserDefaultKey = @"FocusListUserDefaults";
 static NSString * const kFLRepeatTimer = @"FLRepeatTimer";
 static NSString * const kFLTimerNotification = @"FLTimerNotification";
-static NSString *const kFLAppTitle = @"Listee";
+static NSString * const kFLAppTitle = @"Listee";
+static NSString * const kUserHasOnboardedKey = @"FLUserHasOnboarded";
 
 
 static NSString * const sampleDescription1 = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
@@ -76,6 +77,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 @property (assign, nonatomic) BOOL isFullView;
 @property (assign, nonatomic) BOOL isTaskEditing;
 @property (assign, nonatomic) BOOL taskSelected;
+//@property (assign, nonatomic) BOOL userHasOnboarded;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
@@ -126,7 +128,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     // using self.navigationController.view - to display EAIntroView above navigation bar
     rootView = self.navigationController.view;
-
+    
     // Check if Back up task info is available.
     if ([self backupExist]) {
         [self restoreTaskInfo];
@@ -150,7 +152,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     self.repeatTimer = [ZGCountDownTimer countDownTimerWithIdentifier:kFLRepeatTimer];
     self.repeatTimer.delegate = self;
     [self setUpRepeatTimer];
-
+    
     // Read settings info from UserDefaults.
     [self restoreSettingsInfo];
     
@@ -195,14 +197,20 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     // Setting Summary view blur effect.
     self.summaryView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    
+    // determine if the user has onboarded yet or not
+    BOOL userHasOnboarded = [[NSUserDefaults standardUserDefaults] boolForKey:kUserHasOnboardedKey];
+    
+    // Check whether user has onboarded. If not show Introview.
+    if (!userHasOnboarded){
+        [self showIntroWithCrossDissolve];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     
-    [self showIntroWithCrossDissolve];
-
     // Assign Timer label font.
     self.timerLabel.font = self.timerLabelFont;
     
@@ -256,14 +264,22 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4]];
     [intro setDelegate:self];
     
-    [intro showInView:rootView animateDuration:0.3];
+    [intro showInView:rootView animateDuration:0];
 }
 
 #pragma mark - IntroView delegate methods.
 
 - (void)introDidFinish:(EAIntroView *)introView
 {
-    NSLog(@"Intro finished");
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kUserHasOnboardedKey];
+    
+    // Asks for Notifications permission after IntroView.
+    // Enable Notifications for iOS 8 and above.
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge|UIUserNotificationTypeAlert|UIUserNotificationTypeSound) categories:nil];
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
 }
 
 #pragma mark - Repeat timer set up.
