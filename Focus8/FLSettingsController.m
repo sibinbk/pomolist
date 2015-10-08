@@ -305,6 +305,8 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     }
 }
 
+#pragma mark - Introview.
+
 - (void)showIntroWithCrossDissolve {
     EAIntroPage *page1 = [EAIntroPage page];
     page1.title = @"Hello world";
@@ -339,4 +341,12 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     [intro showInView:rootView animateDuration:0.3];
 }
+
+#pragma mark - IntroView delegate methods.
+
+- (void)introDidFinish:(EAIntroView *)introView
+{
+    NSLog(@"Intro finished");
+}
+
 @end
