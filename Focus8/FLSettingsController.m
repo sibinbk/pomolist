@@ -322,7 +322,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
     EAIntroPage *page1 = [EAIntroPage page];
     page1.title = @"Welcome to Listee";
-    page1.desc = @"Listee is a procrastinator's to do list. Ever felt a task is so big and cannot finish it in time? Listee is for you.";
+    page1.desc = @"Listee is a procrastinator's to do list app. Ever felt a task is time consuming and cannot finish it in time? Listee is here to help you.";
     page1.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page1.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
     page1.bgColor = [UIColor flatWisteriaColor];
@@ -339,7 +339,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName2]];
     
     EAIntroPage *page3 = [EAIntroPage page];
-    page3.title = @"It's so easy to use. Just swipe";
+    page3.title = @"Easy to use. Just swipe!";
     page3.desc = @"Swipe left to Edit or Delete.\n Swipe right to view your progress";
     page3.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page3.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
@@ -349,25 +349,25 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     
     EAIntroPage *page4 = [EAIntroPage page];
     page4.title = @"Work on your on terms!";
-    page4.desc = @"Listee is hghly customizable. Set different time lengths for different tasks. Also choose from a wide variety of themes.";
+    page4.desc = @"Listee is highly customizable. Set different time lengths for different tasks. Also choose from a wide variety of themes.";
     page4.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page4.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
     page4.bgColor = [UIColor flatTurquoiseColor];
     NSString *titleImageName4 = [NSString stringWithFormat:@"screen2%@", deviceIdentifierString];
     page4.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName4]];;
-
+    
     
     EAIntroPage *page5 = [EAIntroPage page];
     page5.title = @"What did you do today?";
-    page5.desc = @"Track your progress and be motivated.";
+    page5.desc = @"Track your progress and get motivated.";
     page5.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page5.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
     page5.bgColor = [UIColor flatTurquoiseColor];
     NSString *titleImageName5 = [NSString stringWithFormat:@"screen5%@", deviceIdentifierString];
     page5.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName5]];;
-
+    
     EAIntroPage *page6 = [EAIntroPage page];
-    page6.title = @"Focus on your task!";
+    page6.title = @"Notifications! Listee can handle it";
     page6.desc = @"Listee will alert you when a session is finished. Even when it is in the background!\n Make sure to enable notifications.";
     page6.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page6.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];

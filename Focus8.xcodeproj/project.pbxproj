@@ -109,7 +109,6 @@
 		C3CB91741BAD6EAD0081B56E /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CB91721BAD6EAD0081B56E /* Task+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		C3D1B6171B47D7660003419B /* FLBreakDelayPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1B6161B47D7660003419B /* FLBreakDelayPickerController.m */; };
 		C3D1B61A1B4841320003419B /* FLSessionCountPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1B6191B4841320003419B /* FLSessionCountPickerController.m */; };
-		C3D3546B1BC598F3000B2726 /* FLWalkthroughController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D3546A1BC598F3000B2726 /* FLWalkthroughController.m */; settings = {ASSET_TAGS = (); }; };
 		C3D354E81BC67273000B2726 /* screen1_4@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3D354B01BC67273000B2726 /* screen1_4@1x.png */; settings = {ASSET_TAGS = (); }; };
 		C3D354E91BC67273000B2726 /* screen1_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3D354B11BC67273000B2726 /* screen1_4@2x.png */; settings = {ASSET_TAGS = (); }; };
 		C3D354EA1BC67273000B2726 /* screen1_4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3D354B21BC67273000B2726 /* screen1_4@3x.png */; settings = {ASSET_TAGS = (); }; };
@@ -319,8 +318,6 @@
 		C3D1B6161B47D7660003419B /* FLBreakDelayPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBreakDelayPickerController.m; sourceTree = "<group>"; };
 		C3D1B6181B4841320003419B /* FLSessionCountPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSessionCountPickerController.h; sourceTree = "<group>"; };
 		C3D1B6191B4841320003419B /* FLSessionCountPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSessionCountPickerController.m; sourceTree = "<group>"; };
-		C3D354691BC598F3000B2726 /* FLWalkthroughController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWalkthroughController.h; sourceTree = "<group>"; };
-		C3D3546A1BC598F3000B2726 /* FLWalkthroughController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWalkthroughController.m; sourceTree = "<group>"; };
 		C3D354B01BC67273000B2726 /* screen1_4@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen1_4@1x.png"; sourceTree = "<group>"; };
 		C3D354B11BC67273000B2726 /* screen1_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen1_4@2x.png"; sourceTree = "<group>"; };
 		C3D354B21BC67273000B2726 /* screen1_4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen1_4@3x.png"; sourceTree = "<group>"; };
@@ -544,8 +541,6 @@
 				C35B33881A0CBE5400061C40 /* ZGCountDownTimer */,
 				C35B33601A0CBA1500061C40 /* AppDelegate.h */,
 				C35B33611A0CBA1500061C40 /* AppDelegate.m */,
-				C3D354691BC598F3000B2726 /* FLWalkthroughController.h */,
-				C3D3546A1BC598F3000B2726 /* FLWalkthroughController.m */,
 				C35B33851A0CBDF400061C40 /* FLTimerViewController.h */,
 				C35B33861A0CBDF400061C40 /* FLTimerViewController.m */,
 				C3EFAEA01A13462D003D641C /* FLEditTaskController.h */,
@@ -1066,7 +1061,6 @@
 				C37567C41BA17E24009DB1D5 /* Task.m in Sources */,
 				C38409EF1BAC5BFA00097321 /* DesignableView.swift in Sources */,
 				C38409FB1BAC5BFA00097321 /* SpringLabel.swift in Sources */,
-				C3D3546B1BC598F3000B2726 /* FLWalkthroughController.m in Sources */,
 				C38409E61BAC5BFA00097321 /* AsyncImageView.swift in Sources */,
 				C35B33871A0CBDF400061C40 /* FLTimerViewController.m in Sources */,
 				C38409F31BAC5BFA00097321 /* LoadingView.swift in Sources */,
