@@ -49,7 +49,7 @@
 {
     self.lineColor = [UIColor whiteColor];
     self.lineHeight = 1.5;
-    self.lineSpacing = 3.5;  // 3.5 was default.
+    self.lineSpacing = 3.5;
     self.lineWidth = 24.;
     
     self.animationDuration = .3;

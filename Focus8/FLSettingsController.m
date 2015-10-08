@@ -9,15 +9,17 @@
 #import "FLSettingsController.h"
 #import "JSQSystemSoundPlayer.h"
 #import "FLSoundPickerController.h"
+#import "UIColor+FlatColors.h"
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
+#import <EAIntroView/EAIntroView.h>
 
 static int const MY_APP_STORE_ID = 527097956; // Change it with original App ID before uploading Binary
 
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
-@interface FLSettingsController () <FLSoundPickerControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+@interface FLSettingsController () <FLSoundPickerControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, EAIntroDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *alarmSoundLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *preventScreenLockSwitch;
@@ -25,10 +27,17 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 @end
 
 @implementation FLSettingsController
+{
+    UIView *rootView;
+    EAIntroView *_intro;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // using self.navigationController.view - to display EAIntroView above navigation bar
+    rootView = self.navigationController.view;
     
     self.alarmSoundLabel.text = self.alarmSound;
     
@@ -285,5 +294,91 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     if (indexPath.section == 4 && indexPath.row == 0) {
         [self reviewTheApp];
     }
+    
+    if (indexPath.section == 5 && indexPath.row == 0) {
+        [self showIntroWithCrossDissolve];
+    }
 }
+
+#pragma mark - Introview.
+
+- (void)showIntroWithCrossDissolve {
+    
+    NSString *deviceIdentifierString;
+    
+    if ([[UIScreen mainScreen] bounds].size.height == 480) {
+        // iPhone 4
+        deviceIdentifierString = @"_4";
+    } else if ([[UIScreen mainScreen] bounds].size.height == 568){
+        // IPhone 5
+        deviceIdentifierString = @"_5";
+    } else if ([[UIScreen mainScreen] bounds].size.height == 667) {
+        // iPhone 6
+        deviceIdentifierString = @"_6";
+    } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
+        // iPhone 6+
+        deviceIdentifierString = @"_6";
+    }
+
+    EAIntroPage *page1 = [EAIntroPage page];
+    page1.title = @"Welcome to Listee";
+    page1.desc = @"Listee is a procrastinator's to do list app. Ever felt a task is time consuming and cannot finish it in time? Listee is here to help you.";
+    page1.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page1.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page1.bgColor = [UIColor flatWisteriaColor];
+    NSString *titleImageName1 = [NSString stringWithFormat:@"screen3%@", deviceIdentifierString];
+    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName1]];
+    
+    EAIntroPage *page2 = [EAIntroPage page];
+    page2.title = @"Procrastinate no more!";
+    page2.desc = @"Split task into smaller sessions. Finish one session at a time. Take a break after each session. It's that simple";
+    page2.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page2.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page2.bgColor = [UIColor flatAlizarinColor];
+    NSString *titleImageName2 = [NSString stringWithFormat:@"screen1%@", deviceIdentifierString];
+    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName2]];
+    
+    EAIntroPage *page3 = [EAIntroPage page];
+    page3.title = @"Easy to use. Just swipe!";
+    page3.desc = @"Swipe left to Edit or Delete.\n Swipe right to view your progress";
+    page3.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page3.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page3.bgColor = [UIColor flatPeterRiverColor];
+    NSString *titleImageName3 = [NSString stringWithFormat:@"screen4%@", deviceIdentifierString];
+    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName3]];;
+    
+    EAIntroPage *page4 = [EAIntroPage page];
+    page4.title = @"Work on your on terms!";
+    page4.desc = @"Listee is highly customizable. Set different time lengths for different tasks. Also choose from a wide variety of themes.";
+    page4.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page4.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page4.bgColor = [UIColor flatTurquoiseColor];
+    NSString *titleImageName4 = [NSString stringWithFormat:@"screen2%@", deviceIdentifierString];
+    page4.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName4]];;
+    
+    
+    EAIntroPage *page5 = [EAIntroPage page];
+    page5.title = @"What did you do today?";
+    page5.desc = @"Track your progress and get motivated.";
+    page5.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page5.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page5.bgColor = [UIColor flatTurquoiseColor];
+    NSString *titleImageName5 = [NSString stringWithFormat:@"screen5%@", deviceIdentifierString];
+    page5.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName5]];;
+    
+    EAIntroPage *page6 = [EAIntroPage page];
+    page6.title = @"Notifications! Listee can handle it";
+    page6.desc = @"Listee will alert you when a session is finished. Even when it is in the background!\n Make sure to enable notifications.";
+    page6.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page6.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page6.bgColor = [UIColor flatTurquoiseColor];
+    NSString *titleImageName6 = [NSString stringWithFormat:@"screen6%@", deviceIdentifierString];
+    page6.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName6]];;
+    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1, page2, page3, page4, page5, page6]];
+    [intro setDelegate:self];
+    
+    [intro showInView:rootView animateDuration:0.3];
+}
+
 @end

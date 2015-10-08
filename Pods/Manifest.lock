@@ -1,20 +1,32 @@
 PODS:
+  - CNPPopupController (0.3.1)
   - DZNEmptyDataSet (1.7.1)
+  - EAIntroView (2.7.4):
+    - EARestrictedScrollView (~> 0.2.0)
+  - EARestrictedScrollView (0.2.0)
   - JSQSystemSoundPlayer (4.1.0)
+  - JTHamburgerButton (1.0.5)
   - MGSwipeTableCell (1.5.1)
   - NSAttributedString+CCLFormat (1.1.1)
   - SCLAlertView-Objective-C (0.7.5)
 
 DEPENDENCIES:
+  - CNPPopupController
   - DZNEmptyDataSet
+  - EAIntroView
   - JSQSystemSoundPlayer
+  - JTHamburgerButton
   - MGSwipeTableCell
   - NSAttributedString+CCLFormat
   - SCLAlertView-Objective-C
 
 SPEC CHECKSUMS:
+  CNPPopupController: 67dc2ca5a3f88cd49a27bb1b0aeb78a24d423d79
   DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12
+  EAIntroView: 50b85eedf414260e61330070ffe5947e72493a62
+  EARestrictedScrollView: f86d61e16c61d3e93c84f8e96e83122a2a3b7631
   JSQSystemSoundPlayer: 98392a1064d9af1292493f71036b9154f79d203f
+  JTHamburgerButton: 9a41c7d051c72590a9d2c18416d84d1b912f12e3
   MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
   NSAttributedString+CCLFormat: f3826cbae249afbdf322aba4932673b865454086
   SCLAlertView-Objective-C: 5692f7b848999537af0079d6891c3a11040e3a22

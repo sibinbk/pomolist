@@ -25,6 +25,7 @@
 #import "JTHamburgerButton.h"
 #import "CNPPopupController.h"
 #import "NSAttributedString+CCLFormat.h"
+#import <EAIntroView/EAIntroView.h>
 
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
@@ -42,7 +43,15 @@ static NSString * const kFLLongBreakColorString = @"longBreakColorString";
 static NSString * const kFLUserDefaultKey = @"FocusListUserDefaults";
 static NSString * const kFLRepeatTimer = @"FLRepeatTimer";
 static NSString * const kFLTimerNotification = @"FLTimerNotification";
-static NSString *const kFLAppTitle = @"Listee";
+static NSString * const kFLAppTitle = @"Listee";
+static NSString * const kUserHasOnboardedKey = @"FLUserHasOnboarded";
+
+
+static NSString * const sampleDescription1 = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+static NSString * const sampleDescription2 = @"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.";
+static NSString * const sampleDescription3 = @"Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.";
+static NSString * const sampleDescription4 = @"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit.";
+
 
 typedef NS_ENUM(NSInteger, LabelViewType) {
     ProgressView,
@@ -50,7 +59,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     TaskListView
 };
 
-@interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, CNPPopupControllerDelegate>
+@interface FLTimerViewController () <ZGCountDownTimerDelegate, FLTaskControllerDelegate, FLSettingsControllerDelegate, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, CNPPopupControllerDelegate, EAIntroDelegate>
 
 @property (nonatomic) NSTimeInterval taskTime;
 @property (nonatomic) NSTimeInterval shortBreakTime;
@@ -68,6 +77,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 @property (assign, nonatomic) BOOL isFullView;
 @property (assign, nonatomic) BOOL isTaskEditing;
 @property (assign, nonatomic) BOOL taskSelected;
+//@property (assign, nonatomic) BOOL userHasOnboarded;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
@@ -105,12 +115,19 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
 @end
 
 @implementation FLTimerViewController
+{
+    UIView *rootView;
+    EAIntroView *_intro;
+}
 
 @synthesize fetchedResultsController = _fetchedResultsController;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    // using self.navigationController.view - to display EAIntroView above navigation bar
+    rootView = self.navigationController.view;
     
     // Check if Back up task info is available.
     if ([self backupExist]) {
@@ -135,7 +152,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     self.repeatTimer = [ZGCountDownTimer countDownTimerWithIdentifier:kFLRepeatTimer];
     self.repeatTimer.delegate = self;
     [self setUpRepeatTimer];
-
+    
     // Read settings info from UserDefaults.
     [self restoreSettingsInfo];
     
@@ -180,12 +197,20 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     
     // Setting Summary view blur effect.
     self.summaryView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    
+    // determine if the user has onboarded yet or not
+    BOOL userHasOnboarded = [[NSUserDefaults standardUserDefaults] boolForKey:kUserHasOnboardedKey];
+    
+    // Check whether user has onboarded. If not show Introview.
+    if (!userHasOnboarded){
+        [self showIntroWithCrossDissolve];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-
+    
     // Assign Timer label font.
     self.timerLabel.font = self.timerLabelFont;
     
@@ -203,6 +228,101 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     }
     
     [self.taskTableView reloadData];
+}
+
+#pragma mark - Introview.
+
+- (void)showIntroWithCrossDissolve {
+    NSString *deviceIdentifierString;
+    
+    if ([[UIScreen mainScreen] bounds].size.height == 480) {
+        // iPhone 4
+        deviceIdentifierString = @"_4";
+    } else if ([[UIScreen mainScreen] bounds].size.height == 568){
+        // IPhone 5
+        deviceIdentifierString = @"_5";
+    } else if ([[UIScreen mainScreen] bounds].size.height == 667) {
+        // iPhone 6
+        deviceIdentifierString = @"_6";
+    } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
+        // iPhone 6+
+        deviceIdentifierString = @"_6";
+    }
+    
+    EAIntroPage *page1 = [EAIntroPage page];
+    page1.title = @"Welcome to Listee";
+    page1.desc = @"Listee is a procrastinator's to do list app. Ever felt a task is time consuming and cannot finish it in time? Listee is here to help you.";
+    page1.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page1.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page1.bgColor = [UIColor flatWisteriaColor];
+    NSString *titleImageName1 = [NSString stringWithFormat:@"screen3%@", deviceIdentifierString];
+    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName1]];
+    
+    EAIntroPage *page2 = [EAIntroPage page];
+    page2.title = @"Procrastinate no more!";
+    page2.desc = @"Split task into smaller sessions. Finish one session at a time. Take a break after each session. It's that simple";
+    page2.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page2.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page2.bgColor = [UIColor flatAlizarinColor];
+    NSString *titleImageName2 = [NSString stringWithFormat:@"screen1%@", deviceIdentifierString];
+    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName2]];
+    
+    EAIntroPage *page3 = [EAIntroPage page];
+    page3.title = @"Easy to use. Just swipe!";
+    page3.desc = @"Swipe left to Edit or Delete.\n Swipe right to view your progress";
+    page3.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page3.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page3.bgColor = [UIColor flatPeterRiverColor];
+    NSString *titleImageName3 = [NSString stringWithFormat:@"screen4%@", deviceIdentifierString];
+    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName3]];;
+    
+    EAIntroPage *page4 = [EAIntroPage page];
+    page4.title = @"Work on your on terms!";
+    page4.desc = @"Listee is highly customizable. Set different time lengths for different tasks. Also choose from a wide variety of themes.";
+    page4.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page4.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page4.bgColor = [UIColor flatTurquoiseColor];
+    NSString *titleImageName4 = [NSString stringWithFormat:@"screen2%@", deviceIdentifierString];
+    page4.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName4]];;
+    
+    
+    EAIntroPage *page5 = [EAIntroPage page];
+    page5.title = @"What did you do today?";
+    page5.desc = @"Track your progress and get motivated.";
+    page5.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page5.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page5.bgColor = [UIColor flatTurquoiseColor];
+    NSString *titleImageName5 = [NSString stringWithFormat:@"screen5%@", deviceIdentifierString];
+    page5.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName5]];;
+    
+    EAIntroPage *page6 = [EAIntroPage page];
+    page6.title = @"Notifications! Listee can handle it";
+    page6.desc = @"Listee will alert you when a session is finished. Even when it is in the background!\n Make sure to enable notifications.";
+    page6.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page6.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page6.bgColor = [UIColor flatTurquoiseColor];
+    NSString *titleImageName6 = [NSString stringWithFormat:@"screen6%@", deviceIdentifierString];
+    page6.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName6]];;
+    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1, page2, page3, page4, page5, page6]];
+    [intro setDelegate:self];
+    
+    [intro showInView:rootView animateDuration:0];
+}
+
+#pragma mark - IntroView delegate methods.
+
+- (void)introDidFinish:(EAIntroView *)introView
+{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kUserHasOnboardedKey];
+    
+    // Asks for Notifications permission after IntroView.
+    // Enable Notifications for iOS 8 and above.
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge|UIUserNotificationTypeAlert|UIUserNotificationTypeSound) categories:nil];
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
 }
 
 #pragma mark - Repeat timer set up.
@@ -687,7 +807,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
         switch (cycleType) {
             case TaskCycle:
                 notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(tempCycleFinishTime - timePassed)];
-                notification.alertBody = [NSString stringWithFormat:@"%@ - Session %d completed. Take a break! Target sessions - %d", self.taskName, taskCount, (int)self.repeatCount];
+                notification.alertBody = [NSString stringWithFormat:@"%@ - Session %d completed. Take a break! Goal - %d sessions", self.taskName, taskCount, (int)self.repeatCount];
                 if (![self checkIfLongBreakCycle:taskCount]) {
                     cycleType = ShortBreakCycle;
                     tempCycleFinishTime += self.shortBreakTime;
