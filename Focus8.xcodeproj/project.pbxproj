@@ -157,7 +157,6 @@
 		C3D3551B1BC67273000B2726 /* screen6_6@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3D354E51BC67273000B2726 /* screen6_6@1x.png */; settings = {ASSET_TAGS = (); }; };
 		C3D3551C1BC67273000B2726 /* screen6_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3D354E61BC67273000B2726 /* screen6_6@2x.png */; settings = {ASSET_TAGS = (); }; };
 		C3D3551D1BC67273000B2726 /* screen6_6@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3D354E71BC67273000B2726 /* screen6_6@3x.png */; settings = {ASSET_TAGS = (); }; };
-		C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D680861B3838D900C08860 /* FLReminderPickerController.m */; };
 		C3D6808B1B3BBC6300C08860 /* FLTimingPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D6808A1B3BBC6300C08860 /* FLTimingPickerController.m */; };
 		C3D7E1B81BC67892005E2AD4 /* screen2_5@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3D7E1B51BC67892005E2AD4 /* screen2_5@1x.png */; settings = {ASSET_TAGS = (); }; };
 		C3D7E1B91BC67892005E2AD4 /* screen2_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3D7E1B61BC67892005E2AD4 /* screen2_5@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -366,8 +365,6 @@
 		C3D354E51BC67273000B2726 /* screen6_6@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen6_6@1x.png"; sourceTree = "<group>"; };
 		C3D354E61BC67273000B2726 /* screen6_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen6_6@2x.png"; sourceTree = "<group>"; };
 		C3D354E71BC67273000B2726 /* screen6_6@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen6_6@3x.png"; sourceTree = "<group>"; };
-		C3D680851B3838D900C08860 /* FLReminderPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLReminderPickerController.h; sourceTree = "<group>"; };
-		C3D680861B3838D900C08860 /* FLReminderPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLReminderPickerController.m; sourceTree = "<group>"; };
 		C3D680891B3BBC6300C08860 /* FLTimingPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTimingPickerController.h; sourceTree = "<group>"; };
 		C3D6808A1B3BBC6300C08860 /* FLTimingPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTimingPickerController.m; sourceTree = "<group>"; };
 		C3D7E1B51BC67892005E2AD4 /* screen2_5@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen2_5@1x.png"; sourceTree = "<group>"; };
@@ -551,8 +548,6 @@
 				C3616A401AAB021A00C47C8A /* EventTableViewController.m */,
 				C3F1F4551BC36CED007F252C /* FLTodayViewController.h */,
 				C3F1F4561BC36CED007F252C /* FLTodayViewController.m */,
-				C3D680851B3838D900C08860 /* FLReminderPickerController.h */,
-				C3D680861B3838D900C08860 /* FLReminderPickerController.m */,
 				C3D680891B3BBC6300C08860 /* FLTimingPickerController.h */,
 				C3D6808A1B3BBC6300C08860 /* FLTimingPickerController.m */,
 				C3D1B6151B47D7660003419B /* FLBreakDelayPickerController.h */,
@@ -1051,7 +1046,6 @@
 				C3EFAEA21A13462D003D641C /* FLEditTaskController.m in Sources */,
 				C38409FC1BAC5BFA00097321 /* SpringTextField.swift in Sources */,
 				C3D1B61A1B4841320003419B /* FLSessionCountPickerController.m in Sources */,
-				C3D680871B3838D900C08860 /* FLReminderPickerController.m in Sources */,
 				C3840A011BAC5BFA00097321 /* UnwindSegue.swift in Sources */,
 				C38409E91BAC5BFA00097321 /* DesignableButton.swift in Sources */,
 				C38409FD1BAC5BFA00097321 /* SpringTextView.swift in Sources */,
