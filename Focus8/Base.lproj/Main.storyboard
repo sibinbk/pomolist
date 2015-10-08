@@ -803,7 +803,6 @@
                         <segue destination="Ah2-Yo-Sbk" kind="presentation" identifier="timingPickerSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="sT6-lz-ofP"/>
                         <segue destination="aap-SZ-U5B" kind="presentation" identifier="breakDelayPickerSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="b60-gp-o7u"/>
                         <segue destination="sLM-xt-rcc" kind="presentation" identifier="sessionCountSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="z9I-m6-Vsh"/>
-                        <segue destination="tLy-mW-riO" kind="presentation" identifier="reminderPickerSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="wh7-yF-udQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fyM-cB-BRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1790,121 +1789,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Iz-oY-eTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3985" y="451"/>
-        </scene>
-        <!--Reminder Picker Controller-->
-        <scene sceneID="fea-qW-1qb">
-            <objects>
-                <viewController id="tLy-mW-riO" customClass="FLReminderPickerController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rkt-kH-Usd"/>
-                        <viewControllerLayoutGuide type="bottom" id="Qf0-aO-CZX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tsf-QS-1t5">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Hx-8a-jZR" customClass="DesignableView" customModule="Focus8" customModuleProvider="target">
-                                <rect key="frame" x="150" y="152" width="300" height="297"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9L-zz-nHe">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsS-9h-KeN">
-                                                <rect key="frame" x="20" y="16" width="260" height="28"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="FsS-9h-KeN" firstAttribute="leading" secondItem="W9L-zz-nHe" secondAttribute="leading" constant="20" id="3Gk-0h-nBi"/>
-                                            <constraint firstAttribute="centerY" secondItem="FsS-9h-KeN" secondAttribute="centerY" id="6Sq-FH-PrV"/>
-                                            <constraint firstAttribute="height" constant="60" id="FPZ-Rk-Y68"/>
-                                            <constraint firstAttribute="trailing" secondItem="FsS-9h-KeN" secondAttribute="trailing" constant="20" id="hMv-dB-MKi"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9G2-Ph-lg0">
-                                        <rect key="frame" x="5" y="240" width="290" height="1"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="P6K-ks-d9N"/>
-                                        </constraints>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdR-Mf-7Jb">
-                                        <rect key="frame" x="16" y="249" width="75" height="40"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                        <state key="normal" title="Remove">
-                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="removeReminder:" destination="tLy-mW-riO" eventType="touchUpInside" id="eco-da-x6P"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yg5-JH-F7a">
-                                        <rect key="frame" x="233" y="249" width="51" height="40"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="saveReminder:" destination="tLy-mW-riO" eventType="touchUpInside" id="WhP-mh-VFu"/>
-                                        </connections>
-                                    </button>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="TYd-i2-7Kz">
-                                        <rect key="frame" x="0.0" y="60" width="300" height="180"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="By0-Dc-9KN"/>
-                                            <constraint firstAttribute="height" constant="180" id="HDK-gx-uvh"/>
-                                        </constraints>
-                                        <date key="date" timeIntervalSinceReferenceDate="456393691.929079">
-                                            <!--2015-06-19 08:01:31 +0000-->
-                                        </date>
-                                    </datePicker>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Yg5-JH-F7a" secondAttribute="trailing" constant="16" id="4aW-K3-Lam"/>
-                                    <constraint firstItem="W9L-zz-nHe" firstAttribute="leading" secondItem="0Hx-8a-jZR" secondAttribute="leading" id="F9Z-rn-tIA"/>
-                                    <constraint firstItem="TYd-i2-7Kz" firstAttribute="leading" secondItem="0Hx-8a-jZR" secondAttribute="leading" id="Msh-ys-oPz"/>
-                                    <constraint firstItem="TYd-i2-7Kz" firstAttribute="top" secondItem="W9L-zz-nHe" secondAttribute="bottom" id="Sdw-36-jnU"/>
-                                    <constraint firstAttribute="trailing" secondItem="TYd-i2-7Kz" secondAttribute="trailing" id="asy-ll-X1s"/>
-                                    <constraint firstAttribute="bottom" secondItem="Yg5-JH-F7a" secondAttribute="bottom" constant="8" id="daZ-pv-P5u"/>
-                                    <constraint firstAttribute="trailing" secondItem="W9L-zz-nHe" secondAttribute="trailing" id="fwn-aH-z3e"/>
-                                    <constraint firstItem="Yg5-JH-F7a" firstAttribute="top" secondItem="9G2-Ph-lg0" secondAttribute="bottom" constant="8" id="gKH-OD-Gr1"/>
-                                    <constraint firstAttribute="bottom" secondItem="zdR-Mf-7Jb" secondAttribute="bottom" constant="8" id="ghO-BJ-bCt"/>
-                                    <constraint firstItem="W9L-zz-nHe" firstAttribute="top" secondItem="0Hx-8a-jZR" secondAttribute="top" id="gx0-NJ-jPq"/>
-                                    <constraint firstItem="9G2-Ph-lg0" firstAttribute="leading" secondItem="0Hx-8a-jZR" secondAttribute="leading" constant="5" id="hY0-Pu-CG6"/>
-                                    <constraint firstAttribute="trailing" secondItem="9G2-Ph-lg0" secondAttribute="trailing" constant="5" id="lzK-iZ-Ssw"/>
-                                    <constraint firstItem="9G2-Ph-lg0" firstAttribute="top" secondItem="TYd-i2-7Kz" secondAttribute="bottom" id="nPR-vB-g80"/>
-                                    <constraint firstItem="zdR-Mf-7Jb" firstAttribute="leading" secondItem="0Hx-8a-jZR" secondAttribute="leading" constant="16" id="u4I-D9-dgL"/>
-                                    <constraint firstItem="zdR-Mf-7Jb" firstAttribute="top" secondItem="9G2-Ph-lg0" secondAttribute="bottom" constant="8" id="yEe-Db-sM9"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideDown"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="0Hx-8a-jZR" secondAttribute="centerX" id="LNS-yM-oxd"/>
-                            <constraint firstAttribute="centerY" secondItem="0Hx-8a-jZR" secondAttribute="centerY" id="czT-8w-gzv"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="datePicker" destination="TYd-i2-7Kz" id="l4v-0t-1bt"/>
-                        <outlet property="pickerTitle" destination="FsS-9h-KeN" id="dVE-Wy-kDj"/>
-                        <outlet property="pickerWidthConstraint" destination="By0-Dc-9KN" id="Tpg-yk-sq0"/>
-                        <outlet property="popUpView" destination="0Hx-8a-jZR" id="qOg-cf-5rA"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GzR-Vc-JaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3997" y="-265"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dhJ-E5-ht7">
