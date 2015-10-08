@@ -16,11 +16,6 @@
 
 static int const MY_APP_STORE_ID = 527097956; // Change it with original App ID before uploading Binary
 
-static NSString * const sampleDescription1 = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-static NSString * const sampleDescription2 = @"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.";
-static NSString * const sampleDescription3 = @"Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.";
-static NSString * const sampleDescription4 = @"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit.";
-
 static NSString * const kFLScreenLockKey = @"kFLScreenLockKey";
 static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 
@@ -308,45 +303,82 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
 #pragma mark - Introview.
 
 - (void)showIntroWithCrossDissolve {
+    
+    NSString *deviceIdentifierString;
+    
+    if ([[UIScreen mainScreen] bounds].size.height == 480) {
+        // iPhone 4
+        deviceIdentifierString = @"_4";
+    } else if ([[UIScreen mainScreen] bounds].size.height == 568){
+        // IPhone 5
+        deviceIdentifierString = @"_5";
+    } else if ([[UIScreen mainScreen] bounds].size.height == 667) {
+        // iPhone 6
+        deviceIdentifierString = @"_6";
+    } else if ([[UIScreen mainScreen] bounds].size.height == 736) {
+        // iPhone 6+
+        deviceIdentifierString = @"_6";
+    }
+
     EAIntroPage *page1 = [EAIntroPage page];
-    page1.title = @"Hello world";
-    page1.desc = sampleDescription1;
+    page1.title = @"Welcome to Listee";
+    page1.desc = @"Listee is a procrastinator's to do list. Ever felt a task is so big and cannot finish it in time? Listee is for you.";
+    page1.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page1.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
     page1.bgColor = [UIColor flatWisteriaColor];
-//    page1.bgImage = [UIImage imageNamed:@"bg1"];
-//    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title1"]];
+    NSString *titleImageName1 = [NSString stringWithFormat:@"screen3%@", deviceIdentifierString];
+    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName1]];
     
     EAIntroPage *page2 = [EAIntroPage page];
-    page2.title = @"This is page 2";
-    page2.desc = sampleDescription2;
+    page2.title = @"Prorastinate no more!";
+    page2.desc = @"Split your task into smaller sessions. Finish one session at a time. Take a break after each session. Its that simple";
+    page2.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page2.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
     page2.bgColor = [UIColor flatAlizarinColor];
-//    page2.bgImage = [UIImage imageNamed:@"bg2"];
-//    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title2"]];
+    NSString *titleImageName2 = [NSString stringWithFormat:@"screen1%@", deviceIdentifierString];
+    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName2]];
     
     EAIntroPage *page3 = [EAIntroPage page];
-    page3.title = @"This is page 3";
-    page3.desc = sampleDescription3;
+    page3.title = @"It's so easy to use. Just swipe";
+    page3.desc = @"Swipe left to Edit or Delete.\n Swipe right to view your progress";
+    page3.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page3.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
     page3.bgColor = [UIColor flatPeterRiverColor];
-//    page3.bgImage = [UIImage imageNamed:@"bg3"];
-//    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title3"]];
+    NSString *titleImageName3 = [NSString stringWithFormat:@"screen4%@", deviceIdentifierString];
+    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName3]];;
     
     EAIntroPage *page4 = [EAIntroPage page];
-    page4.title = @"This is page 4";
-    page4.desc = sampleDescription4;
+    page4.title = @"Work on your on terms!";
+    page4.desc = @"Listee is hghly customizable. Set different time lengths for different tasks. Also choose from a wide variety of themes.";
+    page4.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page4.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
     page4.bgColor = [UIColor flatTurquoiseColor];
-//    page4.bgImage = [UIImage imageNamed:@"bg4"];
-//    page4.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title4"]];
+    NSString *titleImageName4 = [NSString stringWithFormat:@"screen2%@", deviceIdentifierString];
+    page4.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName4]];;
+
     
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4]];
+    EAIntroPage *page5 = [EAIntroPage page];
+    page5.title = @"What did you do today?";
+    page5.desc = @"Track your progress and be motivated.";
+    page5.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page5.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page5.bgColor = [UIColor flatTurquoiseColor];
+    NSString *titleImageName5 = [NSString stringWithFormat:@"screen5%@", deviceIdentifierString];
+    page5.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName5]];;
+
+    EAIntroPage *page6 = [EAIntroPage page];
+    page6.title = @"Focus on your task!";
+    page6.desc = @"Listee will alert you when a session is finished. Even when it is in the background!\n Make sure to enable notifications.";
+    page6.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+    page6.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
+    page6.bgColor = [UIColor flatTurquoiseColor];
+    NSString *titleImageName6 = [NSString stringWithFormat:@"screen6%@", deviceIdentifierString];
+    page6.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName6]];;
+    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1, page2, page3, page4, page5, page6]];
     [intro setDelegate:self];
     
     [intro showInView:rootView animateDuration:0.3];
-}
-
-#pragma mark - IntroView delegate methods.
-
-- (void)introDidFinish:(EAIntroView *)introView
-{
-    NSLog(@"Intro finished");
 }
 
 @end
