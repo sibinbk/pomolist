@@ -10,6 +10,7 @@
 #import "JSQSystemSoundPlayer.h"
 #import "FLSoundPickerController.h"
 #import "UIColor+FlatColors.h"
+#import "ColorUtils.h"
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
 #import <EAIntroView/EAIntroView.h>
@@ -323,7 +324,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     page1.desc = @"Listee is a procrastinator's to do list app. Ever felt a task is time consuming and cannot finish it in time? Listee is here to help you.";
     page1.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page1.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
-    page1.bgColor = [UIColor flatWisteriaColor];
+    page1.bgColor = [UIColor colorWithString:@"9B59B6"];
     NSString *titleImageName1 = [NSString stringWithFormat:@"screen3%@", deviceIdentifierString];
     page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName1]];
     
@@ -332,7 +333,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     page2.desc = @"Split task into smaller sessions. Finish one session at a time. Take a break after each session. It's that simple";
     page2.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page2.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
-    page2.bgColor = [UIColor flatAlizarinColor];
+    page2.bgColor = [UIColor colorWithString:@"E74C3C"];
     NSString *titleImageName2 = [NSString stringWithFormat:@"screen1%@", deviceIdentifierString];
     page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName2]];
     
@@ -341,7 +342,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     page3.desc = @"Swipe left to Edit or Delete.\n Swipe right to view your progress";
     page3.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page3.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
-    page3.bgColor = [UIColor flatPeterRiverColor];
+    page3.bgColor = [UIColor colorWithString:@"3498DB"];
     NSString *titleImageName3 = [NSString stringWithFormat:@"screen4%@", deviceIdentifierString];
     page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName3]];;
     
@@ -350,7 +351,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     page4.desc = @"Listee is highly customizable. Set different time lengths for different tasks. Also choose from a wide variety of themes.";
     page4.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page4.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
-    page4.bgColor = [UIColor flatTurquoiseColor];
+    page4.bgColor = [UIColor colorWithString:@"1ABC9C"];
     NSString *titleImageName4 = [NSString stringWithFormat:@"screen2%@", deviceIdentifierString];
     page4.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName4]];;
     
@@ -360,7 +361,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     page5.desc = @"Track your progress and get motivated.";
     page5.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page5.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
-    page5.bgColor = [UIColor flatTurquoiseColor];
+    page5.bgColor = [UIColor colorWithString:@"F39C12"];
     NSString *titleImageName5 = [NSString stringWithFormat:@"screen5%@", deviceIdentifierString];
     page5.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName5]];;
     
@@ -369,7 +370,7 @@ static NSString * const kFLAlarmSoundKey = @"kFLAlarmSoundKey";
     page6.desc = @"Listee will alert you when a session is finished. Even when it is in the background!\n Make sure to enable notifications.";
     page6.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
     page6.descFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0];
-    page6.bgColor = [UIColor flatTurquoiseColor];
+    page6.bgColor = [UIColor colorWithString:@"D35400"];
     NSString *titleImageName6 = [NSString stringWithFormat:@"screen6%@", deviceIdentifierString];
     page6.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:titleImageName6]];;
     
