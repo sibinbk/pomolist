@@ -25,6 +25,8 @@
 		C33AA7931B9D9EEB0052EFAF /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C33AA7921B9D9EEB0052EFAF /* ColorUtils.m */; };
 		C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */; };
 		C347DD8E1B8F1251006E3F3E /* FLSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */; };
+		C34C7FEA1BCF9AAC00DE479B /* KAProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34C7FE71BCF9AAC00DE479B /* KAProgressLabel.m */; settings = {ASSET_TAGS = (); }; };
+		C34C7FEB1BCF9AAC00DE479B /* TPPropertyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C34C7FE91BCF9AAC00DE479B /* TPPropertyAnimation.m */; settings = {ASSET_TAGS = (); }; };
 		C351141B1B1AEFF7005EB4B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C35114191B1AEFF7005EB4B3 /* Main.storyboard */; };
 		C3534E221B09A12B0015B626 /* FLColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C3534E211B09A12B0015B626 /* FLColorPicker.m */; };
 		C3534E261B09A63E0015B626 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C3534E231B09A63E0015B626 /* Checkmark.png */; };
@@ -214,6 +216,10 @@
 		C33EE6F41A675FB300C94E61 /* ZGCountDownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCountDownTimer.m; sourceTree = "<group>"; };
 		C347DD8C1B8F1251006E3F3E /* FLSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSettingsController.h; sourceTree = "<group>"; };
 		C347DD8D1B8F1251006E3F3E /* FLSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSettingsController.m; sourceTree = "<group>"; };
+		C34C7FE61BCF9AAC00DE479B /* KAProgressLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAProgressLabel.h; sourceTree = "<group>"; };
+		C34C7FE71BCF9AAC00DE479B /* KAProgressLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAProgressLabel.m; sourceTree = "<group>"; };
+		C34C7FE81BCF9AAC00DE479B /* TPPropertyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPropertyAnimation.h; sourceTree = "<group>"; };
+		C34C7FE91BCF9AAC00DE479B /* TPPropertyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPropertyAnimation.m; sourceTree = "<group>"; };
 		C351141A1B1AEFF7005EB4B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C3534E201B09A12B0015B626 /* FLColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLColorPicker.h; sourceTree = "<group>"; };
 		C3534E211B09A12B0015B626 /* FLColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLColorPicker.m; sourceTree = "<group>"; };
@@ -509,6 +515,17 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		C34C7FE51BCF9A5F00DE479B /* KAProgressLabel */ = {
+			isa = PBXGroup;
+			children = (
+				C34C7FE61BCF9AAC00DE479B /* KAProgressLabel.h */,
+				C34C7FE71BCF9AAC00DE479B /* KAProgressLabel.m */,
+				C34C7FE81BCF9AAC00DE479B /* TPPropertyAnimation.h */,
+				C34C7FE91BCF9AAC00DE479B /* TPPropertyAnimation.m */,
+			);
+			name = KAProgressLabel;
+			sourceTree = "<group>";
+		};
 		C35B33501A0CBA1500061C40 = {
 			isa = PBXGroup;
 			children = (
@@ -532,6 +549,7 @@
 		C35B335B1A0CBA1500061C40 /* Focus8 */ = {
 			isa = PBXGroup;
 			children = (
+				C34C7FE51BCF9A5F00DE479B /* KAProgressLabel */,
 				C38409C61BAC5BFA00097321 /* Spring */,
 				C33AA7901B9D9EEB0052EFAF /* ColorUtils */,
 				C3ACAB751B3184C7000EF926 /* UIFlatColors */,
@@ -1056,6 +1074,7 @@
 				C3CB91741BAD6EAD0081B56E /* Task+CoreDataProperties.m in Sources */,
 				C3CB91731BAD6EAD0081B56E /* Event+CoreDataProperties.m in Sources */,
 				C33EE6F51A675FB300C94E61 /* ZGCountDownTimer.m in Sources */,
+				C34C7FEB1BCF9AAC00DE479B /* TPPropertyAnimation.m in Sources */,
 				C38409FE1BAC5BFA00097321 /* SpringView.swift in Sources */,
 				C38409F71BAC5BFA00097321 /* Spring.swift in Sources */,
 				C3D1B6171B47D7660003419B /* FLBreakDelayPickerController.m in Sources */,
@@ -1083,6 +1102,7 @@
 				C38409FA1BAC5BFA00097321 /* SpringImageView.swift in Sources */,
 				C38409EB1BAC5BFA00097321 /* DesignableLabel.swift in Sources */,
 				C3616A411AAB021A00C47C8A /* EventTableViewController.m in Sources */,
+				C34C7FEA1BCF9AAC00DE479B /* KAProgressLabel.m in Sources */,
 				C35B33651A0CBA1500061C40 /* Focus8.xcdatamodeld in Sources */,
 				C3D6808B1B3BBC6300C08860 /* FLTimingPickerController.m in Sources */,
 				C38409F81BAC5BFA00097321 /* SpringAnimation.swift in Sources */,

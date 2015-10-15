@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "ColorUtils.h"
 #import "NSAttributedString+CCLFormat.h"
+#import "KAProgressLabel.h"
 #import "Focus8-Swift.h"
 #import "Task.h"
 #import "Event.h"
@@ -17,7 +18,7 @@
 @interface FLTodayViewController () <NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *taskNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *percentageLabel;
+@property (weak, nonatomic) IBOutlet KAProgressLabel *percentageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *completedTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *completedSessionLabel;
 @property (weak, nonatomic) IBOutlet DesignableView *todayView;
@@ -44,6 +45,12 @@
     [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                                       [UIColor whiteColor], NSForegroundColorAttributeName,
                                                                       [UIFont fontWithName:@"AvenirNext-Regular" size:22.0], NSFontAttributeName, nil]];
+    // Customize progress label.
+    
+    self.percentageLabel.trackColor = [UIColor darkGrayColor];
+    self.percentageLabel.progressColor = [UIColor colorWithString:@"E67E22"];
+    self.percentageLabel.trackWidth = 10.0;
+    self.percentageLabel.progressWidth = 10.0;
     
 }
 
@@ -86,9 +93,15 @@
     NSString *targetSessioncountString = [NSString stringWithFormat:@" %ld", (long) [task.repeatCount integerValue]];
     /* 'Space' before targetSessionCount string is a must. Otherwise the rage of string calculation could be wrong when both target and completed session counts are same. */
     
+    CGFloat taskPercentage = [self percentageOfTaskCompleted:event];
+    
     self.dateLabel.text = [self dateStringForDate:today];
     self.taskNameLabel.text = task.name;
-    self.percentageLabel.attributedText = [self formattedTaskPercentageString:[self percentageOfTaskCompleted:event]];
+    [self.percentageLabel setProgress:(taskPercentage > 1.0 ? 1.0 : taskPercentage)
+                               timing:TPPropertyAnimationTimingEaseOut
+                             duration:0.5
+                                delay:0.0];
+    self.percentageLabel.attributedText = [self formattedTaskPercentageString:round(taskPercentage * 100)];
     
     self.completedTimeLabel.attributedText = [NSAttributedString attributedStringWithFormat:@"%@\n%@", completedTimeString, plannedTimeString];
     self.completedSessionLabel.attributedText = [self formattedSessionString:completedSessionCountString withString:targetSessioncountString];
@@ -122,7 +135,7 @@
     double actualTaskDuration = [task.taskTime integerValue] * [task.repeatCount integerValue];
     double completedTaskDuration = [event.totalTaskTime integerValue];
     
-    double percentageCompleted = round((completedTaskDuration / actualTaskDuration) * 100);
+    CGFloat percentageCompleted = completedTaskDuration / actualTaskDuration;
     
     return percentageCompleted;
 }
@@ -263,7 +276,7 @@
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
     NSDictionary *percentageAttributes = @{
-                                           NSFontAttributeName:[UIFont systemFontOfSize:70 weight:UIFontWeightThin],
+                                           NSFontAttributeName:[UIFont systemFontOfSize:60 weight:UIFontWeightThin],
                                            NSForegroundColorAttributeName:[UIColor whiteColor],
                                            NSParagraphStyleAttributeName:paragraphStyle
                                            };
@@ -272,12 +285,19 @@
                                        NSForegroundColorAttributeName:[UIColor whiteColor],
                                        NSParagraphStyleAttributeName:paragraphStyle
                                        };
+    NSDictionary *completedStringAttributes = @{
+                                               NSFontAttributeName:[UIFont fontWithName:@"AvenirNext-Regular" size:16.0],
+                                               NSForegroundColorAttributeName:[UIColor lightGrayColor],
+                                               NSParagraphStyleAttributeName:paragraphStyle
+                                               };
     
     NSString *symbolString = @"%";
-    NSString *percentageString = [NSString stringWithFormat:@"%0.f%@", percentage, symbolString];
+    NSString *completedString = @"completed";
+    NSString *percentageString = [NSString stringWithFormat:@"%0.f%@\n%@", percentage, symbolString, completedString];
     
     NSMutableAttributedString *modifiedString = [[NSMutableAttributedString alloc] initWithString:percentageString attributes:percentageAttributes];
     [modifiedString setAttributes:symbolAttributes range:[percentageString rangeOfString:symbolString]];
+    [modifiedString setAttributes:completedStringAttributes range:[percentageString rangeOfString:completedString]];
     return modifiedString;
 }
 

@@ -1340,73 +1340,52 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8pR-KZ-OdL" customClass="DesignableView" customModule="Focus8" customModuleProvider="target">
-                                <rect key="frame" x="150" y="102" width="300" height="331"/>
+                                <rect key="frame" x="150" y="69" width="300" height="397"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcn-3u-YKg">
-                                        <rect key="frame" x="76" y="75" width="148" height="82"/>
-                                        <animations/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="70%">
-                                                <attributes>
-                                                    <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <font key="NSFont" size="70" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofg-kx-Upz">
-                                        <rect key="frame" x="10" y="271" width="70" height="28"/>
+                                        <rect key="frame" x="10" y="347" width="70" height="28"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLo-c5-C1R">
-                                        <rect key="frame" x="10" y="221" width="80" height="28"/>
+                                        <rect key="frame" x="10" y="297" width="80" height="28"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cW-1h-UWJ">
-                                        <rect key="frame" x="10" y="259" width="280" height="1"/>
+                                        <rect key="frame" x="10" y="335" width="280" height="1"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="ngS-3i-BUP"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kd8-6k-tfy">
-                                        <rect key="frame" x="196" y="218" width="94" height="33"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kd8-6k-tfy">
+                                        <rect key="frame" x="196" y="294" width="94" height="33"/>
                                         <animations/>
                                         <attributedString key="attributedText">
                                             <fragment content="2h 30m">
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <font key="NSFont" size="28" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugc-mT-a2L">
-                                        <rect key="frame" x="10" y="209" width="280" height="1"/>
+                                        <rect key="frame" x="10" y="285" width="280" height="1"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="4hi-Kf-PRC"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otP-Qa-TWA">
-                                        <rect key="frame" x="110" y="157" width="80" height="22"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Study" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjx-NV-XLd">
                                         <rect key="frame" x="20" y="20" width="260" height="25"/>
                                         <animations/>
@@ -1415,7 +1394,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2m-93-Q7E">
-                                        <rect key="frame" x="274" y="268" width="16" height="33"/>
+                                        <rect key="frame" x="274" y="344" width="16" height="33"/>
                                         <animations/>
                                         <attributedString key="attributedText">
                                             <fragment content="5">
@@ -1428,14 +1407,30 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcn-3u-YKg" customClass="KAProgressLabel">
+                                        <rect key="frame" x="60" y="75" width="180" height="180"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="2xW-BI-5VI"/>
+                                            <constraint firstAttribute="height" constant="180" id="N1d-85-hAl"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="70%">
+                                                <attributes>
+                                                    <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <font key="NSFont" size="40" name="HelveticaNeue-Light"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.1764705882352941" green="0.19215686274509802" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Kd8-6k-tfy" firstAttribute="trailing" secondItem="ugc-mT-a2L" secondAttribute="trailing" id="0ze-Wl-rL2"/>
-                                    <constraint firstItem="otP-Qa-TWA" firstAttribute="centerX" secondItem="8pR-KZ-OdL" secondAttribute="centerX" id="2Dp-Qj-wZ9"/>
                                     <constraint firstItem="qcn-3u-YKg" firstAttribute="top" secondItem="vjx-NV-XLd" secondAttribute="bottom" constant="30" id="2n7-0c-swA"/>
-                                    <constraint firstItem="otP-Qa-TWA" firstAttribute="top" secondItem="qcn-3u-YKg" secondAttribute="bottom" id="4eP-8T-KNa"/>
                                     <constraint firstAttribute="trailing" secondItem="ugc-mT-a2L" secondAttribute="trailing" constant="10" id="50K-zQ-5fh"/>
                                     <constraint firstItem="vjx-NV-XLd" firstAttribute="leading" secondItem="8pR-KZ-OdL" secondAttribute="leading" constant="20" id="6Xm-3I-w7a"/>
                                     <constraint firstItem="Kd8-6k-tfy" firstAttribute="centerY" secondItem="wLo-c5-C1R" secondAttribute="centerY" id="6eG-AD-Blq"/>
@@ -1443,13 +1438,13 @@
                                     <constraint firstItem="ugc-mT-a2L" firstAttribute="leading" secondItem="8pR-KZ-OdL" secondAttribute="leading" constant="10" id="GNk-DJ-kwV"/>
                                     <constraint firstItem="wLo-c5-C1R" firstAttribute="leading" secondItem="ugc-mT-a2L" secondAttribute="leading" id="Id3-86-6dv"/>
                                     <constraint firstItem="P2m-93-Q7E" firstAttribute="trailing" secondItem="ugc-mT-a2L" secondAttribute="trailing" id="Jw5-Tt-sWA"/>
-                                    <constraint firstAttribute="bottom" secondItem="P2m-93-Q7E" secondAttribute="bottom" constant="30" id="MQW-gH-MeO"/>
+                                    <constraint firstAttribute="bottom" secondItem="P2m-93-Q7E" secondAttribute="bottom" constant="20" symbolic="YES" id="MQW-gH-MeO"/>
                                     <constraint firstItem="Kd8-6k-tfy" firstAttribute="top" secondItem="ugc-mT-a2L" secondAttribute="bottom" constant="8" symbolic="YES" id="Mpz-bi-vin"/>
                                     <constraint firstAttribute="trailing" secondItem="vjx-NV-XLd" secondAttribute="trailing" constant="20" id="O8D-4k-Ud7"/>
                                     <constraint firstAttribute="width" constant="300" id="QlA-uu-g6I"/>
                                     <constraint firstItem="0cW-1h-UWJ" firstAttribute="trailing" secondItem="ugc-mT-a2L" secondAttribute="trailing" id="Rbv-7V-i66"/>
                                     <constraint firstItem="P2m-93-Q7E" firstAttribute="centerY" secondItem="ofg-kx-Upz" secondAttribute="centerY" id="Wc6-dB-URJ"/>
-                                    <constraint firstItem="ugc-mT-a2L" firstAttribute="top" secondItem="otP-Qa-TWA" secondAttribute="bottom" constant="30" id="hDr-86-nWv"/>
+                                    <constraint firstItem="ugc-mT-a2L" firstAttribute="top" secondItem="qcn-3u-YKg" secondAttribute="bottom" constant="30" id="a83-rV-5XT"/>
                                     <constraint firstItem="0cW-1h-UWJ" firstAttribute="top" secondItem="Kd8-6k-tfy" secondAttribute="bottom" constant="8" symbolic="YES" id="jSv-KM-AHv"/>
                                     <constraint firstItem="qcn-3u-YKg" firstAttribute="centerX" secondItem="8pR-KZ-OdL" secondAttribute="centerX" id="kRS-PD-Qwj"/>
                                     <constraint firstItem="0cW-1h-UWJ" firstAttribute="leading" secondItem="ugc-mT-a2L" secondAttribute="leading" id="oGS-XS-LOJ"/>
