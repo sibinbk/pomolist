@@ -1657,7 +1657,7 @@ typedef NS_ENUM(NSInteger, LabelViewType) {
     CNPPopupButton *dismissButton = [[CNPPopupButton alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
     [dismissButton setTitleColor:[UIColor colorWithString:@"F0C30E"] forState:UIControlStateNormal];
     dismissButton.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
-    [dismissButton setTitle:@"Dissmiss" forState:UIControlStateNormal];
+    [dismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
     dismissButton.backgroundColor = [UIColor clearColor];
     dismissButton.selectionHandler = ^(CNPPopupButton *button){
         [self.popupController dismissPopupControllerAnimated:YES];
